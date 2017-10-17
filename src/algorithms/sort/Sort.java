@@ -22,4 +22,10 @@ public abstract class Sort {
 		array[j] = t;
 		return array;
 	}
+
+	protected void show(int[] array) {
+		for (int a : array) {
+			System.out.println(a);
+		}
+	}
 }
