@@ -1,2 +1,2 @@
 # mainbase
-many base knowledge here.
+many codes of base knowledge here.
