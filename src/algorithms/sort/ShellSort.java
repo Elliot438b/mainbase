@@ -9,11 +9,11 @@ public class ShellSort extends Sort {
 			int step = array.length / d;
 			if (lastStep != step) {
 				lastStep = step;
+				System.out.println("step: " + step);// 监控step，shellSort执行次数
+				shellSort(array, step);
 			} else {
-				break;
+				continue;
 			}
-			System.out.println(step);// 监控step，shellSort执行次数
-			shellSort(array, step);
 		}
 		return array;
 	}
