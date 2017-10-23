@@ -211,14 +211,22 @@ public class InsertSort extends Sort {
 快速排序是最流行的排序算法，效率是比较高的。它是基于冒泡排序，但略比冒泡排序复杂，基本思想为二分分治，将一个数组按照一个基准数分割，比基准数小的放基准数的右边，大的放在左边。这就需要定义两个数组下标变量，分别从数组的两头开始比较换位，最终在数组的中间位置相遇，然后在基准数的左边和右边再递归执行这个分割法即可，代码如下。
 
 ```
-package sort;
+package algorithms.sort;
 
 public class QuickSort extends Sort {
 	public int[] sort(int[] array) {
 		return quickSort(array, 0, array.length - 1);
 	}
 
-	// 分割的方法
+	/**
+	 * 分割的方法
+	 * 
+	 * @param array
+	 * @param left
+	 *            [left, right]
+	 * @param right
+	 * @return 两情相悦的位置
+	 */
 	private int partition(int[] array, int left, int right) {
 		int pivot = array[left];// 定义基准数
 		int pivotIndex = left;// 保存基准数的位置
@@ -230,11 +238,19 @@ public class QuickSort extends Sort {
 				left++;
 			swap(array, left, right);// 互换上面找到的第一个比基准数大的和第一个比基准数小的位置
 		}
-		swap(array, pivotIndex, left);// 最后交换基准数到中央位置。
+		swap(array, pivotIndex, left);// 最后交换基准数到两情相悦的位置（不一定是中间）。
 		return left;
 	}
 
-	// 用于递归的方法
+	/**
+	 * 一到递归别迷糊：用于递归的方法quickSort，而非partition
+	 * 
+	 * @param array
+	 * @param left
+	 *            [left,right]
+	 * @param right
+	 * @return
+	 */
 	private int[] quickSort(int[] array, int left, int right) {
 		if (left >= right)// 递归的终止条件，这是必要的。
 			return array;
@@ -338,11 +354,11 @@ public class HeapSort extends Sort {
 	 * k位置的数值打破了小顶堆有序状态，说明其比父节点还小，这时就要将k与其父节点互换位置
 	 * （不用考虑比子节点大的问题，因为循环到检查子节点的时候，依旧可以采用其比父节点小的逻辑）
 	 * 相对与下沉操作，上浮操作比较简略的原因是k只需要与一个父节点比较大小，而下沉操作则需要跟一个或两个子节点比较大小，多出的是这部分逻辑
-	 *           1
+	 *          1
 	 *        /    \
-	 *      2       5
-	 *    /  \     /  \
-	 *   4    3   6    7 
+	 *      2        5
+	 *    /  \      /  \
+	 *   4    3    6    7 
 	 * @param array
 	 * @param k 区间[0,k]
 	 */
@@ -445,3 +461,134 @@ T(n) = O(n*log2^n)
 小顶堆时就是反过来。
 
 另外，编写代码时要注意数组下标是从0开始，要细心处理一下。
+### 希尔排序
+希尔是个人，是希尔排序的发明者。
+
+这是我觉得非常精巧的方案。
+
+首先用图来表示一下希尔排序的中心思想：
+![image](https://github.com/evsward/mainbase/blob/master/resource/image/sort/shell_sort.png?raw=true)
+
+这张图可以清晰地展示希尔排序的思路。
+
+具体代码如下：
+
+```
+package sort;
+
+public class ShellSort extends Sort {
+
+	@Override
+	protected int[] sort(int[] array) {
+		int lastStep = 0;// 控制循环次数，保存上一个step，避免重复
+		for (int d = 2; d < array.length; d++) {
+			int step = array.length / d;
+			if (lastStep != step) {
+				lastStep = step;
+			} else {
+				break;
+			}
+			System.out.println(step);// 监控step，shellSort执行次数
+			shellSort(array, step);
+		}
+		return array;
+	}
+
+	private void shellSort(int[] array, int step) {
+		for (int i = 0; i < array.length - step; i++) {
+			if (array[i] < array[i + step]) {
+				swap(array, i, i + step);
+			}
+		}
+	}
+
+}
+
+
+```
+
+> 数组长度：32，执行交换次数：56
+
+希尔排序是精巧的，从交换次数上面来看表现也可以。
+
+原理也是非常易懂，我很喜欢这种深入浅出的算法。
+
+希尔排序的分析是复杂的，时间复杂度是所取增量的函数，这涉及一些数学上的难题。但是在大量实验的基础上推出当n在某个范围内时，时间复杂度可以达到O(n^1.3)，，空间复杂度也为O(1)，原理同上。
+### 归并排序
+归并排序的操作有些像快速排序，只不过归并排序每次都是强制从中间分割，递归分割至不可再分（即只有两个元素），将分割后的子数组进行排序，然后相邻的两个子数组进行合并，新建一个数组用来存储合并后的有序数组并重新赋值给原数组。
+```
+package algorithms.sort;
+
+public class MergeSort extends Sort {
+
+	private int[] temp;
+
+	@Override
+	protected int[] sort(int[] array) {
+		temp = new int[array.length];// 新建一个与原数组长度相同的空的辅助数组
+		mergeSort(array, 0, array.length - 1);
+		return array;
+	}
+
+	/**
+	 * 一到递归别迷糊：用于递归的方法MergeSort，而非merge
+	 * 
+	 * @param array
+	 * @param left
+	 * @param right
+	 */
+	private void mergeSort(int[] array, int left, int right) {
+		if (left >= right)// 已经分治到最细化，说明排序已结束
+			return;
+		int mid = (right + left) / 2;// 手动安排那个两情相悦的位置，强制为中间。ㄟ(◑‿◐ )ㄏ
+		mergeSort(array, left, mid);// 左半部分递归分治
+		mergeSort(array, mid + 1, right);// 右半部分递归分治
+		merge(array, left, mid, right);// 强制安排两情相悦，就要付出代价：去插手merge他们的感情。(͡° ͜ʖ°)✧
+	}
+
+	/**
+	 * 通过辅助数组，合并两个子数组为一个数组，并排序。
+	 * 
+	 * @param array
+	 *            原数组
+	 * @param left
+	 *            左子数组 [left, mid]；
+	 * @param mid
+	 *            那个被强制的两情相悦的位置。(ಠ .̫.̫ ಠ)
+	 * @param right
+	 *            右子数组 [mid+1, right]
+	 */
+	private void merge(int[] array, int left, int mid, int right) {
+		for (int k = left; k <= right; k++) {// 将区间[left,right]复制到temp数组中，这是强硬合并，并没有温柔的捋顺。
+			temp[k] = array[k];
+		}
+		int i = left;
+		int j = mid + 1;
+		for (int k = left; k <= right; k++) {// 通过判断，将辅助数组temp中的值按照大小归并回原数组array
+			if (i > mid)// 第三步：亲戚要和蔼，左半边用尽，则取右半边元素
+				array[k] = temp[j++];// 右侧元素取出一个以后，要移动指针到其右侧下一个元素了。
+			else if (j > right)// 第四步：与第三步同步，工作要顺利，右半边用尽，则取左半边元素
+				array[k] = temp[i++];// 同样的，左侧元素取出一个以后，要移动指针到其右侧下一个元素了。
+			else if (array[j] > temp[i])// 第一步：性格要和谐，右半边当前元素大于左半边当前元素，取右半边元素（从大到小排序）
+				array[k] = temp[j++];// 右侧元素取出一个以后，要移动指针到其右侧下一个元素了。
+			else// 第二步：与第一步同步，三观要一致，左半边当前元素大于右半边当前元素，取左半边元素（从大到小排序）
+				array[k] = temp[i++];// 同样的，左侧元素取出一个以后，要移动指针到其右侧下一个元素了。
+		}
+	}
+}
+```
+> 数组长度：32，执行交换次数：0
+
+由于全程代码中并没有涉及交换操作，所以交换次数为0。
+
+归并排序的空间复杂度很高，因为它建立了一个与原数组同样长度的辅助数组，同时要对原数组进行二分分治，所以空间复杂度为
+
+```math
+S(n) = O(n*log2^n)
+```
+时间复杂度比较低，与空间复杂度的计算方式差不多，也为O(n*log2^n) 。
+
+归并排序是一种渐进最优的基于比较排序的算法。但是它的空间复杂度很高，同时也是不稳定的，当遇到最坏情况，也即每次比较都发生数据移动时，效率也不高。
+
+### 
+

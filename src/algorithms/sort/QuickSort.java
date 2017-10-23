@@ -5,7 +5,15 @@ public class QuickSort extends Sort {
 		return quickSort(array, 0, array.length - 1);
 	}
 
-	// 分割的方法
+	/**
+	 * 分割的方法
+	 * 
+	 * @param array
+	 * @param left
+	 *            [left, right]
+	 * @param right
+	 * @return 两情相悦的位置
+	 */
 	private int partition(int[] array, int left, int right) {
 		int pivot = array[left];// 定义基准数
 		int pivotIndex = left;// 保存基准数的位置
@@ -17,11 +25,19 @@ public class QuickSort extends Sort {
 				left++;
 			swap(array, left, right);// 互换上面找到的第一个比基准数大的和第一个比基准数小的位置
 		}
-		swap(array, pivotIndex, left);// 最后交换基准数到中央位置。
+		swap(array, pivotIndex, left);// 最后交换基准数到两情相悦的位置（不一定是中间）。
 		return left;
 	}
 
-	// 用于递归的方法
+	/**
+	 * 一到递归别迷糊：用于递归的方法quickSort，而非partition
+	 * 
+	 * @param array
+	 * @param left
+	 *            [left,right]
+	 * @param right
+	 * @return
+	 */
 	private int[] quickSort(int[] array, int left, int right) {
 		if (left >= right)// 递归的终止条件，这是必要的。
 			return array;
