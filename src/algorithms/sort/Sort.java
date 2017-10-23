@@ -1,5 +1,7 @@
 package algorithms.sort;
 
+import java.util.Random;
+
 public abstract class Sort {
 	private int count;
 
@@ -30,6 +32,15 @@ public abstract class Sort {
 		for (int a : array) {
 			System.out.println(a);
 		}
-		System.out.println("数组长度："+array.length +"，执行交换次数：" + count);
+		System.out.println("数组长度：" + array.length + "，执行交换次数：" + count);
+	}
+
+	public int[] getIntArrayRandom(int len, int max) {
+		int[] arr = new int[len];
+		Random r = new Random();
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = r.nextInt(max);
+		}
+		return arr;
 	}
 }
