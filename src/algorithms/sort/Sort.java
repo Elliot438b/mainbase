@@ -1,6 +1,8 @@
 package algorithms.sort;
 
 public abstract class Sort {
+	private int count;
+
 	protected int[] sort(int[] array) {
 		return null;
 	};
@@ -20,6 +22,7 @@ public abstract class Sort {
 		int t = array[i];
 		array[i] = array[j];
 		array[j] = t;
+		count++;
 		return array;
 	}
 
@@ -27,5 +30,6 @@ public abstract class Sort {
 		for (int a : array) {
 			System.out.println(a);
 		}
+		System.out.println("数组长度："+array.length +"，执行交换次数：" + count);
 	}
 }
