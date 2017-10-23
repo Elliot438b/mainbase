@@ -4,7 +4,7 @@ public class ShellSort extends Sort {
 
 	@Override
 	protected int[] sort(int[] array) {
-		int lastStep = 0;// ¿ØÖÆÑ­»·´ÎÊı£¬±£´æÉÏÒ»¸östep£¬±ÜÃâÖØ¸´
+		int lastStep = 0;// æ§åˆ¶å¾ªç¯æ¬¡æ•°ï¼Œä¿å­˜ä¸Šä¸€ä¸ªstepï¼Œé¿å…é‡å¤
 		for (int d = 2; d < array.length; d++) {
 			int step = array.length / d;
 			if (lastStep != step) {
@@ -12,7 +12,7 @@ public class ShellSort extends Sort {
 			} else {
 				break;
 			}
-			System.out.println(step);// ¼à¿Østep£¬shellSortÖ´ĞĞ´ÎÊı
+			System.out.println(step);// ç›‘æ§stepï¼ŒshellSortæ‰§è¡Œæ¬¡æ•°
 			shellSort(array, step);
 		}
 		return array;

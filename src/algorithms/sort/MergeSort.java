@@ -6,35 +6,35 @@ public class MergeSort extends Sort {
 
 	@Override
 	protected int[] sort(int[] array) {
-		temp = new int[array.length];// ĞÂ½¨Ò»¸öÓëÔ­Êı×é³¤¶ÈÏàÍ¬µÄ¿ÕµÄ¸¨ÖúÊı×é
+		temp = new int[array.length];// æ–°å»ºä¸€ä¸ªä¸åŸæ•°ç»„é•¿åº¦ç›¸åŒçš„ç©ºçš„è¾…åŠ©æ•°ç»„
 		divide(array, 0, array.length - 1);
 		return array;
 	}
 
 	private void divide(int[] array, int left, int right) {
-		if (left >= right)// ·ÖÖÎµ½×îÏ¸»¯
+		if (left >= right)// åˆ†æ²»åˆ°æœ€ç»†åŒ–
 			return;
 		int mid = (right + left) / 2;
-		divide(array, left, mid);// ×ó°ë²¿·Öµİ¹é·ÖÖÎ
-		divide(array, mid + 1, right);// ÓÒ°ë²¿·Öµİ¹é·ÖÖÎ
+		divide(array, left, mid);// å·¦åŠéƒ¨åˆ†é€’å½’åˆ†æ²»
+		divide(array, mid + 1, right);// å³åŠéƒ¨åˆ†é€’å½’åˆ†æ²»
 		merge(array, left, mid, right);
 	}
 
 	private void merge(int[] array, int left, int mid, int right) {
-		// ×ó×ÓÊı×é [left, mid]£» ÓÒ×ÓÊı×é [mid+1, right]
+		// å·¦å­æ•°ç»„ [left, mid]ï¼› å³å­æ•°ç»„ [mid+1, right]
 		int i = left;
 		int j = mid + 1;
-		for (int k = left; k <= right; k++) {// ½«leftÖÁright¸´ÖÆµ½tempÊı×éÖĞ
+		for (int k = left; k <= right; k++) {// å°†leftè‡³rightå¤åˆ¶åˆ°tempæ•°ç»„ä¸­
 			temp[k] = array[k];
 		}
-		for (int k = left; k <= right; k++) {// Í¨¹ıÅĞ¶Ï£¬½«¸¨ÖúÊı×éÖĞµÄÖµ°´ÕÕ´óĞ¡¹é²¢»ØÔ­Êı×é
-			if (i > mid)// ×ó°ë±ßÓÃ¾¡£¬ÔòÈ¡ÓÒ°ë±ßÔªËØ
+		for (int k = left; k <= right; k++) {// é€šè¿‡åˆ¤æ–­ï¼Œå°†è¾…åŠ©æ•°ç»„ä¸­çš„å€¼æŒ‰ç…§å¤§å°å½’å¹¶å›åŸæ•°ç»„
+			if (i > mid)// å·¦åŠè¾¹ç”¨å°½ï¼Œåˆ™å–å³åŠè¾¹å…ƒç´ 
 				array[k] = temp[j++];
-			else if (j > right)// ÓÒ°ë±ßÓÃ¾¡£¬ÔòÈ¡×ó°ë±ßÔªËØ
+			else if (j > right)// å³åŠè¾¹ç”¨å°½ï¼Œåˆ™å–å·¦åŠè¾¹å…ƒç´ 
 				array[k] = temp[i++];
-			else if (array[j] > temp[i])// ÓÒ°ë±ßµ±Ç°ÔªËØ´óÓÚ×ó°ë±ßµ±Ç°ÔªËØ£¬È¡ÓÒ°ë±ßÔªËØ£¨´Ó´óµ½Ğ¡ÅÅĞò£©
+			else if (array[j] > temp[i])// å³åŠè¾¹å½“å‰å…ƒç´ å¤§äºå·¦åŠè¾¹å½“å‰å…ƒç´ ï¼Œå–å³åŠè¾¹å…ƒç´ ï¼ˆä»å¤§åˆ°å°æ’åºï¼‰
 				array[k] = temp[j++];
-			else// ×ó°ë±ßµ±Ç°ÔªËØ´óÓÚÓÒ°ë±ßµ±Ç°ÔªËØ£¬È¡×ó°ë±ßÔªËØ£¨´Ó´óµ½Ğ¡ÅÅĞò£©
+			else// å·¦åŠè¾¹å½“å‰å…ƒç´ å¤§äºå³åŠè¾¹å½“å‰å…ƒç´ ï¼Œå–å·¦åŠè¾¹å…ƒç´ ï¼ˆä»å¤§åˆ°å°æ’åºï¼‰
 				array[k] = temp[i++];
 		}
 	}
