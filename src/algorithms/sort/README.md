@@ -86,7 +86,17 @@ public abstract class Sort {
 		for (int a : array) {
 			System.out.println(a);
 		}
-		System.out.println("执行交换次数："+count);
+		System.out.println("数组长度：" + array.length + "，执行交换次数：" + count);
+	}
+	
+	
+	public int[] getIntArrayRandom(int len, int max) {
+		int[] arr = new int[len];
+		Random r = new Random();
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = r.nextInt(max);
+		}
+		return arr;
 	}
 }
 
@@ -94,17 +104,17 @@ public abstract class Sort {
 然后再创建一个客户端Client，用来调用算法。代码如下：
 
 ```
-package sort;
+package algorithms.sort;
 
-public class Client {
+public class Main {
 	public static void main(String[] args) {
-		int[] array = { 10, 12432, 47, 534, 6, 4576, 47, 56, 8, 34, 84, 37, 38, 233, 537643, 784336, 3456, 282658, 3665,
-				3, 82, 1654, 268, 35763, 2344, 63, 38, 43, 22, 40, 0, 60 };
-		Sort s = new XXXSort();
+		Sort s = new MergeSort();
+		int[] array = s.getIntArrayRandom(32, 120);
 		array = s.sort(array);
 		s.show(array);
 	}
 }
+
 ```
 其中XXXSort类就是我们接下来要介绍的十种排序算法。
 ### 冒泡排序
