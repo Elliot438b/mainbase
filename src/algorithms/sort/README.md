@@ -1,68 +1,84 @@
-> �ؼ��֣������㷨��ʱ�临�Ӷȣ��ռ临�Ӷȣ���������
 
+> 这篇文章很长，我花了四天非连续（中间公司出了bug，加班了好几天( ¯ ¨̯ ¯̥̥ )）时间进行整理，如有任何疑问，欢迎随时留言。
 
-��������о���ν�һϵ�����ݰ���ĳ���߼�˳���������е�һ���㷨���ڼ�������ڣ�����Ҫռ�ô���������Դ�����ǵĹ�ʶ�����������Ż������ܵ���ߣ��Լ������㷨���ݽ��������Ѿ��ǳ���Ц�������洦�����������ݵ���Ҫ�ԣ����������ݵĵ�һ����������
-> ������[֪��](https://www.zhihu.com/question/66519221/answer/243013874)
+> 关键字：排序算法，时间复杂度，空间复杂度
 
-> �ܶණ�����Ѷȣ�����������仯�ġ���������ɣ�10�����֣��ҿ��Ը�����������
-100������ð������ѧ��c���ԵĴ�һѧ�������ܸɣ���ѡ�100T�������أ������ð�������ԣ�����������ʱ䣬�������������ñ������õ��㷨��ò����ã���Ϊ���Ҳ���100T��ô���ڴ棬n2���Ӷȵ�ð������������ʱ���ò��ɽ��ܡ�100T���������Ѿ��Ǹ���˾��ҫ�����ķ�ʽ�ˡ���Ѷ����2016 Sort Benchmark 4���¼��98.8�����100TB������������������ң���������¶��򲻼򵥣�
+排序就是研究如何将一系列数据按照某种逻辑顺序重新排列的一门算法。在计算机早期，排序要占用大量计算资源是人们的共识，而今天随着机器性能的提高，以及排序算法的演进，排序已经非常高效，现在随处都会提起数据的重要性，而整理数据的第一步就是排序。
+> 引用自[知乎](https://www.zhihu.com/question/66519221/answer/243013874)
 
-���ԣ������ǻ�����ÿһ������ĳ���Ա����Ҫ��Ϥ���գ����������ܽ�һ�¡�
+> 很多东西的难度，是随着需求变化的。比如排序吧，10个数字，我可以给你人眼排序，
+100个可以冒泡排序，学过c语言的大一学生，就能干，免费。100T的数字呢？你给我冒个泡试试？量变产生了质变，数据量的增大，让本来可用的算法变得不可用，因为你找不到100T这么大内存，n2复杂度的冒泡排序让排序时间变得不可接受。100T数据排序已经是各大公司炫耀技术的方式了。腾讯打破2016 Sort Benchmark 4项纪录，98.8秒完成100TB数据排序，现在你告诉我，排序这个事儿简不简单？
 
-���Ƚ��ܼ����������
+所以，排序是基础，每一名优秀的程序员都需要熟悉掌握，今天我来总结一下。
 
-- ��������
+首先介绍几个基础概念：
+
+- 对数函数
  
-����ѧ����log��ʾ��
+在数学中用log表示，
 
 ```math
 log2^8 = 3
 ```
-����8��������2�Ƕ����ĵף�3�Ƕ�������ô��֪��2��3�η�����8�����������൱����2�ļ��η�����8��
+其中8是真数，2是对数的底，3是对数。我们都知道2的3次方等于8，对数函数相当于求2的几次方等于8？
 
-���������ı�ʾ���м����������������Ϊ10ʱ��log���Ա�ʾΪlg��ͬʱʡ�Ե�10
+对数函数的表示还有几个特殊情况，当底为10时，log可以表示为lg，同时省略底10
 ```math
 lg100 = 2
 ```
-����������e��e=2.71828...��Ϊ�׵Ķ�����Ϊ��Ȼ������natural logarithm��������Ϊln��
+称以无理数e（e=2.71828...）为底的对数称为自然对数（natural logarithm），并记为ln。
 
-Ȼ�������˵����μ���������ʱ�临�Ӷȡ�
-- ʱ�临�Ӷ�
+- 时间复杂度
 
-ʱ�临�Ӷ��Ƕ��Ե�������һ�γ��������ʱ�䣬
-> �㷨��ĳ���ض������ִ�д���/������ִ��ʱ��Ĺ���ɱ������š������ģ��������ʱ����������ʽ��
+时间复杂度是定性的描述了一段程序的运行时间，
+> 官方定义：算法中基本操作重复执行的次数是问题规模n的某个函数，用T(n)表示，若有某个辅助函数f(n)，使得当n趋近于无穷大时，T(n)/f(n)的极限值为不等于零的常数，则称f(n)是T(n)的同数量级函数。记作T(n)=O(f(n))，称O(f(n))为算法的渐进时间复杂度(O是数量级的符号 )，简称时间复杂度。
 
-Ҳ����˵ʱ�临�Ӷ�Խ�ߣ�����ִ��ʱ��һ��Խ�ã�ʹ�ô�д��ĸO����ʾ��
-
-�ڳ���ΪN�������У�һ����������O(N)��Ƕ�������������� O(N^2)�� ͬ����Ƕ��������������O(N^3 )��������������һ��Ƕ��������������Ҫһ��Ƕ�������������Ǿ���O(N^2) + O(N^3) �������ģ�������޴��ʱ�򣬽�С�ķ���һ�����Ժ��ԣ�������������������Ծ���O(N^3) ��������ж��֣��Ǿ���O(log2^N) �����һ������Ƕ��һ�����֣�����O(N*log2^N)��
-- �ռ临�Ӷ�
-
-�ռ临�Ӷ���ָ�㷨��ִ�й�������ʱռ���ڴ�����ȣ��㷨��Ч��Ҫͨ��ʱ�临�ӶȺͿռ临�Ӷȹ�ͬ���塣�ռ临�Ӷ��Ծ�ʹ�ô�д��ĸO����ʾ��һ���㷨�Ŀռ临�Ӷ�S(n)����Ϊ���㷨���ķѵĴ洢�ռ䣬��Ҳ�������ģn�ĺ�����
+> 讲人话：算法中某个特定步骤的执行次数 / 对于总执行时间的估算成本，随着「问题规模」的增大时，增长的形式。
 
 
-����������׶Ρ�
 
-�����ȴ���һ��java����sort��Ȼ�󴴽�һ��������Sort���������£�
+时间复杂度使用大写字母O来表示。
+
+在长度为N的数组中，一个遍历就是O(N)，嵌套两个遍历就是 O(N^2)， 同样的嵌套三个遍历就是O(N^3 )。
+
+若程序中包含一个嵌套两个遍历的函数，还有一个嵌套三个遍历的函数，那就是O(N^2) + O(N^3) 当问题规模增大到无限大的时候，较小的分子一方可以忽略，按照数量级大的来，仍旧是O(N^3) 。
+
+如果有二分分治，那就是O(log2^N) 。
+
+如果一个遍历嵌套一个二分，则是O(N*log2^N)。
+- 空间复杂度
+
+空间复杂度是指算法在执行过程中临时占用内存的量度，空间复杂度仍旧使用大写字母O来表示。一个算法的空间复杂度S(n)定义为该算法所耗费的存储空间，它也是问题规模n的函数。
+> 空间复杂度(Space Complexity)是对一个算法在运行过程中临时占用存储空间大小的量度，记做S(n)=O(f(n))。
+
+在正无穷的“问题规模”时（n = +∞），时间复杂度和空间复杂度较低的程序的运行时间一定小于时间复杂度较高的程序。所以，时间复杂度和空间复杂度共同决定了程序的执行效率。
+
+下面进入代码阶段。
+
+我们先创建一个java工程sort，然后创建一个抽象类Sort。代码如下：
 
 ```
 package sort;
 
 public abstract class Sort {
+    private int count;
+    
 	protected int[] sort(int[] array) {
 		return null;
 	};
 
 	/**
-	 * ����λ�õķ���
-	 * @param array Ҫ��λ�õ�Ŀ������
-	 * @param i ����λ��1
-	 * @param j ����λ��2
-	 * @return ����λ���Ժ������
+	 * 互换位置的方法
+	 * @param array 要换位置的目标数组
+	 * @param i 数组位置1
+	 * @param j 数组位置2
+	 * @return 换好位置以后的数组
 	 */
 	protected int[] swap(int[] array, int i, int j) {
 		int t = array[i];
 		array[i] = array[j];
 		array[j] = t;
+		count++;
 		return array;
 	}
 	
@@ -70,40 +86,41 @@ public abstract class Sort {
 		for (int a : array) {
 			System.out.println(a);
 		}
-		System.out.println("ִ�н���������"+count);
+		System.out.println("执行交换次数："+count);
 	}
 }
 
 ```
-Ȼ���ٴ���һ���ͻ���Client�����������㷨���������£�
+然后再创建一个客户端Client，用来调用算法。代码如下：
 
 ```
 package sort;
 
 public class Client {
 	public static void main(String[] args) {
-		int[] array = { 1, 12432, 534, 6, 4576, 47, 56, 8 };
+		int[] array = { 10, 12432, 47, 534, 6, 4576, 47, 56, 8, 34, 84, 37, 38, 233, 537643, 784336, 3456, 282658, 3665,
+				3, 82, 1654, 268, 35763, 2344, 63, 38, 43, 22, 40, 0, 60 };
 		Sort s = new XXXSort();
 		array = s.sort(array);
 		s.show(array);
 	}
 }
 ```
-����XXXSort�����һ������Ҫ���ܵ�ʮ�������㷨��
-### ð������
-�����������Ǵ�ͷ�õ�һ�������������������Ƚ�һ��������������ģ����߱���С�ģ��ͻ���λ�ã�����һ���Ժ󣬵�һ�����Ѿ�������ȡ���������ʺ�����λ�ã��ٱȽϵڶ��������Դ����ƣ�һֱ�������е��������������Ƚ�һ��Ϊֹ��
+其中XXXSort类就是我们接下来要介绍的十种排序算法。
+### 冒泡排序
+简单来讲，在一个长度为n的数组中，对每两个相邻的数进行比较，将数值较大的（或者比它小的）换到右侧位置，遍历一遍以后，第一个数已经换来换取换到了最适合它的位置k，同时，在[k,n]之间由会有大于等于1个数被换来换去换到了最适合他们的位置。然后再从头对每两个相邻的数进行比较，以此类推，一直到将所有的数均换到了最适合他的位置为止。
 
-ʱ�临�Ӷ�Ϊ��
+时间复杂度为：
 ```math
 T(n) = O(n^2)
 ```
-�ռ临�Ӷ�Ϊ��
+空间复杂度为：
 ```math
 S(n) = O(1)
 ```
-����Ŀռ临�Ӷ�ֻ���ڽ���ʱ��һ����ת��ʱ����ռ�õ��ڴ�ռ䣬������O(1)��
+这里的空间复杂度只有在交换时的一个中转临时变量占用的内存空间，所以是O(1)。
 
-����ʵ�ִ������£�
+具体实现代码如下：
 
 ```
 package sort;
@@ -111,7 +128,7 @@ package sort;
 public class BubbleSort extends Sort {
 	public int[] sort(int[] array) {
 		for (int i = 0; i < array.length; i++) {
-			for (int j = 0; j < array.length - 1; j++) {
+			for (int j = 0; j < array.length - 1; j++) {// 相邻的两两比较，只需要比较n-1次
 				if (array[j] < array[j + 1]) {
 					array = swap(array, j, j + 1);
 				}
@@ -122,24 +139,28 @@ public class BubbleSort extends Sort {
 }
 
 ```
-�ܼ򵥣�Ƕ������ѭ���������αȽϴ�С������λ�á�
+> 数组长度总共32， 执行交换次数：238
 
-### ѡ������
-ð��������Ż�����ÿ��λ��ѡ����Сֵ���������ֵ�������磬��һ��λ�ã������ҳ���С��������һ�������⣬Ȼ���ǵڶ���λ�ã��Դ����ƣ��ҵ����ֵ�Ժ��ٽ��н���������ð�����򣬽����˽����Ĵ������������ڶ���Ƕ������ѭ����ʱ�临�Ӷ���ͬ���ռ临�Ӷ�ҲΪO(1)��ԭ��ͬ�ϡ�
+仔细想一下，会觉得这里面交换次数很多，随着数组长度N的变大，无效交换的比重会越来越大，而且这里面的比较，有很多是重复的，例如在第一层循环第二遍执行时，很多已经找到自己在数组中合适位置的数仍旧参与比较，这些比较就是无意义的。
+
+但是，冒泡这个思想却是排序算法比较里程碑的，所以放在第一个进行介绍。
+
+### 选择排序
+冒泡排序的优化，找到每个位置合适的数。例如，第一个位置，遍历找出最小（或者最大）的一个数放在这，然后是第二个位置放第二小的数，以此类推，找到每个位置合适的值以后再进行交换，比起冒泡排序，降低了交换的次数，但是由于都是嵌套两层循环，时间复杂度相同，空间复杂度也为O(1)，原理同上。
 
 ```
 package sort;
 
 public class SelectSort extends Sort {
 	public int[] sort(int[] array) {
-		for (int i = 0; i < array.length - 1; i++) {// ���ƽ����Ĵ�������ཻ��n-1�Ρ�
+		for (int i = 0; i < array.length - 1; i++) {// 控制交换的次数，最多交换n-1次。
 			int maxIndex = i;
 			for (int j = i + 1; j < array.length; j++) {
 				if (array[j] > array[maxIndex]) {
 					maxIndex = j;
 				}
 			}
-			if (maxIndex != i) {// �ҵ���ǰλ�ú�����Сֵ��λ�ã�������
+			if (maxIndex != i) {// 找到当前位置后面最小值的位置，交换。
 				swap(array, maxIndex, i);
 			}
 		}
@@ -148,25 +169,30 @@ public class SelectSort extends Sort {
 }
 
 ```
-ѡ������ִ�еĴ���Ϊ��������Ĳ�������ļ��㷽ʽ��ͬ��ֻ����ѡ�������ǲ����뵱ǰλ�ú����Ԫ�رȽϣ������������ǲ��ϵ��뵱ǰԪ��ǰ��ıȡ�
-### ��������
-�������ֶ����ý���λ�õķ�ʽ���������������ò���ķ�ʽ��������˵���ǣ�������˿������ƽ׶�ʱ�����ƶ�������һ�����������������ڶ���������������һ�űȽ�һ�£����������Ͳ嵽��һ�ŵ�ǰ�棬���������������ȸ��ڶ��űȽ�һ�£������������ٸ���һ���ƱȽϣ����������Ͳ嵽��һ���Ƶ�ǰ�棨ǰ����Ҳû�����ˣ����ñ��ˣ�������������е�j>0������������ȵ�һ���ƴ󣬾ͱ������뵽�ڶ��ŵ�ǰ�棬����ʱ�ڶ���������������������ƱȽ����ʱ����Ѿ���Ϊ�˵�����λ�õ����ˡ��Դ����ƣ��������¡�
+> 数组长度总共32， 执行交换次数：27
+
+相同的数组，选择排序的交换次数为27（这里最多不超过31次），而冒泡排序是238，可以看出，选择排序的交换次数大大减小，如果在问题规模n为正无穷的时候，这个交换次数如果很小的话可以大大降低磁盘的I/O操作，而获得相同的排序结果。所以选择排序虽然在时间复杂度和空间复杂度均与冒泡排序相同，但是它在I/O的表现上非常出色。
+
+### 插入排序
+插入排序是首先将第一个数字当做一个已有序的新数组，（数组里面只有一个数字，肯定算有序）从第二个数字开始，将其与数组已有元素（从最右侧开始比）进行比较，然后插入到该新数组中适合的位置。
+
+例如打扑克，摸牌阶段的码牌动作，第一张摸过来，不动（已有序），第二张摸过来，跟第一张牌比较一下，如果比它大就插到第一张的前面，小则插到后面，第三张摸过来，先跟第二张比较一下，如果比它大就再跟第一张牌比较，如果比它们都大就插到第一张牌的前面（前面再也没有牌了，不用比了，就是下面代码中的j>0终止条件）。而如果不比第一张牌大，就保留插入到第二张的前面，而此时第二张在它与刚摸到的这张牌比较完的时候就已经成为了第三个位置的牌了。以此类推，代码如下。
 
 ```
 package sort;
 
 public class InsertSort extends Sort {
 	public int[] sort(int[] array) {
-		// �ӵڶ����ƿ�ʼ�Ƚ�
+		// 从第二张牌开始比较
 		for (int i = 1; i < array.length; i++) {
 			int target = array[i];
 			int j = i;
-			// �����ǰһ���󣬾Ͱ�ǰһ���ŵ���ǰĿ���Ƶ�λ�ã���ǰһ����λ�ÿճ�����Ȼ���������ǰһ���Ƚϣ�ѭ��ȥ�ҵ���׼ȷ��Ŀ��λ��
+			// 如果比前一个大，就把前一个放到当前目标牌的位置，把前一个的位置空出来，然后继续跟更前一个比较，循环去找到最准确的目标位置
 			while (j > 0 && target > array[j - 1]) {
 				array[j] = array[j - 1];
 				j--;
 			}
-			// ��Ŀ��λ�õĲ������
+			// 在目标位置的插入操作
 			array[j] = target;
 		}
 		return array;
@@ -174,9 +200,15 @@ public class InsertSort extends Sort {
 }
 
 ```
-��������ִ�еĴ���Ϊ��������Ĵ��㣬Ҳ����ÿһ�θ�ǰ����ƱȽ϶���Ҫ�ȵ���һλΪֹ��Ҳ����˵�����������һ���������飬���ø������������˳�򡣼�������ĳ���ΪN����һ��ѭ���ĵ�һ�β�����ִ��1�Σ��ڶ��β�����ִ��2�Σ�ֱ����N-1�β�����ִ��N-1�Σ���ô�ܴ���Ϊһ���Ȳ�������ͣ���N*(N-1)/2���������ģ���������ʱ��С�������ļӼ����Ժ��ԣ�ͬʱԭ��ĸ2���Ժ��Բ��ƣ�����ʱ�临�Ӷ��Ծ�ΪO(N^2)���ռ临�Ӷ�ҲΪO(1)��ԭ��ͬ�ϡ�
-### ��������
-���������������е������㷨��Ч���ǱȽϸߵġ����ǻ���ð�����򣬵��Ա�ð�������ӣ�����˼��Ϊ�ָ����һ�����鰴��һ����׼���ָ�Ȼ�׼��С�ķŻ�׼�����ұߣ���ķ�����ߡ������Ҫ������������ֱ���������ͷ��ʼ�Ƚϻ�λ��������������м�λ��������Ȼ���ڻ�׼������ߺ��ұ��ٵݹ�ִ������ָ���ɣ��������¡�
+> 数组长度总共32， 执行交换次数：0
+
+上面两种排序算法都是采用交换位置的方式，而插入排序是采用插入的方式，没有发生交换操作，所以交换次数为0。
+
+插入排序的比较次数与选择排序差不多，只不过选择排序是不断与当前位置后面的元素比较，而插入排序是不断地与当前元素前面的比。按照最坏的打算，每一次跟前面的牌比较都是要比到第一位为止，也就是说本身数组就是一个有序数组，利用该排序更换排序方式时，会发生这种最坏情况。
+
+假设数组的长度为N，第一层循环的第一次操作是执行1次，第二次操作是执行2次，直到第N-1次操作是执行N-1次，那么总次数为一个等差数列求和，即N*(N-1)/2，当问题规模扩大到无穷大时，小数量级的加减可以忽略，同时原分母2可以忽略不计，最终时间复杂度仍旧为O(N^2)，空间复杂度也为O(1)，原理同上。
+### 快速排序
+快速排序是最流行的排序算法，效率是比较高的。它是基于冒泡排序，但略比冒泡排序复杂，基本思想为二分分治，将一个数组按照一个基准数分割，比基准数小的放基准数的右边，大的放在左边。这就需要定义两个数组下标变量，分别从数组的两头开始比较换位，最终在数组的中间位置相遇，然后在基准数的左边和右边再递归执行这个分割法即可，代码如下。
 
 ```
 package sort;
@@ -186,259 +218,230 @@ public class QuickSort extends Sort {
 		return quickSort(array, 0, array.length - 1);
 	}
 
-	// �ָ�ķ���
+	// 分割的方法
 	private int partition(int[] array, int left, int right) {
-		int pivot = array[left];// �����׼��
-		int pivotIndex = left;// �����׼����λ��
+		int pivot = array[left];// 定义基准数
+		int pivotIndex = left;// 保存基准数的位置
 
-		while (left < right) {// ֱ���м�����Ϊֹ
-			while (left < right && array[right] <= pivot)// ���Ҳ��ҵ���һ���Ȼ�׼�����
+		while (left < right) {// 直到中间相遇为止
+			while (left < right && array[right] <= pivot)// 在右侧找到第一个比基准数大的
 				right--;
-			while (left < right && array[left] >= pivot)// ������ҵ���һ���Ȼ�׼��С��
+			while (left < right && array[left] >= pivot)// 在左侧找到第一个比基准数小的
 				left++;
-			swap(array, left, right);// ���������ҵ��ĵ�һ���Ȼ�׼����ĺ͵�һ���Ȼ�׼��С��λ��
+			swap(array, left, right);// 互换上面找到的第一个比基准数大的和第一个比基准数小的位置
 		}
-		swap(array, pivotIndex, left);// ��󽻻���׼��������λ�á�
+		swap(array, pivotIndex, left);// 最后交换基准数到中央位置。
 		return left;
 	}
 
-	// ���ڵݹ�ķ���
+	// 用于递归的方法
 	private int[] quickSort(int[] array, int left, int right) {
-		if (left >= right)// �ݹ����ֹ���������Ǳ�Ҫ�ġ�
+		if (left >= right)// 递归的终止条件，这是必要的。
 			return array;
-		int pivotIndex = partition(array, left, right);// ���ηָ�
-		quickSort(array, left, pivotIndex - 1);// ���������׼����ߵ�����
-		quickSort(array, pivotIndex + 1, right);// ���������׼���ұߵ�����
+		int pivotIndex = partition(array, left, right);// 初次分割
+		quickSort(array, left, pivotIndex - 1);// 快速排序基准数左边的数组
+		quickSort(array, pivotIndex + 1, right);// 快速排序基准数右边的数组
 		return array;
 	}
 }
 
 ```
-�������򷨾��Ǽ�����ð�ݡ����ַ��κ͵ݹ��˼�롣
+> 数组长度总共32， 执行交换次数：63
 
-ʱ�临�Ӷ�Ϊ��
+交换次数为中游表现。
+
+时间复杂度为：
 
 ```math
 T(n) = O(n*log2^n)
 ```
+- 最好情况：
 
-��������ʹ���˶��ַ������ǡ��ÿһ�ηָ���ý���׼������������λ�ã�Ҳ����ǡ�ö԰�֣���ʱ���ĵڶ���Ƕ�״���Ϊlog2^N ������������ʱ�临�Ӷ�ΪO(n*log2^n)�� ����ÿһ�ζ��ֲ�������һ��ֻ�ֵ���һ��Ԫ�أ�����һ����N-1��Ԫ�أ��Ǿ�������������Ϊ�ڶ���Ƕ�׵Ĵ�����ΪN����ôʱ�临�ӶȾ���O(N^2)
-��������Ŀռ临�ӶȺܸߣ���ΪҪ���ַ��Σ���ռ��log2^N ����ʱ�ռ�ȥ������ͬʱ���п��ŵĵݹ���������ĳ�����ͬ���������տ�������Ŀռ临�Ӷ�Ϊ��
+    快速排序使用了二分法，如果恰好每一次分割都正好将基准数摆在了中央位置，也就是恰好对半分，这时它的第二层嵌套次数为log2^N ，所以完整的时间复杂度为O(n*log2^n)。 
+
+- 最坏情况：
+
+    当每一次二分操作，有一侧只分到了一个元素，而另一侧是N-1个元素，那就是最坏的情况，即为第二层嵌套的次数仍为N，那么时间复杂度就是O(N^2)。
+    
+快速排序的空间复杂度很高，因为要二分分治，会占用log2^N 的临时空间去操作，同时还有快排的递归是与数组的长度相同，所以最终快速排序的空间复杂度为：
 
 ```math
 S(n) = O(n*log2^n)
 ```
 
-�з�Ҫռ��N���µ���ʱ�ռ䣬����Ƚ���Ҫռ��log2^N ���������������Ŀռ临�Ӷ�ΪO(n*log2^n)��
+切分要占用N个新的临时空间，排序比较又要占用log2^N ，所以所以完整的空间复杂度为O(n*log2^n)。
 
-### ������
+快速排序法就是集合了冒泡、二分分治和递归的思想。
+### 堆排序
 
-- �������ܶѵĶ���
+- 先来介绍堆的定义
 
-����Ķ�ָ�������ݽṹ�еġ�����ѡ��������һ����ͨ����������ʾ��ÿ��Ԫ�ض�Ҫ��֤���ڵ����������ض�λ�õ�Ԫ�ء�ת���ɶ������Ľṹ����һ����ȫ��������ÿ���ڵ㶼ҪС�ڵ������ĸ��ڵ㣬���ֽṹ�ͽ������󶥶ѡ���Ҳ�С����ѡ�������������ÿ���ڵ㶼Ҫ���ڵ������ĸ��ڵ㣬����ǡ�С���ѡ���Ҳ�С���С�ѡ���
+    这里的堆指的是数据结构中的“二叉堆”。二叉堆一般是通过数组来表示，每个元素都要保证大于等于另两个特定位置的元素。转化成二叉树的结构就是一个完全二叉树，若每个节点都小于等于它的父节点，这种结构就叫做“大顶堆”，也叫“最大堆”，而反过来，每个节点都大于等于它的父节点，这就是“小顶堆”，也叫“最小堆”。
 
-- ��˵һ�¶ѵ�����
+- 再说一下堆的特性
 
-��һ������ΪN�Ķ��У�λ��k�Ľڵ�ĸ��ڵ��λ��Ϊk/2�������������ӽڵ��λ����ֱ�Ϊ2k��2k+1�����ö��ܹ���N/2�����ڵ㡣
-- �޸�������Ĳ���
+    在一个长度为N的堆中，位置k的节点的父节点的位置为k/2，它的两个子节点的位置分别为2k和2k+1，该堆总共有N/2个父节点。
+- 修复堆有序的操作
 
-���ѽṹ�г�����һ����������״̬�Ľڵ㣬��������Ϊ��ñ����ĸ��ڵ������ƣ���ô��Ҫͨ�����以�������ߵ�λ�����޸��ѣ�������̽������¶��ϵĶ����򻯣�Ҳ�С��ϸ������������������������µĶ����򻯣�Ҳ�С��³�����
+    当堆结构中出现了一个打破有序状态的节点，若它是因为变得比他的父节点大而打破，那么就要通过将其互换到更高的位置来修复堆，这个过程叫做由下而上的堆有序化，也叫 “上浮”。反过来，就是由上至下的堆有序化，也叫“下沉”。
 
-- �������ԭ��
+- 堆排序的原理
 
-���ݶѵĽṹ����������һ�������Σ����ڵ���Ψһһ�����һ�����Ľڵ㣬��ͬʱ���ֱ�Ȼ����������С��һ������ô���ø��ڵ�ȡ������Ȼ���޸��ѣ���ȡ���޸���ĸ��ڵ㣬�Դ����ƣ����վͻ�õ�һ����������顣���ԣ��޸��Ѻ͹����ѵĹ��������Ƶġ�
+    根据堆的结构来看，就像一个三角形，根节点是唯一一层仅有一个数的节点，而同时它又必然是最大或者最小的一个。那么将该根节点取出来，然后修复堆，再取出修复后的根节点，以此类推，最终就会得到一个有序的数组。
 
-- ������Ĺ���
+- 堆排序的工作
 
-������Ҫ����������⣺
+    堆排序总共分两步：
 
-1. �����������й������һ����
-2. ������������ϸ������³�����
-- ����ͼƬ������һ�£�
+    1. 无序数组 -> 使堆有序
+    2. 取出根节点 -> 使堆有序
+ 
 ![image](https://github.com/evsward/mainbase/blob/master/resource/image/sort/Heap_sort.png?raw=true)
-- �������£�
 
-```
-package sort;
+- 代码如下：
 
-public class HeapSort extends Sort {
-	/**
-	 * �󶥶ѣ��³����������ϸ�������ѡһ
-	 * 
-	 * @param array
-	 * @param k
-	 *            ָ��λ�õ���array[k]��Ϊ�³�target
-	 * @param maxIndex
-	 *            �����ǰ�����±�ѭ���ݼ�����������maxIndexһ��Ҫ�Բ�������ʽ����sink����
-	 */
-	private void sink(int[] array, int k, int maxIndex) {
-		int target = array[k];
-		int j = 2 * k + 1;// left child index
-		while (j <= maxIndex) {// ѭ����ֹ����1�����Ӳ�������,˵��targetĿǰλ����ΪҶ�ڵ�,�޴��ɳ�
-			if (j + 1 <= maxIndex && array[j] < array[j + 1])// ��������ӽڵ�,�����Ӵ�������
-				j++;
-			if (target > array[j])
-				break;// ѭ����ֹ����2��targetĿǰλ�����Ǵ��ڶ�����,�޴��ɳ�,Ҳ����˵�������ӽڵ㣨һ�����������ӽڵ㣩����
-			swap(array, k, j);// �³�
-			k = j;// target��λ��k�Ѿ�������j
-			j = 2 * k + 1;// target��λ��k����,����������,����ѭ��
-		}
-	}
-
-	/**
-	 * С���ѣ�����ǴӴ�С���� �ϸ�����
-	 * 
-	 * @param array
-	 * @param k
-	 * @param maxIndex
-	 */
-	private void swim(int[] array, int k, int maxIndex) {
-		int target = array[k];
-		int j = 2 * k + 1;
-		while (j <= maxIndex) {
-			if (j + 1 <= maxIndex && array[j] > array[j + 1])
-				j++;
-			if (target < array[j])
-				break;
-			swap(array, k, j);
-			k = j;
-			j = 2 * k + 1;
-		}
-	}
-
-	@Override
-	protected int[] sort(int[] array) {
-		int maxIndex = array.length - 1;
-		// �����
-		int lastParentIndex = (maxIndex - 1) / 2;// ���һ�����ڵ�λ��
-		for (int i = 0; i <= lastParentIndex; i++) {// �Ӹ��ڵ㿪ʼѭ�����и��ڵ�
-			swim(array, i, maxIndex);
-		}
-		// ������
-		while (maxIndex > 0) {// ����ȡ����������������С��Ԫ��
-			swap(array, 0, maxIndex);
-			maxIndex--;
-			swim(array, 0, maxIndex);
-		}
-		return array;
-	}
-
-}
-
-```
-�������ϴ����ܽ�һ�£�
-����ʹ�õ����������:{1, 12432, 47, 534, 6, 4576, 47, 56, 8}
-
-1. ����Щ���鰴ԭ��˳��ڳ���ȫ����������ʽ��ע�����������ȫ�����������������Ķ��壬�������𽥿��̵ģ���ȫ����������ÿ���ڵ㶼�����������Ĺ켣�ϣ������ΪN��������������ӵ��2N-1���ڵ㣬���಻�١���
-
-2. ���ö�����ת���ɶ���ѣ����ѻ�����С�Ѿ���
-3. ȡ����ǰ������������С��Ԫ�أ�Ȼ�������һ��λ�õ�Ԫ������Ϊ���ڵ㣬�����˶���ѵ�����״̬��
-4. �������޸�
-5. �ظ�3.4����ֱ������ȫ��Ԫ�ر�ȡ��Ϊֹ
-
-�������ʱ�临�Ӷ�Ϊ��
-
-```math
-T(n) = O(n*log2^n)
-```
-�ռ临�Ӷ�ҲΪO(1)��ԭ��ͬ�ϡ�
-### ϣ������
-ϣ���Ǹ��ˣ���ϣ������ķ����ߡ�
-
-�����Ҿ��÷ǳ����ɵķ�����
-
-������ͼ����ʾһ��ϣ�����������˼�룺
-![image](https://github.com/evsward/mainbase/blob/master/resource/image/sort/shell_sort.png?raw=true)
-
-�������£�
-
-```
-package sort;
-
-public class ShellSort extends Sort {
-
-	@Override
-	protected int[] sort(int[] array) {
-		int lastStep = 0;// ����ѭ��������������һ��step�������ظ�
-		for (int d = 2; d < array.length; d++) {
-			int step = array.length / d;
-			if (lastStep != step) {
-				lastStep = step;
-			} else {
-				break;
-			}
-			System.out.println(step);// ���step��shellSortִ�д���
-			shellSort(array, step);
-		}
-		return array;
-	}
-
-	private void shellSort(int[] array, int step) {
-		for (int i = 0; i < array.length - step; i++) {
-			if (array[i] < array[i + step]) {
-				swap(array, i, i + step);
-			}
-		}
-	}
-
-}
-
-
-```
-ϣ������ķ����Ǹ��ӵģ�ʱ�临�Ӷ�����ȡ�����ĺ��������漰һЩ��ѧ�ϵ����⡣�����ڴ���ʵ��Ļ������Ƴ���n��ĳ����Χ��ʱ��ʱ�临�Ӷȿ��ԴﵽO(n^1.3)�����ռ临�Ӷ�ҲΪO(1)��ԭ��ͬ�ϡ�
-### �鲢����
-�鲢����Ĳ�����Щ���������ֻ�����鲢����ÿ�ζ���ǿ�ƴ��м�ָ�ݹ�ָ��������ٷ֣���ֻ������Ԫ�أ������ָ����������������Ȼ�����ڵ�������������кϲ����½�һ�����������洢�ϲ�����������鲢���¸�ֵ��ԭ���顣
 ```
 package algorithms.sort;
 
-public class MergeSort extends Sort {
+public class HeapSort extends Sort {
 
-	private int[] temp;
+	/**
+	 * 下沉操作，让k的值array[k]下沉到合适位置，往下走就要跟子节点比较
+	 * k位置的数值打破了大顶堆有序状态，说明其比子节点还小，这时就要将k与较大的子节点互换位置
+	 * （不用考虑比父节点大的问题，因为循环到检查父节点的时候，依旧可以采用其比子节点小的逻辑）
+	 *     		  7
+	 *        /     \
+	 * 		6		  3
+	 *    /  \      /  \
+	 *   4    5    1    2
+	 * @param array
+	 * @param k 目标位置
+	 * @param right 区间[k,right]
+	 */
+	private void sink(int[] array, int k, int right) {
+		// 循环终止条件1：左子并不存在,说明k目前已为叶节点,无处可沉
+		while (2 * k + 1 <= right) {
+			int bigChildIndex = 2 * k + 1;// left child index:2 * k + 1，right child index:2 * k + 2
+			// 如果有右子节点,且右子大于左子
+			if (2 * k + 2 <= right && array[2 * k + 1] < array[2 * k + 2])
+				bigChildIndex = 2 * k + 2;
+			if (array[k] > array[bigChildIndex])
+				// 循环终止条件2：k的值所处位置已堆有序,无处可沉,也就是说比他的子节点（一个或者两个子节点）都大
+				break;
+			swap(array, k, bigChildIndex);// 下沉，交换k和bigChildIndex
+			k = bigChildIndex;// 位置k已经换到了bigChildIndex
+		}
+	}
 
-	@Override
-	protected int[] sort(int[] array) {
-		temp = new int[array.length];// �½�һ����ԭ���鳤����ͬ�Ŀյĸ�������
-		divide(array, 0, array.length - 1);
+	/**
+	 * 上浮操作：让目标位置的值上浮到合适位置，往上走就要跟父节点比较
+	 * k位置的数值打破了小顶堆有序状态，说明其比父节点还小，这时就要将k与其父节点互换位置
+	 * （不用考虑比子节点大的问题，因为循环到检查子节点的时候，依旧可以采用其比父节点小的逻辑）
+	 * 相对与下沉操作，上浮操作比较简略的原因是k只需要与一个父节点比较大小，而下沉操作则需要跟一个或两个子节点比较大小，多出的是这部分逻辑
+	 *     		 1
+	 *        /    \
+	 * 	    2		 5
+	 *    /  \      /  \
+	 *   4    3    6    7 
+	 * @param array
+	 * @param k 区间[0,k]
+	 */
+	private void swim(int[] array, int k) {
+		if (k == 0)
+			return;// k的位置已经是根节点了，不需要再上浮了。
+		// @@@@ 终止条件:k不断往父节点一层层地爬或许能爬到根节点（k==0），或许中途k找到了比父节点大的位置，根据小顶堆规则，它就已经堆有序。
+		while (k > 0 && array[k] < array[(k - 1) / 2]) {// k的父节点：(k - 1) / 2
+			swap(array, k, (k - 1) / 2);// 上浮
+			k = (k - 1) / 2;// k换到了它的父节点的位置
+		}
+	}
+
+	/**
+	 * 堆排序：下沉堆排序
+	 * 注意：通过下沉操作可以得到大顶堆也可以得到小顶堆，这里只采用一种情况来介绍。
+	 * @param array
+	 * @return 从小到大排序
+	 */
+	private int[] sinkSort(int[] array) {
+		int maxIndex = array.length - 1;// 数组array，区间为 [0,maxIndex]
+		// 构造堆
+		int lastParentIndex = (maxIndex - 1) / 2;// 最后一个父节点位置
+		// @@@@如果使用下沉操作，一定要从最后一个父节点开始往根节点倒序检查，才能保证最大值被送到根节点@@@@
+		for (int i = lastParentIndex; i >= 0; i--) {// 区间[0,lastParentIndex]为当前数组的全部父节点所在
+			sink(array, i, maxIndex);// 区间[lastParentIndex,maxIndex]，从最后一个父节点开始检查，下沉操作，调整堆有序
+		}
+		System.out.println("the max one is "+array[0]);
+		// 获得排序（注意：堆有序！=堆排序，堆有序只能保证根节点是最值，而不能保证子节点及树枝节点同级间的大小顺序）
+		while (maxIndex > 0) {
+			swap(array, 0, maxIndex--);// 取出最大值
+			sink(array, 0, maxIndex);// 修复堆
+		}
+		return array;
+	}
+	
+	/**
+	 * 堆有序：通过上浮操作，使堆有序
+	 * @param array
+	 * @param len 整理[0,len]区间的堆有序
+	 */
+	private void headAdjustBySwim(int[] array, int len) {
+		// @@@@如果使用上浮操作，一定要从最后一个叶节点开始，到根节点位置检查，才能保证最小值被送到根节点@@@@
+		for (int i = len; i > 0; i--) {// i不需要检查=0的情况，因为根节点没有父节点了。
+			swim(array, i);// 区间[0,i]，从最后一个叶节点开始检查，上浮操作，调整堆有序
+		}
+	}
+	/**
+	 * 堆排序：上浮堆排序
+	 * 注意：通过上浮操作可以得到大顶堆也可以得到小顶堆，这里只采用一种情况来介绍。
+	 * @param array
+	 * @return 从大到小排序
+	 */
+	private int[] swimSort(int[] array) {
+		int maxIndex = array.length - 1;// 数组array，区间为 [0,maxIndex]
+		headAdjustBySwim(array, maxIndex) ;
+		System.out.println("the min one is "+array[0]);
+		// 获得排序（注意：堆有序！=堆排序，堆有序只能保证根节点是最值，而不能保证子节点及树枝节点同级间的大小顺序）
+		while (maxIndex > 0) {
+			swap(array, 0, maxIndex--);// 取出最小值
+			headAdjustBySwim(array, maxIndex) ;
+		}
 		return array;
 	}
 
-	private void divide(int[] array, int left, int right) {
-		if (left >= right)// ���ε���ϸ��
-			return;
-		int mid = (right + left) / 2;
-		divide(array, left, mid);// ��벿�ֵݹ����
-		divide(array, mid + 1, right);// �Ұ벿�ֵݹ����
-		merge(array, left, mid, right);
+	@Override
+	protected int[] sort(int[] array) {
+		return swimSort(array);
 	}
-
-	private void merge(int[] array, int left, int mid, int right) {
-		// �������� [left, mid]�� �������� [mid+1, right]
-		int i = left;
-		int j = mid + 1;
-		for (int k = left; k <= right; k++) {// ��left��right���Ƶ�temp������
-			temp[k] = array[k];
-		}
-		for (int k = left; k <= right; k++) {// ͨ���жϣ������������е�ֵ���մ�С�鲢��ԭ����
-			if (i > mid)// �����þ�����ȡ�Ұ��Ԫ��
-				array[k] = temp[j++];
-			else if (j > right)// �Ұ���þ�����ȡ����Ԫ��
-				array[k] = temp[i++];
-			else if (array[j] > temp[i])// �Ұ�ߵ�ǰԪ�ش������ߵ�ǰԪ�أ�ȡ�Ұ��Ԫ�أ��Ӵ�С����
-				array[k] = temp[j++];
-			else// ���ߵ�ǰԪ�ش����Ұ�ߵ�ǰԪ�أ�ȡ����Ԫ�أ��Ӵ�С����
-				array[k] = temp[i++];
-		}
-	}
+	
 }
 ```
-�鲢����Ŀռ临�ӶȺܸߣ���Ϊ��������һ����ԭ����ͬ�����ȵĸ������飬ͬʱҪ��ԭ������ж��ַ��Σ����Կռ临�Ӷ�Ϊ
+> 上浮操作：数组长度：32，执行交换次数：185
+
+> 下沉操作：数组长度：32，执行交换次数：139
+
+通过结果可以看出，下沉操作的执行交换次数是较少的，因为下沉操作的目标位置只是所有的父节点，而上浮操作要遍历整个数组。所以，看上去，下沉操作效率会更高一些。
+
+根据以上代码总结一下：
+我们使用的数组举例如:{1, 12432, 47, 534, 6, 4576, 47, 56, 8}
+
+1. 将这些数组按原有顺序摆成完全二叉树的形式（注意二叉树，完全二叉树，满二叉树的定义，条件是逐渐苛刻的，完全二叉树必须每个节点都在满二叉树的轨迹上，而深度为N的满二叉树必须拥有2N-1个节点，不多不少。）
+
+2. 将该二叉树转换成二叉堆，最大堆或者最小堆均可
+3. 取出当前二叉树的根节点，然后用最后一个位置的元素来作为根节点，打破了二叉堆的有序状态。
+4. 堆有序修复
+5. 重复3.4步，直到数组取完全部元素为止
+
+堆排序的时间复杂度为：
 
 ```math
-S(n) = O(n*log2^n)
+T(n) = O(n*log2^n)
 ```
-ʱ�临�ӶȱȽϵͣ���ռ临�Ӷȵļ��㷽ʽ��࣬ҲΪO(n*log2^n) ��
+空间复杂度也为O(1)，原理同上。
 
-�鲢������һ�ֽ������ŵĻ��ڱȽ�������㷨���������Ŀռ临�ӶȺܸߣ�ͬʱҲ�ǲ��ȶ��ģ�������������Ҳ��ÿ�αȽ϶����������ƶ�ʱ��Ч��Ҳ���ߡ�
+#### 注意：
+下沉和上浮均可以处理无论是大顶堆还是小顶堆，他们并没有绑定关系。
+大顶堆时上浮可以是最后一个叶节点比父节点要大，所以上浮，下沉是最后一个父节点比子节点要小，所以下沉。
 
-### 
+小顶堆时就是反过来。
 
+另外，编写代码时要注意数组下标是从0开始，要细心处理一下。
