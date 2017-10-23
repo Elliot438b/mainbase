@@ -58,61 +58,66 @@ lg100 = 2
 我们先创建一个java工程sort，然后创建一个抽象类Sort。代码如下：
 
 ```
-package sort;
+package algorithms.sort;
+
+import java.util.Random;
 
 public abstract class Sort {
     private int count;
-    
-	protected int[] sort(int[] array) {
-		return null;
-	};
 
-	/**
-	 * 互换位置的方法
-	 * @param array 要换位置的目标数组
-	 * @param i 数组位置1
-	 * @param j 数组位置2
-	 * @return 换好位置以后的数组
-	 */
-	protected int[] swap(int[] array, int i, int j) {
-		int t = array[i];
-		array[i] = array[j];
-		array[j] = t;
-		count++;
-		return array;
-	}
-	
-	protected void show(int[] array){
-		for (int a : array) {
-			System.out.println(a);
-		}
-		System.out.println("数组长度：" + array.length + "，执行交换次数：" + count);
-	}
-	
-	
-	public int[] getIntArrayRandom(int len, int max) {
-		int[] arr = new int[len];
-		Random r = new Random();
-		for (int i = 0; i < arr.length; i++) {
-			arr[i] = r.nextInt(max);
-		}
-		return arr;
-	}
+    protected int[] sort(int[] array) {
+        return null;
+    };
+
+    /**
+     * 互换位置的方法
+     * 
+     * @param array
+     *            要换位置的目标数组
+     * @param i
+     *            数组位置1
+     * @param j
+     *            数组位置2
+     * @return 换好位置以后的数组
+     */
+    protected int[] swap(int[] array, int i, int j) {
+        int t = array[i];
+        array[i] = array[j];
+        array[j] = t;
+        count++;
+        return array;
+    }
+
+    protected void show(int[] array) {
+        for (int a : array) {
+            System.out.println(a);
+        }
+        System.out.println("数组长度：" + array.length + "，执行交换次数：" + count);
+    }
+
+    public int[] getIntArrayRandom(int len, int max) {
+        int[] arr = new int[len];
+        Random r = new Random();
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = r.nextInt(max);
+        }
+        return arr;
+    }
 }
 
 ```
-然后再创建一个客户端Client，用来调用算法。代码如下：
+然后再创建一个客户端Main，用来调用算法。代码如下：
 
 ```
 package algorithms.sort;
 
 public class Main {
-	public static void main(String[] args) {
-		Sort s = new MergeSort();
-		int[] array = s.getIntArrayRandom(32, 120);
-		array = s.sort(array);
-		s.show(array);
-	}
+    public static void main(String[] args) {
+        Sort s = new XXXSort();
+        int[] array = s.getIntArrayRandom(32, 120);
+        array = s.sort(array);
+        s.show(array);
+    }
 }
 
 ```
@@ -133,19 +138,19 @@ S(n) = O(1)
 具体实现代码如下：
 
 ```
-package sort;
+package algorithms.sort;
 
 public class BubbleSort extends Sort {
-	public int[] sort(int[] array) {
-		for (int i = 0; i < array.length; i++) {
-			for (int j = 0; j < array.length - 1; j++) {// 相邻的两两比较，只需要比较n-1次
-				if (array[j] < array[j + 1]) {
-					array = swap(array, j, j + 1);
-				}
-			}
-		}
-		return array;
-	}
+    public int[] sort(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length - 1; j++) {
+                if (array[j] < array[j + 1]) {
+                    array = swap(array, j, j + 1);
+                }
+            }
+        }
+        return array;
+    }
 }
 
 ```
@@ -159,23 +164,23 @@ public class BubbleSort extends Sort {
 冒泡排序的优化，找到每个位置合适的数。例如，第一个位置，遍历找出最小（或者最大）的一个数放在这，然后是第二个位置放第二小的数，以此类推，找到每个位置合适的值以后再进行交换，比起冒泡排序，降低了交换的次数，但是由于都是嵌套两层循环，时间复杂度相同，空间复杂度也为O(1)，原理同上。
 
 ```
-package sort;
+package algorithms.sort;
 
 public class SelectSort extends Sort {
-	public int[] sort(int[] array) {
-		for (int i = 0; i < array.length - 1; i++) {// 控制交换的次数，最多交换n-1次。
-			int maxIndex = i;
-			for (int j = i + 1; j < array.length; j++) {
-				if (array[j] > array[maxIndex]) {
-					maxIndex = j;
-				}
-			}
-			if (maxIndex != i) {// 找到当前位置后面最小值的位置，交换。
-				swap(array, maxIndex, i);
-			}
-		}
-		return array;
-	}
+    public int[] sort(int[] array) {
+        for (int i = 0; i < array.length - 1; i++) {// 控制交换的次数，最多交换n-1次。
+            int maxIndex = i;
+            for (int j = i + 1; j < array.length; j++) {
+                if (array[j] > array[maxIndex]) {
+                    maxIndex = j;
+                }
+            }
+            if (maxIndex != i) {// 找到当前位置后面最小值的位置，交换。
+                swap(array, maxIndex, i);
+            }
+        }
+        return array;
+    }
 }
 
 ```
@@ -189,24 +194,24 @@ public class SelectSort extends Sort {
 例如打扑克，摸牌阶段的码牌动作，第一张摸过来，不动（已有序），第二张摸过来，跟第一张牌比较一下，如果比它大就插到第一张的前面，小则插到后面，第三张摸过来，先跟第二张比较一下，如果比它大就再跟第一张牌比较，如果比它们都大就插到第一张牌的前面（前面再也没有牌了，不用比了，就是下面代码中的j>0终止条件）。而如果不比第一张牌大，就保留插入到第二张的前面，而此时第二张在它与刚摸到的这张牌比较完的时候就已经成为了第三个位置的牌了。以此类推，代码如下。
 
 ```
-package sort;
+package algorithms.sort;
 
 public class InsertSort extends Sort {
-	public int[] sort(int[] array) {
-		// 从第二张牌开始比较
-		for (int i = 1; i < array.length; i++) {
-			int target = array[i];
-			int j = i;
-			// 如果比前一个大，就把前一个放到当前目标牌的位置，把前一个的位置空出来，然后继续跟更前一个比较，循环去找到最准确的目标位置
-			while (j > 0 && target > array[j - 1]) {
-				array[j] = array[j - 1];
-				j--;
-			}
-			// 在目标位置的插入操作
-			array[j] = target;
-		}
-		return array;
-	}
+    public int[] sort(int[] array) {
+        // 从第二张牌开始比较
+        for (int i = 1; i < array.length; i++) {
+            int target = array[i];
+            int j = i;
+            // 如果比前一个大，就把前一个放到当前目标牌的位置，把前一个的位置空出来，然后继续跟更前一个比较，循环去找到最准确的目标位置
+            while (j > 0 && target > array[j - 1]) {
+                array[j] = array[j - 1];
+                j--;
+            }
+            // 在目标位置的插入操作
+            array[j] = target;
+        }
+        return array;
+    }
 }
 
 ```
@@ -224,51 +229,51 @@ public class InsertSort extends Sort {
 package algorithms.sort;
 
 public class QuickSort extends Sort {
-	public int[] sort(int[] array) {
-		return quickSort(array, 0, array.length - 1);
-	}
+    public int[] sort(int[] array) {
+        return quickSort(array, 0, array.length - 1);
+    }
 
-	/**
-	 * 分割的方法
-	 * 
-	 * @param array
-	 * @param left
-	 *            [left, right]
-	 * @param right
-	 * @return 两情相悦的位置
-	 */
-	private int partition(int[] array, int left, int right) {
-		int pivot = array[left];// 定义基准数
-		int pivotIndex = left;// 保存基准数的位置
+    /**
+     * 分割的方法
+     * 
+     * @param array
+     * @param left
+     *            [left, right]
+     * @param right
+     * @return 两情相悦的位置
+     */
+    private int partition(int[] array, int left, int right) {
+        int pivot = array[left];// 定义基准数
+        int pivotIndex = left;// 保存基准数的位置
 
-		while (left < right) {// 直到中间相遇为止
-			while (left < right && array[right] <= pivot)// 在右侧找到第一个比基准数大的
-				right--;
-			while (left < right && array[left] >= pivot)// 在左侧找到第一个比基准数小的
-				left++;
-			swap(array, left, right);// 互换上面找到的第一个比基准数大的和第一个比基准数小的位置
-		}
-		swap(array, pivotIndex, left);// 最后交换基准数到两情相悦的位置（不一定是中间）。
-		return left;
-	}
+        while (left < right) {// 直到中间相遇为止
+            while (left < right && array[right] <= pivot)// 在右侧找到第一个比基准数大的
+                right--;
+            while (left < right && array[left] >= pivot)// 在左侧找到第一个比基准数小的
+                left++;
+            swap(array, left, right);// 互换上面找到的第一个比基准数大的和第一个比基准数小的位置
+        }
+        swap(array, pivotIndex, left);// 最后交换基准数到两情相悦的位置（不一定是中间）。
+        return left;
+    }
 
-	/**
-	 * 一到递归别迷糊：用于递归的方法quickSort，而非partition
-	 * 
-	 * @param array
-	 * @param left
-	 *            [left,right]
-	 * @param right
-	 * @return
-	 */
-	private int[] quickSort(int[] array, int left, int right) {
-		if (left >= right)// 递归的终止条件，这是必要的。
-			return array;
-		int pivotIndex = partition(array, left, right);// 初次分割
-		quickSort(array, left, pivotIndex - 1);// 快速排序基准数左边的数组
-		quickSort(array, pivotIndex + 1, right);// 快速排序基准数右边的数组
-		return array;
-	}
+    /**
+     * 一到递归别迷糊：用于递归的方法quickSort，而非partition
+     * 
+     * @param array
+     * @param left
+     *            [left,right]
+     * @param right
+     * @return
+     */
+    private int[] quickSort(int[] array, int left, int right) {
+        if (left >= right)// 递归的终止条件，这是必要的。
+            return array;
+        int pivotIndex = partition(array, left, right);// 初次分割
+        quickSort(array, left, pivotIndex - 1);// 快速排序基准数左边的数组
+        quickSort(array, pivotIndex + 1, right);// 快速排序基准数右边的数组
+        return array;
+    }
 }
 
 ```
@@ -331,114 +336,124 @@ package algorithms.sort;
 
 public class HeapSort extends Sort {
 
-	/**
-	 * 下沉操作，让k的值array[k]下沉到合适位置，往下走就要跟子节点比较
-	 * k位置的数值打破了大顶堆有序状态，说明其比子节点还小，这时就要将k与较大的子节点互换位置
-	 * （不用考虑比父节点大的问题，因为循环到检查父节点的时候，依旧可以采用其比子节点小的逻辑）
-	 *           7
-	 *        /     \
-	 *      6        3
-	 *    /  \      /  \
-	 *   4    5    1    2
-	 * @param array
-	 * @param k 目标位置
-	 * @param right 区间[k,right]
-	 */
-	private void sink(int[] array, int k, int right) {
-		// 循环终止条件1：左子并不存在,说明k目前已为叶节点,无处可沉
-		while (2 * k + 1 <= right) {
-			int bigChildIndex = 2 * k + 1;// left child index:2 * k + 1，right child index:2 * k + 2
-			// 如果有右子节点,且右子大于左子
-			if (2 * k + 2 <= right && array[2 * k + 1] < array[2 * k + 2])
-				bigChildIndex = 2 * k + 2;
-			if (array[k] > array[bigChildIndex])
-				// 循环终止条件2：k的值所处位置已堆有序,无处可沉,也就是说比他的子节点（一个或者两个子节点）都大
-				break;
-			swap(array, k, bigChildIndex);// 下沉，交换k和bigChildIndex
-			k = bigChildIndex;// 位置k已经换到了bigChildIndex
-		}
-	}
+    /**
+     * 下沉操作，让k的值array[k]下沉到合适位置，往下走就要跟子节点比较
+     * k位置的数值打破了大顶堆有序状态，说明其比子节点还小，这时就要将k与较大的子节点互换位置
+     * （不用考虑比父节点大的问题，因为循环到检查父节点的时候，依旧可以采用其比子节点小的逻辑） 
+     *            7 
+     *           / \ 
+     *         6    3 
+     *        / \   / \ 
+     *      4   5 1   2
+     * 
+     * @param array
+     * @param k
+     *            目标位置
+     * @param right
+     *            区间[k,right]
+     */
+    private void sink(int[] array, int k, int right) {
+        // 循环终止条件1：左子并不存在,说明k目前已为叶节点,无处可沉
+        while (2 * k + 1 <= right) {
+            int bigChildIndex = 2 * k + 1;// left child index:2 * k + 1，right
+                                          // child index:2 * k + 2
+            // 如果有右子节点,且右子大于左子
+            if (2 * k + 2 <= right && array[2 * k + 1] < array[2 * k + 2])
+                bigChildIndex = 2 * k + 2;
+            if (array[k] > array[bigChildIndex])
+                // 循环终止条件2：k的值所处位置已堆有序,无处可沉,也就是说比他的子节点（一个或者两个子节点）都大
+                break;
+            swap(array, k, bigChildIndex);// 下沉，交换k和bigChildIndex
+            k = bigChildIndex;// 位置k已经换到了bigChildIndex
+        }
+    }
 
-	/**
-	 * 上浮操作：让目标位置的值上浮到合适位置，往上走就要跟父节点比较
-	 * k位置的数值打破了小顶堆有序状态，说明其比父节点还小，这时就要将k与其父节点互换位置
-	 * （不用考虑比子节点大的问题，因为循环到检查子节点的时候，依旧可以采用其比父节点小的逻辑）
-	 * 相对与下沉操作，上浮操作比较简略的原因是k只需要与一个父节点比较大小，而下沉操作则需要跟一个或两个子节点比较大小，多出的是这部分逻辑
-	 *          1
-	 *        /    \
-	 *      2        5
-	 *    /  \      /  \
-	 *   4    3    6    7 
-	 * @param array
-	 * @param k 区间[0,k]
-	 */
-	private void swim(int[] array, int k) {
-		if (k == 0)
-			return;// k的位置已经是根节点了，不需要再上浮了。
-		// @@@@ 终止条件:k不断往父节点一层层地爬或许能爬到根节点（k==0），或许中途k找到了比父节点大的位置，根据小顶堆规则，它就已经堆有序。
-		while (k > 0 && array[k] < array[(k - 1) / 2]) {// k的父节点：(k - 1) / 2
-			swap(array, k, (k - 1) / 2);// 上浮
-			k = (k - 1) / 2;// k换到了它的父节点的位置
-		}
-	}
+    /**
+     * 上浮操作：让目标位置的值上浮到合适位置，往上走就要跟父节点比较
+     * k位置的数值打破了小顶堆有序状态，说明其比父节点还小，这时就要将k与其父节点互换位置
+     * （不用考虑比子节点大的问题，因为循环到检查子节点的时候，依旧可以采用其比父节点小的逻辑）
+     * 相对与下沉操作，上浮操作比较简略的原因是k只需要与一个父节点比较大小，而下沉操作则需要跟一个或两个子节点比较大小，多出的是这部分逻辑 
+     *          1 
+     *         / \
+     *       2    5 
+     *      / \   / \ 
+     *    4   3 6   7
+     * 
+     * @param array
+     * @param k
+     *            区间[0,k]
+     */
+    private void swim(int[] array, int k) {
+        if (k == 0)
+            return;// k的位置已经是根节点了，不需要再上浮了。
+        // @@@@
+        // 终止条件:k不断往父节点一层层地爬或许能爬到根节点（k==0），或许中途k找到了比父节点大的位置，根据小顶堆规则，它就已经堆有序。
+        while (k > 0 && array[k] < array[(k - 1) / 2]) {// k的父节点：(k - 1) / 2
+            swap(array, k, (k - 1) / 2);// 上浮
+            k = (k - 1) / 2;// k换到了它的父节点的位置
+        }
+    }
 
-	/**
-	 * 堆排序：下沉堆排序
-	 * 注意：通过下沉操作可以得到大顶堆也可以得到小顶堆，这里只采用一种情况来介绍。
-	 * @param array
-	 * @return 从小到大排序
-	 */
-	private int[] sinkSort(int[] array) {
-		int maxIndex = array.length - 1;// 数组array，区间为 [0,maxIndex]
-		// 构造堆
-		int lastParentIndex = (maxIndex - 1) / 2;// 最后一个父节点位置
-		// @@@@如果使用下沉操作，一定要从最后一个父节点开始往根节点倒序检查，才能保证最大值被送到根节点@@@@
-		for (int i = lastParentIndex; i >= 0; i--) {// 区间[0,lastParentIndex]为当前数组的全部父节点所在
-			sink(array, i, maxIndex);// 区间[lastParentIndex,maxIndex]，从最后一个父节点开始检查，下沉操作，调整堆有序
-		}
-		System.out.println("the max one is "+array[0]);
-		// 获得排序（注意：堆有序！=堆排序，堆有序只能保证根节点是最值，而不能保证子节点及树枝节点同级间的大小顺序）
-		while (maxIndex > 0) {
-			swap(array, 0, maxIndex--);// 取出最大值
-			sink(array, 0, maxIndex);// 修复堆
-		}
-		return array;
-	}
-	
-	/**
-	 * 堆有序：通过上浮操作，使堆有序
-	 * @param array
-	 * @param len 整理[0,len]区间的堆有序
-	 */
-	private void headAdjustBySwim(int[] array, int len) {
-		// @@@@如果使用上浮操作，一定要从最后一个叶节点开始，到根节点位置检查，才能保证最小值被送到根节点@@@@
-		for (int i = len; i > 0; i--) {// i不需要检查=0的情况，因为根节点没有父节点了。
-			swim(array, i);// 区间[0,i]，从最后一个叶节点开始检查，上浮操作，调整堆有序
-		}
-	}
-	/**
-	 * 堆排序：上浮堆排序
-	 * 注意：通过上浮操作可以得到大顶堆也可以得到小顶堆，这里只采用一种情况来介绍。
-	 * @param array
-	 * @return 从大到小排序
-	 */
-	private int[] swimSort(int[] array) {
-		int maxIndex = array.length - 1;// 数组array，区间为 [0,maxIndex]
-		headAdjustBySwim(array, maxIndex) ;
-		System.out.println("the min one is "+array[0]);
-		// 获得排序（注意：堆有序！=堆排序，堆有序只能保证根节点是最值，而不能保证子节点及树枝节点同级间的大小顺序）
-		while (maxIndex > 0) {
-			swap(array, 0, maxIndex--);// 取出最小值
-			headAdjustBySwim(array, maxIndex) ;
-		}
-		return array;
-	}
+    /**
+     * 堆排序：下沉堆排序 注意：通过下沉操作可以得到大顶堆也可以得到小顶堆，这里只采用一种情况来介绍。
+     * 
+     * @param array
+     * @return 从小到大排序
+     */
+    private int[] sinkSort(int[] array) {
+        int maxIndex = array.length - 1;// 数组array，区间为 [0,maxIndex]
+        // 构造堆
+        int lastParentIndex = (maxIndex - 1) / 2;// 最后一个父节点位置
+        // @@@@如果使用下沉操作，一定要从最后一个父节点开始往根节点倒序检查，才能保证最大值被送到根节点@@@@
+        for (int i = lastParentIndex; i >= 0; i--) {// 区间[0,lastParentIndex]为当前数组的全部父节点所在
+            sink(array, i, maxIndex);// 区间[lastParentIndex,maxIndex]，从最后一个父节点开始检查，下沉操作，调整堆有序
+        }
+        System.out.println("the max one is " + array[0]);
+        // 获得排序（注意：堆有序！=堆排序，堆有序只能保证根节点是最值，而不能保证子节点及树枝节点同级间的大小顺序）
+        while (maxIndex > 0) {
+            swap(array, 0, maxIndex--);// 取出最大值
+            sink(array, 0, maxIndex);// 修复堆
+        }
+        return array;
+    }
 
-	@Override
-	protected int[] sort(int[] array) {
-		return swimSort(array);
-	}
-	
+    /**
+     * 堆有序：通过上浮操作，使堆有序
+     * 
+     * @param array
+     * @param len
+     *            整理[0,len]区间的堆有序
+     */
+    private void headAdjustBySwim(int[] array, int len) {
+        // @@@@如果使用上浮操作，一定要从最后一个叶节点开始，到根节点位置检查，才能保证最小值被送到根节点@@@@
+        for (int i = len; i > 0; i--) {// i不需要检查=0的情况，因为根节点没有父节点了。
+            swim(array, i);// 区间[0,i]，从最后一个叶节点开始检查，上浮操作，调整堆有序
+        }
+    }
+
+    /**
+     * 堆排序：上浮堆排序 注意：通过上浮操作可以得到大顶堆也可以得到小顶堆，这里只采用一种情况来介绍。
+     * 
+     * @param array
+     * @return 从大到小排序
+     */
+    private int[] swimSort(int[] array) {
+        int maxIndex = array.length - 1;// 数组array，区间为 [0,maxIndex]
+        headAdjustBySwim(array, maxIndex);
+        System.out.println("the min one is " + array[0]);
+        // 获得排序（注意：堆有序！=堆排序，堆有序只能保证根节点是最值，而不能保证子节点及树枝节点同级间的大小顺序）
+        while (maxIndex > 0) {
+            swap(array, 0, maxIndex--);// 取出最小值
+            headAdjustBySwim(array, maxIndex);
+        }
+        return array;
+    }
+
+    @Override
+    protected int[] sort(int[] array) {
+        return swimSort(array);
+    }
+
 }
 ```
 > 上浮操作：数组长度：32，执行交换次数：185
@@ -484,36 +499,35 @@ T(n) = O(n*log2^n)
 具体代码如下：
 
 ```
-package sort;
+package algorithms.sort;
 
 public class ShellSort extends Sort {
 
-	@Override
-	protected int[] sort(int[] array) {
-		int lastStep = 0;// 控制循环次数，保存上一个step，避免重复
-		for (int d = 2; d < array.length; d++) {
-			int step = array.length / d;
-			if (lastStep != step) {
-				lastStep = step;
-			} else {
-				break;
-			}
-			System.out.println(step);// 监控step，shellSort执行次数
-			shellSort(array, step);
-		}
-		return array;
-	}
+    @Override
+    protected int[] sort(int[] array) {
+        int lastStep = 0;// 控制循环次数，保存上一个step，避免重复
+        for (int d = 2; d < array.length; d++) {
+            int step = array.length / d;
+            if (lastStep != step) {
+                lastStep = step;
+                System.out.println("step: " + step);// 监控step，shellSort执行次数
+                shellSort(array, step);
+            } else {
+                continue;
+            }
+        }
+        return array;
+    }
 
-	private void shellSort(int[] array, int step) {
-		for (int i = 0; i < array.length - step; i++) {
-			if (array[i] < array[i + step]) {
-				swap(array, i, i + step);
-			}
-		}
-	}
+    private void shellSort(int[] array, int step) {
+        for (int i = 0; i < array.length - step; i++) {
+            if (array[i] < array[i + step]) {
+                swap(array, i, i + step);
+            }
+        }
+    }
 
 }
-
 
 ```
 
@@ -531,60 +545,60 @@ package algorithms.sort;
 
 public class MergeSort extends Sort {
 
-	private int[] temp;
+    private int[] temp;
 
-	@Override
-	protected int[] sort(int[] array) {
-		temp = new int[array.length];// 新建一个与原数组长度相同的空的辅助数组
-		mergeSort(array, 0, array.length - 1);
-		return array;
-	}
+    @Override
+    protected int[] sort(int[] array) {
+        temp = new int[array.length];// 新建一个与原数组长度相同的空的辅助数组
+        mergeSort(array, 0, array.length - 1);
+        return array;
+    }
 
-	/**
-	 * 一到递归别迷糊：用于递归的方法MergeSort，而非merge
-	 * 
-	 * @param array
-	 * @param left
-	 * @param right
-	 */
-	private void mergeSort(int[] array, int left, int right) {
-		if (left >= right)// 已经分治到最细化，说明排序已结束
-			return;
-		int mid = (right + left) / 2;// 手动安排那个两情相悦的位置，强制为中间。ㄟ(◑‿◐ )ㄏ
-		mergeSort(array, left, mid);// 左半部分递归分治
-		mergeSort(array, mid + 1, right);// 右半部分递归分治
-		merge(array, left, mid, right);// 强制安排两情相悦，就要付出代价：去插手merge他们的感情。(͡° ͜ʖ°)✧
-	}
+    /**
+     * 一到递归别迷糊：用于递归的方法MergeSort，而非merge
+     * 
+     * @param array
+     * @param left
+     * @param right
+     */
+    private void mergeSort(int[] array, int left, int right) {
+        if (left >= right)// 已经分治到最细化，说明排序已结束
+            return;
+        int mid = (right + left) / 2;// 手动安排那个两情相悦的位置，强制为中间。ㄟ(◑‿◐ )ㄏ
+        mergeSort(array, left, mid);// 左半部分递归分治
+        mergeSort(array, mid + 1, right);// 右半部分递归分治
+        merge(array, left, mid, right);// 强制安排两情相悦，就要付出代价：去插手merge他们的感情。( ͡°͜ʖ°)✧
+    }
 
-	/**
-	 * 通过辅助数组，合并两个子数组为一个数组，并排序。
-	 * 
-	 * @param array
-	 *            原数组
-	 * @param left
-	 *            左子数组 [left, mid]；
-	 * @param mid
-	 *            那个被强制的两情相悦的位置。(ಠ .̫.̫ ಠ)
-	 * @param right
-	 *            右子数组 [mid+1, right]
-	 */
-	private void merge(int[] array, int left, int mid, int right) {
-		for (int k = left; k <= right; k++) {// 将区间[left,right]复制到temp数组中，这是强硬合并，并没有温柔的捋顺。
-			temp[k] = array[k];
-		}
-		int i = left;
-		int j = mid + 1;
-		for (int k = left; k <= right; k++) {// 通过判断，将辅助数组temp中的值按照大小归并回原数组array
-			if (i > mid)// 第三步：亲戚要和蔼，左半边用尽，则取右半边元素
-				array[k] = temp[j++];// 右侧元素取出一个以后，要移动指针到其右侧下一个元素了。
-			else if (j > right)// 第四步：与第三步同步，工作要顺利，右半边用尽，则取左半边元素
-				array[k] = temp[i++];// 同样的，左侧元素取出一个以后，要移动指针到其右侧下一个元素了。
-			else if (array[j] > temp[i])// 第一步：性格要和谐，右半边当前元素大于左半边当前元素，取右半边元素（从大到小排序）
-				array[k] = temp[j++];// 右侧元素取出一个以后，要移动指针到其右侧下一个元素了。
-			else// 第二步：与第一步同步，三观要一致，左半边当前元素大于右半边当前元素，取左半边元素（从大到小排序）
-				array[k] = temp[i++];// 同样的，左侧元素取出一个以后，要移动指针到其右侧下一个元素了。
-		}
-	}
+    /**
+     * 通过辅助数组，合并两个子数组为一个数组，并排序。
+     * 
+     * @param array
+     *            原数组
+     * @param left
+     *            左子数组 [left, mid]；
+     * @param mid
+     *            那个被强制的两情相悦的位置。(ಠ .̫.̫ ಠ)
+     * @param right
+     *            右子数组 [mid+1, right]
+     */
+    private void merge(int[] array, int left, int mid, int right) {
+        for (int k = left; k <= right; k++) {// 将区间[left,right]复制到temp数组中，这是强硬合并，并没有温柔的捋顺。
+            temp[k] = array[k];
+        }
+        int i = left;
+        int j = mid + 1;
+        for (int k = left; k <= right; k++) {// 通过判断，将辅助数组temp中的值按照大小归并回原数组array
+            if (i > mid)// 第三步：亲戚要和蔼，左半边用尽，则取右半边元素
+                array[k] = temp[j++];// 右侧元素取出一个以后，要移动指针到其右侧下一个元素了。
+            else if (j > right)// 第四步：与第三步同步，工作要顺利，右半边用尽，则取左半边元素
+                array[k] = temp[i++];// 同样的，左侧元素取出一个以后，要移动指针到其右侧下一个元素了。
+            else if (array[j] > temp[i])// 第一步：性格要和谐，右半边当前元素大于左半边当前元素，取右半边元素（从大到小排序）
+                array[k] = temp[j++];// 右侧元素取出一个以后，要移动指针到其右侧下一个元素了。
+            else// 第二步：与第一步同步，三观要一致，左半边当前元素大于右半边当前元素，取左半边元素（从大到小排序）
+                array[k] = temp[i++];// 同样的，左侧元素取出一个以后，要移动指针到其右侧下一个元素了。
+        }
+    }
 }
 ```
 > 数组长度：32，执行交换次数：0
