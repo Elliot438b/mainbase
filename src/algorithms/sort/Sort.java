@@ -43,4 +43,19 @@ public abstract class Sort {
         }
         return arr;
     }
+
+    /**
+     * 取得数组的最大值
+     * 
+     * @param arr
+     * @return
+     */
+    protected int max(int[] arr) {
+        int max = 0;
+        for (int a : arr) {
+            if (a > max)
+                max = a;
+        }
+        return max;
+    }
 }
