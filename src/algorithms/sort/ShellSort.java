@@ -3,7 +3,7 @@ package algorithms.sort;
 public class ShellSort extends Sort {
 
     @Override
-    protected int[] sort(int[] array) {
+    public int[] sort(int[] array) {
         int lastStep = 0;// 控制循环次数，保存上一个step，避免重复
         for (int d = 2; d < array.length; d++) {
             int step = array.length / d;

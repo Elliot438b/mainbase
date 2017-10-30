@@ -7,7 +7,7 @@ import java.util.List;
 public class RadixSort extends Sort {
 
     @Override
-    protected int[] sort(int[] array) {
+    public int[] sort(int[] array) {
         return radixSort(array);
     }
 

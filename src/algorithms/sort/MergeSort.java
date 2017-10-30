@@ -4,8 +4,7 @@ public class MergeSort extends Sort {
 
     private int[] temp;
 
-    @Override
-    protected int[] sort(int[] array) {
+    public int[] sort(int[] array) {
         temp = new int[array.length];// 新建一个与原数组长度相同的空的辅助数组
         mergeSort(array, 0, array.length - 1);
         return array;

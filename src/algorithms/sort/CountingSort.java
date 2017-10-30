@@ -3,7 +3,7 @@ package algorithms.sort;
 public class CountingSort extends Sort {
 
     @Override
-    protected int[] sort(int[] array) {
+    public int[] sort(int[] array) {
         countingSort(array);
         return array;
     }

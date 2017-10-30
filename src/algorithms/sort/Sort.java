@@ -5,7 +5,7 @@ import java.util.Random;
 public abstract class Sort {
     private int count;
 
-    protected int[] sort(int[] array) {
+    public int[] sort(int[] array) {
         return null;
     };
 
@@ -28,7 +28,7 @@ public abstract class Sort {
         return array;
     }
 
-    protected void show(int[] array) {
+    public void show(int[] array) {
         for (int a : array) {
             System.out.println(a);
         }

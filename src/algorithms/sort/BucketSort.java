@@ -16,8 +16,7 @@ public class BucketSort extends Sort {
         return n / divisor;
     }
 
-    @Override
-    protected int[] sort(int[] array) {
+    public int[] sort(int[] array) {
         bucketSort(array);
         System.out.println("divisor=" + divisor + ", 桶排序优化程度：" + optimizeDivisor);
         return array;
