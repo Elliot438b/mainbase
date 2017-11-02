@@ -13,8 +13,12 @@ public class GenericMethods {
 
     public static void main(String[] args) {
         GenericMethods gm = new GenericMethods();
-        Map pet = Container.map();
-        gm.f(Container.map());
+        Map<?, ?> pet = Container.map();
+        gm.f(11111231224L);
+        gm.f(231);
+        gm.f("zxcva");
+        gm.f('c');
+        gm.f(pet);
         gm.f(Container.<Sort, List<Grade>>map());
     }
 }

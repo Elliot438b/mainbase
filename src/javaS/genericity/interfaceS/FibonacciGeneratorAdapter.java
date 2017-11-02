@@ -2,6 +2,12 @@ package javaS.genericity.interfaceS;
 
 import java.util.Iterator;
 
+/**
+ * 实现了Iterable接口的斐波那契生成器
+ * 
+ * @author Evsward
+ *
+ */
 public class FibonacciGeneratorAdapter extends Fibonacci implements Iterable<Integer> {
 
     private int num;
