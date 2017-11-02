@@ -1179,5 +1179,129 @@ public class Client {
 我们是在虐自己么？这种复杂集合模型有什么用呢，下面来构建一个实例。
 
 ```
+package javaS.genericity;
+
+import javaS.genericity.interfaceS.Generator;
+import javaS.genericity.methodS.BasicGenerator;
+
+/**
+ * 举个栗子：线程池中有线程组，线程组中有三个元素。
+ * 
+ * @author Evsward
+ *
+ */
+public class ThreadPoolSG {
+    private TupleList<Integer, Thread, String> threadPool = new TupleList<Integer, Thread, String>();
+
+    private int countId;
+
+    // 使用生成器来生成线程组
+    private class ThreadTupleGenerator implements Generator {
+
+        @Override
+        public ThreeTuple<Integer, Thread, String> next() {
+            return new ThreeTuple(countId++, new Thread(), "xx" + countId);
+        }
+
+    }
+
+    /**
+     * 外部只提供该方法生成指定数量的线程池
+     * 
+     * @param n
+     *            指定线程池的大小
+     * @return
+     */
+    public TupleList<Integer, Thread, String> getThreadPool(int n) {
+        // 先清空
+        for (int i = 0; i < threadPool.size(); i++)
+            threadPool.remove(i);
+        for (int i = 0; i < n; i++)
+            threadPool.add(new ThreadTupleGenerator().next());
+        return threadPool;
+    }
+
+    public static void main(String[] args) {
+        ThreadPoolSG tpsg = new ThreadPoolSG();
+        for (ThreeTuple<Integer, Thread, String> t : tpsg.getThreadPool(5))
+            System.out.println(t);
+    }
+}
 
 ```
+> 输出
+
+    0__&&&__Thread[Thread-0,5,main]__&&&__xx1
+    1__&&&__Thread[Thread-1,5,main]__&&&__xx2
+    2__&&&__Thread[Thread-2,5,main]__&&&__xx3
+    3__&&&__Thread[Thread-3,5,main]__&&&__xx4
+    4__&&&__Thread[Thread-4,5,main]__&&&__xx5
+
+我写这个线程池只是为了举例，以上代码并不具备实践意义，关于java多线程的基础知识我会另开一篇博文专门研究，这里知识为了说明复杂模型的应用场景，大家可以自由发挥。
+
+> 总结：使用泛型元组可以轻松构建复杂集合模型，且他们是类型安全可管理的。
+
+### 泛型的擦除——变个魔术
+
+```
+package javaS.genericity;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Client {
+    public static void main(String[] args) {
+        List a1 = new ArrayList<String>();
+        List a2 = new ArrayList<Integer>();
+        System.out.println(a1 == a2);
+        Class c1 = new ArrayList<String>().getClass();
+        Class c2 = new ArrayList<Integer>().getClass();
+        System.out.println(c1 == c2);
+    }
+}
+
+```
+让我来猜猜输出的情况，
+> 输出：false
+true
+
+为什么是这样，我们很容易将ArrayList\<String\>和ArrayList\<Integer\>理解为不同的类型，为什么结果他们是相同的类型？我们进一步测试：
+
+```
+package javaS.genericity;
+
+import java.util.*;
+
+class Hey<YYYY, B, C, D> {
+}
+
+public class Client {
+    public static void main(String[] args) {
+        Class c1 = new ArrayList<String>().getClass();
+        Class c2 = new ArrayList<Integer>().getClass();
+        Class c5 = new HashSet<Integer>().getClass();
+        Class c6 = new HashMap<Integer, String>().getClass();
+        Class c7 = new Hey<Integer, String, Integer, String>().getClass();
+        System.out.println(Arrays.toString(c1.getTypeParameters()));
+        System.out.println(Arrays.toString(c2.getTypeParameters()));
+        System.out.println(Arrays.toString(c5.getTypeParameters()));
+        System.out.println(Arrays.toString(c6.getTypeParameters()));
+        System.out.println(Arrays.toString(c7.getTypeParameters()));
+    }
+}
+
+```
+> [E]
+[E]
+[E]
+[K, V]
+[YYYY, B, C, D]
+
+jdk官方文档对Class.getTypeParameters()的解释是：
+>Returns an array of TypeVariable objects that represent the type variables declared by the generic declaration represented by this GenericDeclaration object
+
+意思就是这个方法将返回一个TypeVariable对象数组，表示有泛型声明所声明的类型参数。然而无论你泛型指定的类型是Integer也好，String也罢，输出的结果都是无含义的占位符而已，也就是说，
+> 在泛型代码内部，无法获得任何有关泛型参数类型的信息。
+
+所以ArrayList\<String\>和ArrayList\<Integer\>在运行上是相同的类型。这两种形式都被擦除成他们的原声类型，即List。
+
