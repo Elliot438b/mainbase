@@ -1303,5 +1303,5 @@ jdk官方文档对Class.getTypeParameters()的解释是：
 意思就是这个方法将返回一个TypeVariable对象数组，表示有泛型声明所声明的类型参数。然而无论你泛型指定的类型是Integer也好，String也罢，输出的结果都是无含义的占位符而已，也就是说，
 > 在泛型代码内部，无法获得任何有关泛型参数类型的信息。
 
-所以ArrayList\<String\>和ArrayList\<Integer\>在运行上是相同的类型。这两种形式都被擦除成他们的原声类型，即List。
+所以ArrayList\<String\>和ArrayList\<Integer\>在运行上是相同的类型。这两种形式都被擦除成他们的原生类型，即List。
 
