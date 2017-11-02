@@ -411,7 +411,12 @@ Peach.....4
 
 通过代码观察可以发现，实现Iterable接口的方法每一次返回一个新的Iterator，而直接实现Iterator就需要设置当前迭代位置，这个当前迭代位置的值在该实现类作为参数传来传去的时候，会始终作为该实现类的私有属性存在内存里，那么依赖该属性的hasNext方法和next方法的结果将变得不可预知，这将为我们的程序造成困惑。
 
-一句话总结就是，对于迭代器，我们只是将其当做工具，希望它每一次都是从头开始迭代，不要与上一次迭代发生关系。
+Java容器中，所有的Collection子类会实现Iteratable接口以实现foreach功能，Iteratable接口的实现又依赖于实现了Iterator的内部类，有的容器类会有多个实现Iterator接口的内部类，通过返回不同的迭代器实现不同的迭代方式。如以上代码中JuiceIterator，这种迭代器可以做很多出来（例如前序迭代器，反向迭代器，随机迭代器等等），根据业务需要返回给类使用。
+
+- override 方法iterator，可以让实现类默认拥有迭代的功能
+- 也可以定义多个Iterator，除了返给override iterator方法以外，我们还可以通过类的对象去显式地调用其他Iterator。
+
+一句话总结就是，对于迭代器，我们只是将其当做工具，希望它每一次都是从头开始迭代，不要与上一次迭代发生关系，并且工具可以有很多种，让我们随意挑选。
 
 #### 斐波那契数列
 斐波那契数列就是从第2个数开始，每个数的大小为前两个数字之和。这里也通过泛型接口实现，依然实现我们上面的基本生成器Generator类。代码如下：
@@ -454,7 +459,8 @@ public class Fibonacci implements Generator<Integer> {
 }
 
 ```
-注意：基本类型无法作为泛型的类型参数。
+注意：基本类型无法作为泛型的类型参数，所以请先转为对应的对象类型再作为参数传入。
+> 递归，好像你站在两面相对的镜子中间随意看向其中一面镜子，由于两面镜子之间相互的反射作用，你会发现镜子中有无数个自己，这就是递归。——程杰《大话数据结构》
 
 - 编写一个实现了Iterable的斐波那契生成器
 
@@ -467,6 +473,12 @@ package javaS.genericity.interfaceS;
 
 import java.util.Iterator;
 
+/**
+ * 实现了Iterable接口的斐波那契生成器
+ * 
+ * @author Evsward
+ *
+ */
 public class FibonacciGeneratorAdapter extends Fibonacci implements Iterable<Integer> {
 
     private int num;
@@ -656,12 +668,7 @@ public static void main(String[] args) {
 ```
 package javaS.genericity.methodS;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import algorithms.sort.InsertSort;
-import algorithms.sort.QuickSort;
-import algorithms.sort.SelectSort;
+import java.util.ArrayList;...
 
 public class GenericVarargs {
     /**
@@ -682,7 +689,7 @@ public class GenericVarargs {
         System.out.println(makeList(1, 2, 4));
         System.out.println(makeList('a', 'b', 'c'));
         System.out.println(makeList(new QuickSort(), new SelectSort(), new InsertSort()));
-        System.out.println(makeList(1, "this", 4));// 参数列表中也可以互相不是同一类型，因为编译器会将他们转为Object对象
+        System.out.println(makeList(1, "this", 4));// 参数列表中也可以互相不是同一类型（但是这时编译器会报一个警告，告诉你参数不安全），因为编译器会将他们转为Object对象
     }
 }
 
@@ -696,4 +703,481 @@ public class GenericVarargs {
 
 我们可以看到，由于泛型的使用，配合可变参数列表，我们可以将任意类型的元素随意组合传入该方法转换成一个List，泛型的这个特性很强大。
 
+#### 基于Generator的泛型方法
+> 实例：将Generator创建的新元素填充进一个Collection的泛型方法。
 
+这个例子里面，由于我们对元素的类型并不预知，也可以说使用了泛型方法以后，我们能够支持多种类型的参数，这样该方法的功能更加强大。
+
+开始代码：
+
+```
+package javaS.genericity.methodS;
+
+import java.util.ArrayList;...
+
+public class Generators {
+    /**
+     * 将Generator生成的next元素填充进一个Collection中。
+     * 
+     * @param col
+     *            目标Collection
+     * @param gen
+     *            元素生成器
+     * @param n
+     *            生成器工作的次数
+     * @return
+     */
+    public static <T> Collection<T> fill(Collection<T> col, Generator<T> gen, int n) {
+        for (int i = 0; i < n; i++)
+            col.add(gen.next());
+        return col;
+    }
+
+    public static void main(String[] args) {
+        // 使用时要指定具体类型
+        Collection<Juice> colJuice = Generators.fill(new ArrayList<Juice>(), new JuiceGenerator(), 5);
+        Collection<Integer> fibonacci = Generators.fill(new ArrayList<Integer>(), new FibonacciGeneratorAdapter(), 10);
+        for (Juice j : colJuice)
+            System.out.println(j);
+        for (Integer i : fibonacci)
+            System.out.println(i);
+    }
+}
+
+```
+> Lemon.....0
+Orange.....1
+Orange.....2
+Pear.....3
+Grape.....4
+1
+1
+2
+3
+5
+8
+13
+21
+34
+55
+
+我们传入了Juice集合的实例，以及Juice生成器（生成器中实现了Iterable接口）的实例，我们也可以传入整型对象集合的实例，以及斐波那契生成器（生成器中实现了Iterable接口）的实例。我们可以分别获得一个可迭代的元素类型为Juice和一个元素类型为Integer的Collection对象。
+
+### 通用Generator
+> 为任意带有默认构造器的类创建一个生成器。
+
+生成器上面提过很多次，属于对象创建模式的范畴。我们下面要写的通用Generator可以为任意类创建一个生成器，只要该类满足：
+- 显式编写了无参构造器
+- 该类为public的
+
+这个类有了生成器，就可以利用他不断快速方便地创建对象。代码如下：
+
+```
+package javaS.genericity.methodS;
+
+import javaS.genericity.interfaceS.Generator;
+import javaS.genericity.interfaceS.Juice;
+import javaS.genericity.interfaceS.Orange;
+
+/**
+ * 为任何类生成一个生成器
+ *
+ * @author Evsward
+ *
+ * @param <T>
+ */
+public class BasicGenerator<T> implements Generator<T> {
+
+    private Class<T> type;
+
+    public BasicGenerator() {
+    }
+
+    // 也可以直接显式调用此构造函数为对象类型创建一个默认生成器
+    public BasicGenerator(Class<T> type) {
+        this.type = type;
+    }
+
+    @Override
+    public T next() {
+        try {
+            return type.newInstance();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * 对外提供一个静态方法，通过给定对象类型create一个默认生成器
+     * 
+     * @param type
+     *            想要生成的类型
+     * @set type 类必须为public，必须具备构造器
+     * 
+     * @return 一个默认生成器
+     */
+    public static <T> Generator<T> create(Class<T> type) {
+        return new BasicGenerator<T>(type);
+    }
+
+    public static void main(String[] args) {
+        // 从前创造多个类的对象的做法：
+        Juice orange01 = new Orange();
+        System.out.println(orange01);
+        Juice orange02 = new Orange();
+        System.out.println(orange02);
+        Juice orange03 = new Orange();
+        System.out.println(orange03);
+        System.out.println("------------");
+        // 吃了药以后，额不是，有了生成器以后，只需要设定要几个对象就循环几次，对象就全部创建出来了。
+        Generator<Orange> gen01 = BasicGenerator.create(Orange.class);
+        Generator<Orange> gen02 = new BasicGenerator<Orange>(Orange.class);
+        for (int i = 0; i < 3; i++)
+            System.out.println("gen-01-" + gen01.next());
+        for (int i = 0; i < 3; i++)
+            System.out.println("gen-02-" + gen02.next());
+
+    }
+}
+
+```
+> 输出
+
+    Orange.....0
+    Orange.....1
+    Orange.....2
+    ------------
+    gen-01-Orange.....3
+    gen-01-Orange.....4
+    gen-01-Orange.....5
+    gen-02-Orange.....6
+    gen-02-Orange.....7
+    gen-02-Orange.....8
+
+通过输出，以及代码中的注释，我们可以对比出来使用生成器创建对象是非常方便的，而且该生成器是基于泛型的，对于类的类型的处理非常灵活。
+
+> 生成器Generator，类似于设计模式中的工厂模式，符合依赖倒转原则，里氏代换原则以及单一指责原则，避免了用new的方式去创建对象，解耦了对象和类之间的依赖关系。
+
+当我们在工程实践中遇到需要多次创建类的对象的时候，可以采用BasicGenerator和Generator的结构，多多熟悉使用，增加我们的程序的灵活性。
+
+#### 简化元组类
+我们这一节主要描述的是泛型方法，上面我们提过尽量使用泛型方法，而不是泛型类，那么之前研究到的所有泛型类均有机会被泛型方法所改造。元组类就是可以优化的一种。代码如下：
+
+```
+package javaS.genericity.methodS;
+
+import java.util.ArrayList;...
+
+public class Tuple {
+    public static <A, B> TwoTuple<A, B> twoTuple(A a, B b) {
+        return new TwoTuple<A, B>(a, b);
+    }
+
+    public static <A, B, C> ThreeTuple<A, B, C> twoTuple(A a, B b, C c) {
+        return new ThreeTuple<A, B, C>(a, b, c);
+    }
+
+    public static void main(String[] args) {
+        // 原来的方式
+        TwoTuple<Sort, List<Integer>> two = new TwoTuple<Sort, List<Integer>>(new QuickSort(),
+                new ArrayList<Integer>());
+        // 现在的方式
+        two = Tuple.twoTuple(new QuickSort(), new ArrayList<Integer>());
+    }
+}
+
+```
+通过直接调用方法去创建元组的对象。
+
+#### Set容器中泛型的使用
+
+Set容器包含很多内置函数用来解决一些数学问题，加入了泛型以后，可以处理更多类型的参数。直接代码里面注释说：
+
+```
+package javaS.genericity.methodS;
+
+import java.util.EnumSet;
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * Set通过使用泛型方法来封装Set的自有方法。
+ * 
+ * @author Evsward
+ *
+ */
+public class SetSupply {
+    // 求集合A、B的并集
+    public static <T> Set<T> union(Set<T> setA, Set<T> setB) {
+        Set<T> result = new HashSet<T>(setA);// 不要直接操作setA，请保持setA的纯真
+        result.addAll(setB);
+        return result;
+    }
+
+    // 求集合A、B的交集
+    public static <T> Set<T> intersection(Set<T> setA, Set<T> setB) {
+        Set<T> result = new HashSet<T>(setA);
+        result.retainAll(setB);
+        return result;
+    }
+
+    // 求集合A、B的差集
+    public static <T> Set<T> difference(Set<T> setA, Set<T> setB) {
+        Set<T> result = new HashSet<T>(setA);
+        result.removeAll(setB);
+        return result;
+    }
+
+    // 求集合A、B的并集-集合A、B的交集
+    public static <T> Set<T> complement(Set<T> setA, Set<T> setB) {
+        return difference(union(setA, setB), intersection(setA, setB));
+    }
+
+    public static void main(String[] args) {
+        Set<Colors> setA = EnumSet.range(Colors.Red, Colors.Orange);
+        Set<Colors> setB = EnumSet.range(Colors.Black, Colors.Blue);
+        System.out.println(SetSupply.union(setA, setB));
+        System.out.println(SetSupply.intersection(setA, setB));
+        System.out.println(SetSupply.difference(setA, setB));
+        System.out.println(SetSupply.complement(setA, setB));
+    }
+}
+
+```
+不要直接操作参数传过来的集合本身，我们复制了一份set出来作为结果集合。
+
+- Set容器中泛型的使用，利用枚举做一个实例
+
+```
+package javaS.genericity.methodS;
+
+public enum Colors {
+    Red, Green, Black, White, Gray, Blue, Yellow, Purple, Pink, Orange
+}
+
+```
+> 输出
+
+    [Green, Gray, Blue, White, Pink, Purple, Red, Black, Orange, Yellow]
+    [Gray, Blue, White, Black]
+    [Green, Pink, Purple, Red, Orange, Yellow]
+    [Green, Pink, Purple, Red, Orange, Yellow]
+    
+接下来，利用上面这个功能，我们来检查一下在jdk中Collection和Map的方法的差异：
+
+```
+package javaS.genericity.methodS;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.*;
+
+public class MethodDif {
+    static Set<String> methods(Class<?> type) {
+        Set<String> methodSets = new TreeSet<String>();
+        for (Method m : type.getMethods())
+            methodSets.add(m.getName());
+        return methodSets;
+    }
+
+    static void interfaces(Class<?> type) {
+        System.out.println("Interfaces in " + type.getSimpleName() + ": ");
+        List<String> result = new ArrayList<String>();
+        for (Class<?> c : type.getInterfaces())
+            result.add(c.getSimpleName());
+        System.out.println(result);
+    }
+
+    static Set<String> objectMethods = methods(Object.class);// 比较之前要先把根类Object的方法去除。
+
+    static {
+        objectMethods.add("clone");
+    }
+
+    static void difference(Class<?> setA, Class<?> setB) {
+        System.out.println(setA.getSimpleName() + "  " + setB.getSimpleName() + ", adds: ");
+        Set<String> comp = SetSupply.difference(methods(setA), methods(setB));
+        comp.removeAll(objectMethods);
+        System.out.println(comp);
+        interfaces(setA);
+    }
+
+    public static void main(String[] args) {
+        // System.out.println("Collection: " + methods(Collection.class));
+        // interfaces(Collection.class);
+        // difference(Set.class, Collection.class);
+        difference(Set.class, HashSet.class);
+        difference(HashSet.class, Set.class);
+    }
+
+}
+
+```
+通过反射获得我们要比较的目标类所包含的方法名，并存入集合，然后调用之前写的那段比较Set的方法，进行查看两个类之间的方法区别。这里应用到了Java的反射机制，未来有时间我会另开一篇博文来详细讨论（todo）
+
+### 匿名内部类
+
+前面的代码例子中，实现Iterable接口，返回迭代器的部分，已经引用到了匿名内部类的特性，没看到的同学可以去到那里再看一眼，然后回到这里继续分析，泛型在匿名内部类中的应用。前面我们有了Juice基类，可以输出每一次输出对象的id，同时它也有自己的JuiceGenerator，用来随机迭代输出众多子类对象。我们可以继续使用他们，同时再新创建一个冰激凌类，果汁搭配冰淇淋，听上去就要拉肚子的配方。下面看代码：
+
+```
+package javaS.genericity;
+
+import javaS.genericity.interfaceS.Generator;
+
+/**
+ * 泛型在匿名内部类中的应用
+ * 
+ * @author Evsward
+ *
+ */
+public class IceCream {
+    private static long counter = 0;
+    private final long id = counter++;
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "....." + id;
+    }
+
+    /**
+     * 这里通过一个匿名内部类返回一个Generator
+     * 
+     * @return
+     */
+    public static Generator<IceCream> generator() {
+        return new Generator<IceCream>() {
+            public IceCream next() {
+                return new IceCream();
+            }
+        };
+    }
+}
+
+```
+随时记住复用我们之前的代码，
+
+```
+package javaS.genericity;
+
+import java.util.List;
+import java.util.Queue;
+import java.util.Random;
+
+import javaS.genericity.interfaceS.Generator;
+import javaS.genericity.interfaceS.Juice;
+import javaS.genericity.interfaceS.JuiceGenerator;
+import javaS.genericity.methodS.Container;
+import javaS.genericity.methodS.Generators;
+
+/**
+ * 泛型在匿名内部类中的应用
+ * 
+ * @author Evsward
+ *
+ */
+public class IceCream {
+    private static long counter = 0;
+    private final long id = counter++;
+
+    //构造器是private的，那么外部无法使用new来创建对象，必须使用Generator来创建。
+    private IceCream() {
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "....." + id;
+    }
+
+    /**
+     * 这里通过一个匿名内部类返回一个Generator
+     * 
+     * @return
+     */
+    public static Generator<IceCream> generator() {
+        return new Generator<IceCream>() {
+            public IceCream next() {
+                return new IceCream();
+            }
+        };
+    }
+
+    // 随意输出一个结果，让IceCream与Juice建立一个联系。
+    public static void match(IceCream i, Juice j) {
+        System.out.println(i + " matches " + j);
+    }
+
+    public static void main(String[] args) {
+        Random random = new Random();
+        // 随时记住复用我们之前写好的工具类
+        Queue<Juice> drinks = Container.queue();// 创建一个集合用来存果汁
+        List<IceCream> ices = Container.list();// 创建一个集合用来存冰激凌
+        // 两种方式的generator。
+        Generators.fill(drinks, new JuiceGenerator(), 6);
+        Generators.fill(ices, IceCream.generator(), 3);
+        // 输出结果
+        for (Juice j : drinks)
+            match(ices.get(random.nextInt(ices.size())), j);
+    }
+}
+
+```
+> 输出
+
+    IceCream.....1 matches Peach.....0
+    IceCream.....1 matches Orange.....1
+    IceCream.....2 matches Grape.....2
+    IceCream.....0 matches Orange.....3
+    IceCream.....1 matches Grape.....4
+    IceCream.....0 matches Lemon.....5
+
+IceCream的构造器被指定为private，所以强制只能使用Generator来创建对象。我们复用了Container创建集合对象，复用了Generators的fill方法，将Generator创建出来的对象填充到一个集合中区。
+
+---
+- 看到这里，我想您已经很累了，后面的内容为选看，如果想了解泛型，那么以上内容已经足够，下面的内容可以定义为“提高篇”。
+
+---
+
+### 创建复杂模型
+我们来尝试创建一个复杂的容器，
+
+```
+package javaS.genericity;
+
+import java.util.*;
+
+public class TupleList<A, B, C> extends ArrayList<ThreeTuple<A, B, C>> {}
+
+```
+> 体内的恶魔在苏醒...
+
+但是貌似我们没有用过多代码就得到了一个安全稳定的负载结构，下面在Client端进行使用该集合：
+
+```
+package javaS.genericity;
+
+import javaS.genericity.interfaceS.JuiceGenerator;
+import javaS.genericity.interfaceS.Orange;
+
+public class Client {
+    public static void main(String[] args) {
+        TupleList<Integer, Orange, IceCream> tl = new TupleList<Integer, Orange, IceCream>();
+        ThreeTuple tt1 = new ThreeTuple(12, new Orange(), IceCream.generator().next());// 我们创建对象的时候全都在复用以前的代码，这很好。
+        ThreeTuple tt2 = new ThreeTuple(3, new JuiceGenerator().next(), IceCream.generator().next());// hmmm，这很好。
+        tl.add(tt1);
+        tl.add(tt2);
+        for (ThreeTuple<Integer, Orange, IceCream> a : tl)
+            System.out.println(a);
+    }
+}
+
+```
+> 输出
+
+    12__&&&__Orange.....0__&&&__IceCream.....0
+    3__&&&__Peach.....1__&&&__IceCream.....1
+
+我们是在虐自己么？这种复杂集合模型有什么用呢，下面来构建一个实例。
+
+```
+
+```
