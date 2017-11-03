@@ -1547,7 +1547,7 @@ public class Client<T> {
 这将使你获得数组的行为，以及由泛型提供的编译期的类型安全。
 
 ### 通配符？
-- \<? extends SuperClass\>
+#### \<? extends SuperClass\>
 
 ```
 package javaS.genericity;
@@ -1573,7 +1573,7 @@ public class Client<T> {
 
 我为什么要写出这样的代码，WTF。好吧，蓄力分析一波，List<? extends Juice> 可以读作“具有任何从Juice继承过来的类型的列表”。但是我们知道泛型是假的类型，juice不是什么真正的Juice子类的实例列表，那好，我们在new后面指定了具体类型Lemon，继承自Juice。气力已尽，总之，在实践中可以不用泛型，但不要写出这样的代码。
 
-- \<? super Class\>
+#### \<? super Class\>
 
 超类型通配符。
 
@@ -1603,7 +1603,7 @@ public class Client<T> {
 
 编译成功了，运行也成功了。但是? super Juice好像与Juice没有区别。“！！！我在做什么，我在哪里，我是谁！！！”
 
-- \<?\>
+#### \<?\>
 
 
 ```
@@ -1624,10 +1624,10 @@ public class Client<T> {
 我决定要放弃这场逗逼之旅了。。。
 
 ### 使用泛型的注意事项
-1. 任何基本类型都不能作为类型参数。
+#### 任何基本类型都不能作为类型参数。
 > 不能创建类似ArrayList<int>的东西。
 
-2. 一个类不能实现同一个泛型接口的两种变体。
+####  一个类不能实现同一个泛型接口的两种变体。
 
 ```
 package javaS.genericity;
@@ -1641,9 +1641,11 @@ public class Client<T> extends TWO implements ONE<Juice> {//The interface ONE ca
 }
 
 ```
-3. @SuppressWarning注解去除泛型类型参数的转型或instanceof时发出的警告。
+####  @SuppressWarning注解
+用于去除泛型类型参数的转型或instanceof时发出的警告。
 
-4. 重载泛型方法时，注意不同的泛型命名最终都会被擦除成相同的占位符，所以实际类型会被打回原始类型List而跟泛型内容毫无关系，所以不要写：
+####  重载泛型方法时
+注意不同的泛型命名最终都会被擦除成相同的占位符，所以实际类型会被打回原始类型List而跟泛型内容毫无关系，所以不要写：
 
 ```
 public class Client<A,B> {
@@ -1668,7 +1670,7 @@ public class Client<String, Integer> {
 
 总结：只要涉及到泛型参数的方法，不能重载。
 
-5. 不能创建参数化类型的数组
+#### 不能创建参数化类型的数组
 
 ```
 List<Integer>[] a = new ArrayList<Integer>[10];//error:
@@ -1714,7 +1716,7 @@ public class Client {
 
 列表数组，意思就是一个数组中每个元素就是一个List对象，但是要注意，在具体给List赋值的时候，一定要指定类型了，获取这些List中的值的时候，也应该指定类型，否则将出现类型转换错误。所以这种写法并不灵活，且具有一定的类型错误的风险。
 
-6. 泛型类的静态上下文中类型变量无效
+#### 泛型类的静态上下文中类型变量无效
 换句话说，就是不能再静态域或方法中引用类型变量。例如：
 
 ```
