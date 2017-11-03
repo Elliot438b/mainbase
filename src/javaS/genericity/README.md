@@ -1641,7 +1641,7 @@ public class Client<T> extends TWO implements ONE<Juice> {//The interface ONE ca
 }
 
 ```
-#### 3. @SuppressWarning注解
+#### 3. \@SuppressWarning注解
 用于去除泛型类型参数的转型或instanceof时发出的警告。
 
 #### 4. 重载泛型方法时
@@ -1653,7 +1653,7 @@ public class Client<A,B> {
     void f(List<B> list){}//报错
 }
 ```
-> 报错信息：Erasure of method f(List<B>) is the same as another method in type Client<A,B>
+> 报错信息：Erasure of method f(List\<B\>) is the same as another method in type Client\<A,B\>
 
 是不是A和B不是真的类呢？我要是换个真的类是不是能好？
 
@@ -1664,7 +1664,7 @@ public class Client<String, Integer> {
 }
 
 ```
-> 报错信息：Erasure of method f(List<B>) is the same as another method in type Client<A,B>
+> 报错信息：Erasure of method f(List\<B\>) is the same as another method in type Client\<A,B\>
 
 兄弟你想多了。
 
