@@ -1031,7 +1031,7 @@ public class MethodDif {
 
 > java.lang.reflect.Constructor<T> 1.1
 
--T newInstance(Object... parameters) 返回一个指定参数构造的新实例。
+- T newInstance(Object... parameters) 返回一个指定参数构造的新实例。
 ### 匿名内部类
 
 前面的代码例子中，实现Iterable接口，返回迭代器的部分，已经引用到了匿名内部类的特性，没看到的同学可以去到那里再看一眼，然后回到这里继续分析，泛型在匿名内部类中的应用。前面我们有了Juice基类，可以输出每一次输出对象的id，同时它也有自己的JuiceGenerator，用来随机迭代输出众多子类对象。我们可以继续使用他们，同时再新创建一个冰激凌类，果汁搭配冰淇淋，听上去就要拉肚子的配方。下面看代码：
