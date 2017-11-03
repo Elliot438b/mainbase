@@ -689,7 +689,9 @@ public class GenericVarargs {
         System.out.println(makeList(1, 2, 4));
         System.out.println(makeList('a', 'b', 'c'));
         System.out.println(makeList(new QuickSort(), new SelectSort(), new InsertSort()));
-        System.out.println(makeList(1, "this", 4));// 参数列表中也可以互相不是同一类型（但是这时编译器会报一个警告，告诉你参数不安全），因为编译器会将他们转为Object对象
+        // 参数列表中也可以互相不是同一类型（但是这时编译器会报一个警告，告诉你参数不安全）
+        // 因为编译器会将他们转为Object对象
+        System.out.println(makeList(1, "this", 4));
     }
 }
 
@@ -1171,8 +1173,10 @@ import javaS.genericity.interfaceS.Orange;
 public class Client {
     public static void main(String[] args) {
         TupleList<Integer, Orange, IceCream> tl = new TupleList<Integer, Orange, IceCream>();
-        ThreeTuple tt1 = new ThreeTuple(12, new Orange(), IceCream.generator().next());// 我们创建对象的时候全都在复用以前的代码，这很好。
-        ThreeTuple tt2 = new ThreeTuple(3, new JuiceGenerator().next(), IceCream.generator().next());// hmmm，这很好。
+        // 我们创建对象的时候全都在复用以前的代码，这很好。
+        ThreeTuple tt1 = new ThreeTuple(12, new Orange(), IceCream.generator().next());
+        // hmmm，这很好。
+        ThreeTuple tt2 = new ThreeTuple(3, new JuiceGenerator().next(), IceCream.generator().next());
         tl.add(tt1);
         tl.add(tt2);
         for (ThreeTuple<Integer, Orange, IceCream> a : tl)
@@ -1344,7 +1348,8 @@ public class NewHolder<T> {
 
     public static void main(String[] args) {
         int[] a = { 12, 5, 66, 23 };
-        NewHolder<QuickSort> n = new NewHolder<QuickSort>(new QuickSort());// 使用的时候将泛型定义为整型，那么只能限制设置a为整型值
+        // 使用的时候将泛型定义为整型，那么只能限制设置a为整型值
+        NewHolder<QuickSort> n = new NewHolder<QuickSort>(new QuickSort());
         n.aMethod(a);// 我们期望能执行new QuickSort().sort(array)
     }
 
@@ -1472,12 +1477,16 @@ Fool<Joke> f = new Fool<Joke>();
 例如，
 
 ```
-T t = new T();//T并没有指定具体类型，在编译器那里就是个占位符，没有任何类型的特征以及类型操作的能力，所以这一行代码直接报错。
+// T并没有指定具体类型，在编译器那里就是个占位符，没有任何类型的特征以及类型操作的能力
+// 所以这一行代码直接报错。
+T t = new T();
 ```
 要想创建类的实例，首先要确定类的类型，而泛型恰恰类型已被擦除。
 >
 ```
-if(arg instanceof B){}// 判断arg是否是B的实例，还是那句话，要确定类的实例，首先这个类得“是个真的类”，泛型不是真的类。所以这一行直接报错。
+// 判断arg是否是B的实例，还是那句话，要确定类的实例，首先这个类得“是个真的类”，泛型不是真的类
+// 所以这一行直接报错。
+if(arg instanceof B){}
 ```
 综上所述，在java中，所有关于具体类型的操作，泛型都是做不了的。
 
@@ -1637,7 +1646,9 @@ import javaS.genericity.interfaceS.Juice;
 
 interface ONE<A>{}
 class TWO implements ONE<Sort>{}
-public class Client<T> extends TWO implements ONE<Juice> {//The interface ONE cannot be implemented more than once with different arguments: ONE<Sort> and ONE<Juice>
+public class Client<T> extends TWO implements ONE<Juice> {
+// error: The interface ONE cannot be implemented more than once -
+// with different arguments: ONE<Sort> and ONE<Juice>
 }
 
 ```
