@@ -1,6 +1,6 @@
-> 又写了一篇很长的文章，原以为泛型的内容并没有这么多，但是后来我发现我以为错了。
+> 掌握Java的泛型，这一篇文章足够了。
 
-> 关键字：泛型，Iterable接口，斐波那契数列，匿名内部类，可变参数列表
+> 关键字：泛型，Iterable接口，斐波那契数列，匿名内部类，枚举，反射，可变参数列表，Set
 
 > 一般类和方法，要么只能使用基础类型，要么是自定义的类。如果要编写可以应用于多种类型的代码，这种刻板的限制会对代码的束缚很大。
 
@@ -1013,8 +1013,23 @@ public class MethodDif {
 }
 
 ```
-通过反射获得我们要比较的目标类所包含的方法名，并存入集合，然后调用之前写的那段比较Set的方法，进行查看两个类之间的方法区别。这里应用到了Java的反射机制，未来有时间我会另开一篇博文来详细讨论（todo）
+通过反射获得我们要比较的目标类所包含的方法名，并存入集合，然后调用之前写的那段比较Set的方法，进行查看两个类之间的方法区别。这里应用到了Java的反射机制。
+### 反射与泛型
 
+现在，Class类是泛型的，例如，String.class 实际上是Class\<String\>类的唯一的对象，类型参数十分有用，这是因为它允许Class\<T\>方法的返回类型更加具有针对性，参照JDK中Class\<T\>源码可以看到这些类型参数。
+
+> java.lang.Class<T> 1.0
+
+- T newInstance() 返回默认构造器构造的一个新实例。免除了类型转换。
+- T cast(Object obj) 如果obj为null或有可能转换成类型T，则返回obj；否则抛出BadCastException异常。
+- T[] getEnumConstants() 如果T是枚举类型，则返回所有值组成的数组，否则返回null。
+- Class<? super T> getSuperclass() 返回这个类的超类（由于java是单继承，每个子类最多只有一个父类）如果T不是一个类或T是Object类（Object类已经是根类了，它没有超类），则返回null。
+- Constructor<T> getConstructor(Class... parameterTypes)
+- Constructor<T> getDeclaredConstructor(Class... parameterTypes) 这两个方法均返回一个Constructor<T>对象，Constructor类也已经变成泛型，以便它建立出来的实例与newInstance方法有一个正确的返回类型。
+
+> java.lang.reflect.Constructor<T> 1.1
+
+-T newInstance(Object... parameters) 返回一个指定参数构造的新实例。
 ### 匿名内部类
 
 前面的代码例子中，实现Iterable接口，返回迭代器的部分，已经引用到了匿名内部类的特性，没看到的同学可以去到那里再看一眼，然后回到这里继续分析，泛型在匿名内部类中的应用。前面我们有了Juice基类，可以输出每一次输出对象的id，同时它也有自己的JuiceGenerator，用来随机迭代输出众多子类对象。我们可以继续使用他们，同时再新创建一个冰激凌类，果汁搭配冰淇淋，听上去就要拉肚子的配方。下面看代码：
@@ -1132,11 +1147,6 @@ public class IceCream {
 
 IceCream的构造器被指定为private，所以强制只能使用Generator来创建对象。我们复用了Container创建集合对象，复用了Generators的fill方法，将Generator创建出来的对象填充到一个集合中区。
 
----
-- 看到这里，我想您已经很累了，后面的内容为选看，如果想了解泛型，那么以上内容已经足够，下面的内容可以定义为“提高篇”。
-
----
-
 ### 创建复杂模型
 我们来尝试创建一个复杂的容器，
 
@@ -1241,6 +1251,11 @@ public class ThreadPoolSG {
 
 > 总结：使用泛型元组可以轻松构建复杂集合模型，且他们是类型安全可管理的。
 
+---
+- 看到这里，我想您已经很累了，后面的内容为选看，如果想了解和使用泛型，成为一个中级泛型程序员，那么以上内容已经足够，下面的内容可以定义为“提高篇”。
+> 你看上了一个姑娘，目之所及之处全是各种美好，相处起来却发现她也有自己的小缺点啊。任何事不要停留在幻想，去理性接受一个人的弱点，就像你钦羡她的成功一样。
+---
+
 ### 泛型的擦除——变个魔术
 
 ```
@@ -1305,3 +1320,427 @@ jdk官方文档对Class.getTypeParameters()的解释是：
 
 所以ArrayList\<String\>和ArrayList\<Integer\>在运行上是相同的类型。这两种形式都被擦除成他们的原生类型，即List。
 
+### 探索泛型的底层原理，类型的擦除机制。
+
+Java对对象的控制要大过C++，对象只能调用自己事先声明过的方法，对于陌生的方法，编译器并不会自动识别。例如：
+
+```
+package javaS.genericity;
+
+import algorithms.sort.QuickSort;
+
+public class NewHolder<T> {
+
+    private T a;
+
+    public NewHolder(T a) {
+        this.a = a;
+    }
+
+    public void aMethod(int[] arr) {
+        a.sort(arr);// 报错了！！！The method sort() is undefined for the type T
+        ((NewHolder<QuickSort>) a).sort(arr);// 除非改成强制转为指定类型。那我们的NewHolder<T>类是否就失去了泛型的意义？
+    }
+
+    public static void main(String[] args) {
+        int[] a = { 12, 5, 66, 23 };
+        NewHolder<QuickSort> n = new NewHolder<QuickSort>(new QuickSort());// 使用的时候将泛型定义为整型，那么只能限制设置a为整型值
+        n.aMethod(a);// 我们期望能执行new QuickSort().sort(array)
+    }
+
+}
+
+```
+以上代码在Java中编译都不会通过，但有意思的是在C++中是很正常的存在，NewHolder在自己的aMethod方法中用泛型T的对象来调用跟它完全陌生的sort方法，它怎么知道T的对象认识sort方法呢？如果NewHolder在使用时被指定为其他类型，例如NewHolder\<Integer\>，那么这个T的对象就是一个整型类型，无论如何Integer里面也不会有我们在QuickSort中自定义的sort方法的。Java之于C++是青出于蓝，泛型的思想也是源于C++，但是在java里落地生根，泛型的机制发生了变化，最大的变化就是Java的编译器需要预先指定泛型类的边界，以便告知编译器只能接受这个边界的类型，超越这个边界的类型在该泛型类中不予支持。
+
+> 泛型的边界，重用extends关键字。
+
+
+```
+package javaS.genericity;
+
+import algorithms.sort.QuickSort;
+import algorithms.sort.Sort;
+
+public class NewHolder<T extends Sort> {
+
+    private T a;
+
+    public NewHolder(T a) {
+        this.a = a;
+    }
+
+    public void aMethod(int[] arr) {
+        a.sort(arr);// 编译通过
+    }
+
+    /**
+     * 如果想要通过泛型类的持有属性a来调用Sort中的其他方法，需要定义泛型类自己的方法来包含Sort的方法。
+     * 
+     * @provide 对外提供方法来调用Sort的内部方法
+     * @param arr
+     */
+    public void show(int[] arr) {
+        a.show(arr);// 编译通过
+    }
+
+    public static void main(String[] args) {
+        int[] a = { 12, 5, 66, 23 };
+        QuickSort q = new QuickSort();
+        NewHolder<QuickSort> n = new NewHolder<QuickSort>(q);// 使用的时候将泛型定义为整型，那么只能限制设置a为整型值
+        n.aMethod(a);// 我们期望能执行new QuickSort().sort(array)
+        q.show(a);
+        System.out.println("--------------------我是方法作用域的分界线--------------------");
+        n.show(a);
+    }
+
+}
+
+```
+> 输出：
+
+    66
+    23
+    12
+    5
+    数组长度：4，执行交换次数：5
+    --------------------我是方法作用域的分界线--------------------
+    66
+    23
+    12
+    5
+    数组长度：4，执行交换次数：5
+
+- 我们通过\<T extends Sort\>的方式指定了泛型的边界，该泛型只接受Sort类型，当然了Sort的子类也都在这个范畴，因此合情合理可以调用Sort的内部方法了。
+- 我们正常的通过Sort的对象去调用其方法，也可以在泛型类中通过持有的泛型属性来调用，只要再定义一个泛型类自己的方法即可。
+
+泛型中关于类型的擦除，如果没有指定泛型的边界，擦除机制会将该泛型的所有类型都擦掉，最终泛型只沦落为一个占位符而已，就像上面提到过的那样。而如果定义了它的边界，擦除机制会将参数类型擦除到这个边界，就好像在类的声明中用Sort替换了T一样。
+
+问题：为什么不直接用\<Sort\>代替\<T extends Sort\>啊？非要搞出个泛型T，还要定义他的边界，其实效果不就跟直接将泛型指定为Sort来的方便吗？甚至，都不要搞泛型了，直接把持有对象属性T a改为Sort a不就完事了，泛型在这里真是多此一举啊。
+
+解答：只有当你希望使用的类型参数比某个具体类型（以及他的所有子类型）更加“泛化”时——也就是说，当你希望代码能够跨多个类工作时，使用泛型才有所帮助。因此，使用泛型边界通常要比直接类替换更加复杂。举个弱弱的例子，如果某个类有一个返回T的方法，那么泛型就有所帮助，因为它会返回确切的类型，而不是基类。（好吧，这也算数？？那我们平时总使用的List list = new ArrayList(); 如何解释啊？当然了，肯定会有希望获得具体类型对象而不是基类对象的场景，例如我只想使用子类特有的方法。。但是这样的话又会重蹈找不到方法的覆辙吧。）
+
+> 这个回答我自己都不满意。往下分析再看看吧，Java作者肯定比我聪明，会有更好的解答的，否则设计个泛型的边界有何用？
+
+#### 请给我一个合理的解释？迁移兼容性
+
+首先重定向上面的疑虑，泛型边界不是Java作者专门设计的什么牛逼的语言特性，而是一个折中方案，整个折中方案的核心就是擦除机制，java爸爸们为了能让我们使用上新款“泛型”特性，也是做足了里子面子，想出擦除这么一个折中办法。
+
+下面用三寸不烂之舌谈谈历史问题，
+
+如果从Java诞生之时，就有泛型，那么泛型一定不会用类型擦除的方式实现，而是使用具体化，使类型参数保持为第一类实体，因此你就能够在类型参数上执行基于类型的语言操作和反射操作。
+
+> 擦除减少了泛型的泛化行，泛型在Java中仍旧是有用的，只不过没有设想的那么有用，原因就是擦除。
+
+#### 泛型是java在5.0以后加入的特性。
+Java SE5之前，有大量的非泛型类库，之后我们热爱泛型的工程师们开始了泛化之路，但是之前的非泛化类库如何升级为泛化呢？这就需要“迁移兼容性”，将非泛化类库变为泛型时，不会破坏依赖于它的代码和应用程序。（任何一个有良心的组织或公司，都会让他们的系统向旧机兼容，ps3好像就不能玩耍ps4的游戏呢，幸好iphone5s还能安装IOS11）这个良心目标定下了以后，众多“最强大脑”们认为擦除是唯一可行的解决方案。通过允许非泛型代码与泛型代码共存，擦除使得这种向着泛型的迁移成为可能。
+
+#### 擦除的问题
+
+由于上一节提到的那个崇高的动机，擦除的代价是显著的：
+> 泛型不能用于显式地引用运行时类型的操作之中（只能处于类型声明阶段），例如转型、instanceof和new表达式。因为所有关于参数的类型信息都丢失了，无论何时，当你在编写泛型代码时，必须时刻提醒自己，你只是看起来好像拥有有关参数的类型信息而已。
+
+例如：
+
+```
+class Fool<T>  {
+    T a;
+}
+```
+看上去你在创建一个Fool的实例，
+
+```
+Fool<Joke> f = new Fool<Joke>();
+```
+泛型语法也在强烈暗示：在整个类的各个地方，类型T都在被替换。但是事实并非如此，无论何时，当你在编写整个类的代码时，必须提醒自己：
+> No, it's just an Object!
+
+擦除和迁移兼容性意味着，泛型的使用并不是强制的，所以我们经常可以在使用那种没有指定泛型的子类时，经常会有warning出来，（我知道有些人对代码下面的黄色波浪线也很难容忍）这时通过一个注解：
+> @SuppressWarings("unchecked")
+
+可以不让这个warning出来扰乱你，但是作者仍旧好心提醒，请把这个注解放在离你warning代码最近的位置，而不是整个类上，这样可以避免忽略掉其他真正的问题。
+
+- 而当你希望泛型参数不仅仅是个Object，就需要管理泛型的边界。
+
+上面提到的那个疑虑，不使用泛型直接使用类替换和使用泛型边界这两种效果是一样的，我们可以通过跟踪这两种代码在编译期间的字节码来对比发现，确实如我们所料字节码是相同的。
+
+擦除在方法体中移除了类型信息，所以在运行时的问题就是边界：即对象进入和离开方法的地点，这正是编译器在编译期执行对传入值的类型检查并插入传出值的转型代码（因为边界让泛型转型为具体类型）的地点。
+> 边界就是发生动作的地方。
+
+#### 擦除的补偿
+前面强调过，泛型不能显式地引用运行时类型的操作之中，换句话来讲，就是运行时，泛型一定被具体类型替代。任何试图运行泛型操作的举动都将被编译器视为违法。
+例如，
+
+```
+T t = new T();//T并没有指定具体类型，在编译器那里就是个占位符，没有任何类型的特征以及类型操作的能力，所以这一行代码直接报错。
+```
+要想创建类的实例，首先要确定类的类型，而泛型恰恰类型已被擦除。
+>
+```
+if(arg instanceof B){}// 判断arg是否是B的实例，还是那句话，要确定类的实例，首先这个类得“是个真的类”，泛型不是真的类。所以这一行直接报错。
+```
+综上所述，在java中，所有关于具体类型的操作，泛型都是做不了的。
+
+问：擦除这么大代价，我要是想实现上面那些功能，该如何补偿？
+
+```
+package javaS.genericity;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class Client<B> {
+    B b;
+
+    public Client(Class<B> arg) {
+        try {
+            b = arg.newInstance();
+        } catch (InstantiationException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        Class c1 = new ArrayList<String>().getClass();
+        Class c2 = new ArrayList<Integer>().getClass();
+        Class c7 = new Client<String>(String.class).getClass();
+        System.out.println(Arrays.toString(c1.getTypeParameters()));
+        System.out.println(Arrays.toString(c2.getTypeParameters()));
+        System.out.println(Arrays.toString(c7.getTypeParameters()));
+    }
+}
+
+
+```
+> [E]
+[E]
+[B]
+
+可以采用工厂模式来创建泛型的实例，实际上在调用该工厂模式的时候，泛型已经被具体类型化了。
+
+### 泛型数组
+- 泛型数组一般使用ArrayList，例如我们常见的
+
+```
+public class Client<T> {
+    List<T> array = new ArrayList<T>();// 看这里。。
+
+    public void add(T x) {
+        arr.add(x);
+    }
+
+    public static void main(String[] args) {
+        Client<String> c = new Client<String>();
+        c.add("hey,");
+        c.add("yeah.");
+        System.out.println(c.arr);
+    
+    }
+}
+```
+> [hey,, yeah.]
+
+这将使你获得数组的行为，以及由泛型提供的编译期的类型安全。
+
+### 通配符？
+- \<? extends SuperClass\>
+
+```
+package javaS.genericity;
+
+import java.util.*;
+
+import javaS.genericity.interfaceS.Juice;
+import javaS.genericity.interfaceS.Lemon;
+
+public class Client<T> {
+    public static void main(String[] args) {
+        List<? extends Juice> juice = new ArrayList<Lemon>();
+        juice.add(null);// 实际上除了null以外，任何值都add不了，直接报错。。。
+        Juice aha = juice.get(0);
+        System.out.println(aha);
+    }
+}
+
+```
+> null
+
+感觉自己是个逗逼。。。
+
+我为什么要写出这样的代码，WTF。好吧，蓄力分析一波，List<? extends Juice> 可以读作“具有任何从Juice继承过来的类型的列表”。但是我们知道泛型是假的类型，juice不是什么真正的Juice子类的实例列表，那好，我们在new后面指定了具体类型Lemon，继承自Juice。气力已尽，总之，在实践中可以不用泛型，但不要写出这样的代码。
+
+- \<? super Class\>
+
+超类型通配符。
+
+```
+package javaS.genericity;
+
+import java.util.*;
+
+import javaS.genericity.interfaceS.Lemon;
+
+public class Client<T> {
+    public static void main(String[] args) {
+        List<? super Juice> juice = new ArrayList<Juice>();
+        juice.add(new Lemon());
+        juice.add(new Orange());
+        juice.add(new Peach());
+        for (Object aha : juice)
+            System.out.println(aha);
+    }
+}
+
+```
+    Lemon.....0
+    Orange.....1
+    Peach.....2
+
+
+编译成功了，运行也成功了。但是? super Juice好像与Juice没有区别。“！！！我在做什么，我在哪里，我是谁！！！”
+
+- \<?\>
+
+
+```
+package javaS.genericity;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Client<T> {
+    public static void main(String[] args) {
+        List<?> list = new ArrayList<String>();
+        list.add("afd");//报错，无论如何也add不进去，任何对象都不行。
+        
+    }
+}
+
+```
+我决定要放弃这场逗逼之旅了。。。
+
+### 使用泛型的注意事项
+1. 任何基本类型都不能作为类型参数。
+> 不能创建类似ArrayList<int>的东西。
+
+2. 一个类不能实现同一个泛型接口的两种变体。
+
+```
+package javaS.genericity;
+
+import algorithms.sort.Sort;
+import javaS.genericity.interfaceS.Juice;
+
+interface ONE<A>{}
+class TWO implements ONE<Sort>{}
+public class Client<T> extends TWO implements ONE<Juice> {//The interface ONE cannot be implemented more than once with different arguments: ONE<Sort> and ONE<Juice>
+}
+
+```
+3. @SuppressWarning注解去除泛型类型参数的转型或instanceof时发出的警告。
+
+4. 重载泛型方法时，注意不同的泛型命名最终都会被擦除成相同的占位符，所以实际类型会被打回原始类型List而跟泛型内容毫无关系，所以不要写：
+
+```
+public class Client<A,B> {
+    void f(List<A> list){}//报错
+    void f(List<B> list){}//报错
+}
+```
+> 报错信息：Erasure of method f(List<B>) is the same as another method in type Client<A,B>
+
+是不是A和B不是真的类呢？我要是换个真的类是不是能好？
+
+```
+public class Client<String, Integer> {
+    void f(List<String> list){}//报错
+    void f(List<Integer> list){}//报错
+}
+
+```
+> 报错信息：Erasure of method f(List<B>) is the same as another method in type Client<A,B>
+
+兄弟你想多了。
+
+总结：只要涉及到泛型参数的方法，不能重载。
+
+5. 不能创建参数化类型的数组
+
+```
+List<Integer>[] a = new ArrayList<Integer>[10];//error:
+```
+error:
+
+    - Cannot create a generic array of ArrayList\<Integer\>
+    - List is a raw type. References to generic type List\<E\> should be 
+     parameterized
+
+看到这里，我突然突发奇想，想知道列表数组的写法，于是写了一段以下代码：
+
+```
+package javaS.genericity;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Client {
+    public static void main(String[] args) {
+        List[] a = new ArrayList[10];
+        for (int i = 0; i < 5; i++) {
+            List<Integer> list = new ArrayList<Integer>();
+            list.add(6);
+            a[i] = list;
+        }
+        for (List<Integer> k : a) {
+            if (k == null)
+                break;
+            for (int c : k) {
+                System.out.println(c);
+            }
+        }
+    }
+}
+
+```
+> 6
+6
+6
+6
+6
+
+列表数组，意思就是一个数组中每个元素就是一个List对象，但是要注意，在具体给List赋值的时候，一定要指定类型了，获取这些List中的值的时候，也应该指定类型，否则将出现类型转换错误。所以这种写法并不灵活，且具有一定的类型错误的风险。
+
+6. 泛型类的静态上下文中类型变量无效
+换句话说，就是不能再静态域或方法中引用类型变量。例如：
+
+```
+ private static T t;// 报错：Cannot make a static reference to the non-static type T
+```
+
+
+#### 哦对了，还有一个逗比王中王
+> class SelfBounded<T extends SelfBounded<T>> {}
+
+写下这样的代码的人为什么不去当个科学家研究研究火箭啥的（你咋不上天）？
+
+### 总结
+请忽略“提高篇”中探索泛型底层实现的内容，我们客观评价一下泛型的优点。
+
+- 不得不承认，泛型是我们需要的程序设计手段。使用泛型机制编写的程序代码要比那些杂乱地使用Object变量，然后再进行强制类型转换的代码具有更好的安全性和可读性。泛型对于集合类尤其有用，例如，ArrayList加泛型已经是我们习以为常的写法了。
+
+- 泛型类、泛型方法、泛型接口在实践中都是很不错的应用，我们掌握了这一层就已经脱离了只会使用ArrayList\<String\>的初级泛型程序员而进化为可以自己去实现适合自己工作的泛型了。
+
+- 通过学习泛型，我们巩固了迭代接口Iterable，Iterator，为自己积累了像Generator，Generators以及BasicGenerator这样的实用代码。我们还练习了并不常常敲的可变数量参数，以及斐波那契数列，匿名内部类，还有Set的使用，元组的使用，复杂模型的构建。收获是满满的。
+
+- 我们深入了解了泛型的底层原理，体会了java作者们在设计泛型时的煎熬（一般人受不了），也体会了他们对泛型的期许。这使我成熟很多。
+
+### 所有源码均在 [Evsward github](https://github.com/evsward/mainbase/tree/master/src/javaS/genericity)
+
+### 参考资料
+
+- *Core Java Volume I --- Fundamentals* (Ninth Edition)
+- *Thinking in Java* (Fourth Edition)
