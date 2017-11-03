@@ -1343,7 +1343,8 @@ public class NewHolder<T> {
 
     public void aMethod(int[] arr) {
         a.sort(arr);// 报错了！！！The method sort() is undefined for the type T
-        ((NewHolder<QuickSort>) a).sort(arr);// 除非改成强制转为指定类型。那我们的NewHolder<T>类是否就失去了泛型的意义？
+        // 除非改成强制转为指定类型。那我们的NewHolder<T>类是否就失去了泛型的意义？
+        ((NewHolder<QuickSort>) a).sort(arr);
     }
 
     public static void main(String[] args) {
