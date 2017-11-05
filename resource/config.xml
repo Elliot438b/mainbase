@@ -1,4 +1,6 @@
 <?xml version="1.0"?>
 <config>
-       <className>pattern.builder.Ipod</className>
+	<builder>pattern.builder.IPhone</builder>
+	<ssss>pattern.bridge.GACToyota</ssss>
+	<taolu>pattern.bridge.taolu.SmartTalkingAdapter</taolu>
 </config> 
