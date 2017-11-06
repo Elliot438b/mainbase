@@ -3,11 +3,10 @@ package algorithms.search;
 import tools.XMLUtil;
 
 public class Client {
-    @SuppressWarnings("unchecked")
     public static void main(String[] args) {
-        ST<String, String> st;
-        Object sst = XMLUtil.getBean("sf");
-        st = new ST<String, String>((SFunction<String, String>) sst);
+        Object oSf = XMLUtil.getBean("sf");
+        @SuppressWarnings("unchecked")
+        ST<String, String> st = new ST<String, String>((SFunction<String, String>) oSf);
         System.out.println(st);
         System.out.println(st.get(""));
     }

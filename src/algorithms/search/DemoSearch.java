@@ -30,5 +30,5 @@ public class DemoSearch implements SFunction<String, String> {
     @Override
     public String get(String key) {
         
-        return "demo";
+        return "demo-test";
     }}
