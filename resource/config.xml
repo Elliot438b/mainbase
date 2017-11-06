@@ -3,4 +3,5 @@
 	<builder>pattern.builder.IPhone</builder>
 	<ssss>pattern.bridge.GACToyota</ssss>
 	<taolu>pattern.bridge.taolu.SmartTalkingAdapter</taolu>
+	<sf>algorithms.search.DemoSearch</sf>
 </config> 
