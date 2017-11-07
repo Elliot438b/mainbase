@@ -14,7 +14,9 @@ public interface SFunction<Key, Value> {
 
     public int size();// 获取表的长度
 
-    public Iterable<Key> keys();// 迭代表内所有key
+    public Iterable<Key> keySet();// 迭代表内所有key
 
     public Value get(Key key);// 查找某key的值
+
+    public void remove(Key key);// 强制删除一个key以及它的节点
 }

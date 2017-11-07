@@ -43,7 +43,7 @@ public class ST<Key, Value> {
      * @param key
      * @return
      */
-    public boolean contains(Key key) {
+    public boolean containsKey(Key key) {
         return sf.get(key) != null;
     }
 
@@ -64,11 +64,15 @@ public class ST<Key, Value> {
         return sf.size();
     }
 
-    public Iterable<Key> keys() {
-        return sf.keys();
+    public Iterable<Key> keySet() {
+        return sf.keySet();
     }
 
     public Value get(Key key) {
         return sf.get(key);
+    }
+
+    public void remove(Key key) {
+        sf.remove(key);
     }
 }

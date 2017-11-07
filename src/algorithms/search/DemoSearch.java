@@ -7,10 +7,10 @@ package algorithms.search;
  * @author Evsward
  *
  */
-public class DemoSearch implements SFunction<String, String> {
+public class DemoSearch<Key, Value> implements SFunction<Key, Value> {
 
     @Override
-    public void put(String key, String val) {
+    public void put(Key key, Value val) {
         // TODO Auto-generated method stub
 
     }
@@ -22,13 +22,20 @@ public class DemoSearch implements SFunction<String, String> {
     }
 
     @Override
-    public Iterable<String> keys() {
+    public Value get(Key key) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public String get(String key) {
-        
-        return "demo-test";
-    }}
+    public Iterable<Key> keySet() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void remove(Key key) {
+        // TODO Auto-generated method stub
+
+    }
+}

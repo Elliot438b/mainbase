@@ -1,18 +1,17 @@
-package algorithms.search.second;
+package algorithms.search.functions;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import algorithms.search.SFunction;
 /**
- * 无序链表的顺序查找，大部分方法采用遍历链表的方式实现
+ * 已更换最新架构，请转到algorithms.search.second;
  * 
  * @author Evsward
  *
  * @param <Key>
  * @param <Value>
  */
-public class SequentialSearchST<Key, Value> implements SFunction<Key, Value> {
+public class SequentialSearchSTOrphan<Key, Value> {
     private Node first;
 
     private class Node {
@@ -78,19 +77,18 @@ public class SequentialSearchST<Key, Value> implements SFunction<Key, Value> {
      * @param key
      */
     public void remove(Key key) {
-        if (get(key) != null) {
+        if (containsKey(key)) {
             if (key.equals(first.key)) {// 删除表头结点
                 first = first.next;
                 return;
             }
             // 遍历链表
             for (Node x = first; x != null; x = x.next) {
-                Node next = x.next;
-                if (key.equals(next.key) && next.next == null) {// 删除表尾结点
-                    x.next = null;
-                    return;
-                }
                 if (key.equals(x.next.key)) {
+                    if (x.next.next == null) {// 删除表尾结点
+                        x.next = null;
+                        return;
+                    }
                     x.next = x.next.next;// 删除表中结点
                 }
             }
@@ -98,6 +96,25 @@ public class SequentialSearchST<Key, Value> implements SFunction<Key, Value> {
     }
 
     /**
-     * delete, containKeys, isEmpty();方法均定义在ST中。
+     * 下面的方法是固定的，不需要改动。
      */
+
+    /**
+     * 延迟删除
+     * 
+     * @param key
+     */
+    public void delete(Key key) {
+        if (containsKey(key)) {
+            put(key, null);
+        }
+    }
+
+    public boolean containsKey(Key key) {
+        return get(key) != null;
+    }
+
+    public boolean isEmpty() {
+        return size() == 0;
+    }
 }
