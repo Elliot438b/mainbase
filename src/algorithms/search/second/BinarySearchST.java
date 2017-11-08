@@ -6,7 +6,7 @@ import java.util.List;
 import algorithms.search.SFunction;
 
 /**
- * 一对平行的可变长度数组ResizeArrayStack
+ * 一对平行的可变长度数组，参照ResizeArrayStack
  * 
  * @author Evsward
  * @notice 二分查找为Key有序：所以Key的泛型的边界为Comparable，可比较的，否则无法判断是否有序
@@ -66,6 +66,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements SFunc
     /**
      * 二分查找：在有序keys【从小到大排序】中找到key的下标
      * 
+     * @notice 实际上同时也是二分排序
      * @param key
      * @return
      */

@@ -1,7 +1,7 @@
 package algorithms.search;
 
 /**
- * 查找算法的泛型接口
+ * 查找算法的泛型接口，定义必须要实现的方法
  * 
  * @author Evsward
  *

@@ -3,7 +3,6 @@ package algorithms.search;
 /**
  * 查找算法接口的实现类：Demo查找
  * 
- * @notice 在实现一个泛型接口的时候，要指定参数的类型
  * @author Evsward
  *
  */
