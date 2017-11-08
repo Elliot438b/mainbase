@@ -75,10 +75,6 @@ public class ResizeArrayStack<Item> implements Iterable<Item> {
         }
     }
 
-    public Item get(int index) {
-        return target[index];
-    }
-
     @Override
     public Iterator<Item> iterator() {
         return new Iterator<Item>() {
