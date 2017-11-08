@@ -9,6 +9,7 @@ Main base knowledges here.
 
 ### algorithms
 - [Sort](https://github.com/evsward/mainbase/tree/master/src/algorithms/sort)
+- [Search TBC](https://github.com/evsward/mainbase/tree/master/src/algorithms/search)
 
 ### java
 - [genericity](https://github.com/evsward/mainbase/tree/master/src/javaS/genericity)
