@@ -4,4 +4,5 @@
 	<ssss>pattern.bridge.GACToyota</ssss>
 	<taolu>pattern.bridge.taolu.SmartTalkingAdapter</taolu>
 	<sf>algorithms.search.second.BinarySearchST</sf>
+	<ssf>algorithms.search.second.BinarySearchST</ssf>
 </config> 

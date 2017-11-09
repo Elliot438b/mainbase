@@ -760,3 +760,457 @@
 2017/11/09 16:02:12 [main] INFO  algorithms.search.VIPClient - -----性能测试-----
 2017/11/09 16:02:12 [main] INFO  algorithms.search.VIPClient - 0-6325...sst.size() = 6325
 2017/11/09 16:02:12 [main] INFO  algorithms.search.VIPClient - 总耗时：361ms
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - -----功能测试-----
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - sst.put(3, fan) --- sst.size() = 1
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - sst.put 77,23,60,56 --- sst.size() = 5
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - sst.put(1, lamp) --- sst.size() = 6
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - sst.put(20, computer) --- sst.size() = 7
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - sst.delete(20) --- sst.size() still= 7
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - 1...lamp
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - 3...fan
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - 20...null
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - 77...eclipse
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - -----②测试表头中尾删除-----
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - sst.get(20) = null --- sst.size() = 6
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - sst.get(1) = null --- sst.size() = 5
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - sst.get(77) = null --- sst.size() = 4
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - sst.get(3) = null --- sst.size() = 3
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - -----③遍历当前集合-----
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - -----性能测试-----
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - 0-6332...sst.size() = 6332
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - 总耗时：43ms
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - -----功能测试-----
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - sst.put(3, fan) --- sst.size() = 1
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - sst.put 77,23,60,56 --- sst.size() = 5
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - sst.put(1, lamp) --- sst.size() = 6
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - sst.put(20, computer) --- sst.size() = 7
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - sst.delete(20) --- sst.size() still= 7
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - 1...lamp
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - 3...fan
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - 20...null
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - 77...eclipse
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - -----②测试表头中尾删除-----
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - sst.get(20) = null --- sst.size() = 6
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - sst.get(1) = null --- sst.size() = 5
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - sst.get(77) = null --- sst.size() = 4
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - sst.get(3) = null --- sst.size() = 3
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - -----③遍历当前集合-----
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - -----性能测试-----
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - 0-6303...sst.size() = 6303
+2017/11/09 19:20:14 [main] INFO  algorithms.search.VIPClient - 总耗时：42ms
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - -----功能测试-----
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - sst.put(3, fan) --- sst.size() = 1
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - sst.put 77,23,60,56 --- sst.size() = 5
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - sst.put(1, lamp) --- sst.size() = 6
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - sst.put(20, computer) --- sst.size() = 7
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - sst.delete(20) --- sst.size() still= 7
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - 1...lamp
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - 3...fan
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - 20...null
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - 77...eclipse
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - -----②测试表头中尾删除-----
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - sst.get(20) = null --- sst.size() = 6
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - sst.get(1) = null --- sst.size() = 5
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - sst.get(77) = null --- sst.size() = 4
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - sst.get(3) = null --- sst.size() = 3
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - -----③遍历当前集合-----
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - -----性能测试-----
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - 0-6302...sst.size() = 6302
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - 总耗时：55ms
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - -----功能测试-----
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - sst.put(3, fan) --- sst.size() = 1
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - sst.put 77,23,60,56 --- sst.size() = 5
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - sst.put(1, lamp) --- sst.size() = 6
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - sst.put(20, computer) --- sst.size() = 7
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - sst.delete(20) --- sst.size() still= 7
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - 1...lamp
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - 3...fan
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - 20...null
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - 77...eclipse
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - -----②测试表头中尾删除-----
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - sst.get(20) = null --- sst.size() = 6
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - sst.get(1) = null --- sst.size() = 5
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - sst.get(77) = null --- sst.size() = 4
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - sst.get(3) = null --- sst.size() = 3
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - -----③遍历当前集合-----
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - -----性能测试-----
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - 0-6284...sst.size() = 6284
+2017/11/09 19:22:15 [main] INFO  algorithms.search.VIPClient - 总耗时：32ms
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - -----功能测试-----
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - sst.put(3, fan) --- sst.size() = 1
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - sst.put 77,23,60,56 --- sst.size() = 5
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - sst.put(1, lamp) --- sst.size() = 6
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - sst.put(20, computer) --- sst.size() = 7
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - sst.delete(20) --- sst.size() still= 7
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - 1...lamp
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - 3...fan
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - 20...null
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - 77...eclipse
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - -----②测试表头中尾删除-----
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - sst.get(20) = null --- sst.size() = 6
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - sst.get(1) = null --- sst.size() = 5
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - sst.get(77) = null --- sst.size() = 4
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - sst.get(3) = null --- sst.size() = 3
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - -----③遍历当前集合-----
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - -----性能测试-----
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - 0-6299...sst.size() = 6299
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - 总耗时：57ms
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - -----功能测试-----
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - sst.put(3, fan) --- sst.size() = 1
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - sst.put 77,23,60,56 --- sst.size() = 5
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - sst.put(1, lamp) --- sst.size() = 6
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - sst.put(20, computer) --- sst.size() = 7
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - sst.delete(20) --- sst.size() still= 7
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - 1...lamp
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - 3...fan
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - 20...null
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - 77...eclipse
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - -----②测试表头中尾删除-----
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - sst.get(20) = null --- sst.size() = 6
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - sst.get(1) = null --- sst.size() = 5
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - sst.get(77) = null --- sst.size() = 4
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - sst.get(3) = null --- sst.size() = 3
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - -----③遍历当前集合-----
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - -----性能测试-----
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - 0-6310...sst.size() = 6310
+2017/11/09 19:22:54 [main] INFO  algorithms.search.VIPClient - 总耗时：37ms
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - -----功能测试-----
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - sst.put(3, fan) --- sst.size() = 1
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - sst.put 77,23,60,56 --- sst.size() = 5
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - sst.put(1, lamp) --- sst.size() = 6
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - sst.put(20, computer) --- sst.size() = 7
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - sst.delete(20) --- sst.size() still= 7
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - 1...lamp
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - 3...fan
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - 20...null
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - 77...eclipse
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - -----②测试表头中尾删除-----
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - sst.get(20) = null --- sst.size() = 6
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - sst.get(1) = null --- sst.size() = 5
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - sst.get(77) = null --- sst.size() = 4
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - sst.get(3) = null --- sst.size() = 3
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - -----③遍历当前集合-----
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - -----性能测试-----
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - 0-6336...sst.size() = 6336
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - 总耗时：45ms
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - -----功能测试-----
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - sst.put(3, fan) --- sst.size() = 1
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - sst.put 77,23,60,56 --- sst.size() = 5
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - sst.put(1, lamp) --- sst.size() = 6
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - sst.put(20, computer) --- sst.size() = 7
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - sst.delete(20) --- sst.size() still= 7
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - 1...lamp
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - 3...fan
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - 20...null
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - 77...eclipse
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - -----②测试表头中尾删除-----
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - sst.get(20) = null --- sst.size() = 6
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - sst.get(1) = null --- sst.size() = 5
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - sst.get(77) = null --- sst.size() = 4
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - sst.get(3) = null --- sst.size() = 3
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - -----③遍历当前集合-----
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - -----性能测试-----
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - 0-6253...sst.size() = 6253
+2017/11/09 19:23:04 [main] INFO  algorithms.search.VIPClient - 总耗时：33ms
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - -----功能测试-----
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - 1...lamp
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - 3...fan
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - 20...computer
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - 77...eclipse
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - sst.ceiling(59) = 60
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - sst.floor(59) = 56
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - sst.min() = 1
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - sst.max() = 1
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - sst.select(3) = 23
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - -----功能测试-----
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - sst.put(3, fan) --- sst.size() = 1
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - sst.put 77,23,60,56 --- sst.size() = 5
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - sst.put(1, lamp) --- sst.size() = 6
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - sst.put(20, computer) --- sst.size() = 7
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - sst.delete(20) --- sst.size() still= 7
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - 1...lamp
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - 3...fan
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - 20...null
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - 77...eclipse
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - -----②测试表头中尾删除-----
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - sst.get(20) = null --- sst.size() = 6
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - sst.get(1) = null --- sst.size() = 5
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - sst.get(77) = null --- sst.size() = 4
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - sst.get(3) = null --- sst.size() = 3
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - -----③遍历当前集合-----
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - -----性能测试-----
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - 0-6313...sst.size() = 6313
+2017/11/09 19:44:56 [main] INFO  algorithms.search.VIPClient - 总耗时：56ms
+2017/11/09 19:45:48 [main] INFO  algorithms.search.VIPClient - -----功能测试-----
+2017/11/09 19:45:48 [main] INFO  algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/09 19:45:48 [main] INFO  algorithms.search.VIPClient - 1...lamp
+2017/11/09 19:45:48 [main] INFO  algorithms.search.VIPClient - 3...fan
+2017/11/09 19:45:48 [main] INFO  algorithms.search.VIPClient - 20...computer
+2017/11/09 19:45:48 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:45:48 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:45:48 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:45:48 [main] INFO  algorithms.search.VIPClient - 77...eclipse
+2017/11/09 19:45:48 [main] INFO  algorithms.search.VIPClient - sst.ceiling(59) = 60
+2017/11/09 19:45:48 [main] INFO  algorithms.search.VIPClient - sst.floor(59) = 56
+2017/11/09 19:45:48 [main] INFO  algorithms.search.VIPClient - sst.min() = 1
+2017/11/09 19:45:48 [main] INFO  algorithms.search.VIPClient - sst.max() = 1
+2017/11/09 19:45:48 [main] INFO  algorithms.search.VIPClient - sst.select(3) = 23
+2017/11/09 19:46:00 [main] INFO  algorithms.search.VIPClient - -----功能测试-----
+2017/11/09 19:46:00 [main] INFO  algorithms.search.VIPClient - sst.put(3, fan) --- sst.size() = 1
+2017/11/09 19:46:00 [main] INFO  algorithms.search.VIPClient - sst.put 77,23,60,56 --- sst.size() = 5
+2017/11/09 19:46:00 [main] INFO  algorithms.search.VIPClient - sst.put(1, lamp) --- sst.size() = 6
+2017/11/09 19:46:00 [main] INFO  algorithms.search.VIPClient - sst.put(20, computer) --- sst.size() = 7
+2017/11/09 19:46:00 [main] INFO  algorithms.search.VIPClient - sst.delete(20) --- sst.size() still= 7
+2017/11/09 19:46:00 [main] INFO  algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/09 19:46:00 [main] INFO  algorithms.search.VIPClient - 1...lamp
+2017/11/09 19:46:00 [main] INFO  algorithms.search.VIPClient - 3...fan
+2017/11/09 19:46:00 [main] INFO  algorithms.search.VIPClient - 20...null
+2017/11/09 19:46:00 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:46:00 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:46:00 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:46:00 [main] INFO  algorithms.search.VIPClient - 77...eclipse
+2017/11/09 19:46:00 [main] INFO  algorithms.search.VIPClient - -----②测试表头中尾删除-----
+2017/11/09 19:46:00 [main] INFO  algorithms.search.VIPClient - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/09 19:46:00 [main] INFO  algorithms.search.VIPClient - sst.get(20) = null --- sst.size() = 6
+2017/11/09 19:46:00 [main] INFO  algorithms.search.VIPClient - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/09 19:46:00 [main] INFO  algorithms.search.VIPClient - sst.get(1) = null --- sst.size() = 5
+2017/11/09 19:46:00 [main] INFO  algorithms.search.VIPClient - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/09 19:46:00 [main] INFO  algorithms.search.VIPClient - sst.get(77) = null --- sst.size() = 4
+2017/11/09 19:46:00 [main] INFO  algorithms.search.VIPClient - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/09 19:46:00 [main] INFO  algorithms.search.VIPClient - sst.get(3) = null --- sst.size() = 3
+2017/11/09 19:46:00 [main] INFO  algorithms.search.VIPClient - -----③遍历当前集合-----
+2017/11/09 19:46:00 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:46:00 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:46:00 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:46:00 [main] INFO  algorithms.search.VIPClient - -----性能测试-----
+2017/11/09 19:46:00 [main] INFO  algorithms.search.VIPClient - 0-6386...sst.size() = 6386
+2017/11/09 19:46:00 [main] INFO  algorithms.search.VIPClient - 总耗时：45ms
+2017/11/09 19:46:38 [main] INFO  algorithms.search.VIPClient - -----功能测试-----
+2017/11/09 19:46:38 [main] INFO  algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/09 19:46:38 [main] INFO  algorithms.search.VIPClient - 1...lamp
+2017/11/09 19:46:38 [main] INFO  algorithms.search.VIPClient - 3...fan
+2017/11/09 19:46:38 [main] INFO  algorithms.search.VIPClient - 20...computer
+2017/11/09 19:46:38 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:46:38 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:46:38 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:46:38 [main] INFO  algorithms.search.VIPClient - 77...eclipse
+2017/11/09 19:46:38 [main] INFO  algorithms.search.VIPClient - sst.ceiling(59) = 60
+2017/11/09 19:46:38 [main] INFO  algorithms.search.VIPClient - sst.floor(59) = 56
+2017/11/09 19:46:38 [main] INFO  algorithms.search.VIPClient - sst.min() = 1
+2017/11/09 19:46:38 [main] INFO  algorithms.search.VIPClient - sst.max() = 1
+2017/11/09 19:46:38 [main] INFO  algorithms.search.VIPClient - sst.select(3) = 23
+2017/11/09 19:47:09 [main] INFO  algorithms.search.VIPClient - -----有序表特有功能测试-----
+2017/11/09 19:47:09 [main] INFO  algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/09 19:47:09 [main] INFO  algorithms.search.VIPClient - 1...lamp
+2017/11/09 19:47:09 [main] INFO  algorithms.search.VIPClient - 3...fan
+2017/11/09 19:47:09 [main] INFO  algorithms.search.VIPClient - 20...computer
+2017/11/09 19:47:09 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:47:09 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:47:09 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:47:09 [main] INFO  algorithms.search.VIPClient - 77...eclipse
+2017/11/09 19:47:09 [main] INFO  algorithms.search.VIPClient - sst.ceiling(59) = 60
+2017/11/09 19:47:09 [main] INFO  algorithms.search.VIPClient - sst.floor(59) = 56
+2017/11/09 19:47:09 [main] INFO  algorithms.search.VIPClient - sst.min() = 1
+2017/11/09 19:47:09 [main] INFO  algorithms.search.VIPClient - sst.max() = 1
+2017/11/09 19:47:09 [main] INFO  algorithms.search.VIPClient - sst.select(3) = 23
+2017/11/09 19:47:54 [main] INFO  algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/09 19:47:54 [main] INFO  algorithms.search.VIPClient - 1...lamp
+2017/11/09 19:47:54 [main] INFO  algorithms.search.VIPClient - 3...fan
+2017/11/09 19:47:54 [main] INFO  algorithms.search.VIPClient - 20...computer
+2017/11/09 19:47:54 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:47:54 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:47:54 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:47:54 [main] INFO  algorithms.search.VIPClient - 77...eclipse
+2017/11/09 19:47:54 [main] INFO  algorithms.search.VIPClient - -----②有序表特有功能测试-----
+2017/11/09 19:47:54 [main] INFO  algorithms.search.VIPClient - sst.ceiling(59) = 60
+2017/11/09 19:47:54 [main] INFO  algorithms.search.VIPClient - sst.floor(59) = 56
+2017/11/09 19:47:54 [main] INFO  algorithms.search.VIPClient - sst.min() = 1
+2017/11/09 19:47:54 [main] INFO  algorithms.search.VIPClient - sst.max() = 1
+2017/11/09 19:47:54 [main] INFO  algorithms.search.VIPClient - sst.select(3) = 23
+2017/11/09 19:50:29 [main] INFO  algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/09 19:50:29 [main] INFO  algorithms.search.VIPClient - 1...lamp
+2017/11/09 19:50:29 [main] INFO  algorithms.search.VIPClient - 3...fan
+2017/11/09 19:50:29 [main] INFO  algorithms.search.VIPClient - 20...computer
+2017/11/09 19:50:29 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:50:29 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:50:29 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:50:29 [main] INFO  algorithms.search.VIPClient - 77...eclipse
+2017/11/09 19:50:29 [main] INFO  algorithms.search.VIPClient - -----②有序表特有功能测试-----
+2017/11/09 19:50:29 [main] INFO  algorithms.search.VIPClient - sst.ceiling(59) = 60
+2017/11/09 19:50:29 [main] INFO  algorithms.search.VIPClient - sst.floor(59) = 56
+2017/11/09 19:50:29 [main] INFO  algorithms.search.VIPClient - sst.min() = 1
+2017/11/09 19:50:29 [main] INFO  algorithms.search.VIPClient - sst.max() = 1
+2017/11/09 19:50:29 [main] INFO  algorithms.search.VIPClient - sst.select(3) = 23
+2017/11/09 19:50:32 [main] INFO  algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/09 19:50:32 [main] INFO  algorithms.search.VIPClient - 1...lamp
+2017/11/09 19:50:32 [main] INFO  algorithms.search.VIPClient - 3...fan
+2017/11/09 19:50:32 [main] INFO  algorithms.search.VIPClient - 20...computer
+2017/11/09 19:50:32 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:50:32 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:50:32 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:50:32 [main] INFO  algorithms.search.VIPClient - 77...eclipse
+2017/11/09 19:50:32 [main] INFO  algorithms.search.VIPClient - -----②有序表特有功能测试-----
+2017/11/09 19:50:32 [main] INFO  algorithms.search.VIPClient - sst.ceiling(59) = 60
+2017/11/09 19:50:32 [main] INFO  algorithms.search.VIPClient - sst.floor(59) = 56
+2017/11/09 19:50:32 [main] INFO  algorithms.search.VIPClient - sst.min() = 1
+2017/11/09 19:50:32 [main] INFO  algorithms.search.VIPClient - sst.max() = 1
+2017/11/09 19:50:32 [main] INFO  algorithms.search.VIPClient - sst.select(3) = 23
+2017/11/09 19:50:43 [main] INFO  algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/09 19:50:43 [main] INFO  algorithms.search.VIPClient - 1...lamp
+2017/11/09 19:50:43 [main] INFO  algorithms.search.VIPClient - 3...fan
+2017/11/09 19:50:43 [main] INFO  algorithms.search.VIPClient - 20...computer
+2017/11/09 19:50:43 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:50:43 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:50:43 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:50:43 [main] INFO  algorithms.search.VIPClient - 77...eclipse
+2017/11/09 19:50:43 [main] INFO  algorithms.search.VIPClient - -----②有序表特有功能测试-----
+2017/11/09 19:50:43 [main] INFO  algorithms.search.VIPClient - sst.ceiling(59) = 60
+2017/11/09 19:50:43 [main] INFO  algorithms.search.VIPClient - sst.floor(59) = 56
+2017/11/09 19:50:43 [main] INFO  algorithms.search.VIPClient - sst.min() = 1
+2017/11/09 19:50:43 [main] INFO  algorithms.search.VIPClient - sst.max() = 1
+2017/11/09 19:50:43 [main] INFO  algorithms.search.VIPClient - sst.select(3) = 23
+2017/11/09 19:50:47 [main] INFO  algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/09 19:50:47 [main] INFO  algorithms.search.VIPClient - 1...lamp
+2017/11/09 19:50:47 [main] INFO  algorithms.search.VIPClient - 3...fan
+2017/11/09 19:50:47 [main] INFO  algorithms.search.VIPClient - 20...computer
+2017/11/09 19:50:47 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:50:47 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:50:47 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:50:47 [main] INFO  algorithms.search.VIPClient - 77...eclipse
+2017/11/09 19:50:47 [main] INFO  algorithms.search.VIPClient - -----②有序表特有功能测试-----
+2017/11/09 19:50:47 [main] INFO  algorithms.search.VIPClient - sst.ceiling(59) = 60
+2017/11/09 19:50:47 [main] INFO  algorithms.search.VIPClient - sst.floor(59) = 56
+2017/11/09 19:50:47 [main] INFO  algorithms.search.VIPClient - sst.min() = 1
+2017/11/09 19:50:47 [main] INFO  algorithms.search.VIPClient - sst.max() = 1
+2017/11/09 19:50:47 [main] INFO  algorithms.search.VIPClient - sst.select(3) = 23
+2017/11/09 19:51:07 [main] INFO  algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/09 19:51:07 [main] INFO  algorithms.search.VIPClient - 1...lamp
+2017/11/09 19:51:07 [main] INFO  algorithms.search.VIPClient - 3...fan
+2017/11/09 19:51:07 [main] INFO  algorithms.search.VIPClient - 20...computer
+2017/11/09 19:51:07 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:51:07 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:51:07 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:51:07 [main] INFO  algorithms.search.VIPClient - 77...eclipse
+2017/11/09 19:51:07 [main] INFO  algorithms.search.VIPClient - -----②有序表特有功能测试-----
+2017/11/09 19:51:07 [main] INFO  algorithms.search.VIPClient - sst.ceiling(59) = 60
+2017/11/09 19:51:07 [main] INFO  algorithms.search.VIPClient - sst.floor(59) = 56
+2017/11/09 19:51:07 [main] INFO  algorithms.search.VIPClient - sst.min() = 1
+2017/11/09 19:51:07 [main] INFO  algorithms.search.VIPClient - sst.max() = 77
+2017/11/09 19:51:07 [main] INFO  algorithms.search.VIPClient - sst.select(3) = 23
+2017/11/09 19:51:47 [main] INFO  algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/09 19:51:47 [main] INFO  algorithms.search.VIPClient - 1...lamp
+2017/11/09 19:51:47 [main] INFO  algorithms.search.VIPClient - 3...fan
+2017/11/09 19:51:47 [main] INFO  algorithms.search.VIPClient - 20...computer
+2017/11/09 19:51:47 [main] INFO  algorithms.search.VIPClient - 23...idea
+2017/11/09 19:51:47 [main] INFO  algorithms.search.VIPClient - 56...plane
+2017/11/09 19:51:47 [main] INFO  algorithms.search.VIPClient - 60...cup
+2017/11/09 19:51:47 [main] INFO  algorithms.search.VIPClient - 77...eclipse
+2017/11/09 19:51:47 [main] INFO  algorithms.search.VIPClient - -----②有序表特有功能测试-----
+2017/11/09 19:51:47 [main] INFO  algorithms.search.VIPClient - sst.ceiling(59) = 60
+2017/11/09 19:51:47 [main] INFO  algorithms.search.VIPClient - sst.floor(59) = 56
+2017/11/09 19:51:47 [main] INFO  algorithms.search.VIPClient - sst.min() = 1
+2017/11/09 19:51:47 [main] INFO  algorithms.search.VIPClient - sst.max() = 77
+2017/11/09 19:51:47 [main] INFO  algorithms.search.VIPClient - sst.select(3) = 23

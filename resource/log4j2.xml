@@ -8,7 +8,7 @@
 		</File>
 		<Console name="Console" target="SYSTEM_OUT">
 			<PatternLayout
-				pattern="%d{HH:mm:ss}: %msg%n" />
+				pattern="%d{HH:mm:ss}[%M]: %msg%n" />
 		</Console>
 	</Appenders>
 	<Loggers>

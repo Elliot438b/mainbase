@@ -3,7 +3,6 @@ package algorithms.search;
 /**
  * 查找算法的泛型接口，定义必须要实现的方法
  * 
- * @see 实现该接口只为了了解有序表的一些操作，我们仅在代码本身去测试，并不提供类似ST的基类
  * @notice 针对有序列表的扩展接口
  * @author Evsward
  * @param <Key>
@@ -45,4 +44,13 @@ public interface SFunctionSorted<Key, Value> {
      * @return
      */
     public Key floor(Key key);
+
+    /**
+     * 重合这部分方法，用来测试
+     */
+    public void put(Key key, Value val);// 插入
+
+    public Iterable<Key> keySet();// 迭代表内所有key
+
+    public Value get(Key key);// 查找某key的值
 }
