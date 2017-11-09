@@ -27,7 +27,7 @@ public class XMLUtil {
             NodeList nl = doc.getElementsByTagName(tagName);
             Node n = nl.item(0).getFirstChild();
             String className = n.getNodeValue();
-
+            System.out.println("class: " + className);
             Object c = Class.forName(className).newInstance();
             return c;
         } catch (Exception e) {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import algorithms.search.SFunction;
+import algorithms.search.SFunctionSorted;
 
 /**
  * 一对平行的可变长度数组，参照ResizeArrayStack
@@ -13,7 +14,8 @@ import algorithms.search.SFunction;
  * @param <Key>
  * @param <Value>
  */
-public class BinarySearchST<Key extends Comparable<Key>, Value> implements SFunction<Key, Value> {
+public class BinarySearchST<Key extends Comparable<Key>, Value>
+        implements SFunction<Key, Value>, SFunctionSorted<Key, Value> {
 
     private Key[] keys;
     private Value[] values;
@@ -131,11 +133,13 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements SFunc
     @Override
     public void remove(Key key) {
         int keyIndex = getIndex(key);
-        if (keyIndex < top && keys[keyIndex].compareTo(key) == 0) {
+        if (keyIndex == top - 1)// 删除表尾键值对数据
+            top--;
+        if (keyIndex < top - 1 && keys[keyIndex].compareTo(key) == 0) {// 删除表头或表中键值对数据
             // 存在键下标且值相等
-            for (int j = keyIndex; j < top; j++) {
+            for (int j = keyIndex; j < top - 1; j++) {// 注意这里循环的是数组下标，最大不能超过表尾数据（上面已处理删除表尾）
                 // 删除，后面元素都往左窜一位，把keyIndex的位置占上去
-                keys[j] = keys[j + 1];
+                keys[j] = keys[j + 1];// 循环若能够到表尾[top-1]数据，j+1溢出。
                 values[j] = values[j + 1];
             }
             top--;
@@ -147,7 +151,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements SFunc
     }
 
     /**
-     * 以下是一些除了基本符号表ST类以外的二分查找特有的方法。
+     * 实现针对有序列表的扩展接口的方法。
      */
     public Key min() {
         return keys[0];
@@ -192,4 +196,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements SFunc
         return keys[i - 1];
     }
 
+    /**
+     * delete, containKeys, isEmpty();方法均定义在ST中。
+     */
 }

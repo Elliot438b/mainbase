@@ -1,5 +1,8 @@
 package algorithms.search;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 符号表类
  * 
@@ -38,13 +41,16 @@ public class ST<Key, Value> {
     }
 
     /**
-     * 判断表内是否含有某key
+     * 判断表内是否含有某key（value为null，key存在也算）
      * 
      * @param key
      * @return
      */
     public boolean containsKey(Key key) {
-        return sf.get(key) != null;
+        @SuppressWarnings("rawtypes")
+        List list = (ArrayList) keySet();
+        list.contains(key);
+        return list.contains(key);
     }
 
     /**
@@ -55,6 +61,10 @@ public class ST<Key, Value> {
     public boolean isEmpty() {
         return sf.size() == 0;
     }
+
+    /**
+     * 以下方法均在接口实现类中实现
+     */
 
     public void put(Key key, Value val) {
         sf.put(key, val);
@@ -72,6 +82,7 @@ public class ST<Key, Value> {
         return sf.get(key);
     }
 
+    // 即时删除
     public void remove(Key key) {
         sf.remove(key);
     }
