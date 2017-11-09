@@ -1,6 +1,6 @@
 > 首先保证这一篇分析查找算法的文章，气质与大部分搜索引擎搜索到的文章不同，主要体现在代码上面，会更加高级，结合到很多之前研究过的内容，例如设计模式，泛型等。这也与我的上一篇[面向程序员编程——精研排序算法](http://www.cnblogs.com/Evsward/p/sort.html)的气质也不尽相同。
 
-> 关键字：算法，查找，索引，泛型，二分查找树，红黑树，散列表，API设计
+> 关键字：查找算法，索引，泛型，二分查找树，红黑树，散列表，API设计，日志设计，测试设计
 
 > 查找是在大量的信息中寻找一个特定的信息元素，在计算机应用中，查找是常用的基本运算。
 
@@ -101,13 +101,16 @@ public class ST<Key, Value> {
     }
 
     /**
-     * 判断表内是否含有某key
+     * 判断表内是否含有某key（value为null，key存在也算）
      * 
      * @param key
      * @return
      */
     public boolean containsKey(Key key) {
-        return sf.get(key) != null;
+        @SuppressWarnings("rawtypes")
+        List list = (ArrayList) keySet();
+        list.contains(key);
+        return list.contains(key);
     }
 
     /**
@@ -135,6 +138,7 @@ public class ST<Key, Value> {
         return sf.get(key);
     }
 
+    // 即时删除
     public void remove(Key key) {
         sf.remove(key);
     }
@@ -166,13 +170,13 @@ package algorithms.search;
  */
 public interface SFunction<Key, Value> {
 
-    public void put(Key key, Value val);// 插入
-
     public int size();// 获取表的长度
 
-    public Iterable<Key> keySet();// 迭代表内所有key
-
     public Value get(Key key);// 查找某key的值
+
+    public void put(Key key, Value val);// 插入
+
+    public Iterable<Key> keySet();// 迭代表内所有key
 
     public void remove(Key key);// 强制删除一个key以及它的节点
 }
@@ -316,6 +320,16 @@ package algorithms.search.second;
 import java.util.ArrayList;
 import java.util.List;
 
+import algorithms.search.SFunction;
+
+/**
+ * 无序链表的顺序查找，大部分方法采用遍历链表的方式实现
+ * 
+ * @author Evsward
+ *
+ * @param <Key>
+ * @param <Value>
+ */
 public class SequentialSearchST<Key, Value> {
     private Node first;
 
@@ -381,47 +395,33 @@ public class SequentialSearchST<Key, Value> {
      * 
      * @param key
      */
+    @SuppressWarnings("rawtypes")
     public void remove(Key key) {
-        if (containsKey(key)) {
+        List list = (ArrayList) keySet();
+        list.contains(key);
+        if (list.contains(key)) {
             if (key.equals(first.key)) {// 删除表头结点
                 first = first.next;
                 return;
             }
             // 遍历链表
             for (Node x = first; x != null; x = x.next) {
-                if (key.equals(x.next.key)) {
-                    if (x.next.next == null) {// 删除表尾结点
-                        x.next = null;
-                        return;
-                    }
+                Node next = x.next;
+                if (key.equals(next.key) && next.next == null) {// 删除表尾结点
+                    x.next = null;
+                    return;
+                }
+                if (key.equals(next.key)) {
                     x.next = x.next.next;// 删除表中结点
+                    return;
                 }
             }
         }
     }
 
     /**
-     * 下面的方法是固定的，不需要改动。
+     * delete, containKeys, isEmpty();方法均定义在ST中。
      */
-
-    /**
-     * 延迟删除
-     * 
-     * @param key
-     */
-    public void delete(Key key) {
-        if (containsKey(key)) {
-            put(key, null);
-        }
-    }
-
-    public boolean containsKey(Key key) {
-        return get(key) != null;
-    }
-
-    public boolean isEmpty() {
-        return size() == 0;
-    }
 }
 ```
 请仔细观察代码，我将其中的方法名改为与Map一致，这样可以将Map作为参照物，来测试我们新写的符号表算法，下面是客户端测试代码：
@@ -634,6 +634,8 @@ public class ResizeArrayStack<Item> {
 #### 加入迭代
 集合类数据元素的基本操作之一就是可以使用foreach语句迭代遍历并处理集合中的每个元素。加入迭代的方式就是实现Iterable接口，不了解Iterable接口与泛型联用的朋友可以转到[“大师的小玩具——泛型精解”](http://www.cnblogs.com/Evsward/p/genericity.html)，查询“Iterable”相关的知识。下面对ResizeArrayStack作一下改造，加入迭代。
 
+这里我不完整地粘贴出代码了，只是展示变化的部分。
+
 ```
 package algorithms.search.second;
 
@@ -641,64 +643,8 @@ import java.util.Iterator;
 
 @SuppressWarnings("unchecked")
 public class ResizeArrayStack<Item> implements Iterable<Item> {
-    /**
-     * 定义一个存放栈的数组
-     * 
-     * @注意 该数组要始终保持空间充足以供栈的使用，否则会造成栈溢出。
-     */
-    private Item[] target = (Item[]) new Object[1];
-    private int top = 0;// 栈顶指针，永远指向最新元素的下一位
-
-    // 判断栈是否为空
-    public boolean isEmpty() {
-        return top == 0;
-    }
-
-    // 返回栈的大小，如果插入一个元素，top就加1的话，当前top的值就是栈的大小。
-    public int size() {
-        return top;
-    }
-
-    /**
-     * 调整数组大小，以适应不断变化的栈。
-     * 
-     * @supply 数组的大小不能预先设定过大，那会造成空间的浪费，影响程序性能
-     * @param max
-     */
-    public void resize(int max) {
-        Item[] temp = (Item[]) new Object[max];
-        for (int i = 0; i < top; i++) {
-            temp[i] = target[i];
-        }
-        target = temp;
-    }
-
-    /**
-     * @step1 如果没有多余的空间，就给数组扩容
-     * @step2 空间充足，不断压入新元素
-     * @param i
-     */
-    public void push(Item i) {
-        // 如果没有多余的空间，会将数组长度加倍，以支持栈充足的空间，栈永远不会溢出。
-        if (top == target.length)
-            resize(2 * target.length);// 扩充一倍
-        target[top++] = i;// 在top位置插入新元素，然后让top向上移动一位
-    }
-
-    /**
-     * 弹出一个元素，当弹出元素较多，数组空间有大约四分之三的空间空闲，则针对数组空间进行相应的减容
-     * 
-     * @return
-     */
-    public Item pop() {
-        Item item = target[--top];// top是栈顶指针，没有对应对象，需要减一位为最新对象
-        // 弹出的元素已被赋值给item，然而内存中弹出元素的位置还有值，但已不属于栈，需要手动置为null，以供GC收回。
-        target[top] = null;
-        // 如果栈空间仅为数组大小的四分之一，则给数组减容一半，这样可以始终保持数组空间使用率不低于四分之一。
-        if (top > 0 && top == target.length / 4)
-            resize(target.length / 2);
-        return item;
-    }
+    ...
+    ...
 
     public static void main(String[] args) {
         ResizeArrayStack<Client> clients = new ResizeArrayStack<Client>();
@@ -744,7 +690,7 @@ public class ResizeArrayStack<Item> implements Iterable<Item> {
 
 在原ResizeArrayStack的基础上，让它实现Iterable接口，然后重写Iterator，返回一个匿名内部类，实现hasNext和next方法。注意，next方法只是用来遍历迭代的方法，与栈弹出不同，不会修改数据内容。这样一来，我们就可以方便的在客户端直接通过foreach语句迭代遍历栈内元素了。
 
-## （**  强力插入补充）更改架构
+## （**  强力插入补充）更改架构（随时重构）
 在编写上面“加入迭代”的代码的时候，发现
 > public class ResizeArrayStack\<Item\> implements Iterable\<Item\> { ...
 
@@ -907,11 +853,13 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements SFunc
     @Override
     public void remove(Key key) {
         int keyIndex = getIndex(key);
-        if (keyIndex < top && keys[keyIndex].compareTo(key) == 0) {
+        if (keyIndex == top - 1)// 删除表尾键值对数据
+            top--;
+        if (keyIndex < top - 1 && keys[keyIndex].compareTo(key) == 0) {// 删除表头或表中键值对数据
             // 存在键下标且值相等
-            for (int j = keyIndex; j < top; j++) {
+            for (int j = keyIndex; j < top - 1; j++) {// 注意这里循环的是数组下标，最大不能超过表尾数据（上面已处理删除表尾）
                 // 删除，后面元素都往左窜一位，把keyIndex的位置占上去
-                keys[j] = keys[j + 1];
+                keys[j] = keys[j + 1];// 循环若能够到表尾[top-1]数据，j+1溢出。
                 values[j] = values[j + 1];
             }
             top--;
@@ -968,6 +916,9 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements SFunc
         return keys[i - 1];
     }
 
+    /**
+     * delete, containKeys, isEmpty()方法均定义在ST中。
+     */
 }
 
 ```
@@ -1028,7 +979,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements SFunc
 ```
 - 最终输出结果：
 
-        algorithms.search.ST@15db9742
+        class: algorithms.search.second.BinarySearchST
         sst.size() = 1
         sst.size() = 2
         sst.get(20) = null
@@ -1054,6 +1005,414 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements SFunc
 #### 其他
 以上代码中我在注释里面写得非常详细，如果朋友们有任何问题，可以随时留言，我会不吝解答。再对话一下看过《大话数据结构》的朋友们，如果你们只是想体会一下查找算法的核心思想，看完那本书就OK了，但是如果你想真的建立一个算法程序的概念，请你来这里，或者读一下《算法》，我们一起交流。
 
+## 重构系统（集成测试+日志）
 
+#### 客户端测试
+
+本文到这里，已经经历了一次架构重构，业务上面已经实现了SequentialSearchST和BinarySearchST两种查找算法。但是我发现在客户端测试时还处于非常低级与混乱的状态（恐怕读者们也忍了我好久），而且关键问题是我们的客户端测试脚本似乎无法完全覆盖我们的系统。
+
+- 系统测试包括；
+    - 功能测试：主要用来验证我们的方法是否满足各种业务情况，包括方法，参数，构造器等等是否能够按照我们预期那样稳定运行，这是程序完整的前提。
+    - 性能测试：为了测试我们的算法是否高效。
+
+> 系统测试是保障系统健壮性的最有利途径。
+
+闲言少叙，我已经将客户端测试脚本改了一版：
+
+```
+package algorithms.search;
+
+import java.util.Random;
+
+import tools.XMLUtil;
+
+public class Client {
+    @SuppressWarnings("unchecked")
+    public void testFun() {
+        ST<Integer, String> sst;
+        Object oSf = XMLUtil.getBean("sf");
+        sst = new ST<Integer, String>((SFunction<Integer, String>) oSf);
+        System.out.println("-----功能测试-----");
+        if (sst.isEmpty()) {
+            sst.put(3, "fan");
+            System.out.println("sst.put(3, " + sst.get(3) + ") --- sst.size() = " + sst.size());
+        }
+        sst.put(77, "eclipse");
+        sst.put(23, "idea");
+        sst.put(60, "cup");
+        sst.put(56, "plane");
+        System.out.println("sst.put 77,23,60,56 --- sst.size() = " + sst.size());
+        if (!sst.containsKey(1)) {
+            sst.put(1, "lamp");
+            System.out.println("sst.put(1, " + sst.get(1) + ") --- sst.size() = " + sst.size());
+        }
+        sst.put(20, "computer");
+        System.out.println("sst.put(20, " + sst.get(20) + ") --- sst.size() = " + sst.size());
+        sst.delete(20);
+        System.out.println("sst.delete(20) --- sst.size() still= " + sst.size());
+        System.out.println("-----①遍历当前集合【观察输出顺序】-----");
+        for (int k : sst.keySet()) {
+            System.out.println(k + "..." + sst.get(k));
+        }
+        System.out.println("-----②测试表头中尾删除-----");
+        sst.remove(20);// 【有序表中删除，顺序表头删除】
+        System.out.println("sst.remove(20)...【有序表中删除，顺序表头删除】");
+        System.out.println("sst.get(20) = " + sst.get(20) + " --- sst.size() = " + sst.size());
+        sst.remove(1);// 【有序表头删除，顺序表中删除】
+        System.out.println("sst.remove(1)...【有序表头删除，顺序表中删除】");
+        System.out.println("sst.get(1) = " + sst.get(1) + " --- sst.size() = " + sst.size());
+        sst.remove(77);// 【有序表尾删除】，顺序表中删除
+        System.out.println("sst.remove(77)...【有序表尾删除】，顺序表中删除");
+        System.out.println("sst.get(77) = " + sst.get(77) + " --- sst.size() = " + sst.size());
+        sst.remove(3);// 有序表中删除，【顺序表尾删除】
+        System.out.println("sst.remove(3)...有序表中删除，【顺序表尾删除】");
+        System.out.println("sst.get(3) = " + sst.get(3) + " --- sst.size() = " + sst.size());
+        System.out.println("-----③遍历当前集合-----");
+        for (int k : sst.keySet()) {
+            System.out.println(k + "..." + sst.get(k));
+        }
+
+        System.out.println("-----性能测试-----");
+        long start = System.currentTimeMillis();
+        Random rand = new Random();
+        String abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        for (int i = 0; i < 10000; i++) {
+            sst.put(rand.nextInt(10000), String.valueOf(abc.charAt(rand.nextInt(abc.length())))
+                    + String.valueOf(abc.charAt(rand.nextInt(abc.length()))));
+        }
+        int a = 0;
+        for (int k : sst.keySet()) {
+            a++;
+            sst.get(k);
+        }
+        System.out.println("0-" + a + "..." + "sst.size() = " + sst.size());
+        long end = System.currentTimeMillis();
+        System.out.println("总耗时：" + (end - start) + "ms");
+    }
+
+    public static void main(String[] args) {
+        new Client().testFun();
+    }
+}
+
+```
+我会依次在config.xml中替换SequentialSearchST和BinarySearchST，观察他们的输出。
+
+    class: algorithms.search.second.SequentialSearchST
+    -----功能测试-----
+    sst.put(3, fan) --- sst.size() = 1
+    sst.put 77,23,60,56 --- sst.size() = 5
+    sst.put(1, lamp) --- sst.size() = 6
+    sst.put(20, computer) --- sst.size() = 7
+    sst.delete(20) --- sst.size() still= 7
+    -----①遍历当前集合【观察输出顺序】-----
+    20...null
+    1...lamp
+    56...plane
+    60...cup
+    23...idea
+    77...eclipse
+    3...fan
+    -----②测试表头中尾删除-----
+    sst.remove(20)...【有序表中删除，顺序表头删除】
+    sst.get(20) = null --- sst.size() = 7
+    sst.remove(1)...【有序表头删除，顺序表中删除】
+    sst.get(1) = null --- sst.size() = 6
+    sst.remove(77)...【有序表尾删除】，顺序表中删除
+    sst.get(77) = null --- sst.size() = 5
+    sst.remove(3)...有序表中删除，【顺序表尾删除】
+    sst.get(3) = null --- sst.size() = 4
+    -----③遍历当前集合-----
+    20...null
+    56...plane
+    60...cup
+    23...idea
+    -----性能测试-----
+    0-6358...sst.size() = 6358
+    总耗时：368ms
+    
+我是一个分割线
+
+    class: algorithms.search.second.BinarySearchST
+    -----功能测试-----
+    sst.put(3, fan) --- sst.size() = 1
+    sst.put 77,23,60,56 --- sst.size() = 5
+    sst.put(1, lamp) --- sst.size() = 6
+    sst.put(20, computer) --- sst.size() = 7
+    sst.delete(20) --- sst.size() still= 7
+    -----①遍历当前集合【观察输出顺序】-----
+    1...lamp
+    3...fan
+    20...null
+    23...idea
+    56...plane
+    60...cup
+    77...eclipse
+    -----②测试表头中尾删除-----
+    sst.remove(20)...【有序表中删除，顺序表头删除】
+    sst.get(20) = null --- sst.size() = 6
+    sst.remove(1)...【有序表头删除，顺序表中删除】
+    sst.get(1) = null --- sst.size() = 5
+    sst.remove(77)...【有序表尾删除】，顺序表中删除
+    sst.get(77) = null --- sst.size() = 4
+    sst.remove(3)...有序表中删除，【顺序表尾删除】
+    sst.get(3) = null --- sst.size() = 3
+    -----③遍历当前集合-----
+    23...idea
+    56...plane
+    60...cup
+    -----性能测试-----
+    0-6310...sst.size() = 6310
+    总耗时：48ms
+
+总结：
+这个版本经过我多次调试，可用性已经很高，代码中覆盖了多个测试用例，具体我不在这里详细列出。依然可以观察到他们的运行速度，
+
+> 顺序查找是368ms，二分查找是48ms。
+
+这里由于我测试的机器不同，以及每次测试脚本的更改，这个时间的数值可能不同，但是我们只要将他们结对对比，结果依然是有参考意义的。
+
+#### 集成日志系统
+
+以上代码虽完整，但是每次输出均只能从控制台复制出来，无法统一管理，而且代码中充斥大量的syso显得特别混乱，日志级别也没有得到有效控制，因此要继承日志系统。
+
+目前主流java的日志系统是jcl+log4j。
+- jcl是Commons-logging，由apache提供的日志接口类工具。
+- log4j是一套日志解决方案，也是apache提供的日志实现类工具。
+
+经过我的调查，log4j已经除了最新版的2.9.1，而且log4j2.x貌似已经完全集成了接口和实现，这样一来，我们可以尝试只采用最新的log4j2.9.1架构我们自己的日志系统。
+
+- 首先去官网下载最新的apache-log4j-2.9.1-bin.zip。解压缩出来一大堆的包，根据api我写了一个helloworld，需要引入：
+
+    
+    import org.apache.logging.log4j.LogManager;
+    import org.apache.logging.log4j.Logger; 
+- 经过尝试，发现引入log4j-api-2.9.1.jar可以成功导入这两个包，然而在运行时报错：
+> ERROR StatusLogger Log4j2 could not find a logging implementation. Please add log4j-core to the classpath. Using SimpleLogger to log to the console...
+
+- 我又引入了log4j-core-2.9.1.jar，再次运行继续报错：
+> ERROR StatusLogger No log4j2 configuration file found. Using default configuration: logging only errors to the console. Set system property 'log4j2.debug' to show Log4j2 internal initialization logging.
+
+- 添加log4j2的配置文件:
+
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <File name="LogFile" fileName="output.log" bufferSize="1"
+            advertiseURI="./" advertise="true">
+            <PatternLayout
+                pattern="%d{YYYY/MM/dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />
+        </File>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout
+                pattern="%d{HH:mm:ss} %-5level %logger{36} - %msg%n" />
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="LogFile" />
+        </Root>
+    </Loggers>
+</Configuration>
+```
+根据我的想法，以上配置描述了：
+- 控制台输出时间加具体信息。
+- 日志输出到工程根目录output.log文件里，输出规则改为具体的日期加时间。
+- 日志级别均为info。
+
+然后新创建一个客户端VIPClient，继承进去日志系统，只需要将原来的syso替换为logger.info即可。替换完以后进行测试输出：
+
+    class: algorithms.search.second.BinarySearchST
+    14:44:20 INFO  algorithms.search.VIPClient - -----功能测试-----
+    14:44:20 INFO  algorithms.search.VIPClient - sst.put(3, fan) --- sst.size() = 1
+    ...
+    ...
+此时再去工程根目录下查看output.log:
+
+    2017/11/09 14:44:20 [main] INFO  algorithms.search.VIPClient - -----功能测试-----
+    2017/11/09 14:44:20 [main] INFO  algorithms.search.VIPClient - sst.put(3, fan) --- sst.size() = 1
+    2017/11/09 14:44:20 [main] INFO  algorithms.search.VIPClient - sst.put 77,23,60,56 --- sst.size() = 5
+    ...
+    ...
+
+集成日志成功。
+
+#### 集成单元测试
+我们集成一个简单的单元测试，不再使用main方法去测试了。很简单，只要把main方法删除，新增一个test方法：
+
+```
+    @Test(timeout = 1000)
+    public void test() {
+        new VIPClient().testFun();
+    }
+```
+增加注解Test，同时设定timeout的时间为1s，也就是说我们最长允许系统阻塞pending时间为1s。
+
+之后测试，随时在JUnit界面点击rerun test即可触发单元测试，不必再进入main方法界面去右键点击运行了，再加上我们上面集成的日志备份系统，非常方便。
+
+接下来的开发流程只需要：
+- 创建一个实现SFunction接口的算法实现类，实现接口方法。
+- 修改config.xml的sf值为当前实现类。
+- 点击Junit界面rerun test，查看控制台输出。
+- 需要的话，可以去根目录下查看output.log历史日志备份。
+
+✧ (≖ ‿ ≖)✧
+
+### 二叉查找树
+
+上面介绍了使用单链表实现的顺序查找和使用数组实现的二分查找。他们各有所侧重，顺序查找在插入上非常灵活，而二分查找在查询上非常高效，换句话说，一个适合静态表，一个适合动态表。但是顺序查找在查询时要使用大量遍历，二分查找在插入时也有大量操作，这都是他们各自的劣势。这一部分介绍的二叉查找树，是结合了以上两种查找方式的优势，同时又最大化地避开了他们的劣势。
+
+> 二叉查找树，是计算机科学中最重要的算法之一。
+
+顾名思义，这个算法依赖的数据结构不是链表也不是数组，而是二叉树。每个结点含有左右两个链接（也就是左右子结点），链接可以指向空或者其他结点。同时每个结点还存储了一个键值对。
+
+> 定义：一棵二叉查找树（BST, short of "Binary Search Tree"），是一棵二叉树，其中每个结点都含有一个Comparable的键（以及相关联的值）且每个结点的键都大于其左子树中的任意节点的键而小于右子树的任意结点的键。
+
+- 二叉查找树的画法：键会标在结点上，对应的值写在旁边，除空结点（空结点没有结点）只表示为向下的一条线段以外，每个结点的链接都指向它下方的结点。
+
+- 码前准备
+    - 创建一个类型泛化的二叉查找树BST，实现SFunction接口。
+    - 遵循以上画法的约定，创建一个内部树结点类。
+    - 实现SFunction的方法。
+
+
+## 重构：添加一个针对有序符号表API的扩展接口
+
+```
+package algorithms.search;
+
+/**
+ * 查找算法的泛型接口，定义必须要实现的方法
+ * 
+ * @notice 针对有序列表的扩展接口
+ * @author Evsward
+ * @param <Key>
+ * @param <Value>
+ */
+public interface SFunctionSorted<Key, Value> {
+
+    /**
+     * 获取最小键
+     * 
+     * @return
+     */
+    public Key min();
+
+    /**
+     * 获取最大键
+     * 
+     * @return
+     */
+    public Key max();
+
+    /**
+     * 获取k位置的键【一般指有序列表中】
+     * 
+     * @return
+     */
+    public Key select(int k);
+
+    /**
+     * 获取键对应符号表中向上取整的键
+     * 
+     * @return
+     */
+    public Key ceiling(Key key);
+
+    /**
+     * 获取键对应符号表中向下取整的键
+     * 
+     * @return
+     */
+    public Key floor(Key key);
+
+    /**
+     * 重合这部分方法，用来测试
+     */
+    public void put(Key key, Value val);// 插入
+
+    public Iterable<Key> keySet();// 迭代表内所有key
+
+    public Value get(Key key);// 查找某key的值
+}
+
+
+```
+#### SFunctionSorted接口说明：
+- 该接口的方法仅为有序表实现，例如二分查找，而表无序的顺序查找不可实现该接口。
+- 由于java一个类可以实现多个接口，改造BinarySearchST让其在实现SFunction的基础上再实现SFunctionSorted接口。
+- 我们可以看到，SFunctionSorted接口和SFunction接口有重合的方法，这些重合的方法是为了测试方便。
+
+#### 测试支持
+接下来为实现了SFunctionSorted接口的类添加测试。我们将VIPClient改造了一下，去掉了main方法，直接在方法名上执行测试，增加了一个新测试方法。
+
+```
+package algorithms.search;
+
+import java.util.Random;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.junit.Test;
+
+import tools.XMLUtil;
+
+public class VIPClient {
+    private static final Logger logger = LogManager.getLogger();
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testST() {... // 代码同上，这里不重复粘贴。
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    /**
+     * 由于有序符号表实现了两个接口，SFunction相关的通过testST可以测试，这里仅测试与SFunctionSorted的方法。
+     */
+    public void testSST() {
+        SST<Integer, String> sst;
+        Object oSf = XMLUtil.getBean("ssf");
+        sst = new SST<Integer, String>((SFunctionSorted<Integer, String>) oSf);
+        sst.put(3, "fan");
+        sst.put(77, "eclipse");
+        sst.put(23, "idea");
+        sst.put(60, "cup");
+        sst.put(56, "plane");
+        sst.put(1, "lamp");
+        sst.put(20, "computer");
+        logger.info("-----①遍历当前集合【观察输出顺序】-----");
+        for (int k : sst.keySet()) {
+            logger.info(k + "..." + sst.get(k));
+        }
+        logger.info("-----②有序表特有功能测试-----");
+        logger.info("sst.ceiling(59) = " + sst.ceiling(59));
+        logger.info("sst.floor(59) = " + sst.floor(59));
+        logger.info("sst.min() = " + sst.min());
+        logger.info("sst.max() = " + sst.max());
+        logger.info("sst.select(3) = " + sst.select(3));
+    }
+}
+
+```
+同时，为config.xml增加字段：
+
+```
+    <sf>algorithms.search.second.BinarySearchST</sf>
+    <ssf>algorithms.search.second.BinarySearchST</ssf>
+```
+我也对log格式进行了调整，增加了方法名，以便于区分以上两个测试方法。
+
+举例说明：
+- 如果要测试无序表顺序查找SequentialSearchST，将config.xml中sf值改为顺序查找的类名，然后在testST方法上执行Junit测试。
+- 如果要测试有序表二分查找BinarySearchST的符号表基础API方法，依然先改config，然后在testST方法上执行。
+- 如果要测试有序表的有序特有的方法，则需要在config中修改ssf的值，如上面引用所示，然后在testSST方法上执行Junit测试。
+
+### 二叉查找树继续
+
+- 代码阶段
 
 
