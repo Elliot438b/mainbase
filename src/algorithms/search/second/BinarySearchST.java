@@ -162,15 +162,16 @@ public class BinarySearchST<Key extends Comparable<Key>, Value>
     }
 
     /**
-     * 返回下标为k的Key
+     * 返回排名为k的Key
      * 
+     * @notice 排名是从1开始的，数组下标是从0开始的
      * @param k
      * @return
      */
     public Key select(int k) {
-        if (k >= top || k < 0)// 越界（指的是键值对数据空间越界）
+        if (k > top || k < 0)// 越界（指的是键值对数据空间越界）
             return null;
-        return keys[k];
+        return keys[k - 1];
     }
 
     /**

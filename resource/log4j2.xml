@@ -3,18 +3,28 @@
 	<Appenders>
 		<File name="LogFile" fileName="output.log" bufferSize="1"
 			advertiseURI="./" advertise="true">
+			<ThresholdFilter level="debug" onMatch="ACCEPT"
+				onMismatch="DENY" />
 			<PatternLayout
 				pattern="%d{YYYY/MM/dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />
 		</File>
-		<Console name="Console" target="SYSTEM_OUT">
+		<!--这个会打印出所有的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档 -->
+		<RollingFile name="RollingFile" fileName="logs/mainbase.log"
+			filePattern="log/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
 			<PatternLayout
-				pattern="%d{HH:mm:ss}[%M]: %msg%n" />
+				pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n" />
+			<SizeBasedTriggeringPolicy size="1MB" />
+		</RollingFile>
+		<Console name="Console" target="SYSTEM_OUT">
+			<ThresholdFilter level="info" onMatch="ACCEPT"
+				onMismatch="DENY" />
+			<PatternLayout pattern="%d{HH:mm:ss}[%M]: %msg%n" />
 		</Console>
 	</Appenders>
 	<Loggers>
-		<Root level="info">
-			<AppenderRef ref="Console" />
+		<Root level="debug">
 			<AppenderRef ref="LogFile" />
+			<AppenderRef ref="Console" />
 		</Root>
 	</Loggers>
 </Configuration>

@@ -3,6 +3,11 @@
 	<builder>pattern.builder.IPhone</builder>
 	<ssss>pattern.bridge.GACToyota</ssss>
 	<taolu>pattern.bridge.taolu.SmartTalkingAdapter</taolu>
-	<sf>algorithms.search.second.BinarySearchST</sf>
-	<ssf>algorithms.search.second.BinarySearchST</ssf>
+	<!-- 符号表实现类 SequentialSearchST BinarySearchST BST -->
+	<sf1>algorithms.search.second.SequentialSearchST</sf1>
+	<sf2>algorithms.search.second.BinarySearchST</sf2>
+	<sf3>algorithms.search.second.BST</sf3>
+	<!-- 有序符号表实现类 BinarySearchST BST -->
+	<ssf1>algorithms.search.second.BinarySearchST</ssf1>
+	<ssf2>algorithms.search.second.BST</ssf2>
 </config> 

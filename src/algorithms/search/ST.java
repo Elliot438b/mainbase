@@ -1,6 +1,5 @@
 package algorithms.search;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -48,7 +47,7 @@ public class ST<Key, Value> {
      */
     public boolean containsKey(Key key) {
         @SuppressWarnings("rawtypes")
-        List list = (ArrayList) keySet();
+        List list = (List) keySet();
         list.contains(key);
         return list.contains(key);
     }
