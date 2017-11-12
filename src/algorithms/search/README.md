@@ -1,6 +1,6 @@
 > 首先保证这一篇分析查找算法的文章，气质与大部分搜索引擎搜索到的文章不同，主要体现在代码上面，会更加高级，结合到很多之前研究过的内容，例如设计模式，泛型等。这也与我的上一篇[面向程序员编程——精研排序算法](http://www.cnblogs.com/Evsward/p/sort.html)的气质也不尽相同。
 
-> 关键字：查找算法，索引，泛型，二分查找树，红黑树，散列表，API设计，日志设计，测试设计
+> 关键字：查找算法，索引，泛型，二分查找树，红黑树，散列表，API设计，日志设计，测试设计，重构
 
 > 查找是在大量的信息中寻找一个特定的信息元素，在计算机应用中，查找是常用的基本运算。
 
@@ -420,7 +420,7 @@ public class SequentialSearchST<Key, Value> {
     }
 
     /**
-     * delete, containKeys, isEmpty();方法均定义在ST中。
+     * delete, containKeys, isEmpty()方法均定义在ST中。
      */
 }
 ```
@@ -882,15 +882,16 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements SFunc
     }
 
     /**
-     * 返回下标为k的Key
+     * 返回排名为k的Key
      * 
+     * @notice 排名是从1开始的，数组下标是从0开始的
      * @param k
      * @return
      */
     public Key select(int k) {
-        if (k >= top || k < 0)// 越界（指的是键值对数据空间越界）
+        if (k > top || k < 0)// 越界（指的是键值对数据空间越界）
             return null;
-        return keys[k];
+        return keys[k - 1];
     }
 
     /**
@@ -1411,8 +1412,602 @@ public class VIPClient {
 - 如果要测试有序表二分查找BinarySearchST的符号表基础API方法，依然先改config，然后在testST方法上执行。
 - 如果要测试有序表的有序特有的方法，则需要在config中修改ssf的值，如上面引用所示，然后在testSST方法上执行Junit测试。
 
+
+#### 加入断言
+如果每一次都要查看日志，一行行比对方法输出结果信息的话，那实在很费力，相同的事情做多遍，为了快速验证我们的代码是否通过测试，可以引入断言机制。
+
+```
+assertTrue(sst.ceiling(59) == 60);
+```
+就像这样，但是要求VIPClient导入对应的包
+
+```
+import static org.junit.Assert.*;
+```
+然后就可以正常使用了，我们只要在输出的每一个位置，设定好预计输出的正确的值交给断言去判断，如果错误会中断测试。在testST和testSST的方法体结尾处添加一行
+
+```
+logger.info("测试成功！");
+```
+每次执行Junit，只要看结尾是否有“测试成功”的字样即可，看到了就代表测试通过，不比再依次比对输出结果。如果看不到，则可以去看是哪一行断言出了问题，也能准确定位错误的位置。
+
+
+
+#### 批量化测试
+我发现，每一次去修改config.xml中的类名，以此来决定执行的是哪一个实现类，这样非常麻烦，况且又新增了有序表的实现类配置。能否每次只是增加一个新的实现类，一次配置，不用修改。因此有了：
+- config.xml
+
+```
+<?xml version="1.0"?>
+<config>
+    <!-- 符号表实现类 SequentialSearchST BinarySearchST BST -->
+    <sf1>algorithms.search.second.SequentialSearchST</sf1>
+    <sf2>algorithms.search.second.BinarySearchST</sf2>
+    <sf3>algorithms.search.second.BST</sf3>
+    <!-- 有序符号表实现类 BinarySearchST BST -->
+    <ssf1>algorithms.search.second.BinarySearchST</ssf1>
+    <ssf2>algorithms.search.second.BST</ssf2>
+</config> 
+```
+每一次新增一个实现类只要在config.xml中按照需要添加到相应的位置。
+
+- XMLUtil
+改造getBean，将tagName封装为参数
+- VIPClient
+    - 封装testST和testSST方法，将tagName封装为参数
+    - 建立批量测试方法，testSTBatch和testSSTBatch，调用testST和testSST方法并输入参数，并将@Test注释移到这两个方法上面。
+
+- log4j2.xml
+由于批量化测试，再输出那么多debu内容在控制台就很没意义了，于是将原来的info输出全部改为debug，控制台只输出info级别，而备份日志文件输出debug级别，这样一来当你要调试的时候，可以去查日志文件，同时这些日志也能被有效保存下来，而控制台日志方面，只需要在两个Batch方法内加入info级别的日志即可。
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <File name="LogFile" fileName="output.log" bufferSize="1"
+            advertiseURI="./" advertise="true">
+            <ThresholdFilter level="debug" onMatch="ACCEPT"
+                onMismatch="DENY" />
+            <PatternLayout
+                pattern="%d{YYYY/MM/dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />
+        </File>
+        <!--这个会打印出所有的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档 -->
+        <RollingFile name="RollingFile" fileName="logs/mainbase.log"
+            filePattern="log/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout
+                pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n" />
+            <SizeBasedTriggeringPolicy size="1MB" />
+        </RollingFile>
+        <Console name="Console" target="SYSTEM_OUT">
+            <ThresholdFilter level="info" onMatch="ACCEPT"
+                onMismatch="DENY" />
+            <PatternLayout pattern="%d{HH:mm:ss}[%M]: %msg%n" />
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="LogFile" />
+            <AppenderRef ref="Console" />
+        </Root>
+    </Loggers>
+</Configuration>
+```
+以后每次测试只需要：
+- 执行testSTBatch Junit，观察控制台输出，是否有“批量测试成功”字样，如果有则通过测试，没有则具体查看日志输出文件，再去调试。
+- 执行testSStBatch Junit，流程同上。
+
+
 ### 二叉查找树继续
 
 - 代码阶段
 
 
+```
+package algorithms.search.second;
+
+import java.util.LinkedList;
+
+import algorithms.search.SFunction;
+import algorithms.search.SFunctionSorted;
+
+/**
+ * 二叉查找树，默认都是从小到大，从左到右排序
+ * 
+ * @notice 二叉查找树将用到大量递归，每个公有方法都对应着一个用来递归的私有方法
+ * @see 每棵树由其根结点代表
+ * @author Evsward
+ *
+ * @param <Key>
+ * @param <Value>
+ */
+public class BST<Key extends Comparable<Key>, Value> implements SFunction<Key, Value>, SFunctionSorted<Key, Value> {
+    private TreeNode root;// 定义一个根节点，代表了整个BST。
+
+    private class TreeNode {
+        private Key key;
+        private Value value;
+        private TreeNode leftChild;// 左链接：小于该结点的所有键组成的二叉查找树
+        private TreeNode rightChild;// 右链接：大于该结点的所有键组成的二叉查找树
+        private int size;// 以该结点为根的子树的结点总数
+
+        // 构造函数创建一个根节点，不包含左子右子。
+        public TreeNode(Key key, Value value, int size) {
+            this.key = key;
+            this.value = value;
+            this.size = size;
+        }
+    }
+
+    @Override
+    public int size() {
+        return size(root);
+    }
+
+    private int size(TreeNode node) {
+        if (node == null)
+            return 0;
+        return node.size;
+    }
+
+    @Override
+    public void put(Key key, Value val) {
+        // 注意将内存root的对象作为接收，否则对root并没有做实际修改。
+        root = put(root, key, val);
+    }
+
+    /**
+     * 递归函数：向根节点为x的树中插入key-value
+     * 
+     * @理解递归 把递归当作一个黑盒方法，而不要跳进这个里边
+     * @核心算法
+     * @param x
+     * @param key
+     * @param val
+     * @return 插入key-value的新树
+     */
+    private TreeNode put(TreeNode x, Key key, Value val) {
+        if (x == null)// 若x为空，则新建一个key-value结点。
+            return new TreeNode(key, val, 1);// 初始化长度只为1。
+        int comp = key.compareTo(x.key);
+        if (comp < 0)
+            x.leftChild = put(x.leftChild, key, val);
+        else if (comp > 0)
+            x.rightChild = put(x.rightChild, key, val);
+        else if (comp == 0)// 如果树x已有key，则更新val值。
+            x.value = val;
+        x.size = size(x.leftChild) + size(x.rightChild) + 1;
+        return x;
+    }
+
+    @Override
+    public Iterable<Key> keySet() {
+        return keySet(root);
+    }
+
+    private Iterable<Key> keySet(TreeNode x) {
+        // TODO
+        if (x == null)
+            return null;
+        LinkedList<Key> list = new LinkedList<Key>();
+        Iterable<Key> leftKeySet = keySet(x.leftChild);
+        Iterable<Key> rightKeySet = keySet(x.rightChild);
+        if (leftKeySet != null) {
+            for (Key k : leftKeySet) {// 按照顺序，先add左边小的
+                list.add(k);
+            }
+        }
+        list.add(x.key);// 按照顺序，再add中间的根节点
+        if (rightKeySet != null) {
+            for (Key k : rightKeySet) {// 按照顺序，最后add右边大的
+                list.add(k);
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public Value get(Key key) {
+        return get(root, key);
+    }
+
+    /**
+     * 设置递归方法：在结点node中查找条件key
+     * 
+     * @核心算法
+     * @param node
+     * @param key
+     * @return
+     */
+    private Value get(TreeNode node, Key key) {
+        if (node == null)
+            return null;// 递归调用最终node为空，未命中
+        int comp = key.compareTo(node.key);
+        if (comp < 0)
+            return get(node.leftChild, key);
+        else if (comp > 0)
+            return get(node.rightChild, key);
+        return node.value;// 递归调用最终命中
+    }
+
+    @Override
+    public void remove(Key key) {
+        // 注意将内存root的对象作为接收，否则对root并没有做实际修改。
+        root = remove(root, key);
+    }
+
+    /**
+     * 强制删除树x中key的键值对
+     * 
+     * @param x
+     * @param key
+     * @return
+     */
+    private TreeNode remove(TreeNode x, Key key) {
+        if (x == null)// 若x为空，返回空
+            return null;
+        int comp = key.compareTo(x.key);
+        if (comp < 0)
+            // 从左子树中删除key并返回删除后的左子树
+            // 这里不能直接返回，要执行下面的size重置。
+            x.leftChild = remove(x.leftChild, key);
+        else if (comp > 0)
+            // 从右子树中删除key并返回删除后的右子树
+            // 这里不能直接返回，要执行下面的size重置。
+            x.rightChild = remove(x.rightChild, key);
+        else {// 命中，删除
+            if (x.leftChild == null && x.rightChild == null)// 说明树x只有一个结点
+                return null;
+            else if (x.rightChild == null)// 表尾删除
+                x = x.leftChild;
+            else if (x.leftChild == null)// 表头删除
+                x = x.rightChild;
+            else {// 表中删除，越过根节点x，重构二叉树
+                  // 这是二叉树，不是数组，x.rightChild是右子树的根结点
+                  // 要找出右子树的最小结点需要调用方法min(TreeNode x)
+                TreeNode t = x;
+                x = min(t.rightChild);// x置为右子树中的最小值，替换待删除x
+                x.rightChild = deleteMin(t.rightChild);// 右子树为删除最小值（即当前x）以后的树
+                x.leftChild = t.leftChild;// 左子树均不变
+            }
+        }
+        x.size = size(x.leftChild) + size(x.rightChild) + 1;
+        return x;
+    }
+
+    public void deleteMin() {
+        // 注意将内存root的对象作为接收，否则对root并没有做实际修改。
+        root = deleteMin(root);
+    }
+
+    /**
+     * 删除树x中最小的键对应的键值对
+     * 
+     * @param x
+     * @return 删除以后的树
+     */
+    private TreeNode deleteMin(TreeNode x) {
+        if (x == null)// 一定要先判断null，避免空值异常
+            return null;
+        if (x.leftChild == null)
+            return x.rightChild;// 越过x，返回x.rightChild。x被删除
+        x.leftChild = deleteMin(x.leftChild);// 否则在左子树中继续查找
+        // ******注意处理size的问题，不要忘记******
+        x.size = size(x.leftChild) + size(x.rightChild) + 1;
+        return x;
+    }
+
+    public void deletMax() {
+        // 注意将内存root的对象作为接收，否则对root并没有做实际修改。
+        root = deleteMax(root);
+    }
+
+    /**
+     * 删除树x中最大的键对应的键值对
+     * 
+     * @param x
+     * @return 删除以后的树
+     */
+    private TreeNode deleteMax(TreeNode x) {
+        if (x == null)// 一定要先判断null，避免空值异常
+            return null;
+        if (x.rightChild == null)
+            return x.leftChild;// 越过x，返回x.leftChild。x被删除
+        x.rightChild = deleteMax(x.rightChild);// 否则在右子树中继续查找
+        // ******注意处理size的问题，不要忘记******
+        x.size = size(x.leftChild) + size(x.rightChild) + 1;
+        return x;
+    }
+
+    /**
+     * 实现针对有序列表的扩展接口的方法。
+     */
+
+    private TreeNode min(TreeNode x) {
+        // 当结点没有左结点的时候，它就是最小的
+        if (x.leftChild == null)
+            return x;
+        return min(x.leftChild);
+    }
+
+    @Override
+    public Key min() {
+        return min(root).key;
+    }
+
+    private TreeNode max(TreeNode x) {
+        // 当结点没有右结点的时候，它就是最小的
+        if (x.rightChild == null)
+            return x;
+        return max(x.rightChild);
+    }
+
+    @Override
+    public Key max() {
+        return max(root).key;
+    }
+
+    @Override
+    public Key select(int k) {
+        // int a = 0;
+        // for (Key key : keySet()) {
+        // if (a++ == k)
+        // return key;
+        // }
+        // return null;
+        return selectNode(root, k).key;
+    }
+
+    /**
+     * 获取在树x中排名为t的结点
+     * 
+     * @notice 位置是从0开始，排名是从1开始。
+     * @param x
+     * @param t
+     * @return
+     */
+    private TreeNode selectNode(TreeNode x, int t) {
+        if (x == null)// 一定要先判断null，避免空值异常
+            return null;
+        if (x.leftChild.size > t && t > 0)// 左子树的size大于t，则继续在左子树中找
+            return selectNode(x.leftChild, t);
+        else if (x.leftChild.size == t)// 左子树的size与t相等，说明左子树根就是排名t的结点
+            return x.leftChild;
+        else if (x.leftChild.size < t && t < x.size)// t比左子树的size大，且小于根节点的总size
+            // 其实就是rightChild的范围，在右子树中寻找，排名为右子树中的排名，所以要减去左子树的size
+            return selectNode(x.rightChild, t - x.leftChild.size - 1);// -1是因为要减去根结点
+        else if (t == x.size)// 排名恰好等于结点的总size，说明排名为t的结点为最大结点，即有序表中的最后结点
+            return max(x);
+        else// 其他情况为t越界，返回null
+            return null;
+    }
+
+    public int getRank(Key key) {
+        return getRank(root, key);
+    }
+
+    /**
+     * 获取key在树x中的排名，即位置+1，位置是从0开始，排名是从1开始。
+     * 
+     * @param x
+     * @param key
+     * @return
+     */
+    public int getRank(TreeNode x, Key key) {
+        if (x == null)// 一定要先判断null，避免空值异常
+            return 0;
+        int comp = key.compareTo(x.key);
+        if (comp > 0)
+            return getRank(x.rightChild, key) + x.leftChild.size + 1;
+        else if (comp < 0)
+            return getRank(x.leftChild, key);
+        else
+            return x.leftChild.size;
+    }
+
+    @Override
+    public Key ceiling(Key key) {
+        TreeNode x = ceiling(root, key);// 最终也没找到比它大的，这个key放在表里面是最大的
+        if (x == null)
+            return null;
+        return x.key;
+    }
+
+    /**
+     * 向上取整，寻找与key相邻但比它大的key
+     * 
+     * @param x
+     * @param key
+     * @return
+     */
+    private TreeNode ceiling(TreeNode x, Key key) {
+        if (x == null)// 一定要先判断null，避免空值异常
+            return null;// 递归调用最终node为空，未找到符合条件的key
+        int comp = key.compareTo(x.key);
+        if (comp == 0)// 相等即返回，不必取整
+            return x;
+        else if (comp > 0)// 比根节点大，则ceiling一定继续在右子树里面找
+            return ceiling(x.rightChild, key);
+        else if (comp < 0) {// 比根节点小，则在左子树中尝试寻找比它大的结点作为ceiling
+            TreeNode a = ceiling(x.leftChild, key);
+            if (a != null)// 找到了就返回
+                return a;
+        }
+        return x;// 没找到就说明只有根节点比它大，则返回根节点
+    }
+
+    @Override
+    public Key floor(Key key) {
+        TreeNode x = floor(root, key);
+        if (x == null)// 最终也没找到比它小的，这个key放在表里面是最小的
+            return null;
+        return x.key;
+    }
+
+    /**
+     * 向下取整，寻找与key相邻但比它小的key
+     * 
+     * @param x
+     * @param key
+     * @return
+     */
+    private TreeNode floor(TreeNode x, Key key) {
+        if (x == null)// 一定要先判断null，避免空值异常
+            return null;// 递归调用最终node为空，未找到符合条件的值
+        int comp = key.compareTo(x.key);
+        if (comp == 0)// 若相等，则没必要取整，直接返回即可
+            return x;
+        else if (comp < 0)// 如果比根节点小，说明floor一定在左子树
+            return floor(x.leftChild, key);
+        else if (comp > 0) {// 如果大于根节点
+            TreeNode a = floor(x.rightChild, key);// 先查找右子树中是否有比它小的值floor
+            if (a != null)// 找到了则返回
+                return a;
+        }
+        return x;// 否则，最终只有根节店key比它小，作为floor返回。
+    }
+
+}
+
+```
+在config.xml中的sf和ssf分别加入BST。然后执行两个批量测试，输出结果为：
+
+
+    14:48:45[testSTBatch]: ------开始批量测试------
+    14:48:45[getBean]: class: algorithms.search.second.SequentialSearchST
+    14:48:46[testST]: 总耗时：357ms
+    14:48:46[getBean]: class: algorithms.search.second.BinarySearchST
+    14:48:46[testST]: 总耗时：40ms
+    14:48:46[getBean]: class: algorithms.search.second.BST
+    14:48:46[testST]: 总耗时：20ms
+    14:48:46[testSTBatch]: ------批量测试成功！------
+    
+我是有序表测试的分割线
+
+
+    14:49:11[testSSTBatch]: ------开始批量测试------
+    14:49:11[getBean]: class: algorithms.search.second.BinarySearchST
+    14:49:11[getBean]: class: algorithms.search.second.BST
+    14:49:11[testSSTBatch]: ------批量测试成功！------
+
+
+通过结果可以看出，我们新增的BST已经通过了符号表基础API以及有序符号表API的功能测试，而在性能测试方面，BST遥遥领先为20ms，二分查找为40ms，而顺序查找为357ms。关于二分查找树的个方法的具体实现，我在代码中已经有了详细的注释，如有任何问题，欢迎随时留言，一起讨论。
+
+### 红黑树
+
+二叉查找树只是要求二叉树的左子树所有结点必须小于根结点，同时右子树所有结点必须大于根结点。它可以是普通二叉树，可以是完全二叉树，也可以是满二叉树，并不限制二叉树的结构。殊不知，相同的由二叉查找树实现的符号表，结构不同，效率也不同，二叉查找树层数越多，比较次数也就越多，所以二叉查找树是不稳定的，最坏情况可能效率并不高。
+
+> 理想情况下，我们希望在二叉查找树的基础上，保证在一棵含有N个几点的数中，树高为log2N，是完全二叉树的结构。
+
+但是在动态表中，不断维持完美二叉树的代价会很高，我们希望找到一种结构能够在尽可能减小这个代价的前提下保证实现符号表API的操作均能在对数时间内完成的数据结构。
+
+> 注意：这种结构是树，可以不是二叉树。
+
+#### 2-3查找树
+
+学习一种结构，它也是一个树，但是它包含两种结点类型：2-结点和3-结点。
+
+- 2-结点：与二叉查找树相似，它有一个键，同时有两个子结点链接，左子树的所有结点必须小于根结点，右子树所有结点必须大于根结点。
+- 3-结点：根结点含有两个键，同时它有三个子结点链接，左子树的所有结点必须小于根结点，中子树的所有结点必须在根结点的两个键之间，右子树的所有结点必须大于根结点。
+- 结点为空的为空链接。
+
+这种结构叫做2-3查找树，内部包含2-结点和3-结点混搭。如下图所示：
+
+
+![image](https://github.com/evsward/mainbase/blob/master/resource/image/search/2-3tree.png?raw=true)
+
+> 一种完美平衡的2-3查找树中的所有空链接到根结点的距离都应该是相同的。以下所有2-3查找树均指的是这种完美平衡的2-3查找树。
+
+- 问：为什么是2-3查找树？
+我们的目标是让所有空链接到根结点的距离相同，那么就不能有多余的单个或几个不满的结点被挤落到下一层中。2-3查找树能够实现这一目标的核心所在就是他们之间的相互转化，不仅是同一层的2结点和3结点之间的互换，同时也可以子结点与父结点进行互换，通过这种转换，能够始终保持2-3查找树是一个类似与“满二叉树”（被填得饱满）的样子。
+
+> 想出这种结构的人真是大师，为了时刻保持数据能够化为“满树”，这种方式真的很巧妙。
+
+- 介绍一下2-3结点的转换
+    - 首先2结点转换为3结点：
+        - 找到（插入操作）大于当前根结点，同时小于右子结点的键，放入当前根结点，然后建立一个中子树，放入在当前根结点中两个键之间的键。
+        - 找到（插入操作）大于左子结点，同时小于当前根结点的键，放入当前根结点，然后建立一个中子树，放入在当前根结点中两个键之间的键。
+    - 3结点转换为2结点：
+        - 3结点的根结点中含有两个键，把他们分解为左右两个2结点的根结点的键。
+        - 原来3结点的左子结点不变，为左2结点的左子结点。
+        - 原来3结点的右子结点不变，为右2结点的右子结点。
+        - 原来3结点的中子结点有两种情况：
+            - 该中子结点为2结点，则将该结点设为左2结点的右子结点，同时找到（插入操作）一个大于该结点并小于右2结点的键作为右2结点的左子结点；
+            - 该中介结点为3结点，则将该结点的左键分给左2结点作右子结点，将右键分给右2结点作左子结点。
+    - 3结点的“满树”如何增加元素？这就需要将新元素加到一个3结点，将其变为4结点，然后按照上面3结点转为两个2结点的方式将4结点转为3个2结点。
+
+- 以上这些操作应该可以覆盖2-3查找树在实现符号表API过程中的所有操作了
+
+- 注意：无论2-3树如何操作，2结点与3结点如何转换，都不会破坏2-3树的“满树”形态，都不会影响2-3树的全局有序性
+
+- 2-3树的有序性：左子树所有结点均小于根结点，右子树所有结点均大于根节点，中子树如果有的话，必须在其根结点的2个键之间。
+- 2-3树的平衡性：全树的任意空链接到根结点的距离都是相等的。
+
+#### 红黑二叉查找树
+根据上面介绍的巧妙的2-3查找树，我们要在程序中找到一种可行的数据结构来实现它，这种数据结构就是红黑二叉查找树。
+
+- 转换2-3查找树为红黑树：基本思想是用标准的二叉查找树（完全由2-结点构成）和一些额外的信息（替换3-结点）来表示2-3树。
+- 红黑树的两种链接：
+    - 红链接（约定为左斜）：
+        - 正面思维是从2-3树角度来讲，将一个3-结点的根结点的左右2个键用一条红链接连起来，调整一下层次结构，让原中子数跟随左键作右子树也好，跟随右键作左子树也行，构成一个红黑树。
+        - 逆向思维也就是从红黑树角度来讲，是将2个2结点通过一条红链接连接他们的根结点为一个3结点的根结点的两个键，调整一下结构，原左键的右子树和右键的左子树可以合并非给3-结点的中子树，这样就构成了一个3-结点。
+    - 黑链接：2-3树中的普通链接。
+    
+- 通过以上介绍的红黑树和2-3树的转化，优点是我们可以直接针对2-3树结构使用二叉查找树的所有方法。
+
+- 红黑树的完整定义：
+    - 红链接均为左链接（左斜）；
+    - 没有任何一个结点同时和两条红链接相连；
+    - 该树是完美黑色平衡的，即任意空链接到根结点的路径上的黑链接数量相同。（原因是黑链接压根就没有改动，2-3树本身的特性就是空链接到根结点距离相同）
+
+- 红黑树就是二叉查找树和2-3树的纽带。这让我们可以结合双方优势：既有二叉查找树简洁高效的查找方法，又有2-3树中高效的平衡插入算法。
+
+#### 红黑树结构的码前准备：
+
+- 设置一个color的布尔变量用来表示链接颜色，true为红色，false为黑色，约定所有空链接为黑色，为了代码清晰，我们设定两个final静态的布尔RED和BLACK作为color变量的值。
+- 设置一个私有方法isRed，用来判断一个结点与他的父结点之间的颜色。
+- 红黑树中，当我们提到一个结点的颜色的时候，代表的就是其父结点指向该结的链接的颜色。
+
+#### 红黑树实现基础API：
+由于红黑树属于二叉查找树，所以符号表相关API不必重复写，可以复用二叉查找树的方法即可。而我们要做的是用代码实现红黑树与2-3树的转换。
+
+- 红黑树的旋转操作（保证红黑树完整定义的基本操作）：
+    - 左旋转（rotateLeft）：传入一条指向红黑树中某结点的链接，假设该链接为右红链接，则调整该树，并返回一个指向包含同一组键的子树且其左链接为红色的根结点的链接。
+    - 右旋转（rotateRight）：传入一条指向红黑树中某结点的链接，假设该链接为左红链接，则调整该树，并返回一个指向包含同一组键的子树且其右链接为红色的根结点的链接。
+    - 在插入新的键时，我们可以使用旋转操作保证2-3树和红黑树之间的一一对应关系，因为旋转操作可以保持红黑树的两个重要性质：有序性和完美平衡性。
+    - 在插入新的键时，该新键一定是红链接进来。
+- 保证没有右红链接（保证红黑树完整定义的第一条）
+
+    当在一个2-结点插入一个新键大于老键，这个新键必然是一个右红链接，这时候需要使用上面的左旋转（rotateLeft）将其调整过来。
+
+问：为什么插入新的键，一定是红链接？
+答：根据红黑树的完整定义，任意空链接到根结点的路径上的黑链接数量相同。如果我们插入的新键不采用红链接而是黑链接，那么必然导致新键为根结点的空链接到根节点的路径上的黑链接数量增加了一个，就不能保持完美黑色平衡了。因此只有新键采用红链接，才不会打破这个完美黑色平衡。
+
+- 保证不存在两条连续的红链接（保证红黑树完整定义的第二条）
+
+    当在一个3-结点（一个根结点，一条左红链接指向其左子结点）插入一个新键时，必然会出现一个结点同时和两条红链接相连的情况。
+    - 新键最大，右红链接指向新键，当前【根节点】同时和两条红链接相连，此时，将这两条红链接的颜色变为黑。此时等于所有空链接到根节点的路径上的黑链接数量都增加了1，这时要将当前根结点的链接颜色由黑变红（下面会仔细分析），等于路径数量减去1，与前面抵消，最终还是保证了树的黑色平衡性。。
+    - 新键最小，【左子结点】通过红链接指向一个新键，左子结点同时和两条红链接相连，此时，将左子结点右旋转（rotateRight），改其左链接为右链接，调整树结构，此时原左子结点成为新树的根结点，然后与上面操作相同，将从其出发指向两个子结点的红链接改为黑链接即可。
+    - 新键置于中间，左子结点发出一条右红链接指向新键，左旋转（rotateLeft）以后，将新键变为左子结点，原左子结点变为其左子结点。然后与上面操作相同，将当前左子结点右旋转（rotateRight），剩余步骤与上面操作相同。
+    
+    上面三种操作都用到了将两条红链接变黑，父结点的黑链接变红的操作，我们将其封装为一个方法flipColor来负责这个操作。所以上面三种情况变成了：
+    - 新键最大，flipColor
+    - 新键最小，rotateRight->flipColor
+    - 新键在中间，rotateLeft->rotateRight->flipColor
+
+- 红链接的向上传递
+
+    flipColor的操作中根结点会由黑变红，2-3树的说法，相当于把根结点送入了父结点，这意味着在父结点新插入了一个键，如果父结点是红链接（即3-结点），那么仍需要按照在3-结点中插入新键的方式去调整，直到遇到父结点为树的根结点或者是一个黑链接（即2-结点为止）。这个过程就是红链接在树中的向上传递。
+
+- 左旋转和右旋转
+    
+    我们不是要保证红链接一直为左链接吗？为什么还要有右旋转，其实是这样的，上面讲过了3-结点的新键插入，一般来讲，右旋转的操作之后一定会跟着一个颜色转换，这样就可以保证我们的右红链接不存在了。而左右旋转的使用时机在这里再总结一番：
+    - 左旋转：结点的右子结点为红链接，而左子结点为黑链接时，使用左旋转。
+    - 右旋转：结点的左子结点为红链接，并且它的左子结点也是红链接时，也即此时左子结点同时与两个红链接相连的时候，对左子结点使用右旋转。
+    - 如果左右子结点均为红链接，则使用flipColor。
+    - 不会出现根结点的右子结点为红链接，同时它的右子结点也为红链接的情况。因为在这种情况出现之前，就已经有一个结点被左旋转了。
+    
+    如下图所示：
+
+![image](https://github.com/evsward/mainbase/blob/master/resource/image/search/RBTreeOp.png?raw=true)
+
+#### 开始写代码吧

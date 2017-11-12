@@ -18,12 +18,12 @@ import algorithms.search.SFunctionSorted;
 public class BST<Key extends Comparable<Key>, Value> implements SFunction<Key, Value>, SFunctionSorted<Key, Value> {
     private TreeNode root;// 定义一个根节点，代表了整个BST。
 
-    private class TreeNode {
-        private Key key;
-        private Value value;
-        private TreeNode leftChild;// 左链接：小于该结点的所有键组成的二叉查找树
-        private TreeNode rightChild;// 右链接：大于该结点的所有键组成的二叉查找树
-        private int size;// 以该结点为根的子树的结点总数
+    protected class TreeNode {
+        protected Key key;
+        protected Value value;
+        protected TreeNode leftChild;// 左链接：小于该结点的所有键组成的二叉查找树
+        protected TreeNode rightChild;// 右链接：大于该结点的所有键组成的二叉查找树
+        protected int size;// 以该结点为根的子树的结点总数
 
         // 构造函数创建一个根节点，不包含左子右子。
         public TreeNode(Key key, Value value, int size) {
