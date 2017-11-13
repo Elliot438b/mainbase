@@ -21,8 +21,8 @@ public class BST<Key extends Comparable<Key>, Value> implements SFunction<Key, V
     protected class TreeNode {
         protected Key key;
         protected Value value;
-        protected TreeNode leftChild;// 左链接：小于该结点的所有键组成的二叉查找树
-        protected TreeNode rightChild;// 右链接：大于该结点的所有键组成的二叉查找树
+        private TreeNode leftChild;// 左链接：小于该结点的所有键组成的二叉查找树
+        private TreeNode rightChild;// 右链接：大于该结点的所有键组成的二叉查找树
         protected int size;// 以该结点为根的子树的结点总数
 
         // 构造函数创建一个根节点，不包含左子右子。
@@ -38,7 +38,7 @@ public class BST<Key extends Comparable<Key>, Value> implements SFunction<Key, V
         return size(root);
     }
 
-    private int size(TreeNode node) {
+    protected int size(TreeNode node) {
         if (node == null)
             return 0;
         return node.size;
@@ -79,7 +79,7 @@ public class BST<Key extends Comparable<Key>, Value> implements SFunction<Key, V
         return keySet(root);
     }
 
-    private Iterable<Key> keySet(TreeNode x) {
+    protected Iterable<Key> keySet(TreeNode x) {
         if (x == null)
             return null;
         LinkedList<Key> list = new LinkedList<Key>();
@@ -112,7 +112,7 @@ public class BST<Key extends Comparable<Key>, Value> implements SFunction<Key, V
      * @param key
      * @return
      */
-    private Value get(TreeNode node, Key key) {
+    protected Value get(TreeNode node, Key key) {
         if (node == null)
             return null;// 递归调用最终node为空，未命中
         int comp = key.compareTo(node.key);
@@ -183,7 +183,7 @@ public class BST<Key extends Comparable<Key>, Value> implements SFunction<Key, V
         if (x == null)// 一定要先判断null，避免空值异常
             return null;
         if (x.leftChild == null)
-            return x.rightChild;// 越过x，返回x.rightChild。x被删除
+            return x.rightChild;// x.rightChild将x替换。x被删除
         x.leftChild = deleteMin(x.leftChild);// 否则在左子树中继续查找
         // ******注意处理size的问题，不要忘记******
         x.size = size(x.leftChild) + size(x.rightChild) + 1;
@@ -216,7 +216,7 @@ public class BST<Key extends Comparable<Key>, Value> implements SFunction<Key, V
      * 实现针对有序列表的扩展接口的方法。
      */
 
-    private TreeNode min(TreeNode x) {
+    protected TreeNode min(TreeNode x) {
         // 当结点没有左结点的时候，它就是最小的
         if (x.leftChild == null)
             return x;
@@ -228,7 +228,7 @@ public class BST<Key extends Comparable<Key>, Value> implements SFunction<Key, V
         return min(root).key;
     }
 
-    private TreeNode max(TreeNode x) {
+    protected TreeNode max(TreeNode x) {
         // 当结点没有右结点的时候，它就是最小的
         if (x.rightChild == null)
             return x;
@@ -259,7 +259,7 @@ public class BST<Key extends Comparable<Key>, Value> implements SFunction<Key, V
      * @param t
      * @return
      */
-    private TreeNode selectNode(TreeNode x, int t) {
+    protected TreeNode selectNode(TreeNode x, int t) {
         if (x == null)// 一定要先判断null，避免空值异常
             return null;
         if (x.leftChild.size > t && t > 0)// 左子树的size大于t，则继续在左子树中找
@@ -286,7 +286,7 @@ public class BST<Key extends Comparable<Key>, Value> implements SFunction<Key, V
      * @param key
      * @return
      */
-    public int getRank(TreeNode x, Key key) {
+    protected int getRank(TreeNode x, Key key) {
         if (x == null)// 一定要先判断null，避免空值异常
             return 0;
         int comp = key.compareTo(x.key);
@@ -313,7 +313,7 @@ public class BST<Key extends Comparable<Key>, Value> implements SFunction<Key, V
      * @param key
      * @return
      */
-    private TreeNode ceiling(TreeNode x, Key key) {
+    protected TreeNode ceiling(TreeNode x, Key key) {
         if (x == null)// 一定要先判断null，避免空值异常
             return null;// 递归调用最终node为空，未找到符合条件的key
         int comp = key.compareTo(x.key);
@@ -344,7 +344,7 @@ public class BST<Key extends Comparable<Key>, Value> implements SFunction<Key, V
      * @param key
      * @return
      */
-    private TreeNode floor(TreeNode x, Key key) {
+    protected TreeNode floor(TreeNode x, Key key) {
         if (x == null)// 一定要先判断null，避免空值异常
             return null;// 递归调用最终node为空，未找到符合条件的值
         int comp = key.compareTo(x.key);
