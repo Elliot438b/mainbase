@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 已更换最新架构，请转到algorithms.search.second;
+ * 已更换最新架构，请转到algorithms.search.STImpl;
  * 
  * @notice 此类已过时，含有算法错误，请对比学习。
  * @author Evsward
