@@ -1,4 +1,4 @@
-> 首先保证这一篇分析查找算法的文章，气质与大部分搜索引擎搜索到的文章不同，主要体现在代码上面，会更加高级，结合到很多之前研究过的内容，例如设计模式，泛型等。这也与我的上一篇[面向程序员编程——精研排序算法](http://www.cnblogs.com/Evsward/p/sort.html)的气质也不尽相同。
+> 首先保证这一篇分析查找算法的文章，气质与大部分搜索引擎搜索到的文章不同，主要体现在代码上面，会更加高级，结合到很多之前研究过的内容，例如设计模式，泛型等。这也与我的上一篇[面向程序员编程——精研排序算法](http://www.cnblogs.com/Evsward/p/sort.html)的气质也不尽相同，但是针对算法本身的研究一定是侵入骨髓的，请放心。
 
 > 关键字：查找算法，索引，泛型，二分查找树，红黑树，散列表，API设计，日志设计，测试设计，重构
 
@@ -1200,23 +1200,23 @@ public class Client {
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
-    <Appenders>
-        <File name="LogFile" fileName="output.log" bufferSize="1"
-            advertiseURI="./" advertise="true">
-            <PatternLayout
-                pattern="%d{YYYY/MM/dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />
-        </File>
-        <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout
-                pattern="%d{HH:mm:ss} %-5level %logger{36} - %msg%n" />
-        </Console>
-    </Appenders>
-    <Loggers>
-        <Root level="info">
-            <AppenderRef ref="Console" />
-            <AppenderRef ref="LogFile" />
-        </Root>
-    </Loggers>
+  <Appenders>
+    <File name="LogFile" fileName="output.log" bufferSize="1"
+      advertiseURI="./" advertise="true">
+      <PatternLayout
+        pattern="%d{YYYY/MM/dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />
+    </File>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout
+        pattern="%d{HH:mm:ss} %-5level %logger{36} - %msg%n" />
+    </Console>
+  </Appenders>
+  <Loggers>
+    <Root level="info">
+      <AppenderRef ref="Console" />
+      <AppenderRef ref="LogFile" />
+    </Root>
+  </Loggers>
 </Configuration>
 ```
 根据我的想法，以上配置描述了：
@@ -1402,8 +1402,8 @@ public class VIPClient {
 同时，为config.xml增加字段：
 
 ```
-    <sf>algorithms.search.second.BinarySearchST</sf>
-    <ssf>algorithms.search.second.BinarySearchST</ssf>
+  <sf>algorithms.search.second.BinarySearchST</sf>
+  <ssf>algorithms.search.second.BinarySearchST</ssf>
 ```
 我也对log格式进行了调整，增加了方法名，以便于区分以上两个测试方法。
 
@@ -1440,13 +1440,13 @@ logger.info("测试成功！");
 ```
 <?xml version="1.0"?>
 <config>
-    <!-- 符号表实现类 SequentialSearchST BinarySearchST BST -->
-    <sf1>algorithms.search.second.SequentialSearchST</sf1>
-    <sf2>algorithms.search.second.BinarySearchST</sf2>
-    <sf3>algorithms.search.second.BST</sf3>
-    <!-- 有序符号表实现类 BinarySearchST BST -->
-    <ssf1>algorithms.search.second.BinarySearchST</ssf1>
-    <ssf2>algorithms.search.second.BST</ssf2>
+  <!-- 符号表实现类 SequentialSearchST BinarySearchST BST -->
+  <sf1>algorithms.search.second.SequentialSearchST</sf1>
+  <sf2>algorithms.search.second.BinarySearchST</sf2>
+  <sf3>algorithms.search.second.BST</sf3>
+  <!-- 有序符号表实现类 BinarySearchST BST -->
+  <ssf1>algorithms.search.second.BinarySearchST</ssf1>
+  <ssf2>algorithms.search.second.BST</ssf2>
 </config> 
 ```
 每一次新增一个实现类只要在config.xml中按照需要添加到相应的位置。
@@ -1463,38 +1463,38 @@ logger.info("测试成功！");
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
-    <Appenders>
-        <File name="LogFile" fileName="output.log" bufferSize="1"
-            advertiseURI="./" advertise="true">
-            <ThresholdFilter level="debug" onMatch="ACCEPT"
-                onMismatch="DENY" />
-            <PatternLayout
-                pattern="%d{YYYY/MM/dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />
-        </File>
-        <!--这个会打印出所有的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档 -->
-        <RollingFile name="RollingFile" fileName="logs/mainbase.log"
-            filePattern="log/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
-            <PatternLayout
-                pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n" />
-            <SizeBasedTriggeringPolicy size="1MB" />
-        </RollingFile>
-        <Console name="Console" target="SYSTEM_OUT">
-            <ThresholdFilter level="info" onMatch="ACCEPT"
-                onMismatch="DENY" />
-            <PatternLayout pattern="%d{HH:mm:ss}[%M]: %msg%n" />
-        </Console>
-    </Appenders>
-    <Loggers>
-        <Root level="debug">
-            <AppenderRef ref="LogFile" />
-            <AppenderRef ref="Console" />
-        </Root>
-    </Loggers>
+  <Appenders>
+    <File name="LogFile" fileName="output.log" bufferSize="1"
+      advertiseURI="./" advertise="true">
+      <ThresholdFilter level="debug" onMatch="ACCEPT"
+        onMismatch="DENY" />
+      <PatternLayout
+        pattern="%d{YYYY/MM/dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />
+    </File>
+    <!--这个会打印出所有的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档 -->
+    <RollingFile name="RollingFile" fileName="logs/mainbase.log"
+      filePattern="log/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+      <PatternLayout
+        pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n" />
+      <SizeBasedTriggeringPolicy size="1MB" />
+    </RollingFile>
+    <Console name="Console" target="SYSTEM_OUT">
+      <ThresholdFilter level="info" onMatch="ACCEPT"
+        onMismatch="DENY" />
+      <PatternLayout pattern="%d{HH:mm:ss}[%M]: %msg%n" />
+    </Console>
+  </Appenders>
+  <Loggers>
+    <Root level="debug">
+      <AppenderRef ref="LogFile" />
+      <AppenderRef ref="Console" />
+    </Root>
+  </Loggers>
 </Configuration>
 ```
 以后每次测试只需要：
-- 执行testSTBatch Junit，观察控制台输出，是否有“批量测试成功”字样，如果有则通过测试，没有则具体查看日志输出文件，再去调试。
-- 执行testSStBatch Junit，流程同上。
+- 执行testSTBatch JUnit，观察控制台输出，是否有“批量测试成功”字样，如果有则通过测试，没有则具体查看日志输出文件，再去调试。
+- 执行testSStBatch JUnit，流程同上。
 
 
 ### 二叉查找树继续
@@ -1523,12 +1523,12 @@ import algorithms.search.SFunctionSorted;
 public class BST<Key extends Comparable<Key>, Value> implements SFunction<Key, Value>, SFunctionSorted<Key, Value> {
     private TreeNode root;// 定义一个根节点，代表了整个BST。
 
-    private class TreeNode {
-        private Key key;
-        private Value value;
-        private TreeNode leftChild;// 左链接：小于该结点的所有键组成的二叉查找树
-        private TreeNode rightChild;// 右链接：大于该结点的所有键组成的二叉查找树
-        private int size;// 以该结点为根的子树的结点总数
+    protected class TreeNode {
+        protected Key key;
+        protected Value value;
+        protected TreeNode leftChild;// 左链接：小于该结点的所有键组成的二叉查找树
+        protected TreeNode rightChild;// 右链接：大于该结点的所有键组成的二叉查找树
+        protected int size;// 以该结点为根的子树的结点总数
 
         // 构造函数创建一个根节点，不包含左子右子。
         public TreeNode(Key key, Value value, int size) {
@@ -1543,7 +1543,7 @@ public class BST<Key extends Comparable<Key>, Value> implements SFunction<Key, V
         return size(root);
     }
 
-    private int size(TreeNode node) {
+    protected int size(TreeNode node) {
         if (node == null)
             return 0;
         return node.size;
@@ -1584,8 +1584,7 @@ public class BST<Key extends Comparable<Key>, Value> implements SFunction<Key, V
         return keySet(root);
     }
 
-    private Iterable<Key> keySet(TreeNode x) {
-        // TODO
+    protected Iterable<Key> keySet(TreeNode x) {
         if (x == null)
             return null;
         LinkedList<Key> list = new LinkedList<Key>();
@@ -1618,7 +1617,7 @@ public class BST<Key extends Comparable<Key>, Value> implements SFunction<Key, V
      * @param key
      * @return
      */
-    private Value get(TreeNode node, Key key) {
+    protected Value get(TreeNode node, Key key) {
         if (node == null)
             return null;// 递归调用最终node为空，未命中
         int comp = key.compareTo(node.key);
@@ -1689,7 +1688,7 @@ public class BST<Key extends Comparable<Key>, Value> implements SFunction<Key, V
         if (x == null)// 一定要先判断null，避免空值异常
             return null;
         if (x.leftChild == null)
-            return x.rightChild;// 越过x，返回x.rightChild。x被删除
+            return x.rightChild;// x.rightChild将x替换。x被删除
         x.leftChild = deleteMin(x.leftChild);// 否则在左子树中继续查找
         // ******注意处理size的问题，不要忘记******
         x.size = size(x.leftChild) + size(x.rightChild) + 1;
@@ -1722,7 +1721,7 @@ public class BST<Key extends Comparable<Key>, Value> implements SFunction<Key, V
      * 实现针对有序列表的扩展接口的方法。
      */
 
-    private TreeNode min(TreeNode x) {
+    protected TreeNode min(TreeNode x) {
         // 当结点没有左结点的时候，它就是最小的
         if (x.leftChild == null)
             return x;
@@ -1734,7 +1733,7 @@ public class BST<Key extends Comparable<Key>, Value> implements SFunction<Key, V
         return min(root).key;
     }
 
-    private TreeNode max(TreeNode x) {
+    protected TreeNode max(TreeNode x) {
         // 当结点没有右结点的时候，它就是最小的
         if (x.rightChild == null)
             return x;
@@ -1765,13 +1764,13 @@ public class BST<Key extends Comparable<Key>, Value> implements SFunction<Key, V
      * @param t
      * @return
      */
-    private TreeNode selectNode(TreeNode x, int t) {
+    protected TreeNode selectNode(TreeNode x, int t) {
         if (x == null)// 一定要先判断null，避免空值异常
             return null;
         if (x.leftChild.size > t && t > 0)// 左子树的size大于t，则继续在左子树中找
             return selectNode(x.leftChild, t);
-        else if (x.leftChild.size == t)// 左子树的size与t相等，说明左子树根就是排名t的结点
-            return x.leftChild;
+        else if (x.leftChild.size == t)// 左子树的size与t相等，说明左子树的最大值就是排名t的结点
+            return max(x.leftChild);
         else if (x.leftChild.size < t && t < x.size)// t比左子树的size大，且小于根节点的总size
             // 其实就是rightChild的范围，在右子树中寻找，排名为右子树中的排名，所以要减去左子树的size
             return selectNode(x.rightChild, t - x.leftChild.size - 1);// -1是因为要减去根结点
@@ -1792,7 +1791,7 @@ public class BST<Key extends Comparable<Key>, Value> implements SFunction<Key, V
      * @param key
      * @return
      */
-    public int getRank(TreeNode x, Key key) {
+    protected int getRank(TreeNode x, Key key) {
         if (x == null)// 一定要先判断null，避免空值异常
             return 0;
         int comp = key.compareTo(x.key);
@@ -1819,7 +1818,7 @@ public class BST<Key extends Comparable<Key>, Value> implements SFunction<Key, V
      * @param key
      * @return
      */
-    private TreeNode ceiling(TreeNode x, Key key) {
+    protected TreeNode ceiling(TreeNode x, Key key) {
         if (x == null)// 一定要先判断null，避免空值异常
             return null;// 递归调用最终node为空，未找到符合条件的key
         int comp = key.compareTo(x.key);
@@ -1850,7 +1849,7 @@ public class BST<Key extends Comparable<Key>, Value> implements SFunction<Key, V
      * @param key
      * @return
      */
-    private TreeNode floor(TreeNode x, Key key) {
+    protected TreeNode floor(TreeNode x, Key key) {
         if (x == null)// 一定要先判断null，避免空值异常
             return null;// 递归调用最终node为空，未找到符合条件的值
         int comp = key.compareTo(x.key);
@@ -1894,13 +1893,15 @@ public class BST<Key extends Comparable<Key>, Value> implements SFunction<Key, V
 
 ### 红黑树
 
-二叉查找树只是要求二叉树的左子树所有结点必须小于根结点，同时右子树所有结点必须大于根结点。它可以是普通二叉树，可以是完全二叉树，也可以是满二叉树，并不限制二叉树的结构。殊不知，相同的由二叉查找树实现的符号表，结构不同，效率也不同，二叉查找树层数越多，比较次数也就越多，所以二叉查找树是不稳定的，最坏情况可能效率并不高。
+二叉查找树是效率较高的查找算法，但是它只是要求二叉树的左子树所有结点必须小于根结点，同时右子树所有结点必须大于根结点。它可以是普通二叉树，可以是完全二叉树，也可以是满二叉树，并不限制二叉树的结构。殊不知，相同的由二叉查找树实现的符号表，结构不同，效率也不同，二叉查找树层数越多，比较次数也就越多，所以二叉查找树是不稳定的，最坏情况可能效率并不高。
 
 > 理想情况下，我们希望在二叉查找树的基础上，保证在一棵含有N个几点的数中，树高为log2N，是完全二叉树的结构。
 
 但是在动态表中，不断维持完美二叉树的代价会很高，我们希望找到一种结构能够在尽可能减小这个代价的前提下保证实现符号表API的操作均能在对数时间内完成的数据结构。
 
 > 注意：这种结构是树，可以不是二叉树。
+
+如果能始终保持二叉查找树的结构为完美平衡结构，那么它的查找算法将会发挥最高效率，同时也会随着这种稳定的结构而效率稳定。
 
 #### 2-3查找树
 
@@ -1952,51 +1953,51 @@ public class BST<Key extends Comparable<Key>, Value> implements SFunction<Key, V
         - 逆向思维也就是从红黑树角度来讲，是将2个2结点通过一条红链接连接他们的根结点为一个3结点的根结点的两个键，调整一下结构，原左键的右子树和右键的左子树可以合并非给3-结点的中子树，这样就构成了一个3-结点。
     - 黑链接：2-3树中的普通链接。
     
-- 通过以上介绍的红黑树和2-3树的转化，优点是我们可以直接针对2-3树结构使用二叉查找树的所有方法。
-
 - 红黑树的完整定义：
     - 红链接均为左链接（左斜）；
     - 没有任何一个结点同时和两条红链接相连；
     - 该树是完美黑色平衡的，即任意空链接到根结点的路径上的黑链接数量相同。（原因是黑链接压根就没有改动，2-3树本身的特性就是空链接到根结点距离相同）
 
-- 红黑树就是二叉查找树和2-3树的纽带。这让我们可以结合双方优势：既有二叉查找树简洁高效的查找方法，又有2-3树中高效的平衡插入算法。
-
-#### 红黑树结构的码前准备：
+#### 红黑树的结点结构：
 
 - 设置一个color的布尔变量用来表示链接颜色，true为红色，false为黑色，约定所有空链接为黑色，为了代码清晰，我们设定两个final静态的布尔RED和BLACK作为color变量的值。
 - 设置一个私有方法isRed，用来判断一个结点与他的父结点之间的颜色。
-- 红黑树中，当我们提到一个结点的颜色的时候，代表的就是其父结点指向该结的链接的颜色。
+- 红黑树中，当我们提到一个结点的颜色的时候，代表的就是其父结点指向该结点链接的颜色。
 
-#### 红黑树实现基础API：
-由于红黑树属于二叉查找树，所以符号表相关API不必重复写，可以复用二叉查找树的方法即可。而我们要做的是用代码实现红黑树与2-3树的转换。
+#### 红黑树的插入分析：
+由于红黑树属于二叉查找树，所以大部分的方法可以直接复用BST。
+
+现在我们要研究的是用代码实现红黑树与2-3树的转换。
 
 - 红黑树的旋转操作（保证红黑树完整定义的基本操作）：
     - 左旋转（rotateLeft）：传入一条指向红黑树中某结点的链接，假设该链接为右红链接，则调整该树，并返回一个指向包含同一组键的子树且其左链接为红色的根结点的链接。
     - 右旋转（rotateRight）：传入一条指向红黑树中某结点的链接，假设该链接为左红链接，则调整该树，并返回一个指向包含同一组键的子树且其右链接为红色的根结点的链接。
     - 在插入新的键时，我们可以使用旋转操作保证2-3树和红黑树之间的一一对应关系，因为旋转操作可以保持红黑树的两个重要性质：有序性和完美平衡性。
     - 在插入新的键时，该新键一定是红链接进来。
-- 保证没有右红链接（保证红黑树完整定义的第一条）
+    
+- 保证没有右红链接（红黑树完整定义的第一条）
 
     当在一个2-结点插入一个新键大于老键，这个新键必然是一个右红链接，这时候需要使用上面的左旋转（rotateLeft）将其调整过来。
 
 问：为什么插入新的键，一定是红链接？
 答：根据红黑树的完整定义，任意空链接到根结点的路径上的黑链接数量相同。如果我们插入的新键不采用红链接而是黑链接，那么必然导致新键为根结点的空链接到根节点的路径上的黑链接数量增加了一个，就不能保持完美黑色平衡了。因此只有新键采用红链接，才不会打破这个完美黑色平衡。
 
-- 保证不存在两条连续的红链接（保证红黑树完整定义的第二条）
+- 保证不存在两条连续的红链接（红黑树完整定义的第二条）
 
     当在一个3-结点（一个根结点，一条左红链接指向其左子结点）插入一个新键时，必然会出现一个结点同时和两条红链接相连的情况。
-    - 新键最大，右红链接指向新键，当前【根节点】同时和两条红链接相连，此时，将这两条红链接的颜色变为黑。此时等于所有空链接到根节点的路径上的黑链接数量都增加了1，这时要将当前根结点的链接颜色由黑变红（下面会仔细分析），等于路径数量减去1，与前面抵消，最终还是保证了树的黑色平衡性。。
+    - 新键最大，右红链接指向新键，当前【根节点】同时和两条红链接相连，此时，将这两条红链接的颜色变为黑。此时等于所有空链接到根节点的路径上的黑链接数量都增加了1，这时要将当前根结点的链接颜色由黑变红（flipColor），等于路径数量减去1，与前面抵消，最终还是保证了树的黑色平衡性。。
     - 新键最小，【左子结点】通过红链接指向一个新键，左子结点同时和两条红链接相连，此时，将左子结点右旋转（rotateRight），改其左链接为右链接，调整树结构，此时原左子结点成为新树的根结点，然后与上面操作相同，将从其出发指向两个子结点的红链接改为黑链接即可。
     - 新键置于中间，左子结点发出一条右红链接指向新键，左旋转（rotateLeft）以后，将新键变为左子结点，原左子结点变为其左子结点。然后与上面操作相同，将当前左子结点右旋转（rotateRight），剩余步骤与上面操作相同。
+
+- flipColor红链接的向上传递
+
+    上面三种操作都用到了将两条红链接变黑，父结点的黑链接变红的操作，我们将其封装为一个方法flipColor来负责这个操作。flipColor的操作中根结点会由黑变红，2-3树的说法，相当于把根结点送入了父结点，这意味着在父结点新插入了一个键，如果父结点是红链接（即3-结点），那么仍需要按照在3-结点中插入新键的方式去调整，直到遇到父结点为树的根结点或者是一个黑链接（即2-结点为止）。这个过程就是红链接在树中的向上传递。
     
-    上面三种操作都用到了将两条红链接变黑，父结点的黑链接变红的操作，我们将其封装为一个方法flipColor来负责这个操作。所以上面三种情况变成了：
+- 插入操作对应的红黑树的修复    
+    如上面介绍，在3-结点中插入一个新键时，造成的红黑树失衡。将其修复的动作可以总结为：
     - 新键最大，flipColor
     - 新键最小，rotateRight->flipColor
     - 新键在中间，rotateLeft->rotateRight->flipColor
-
-- 红链接的向上传递
-
-    flipColor的操作中根结点会由黑变红，2-3树的说法，相当于把根结点送入了父结点，这意味着在父结点新插入了一个键，如果父结点是红链接（即3-结点），那么仍需要按照在3-结点中插入新键的方式去调整，直到遇到父结点为树的根结点或者是一个黑链接（即2-结点为止）。这个过程就是红链接在树中的向上传递。
 
 - 左旋转和右旋转
     
@@ -2004,10 +2005,465 @@ public class BST<Key extends Comparable<Key>, Value> implements SFunction<Key, V
     - 左旋转：结点的右子结点为红链接，而左子结点为黑链接时，使用左旋转。
     - 右旋转：结点的左子结点为红链接，并且它的左子结点也是红链接时，也即此时左子结点同时与两个红链接相连的时候，对左子结点使用右旋转。
     - 如果左右子结点均为红链接，则使用flipColor。
-    - 不会出现根结点的右子结点为红链接，同时它的右子结点也为红链接的情况。因为在这种情况出现之前，就已经有一个结点被左旋转了。
     
     如下图所示：
 
 ![image](https://github.com/evsward/mainbase/blob/master/resource/image/search/RBTreeOp.png?raw=true)
 
-#### 开始写代码吧
+- 红黑树插入举例
+    
+    仍旧使用我们测试脚本中的例子，在此红黑树中依次插入3,77,23,60,56,1,20，根据这几个数值的特性，预期效果应该是最终形成一个完全二叉树，分解成示意图如下：
+![image](https://github.com/evsward/mainbase/blob/master/resource/image/search/RedBlackPut.jpeg?raw=true)
+
+    - 左旋示意图(左旋操作子树根结点为3)
+        ![image](https://github.com/evsward/mainbase/blob/master/resource/image/search/rotateLeft.png?raw=true)
+        
+        - 叶链接部分：上面漏画了中间转换时3的左子c也是不变的，这里面c和b都是不用处理的，叶链接部分只有a要处理，先将3和23之间断开，然后将a从23的左子移动到3的右子。
+        - 左旋开始：将刚才与3断开的23重新建立关系，只不过这一次是3带着他的家族成为了23的左子，而相当于23代替了3原来的位置。
+        - 链接颜色收尾工作：3和23之间的红链接不变，只不过之前是由3指向23的右链接，现在是由23指向3的左链接。根结点指到我们局部树的红链接，也就是77的左红链接颜色不变。
+        - 结点大小收尾工作：23代替了3原来的位置，因此也就是原来3的结点大小（因为左旋并不涉及插入删除操作），3的大小需要c和a之和再加上3作为根结点本身的一个位置。
+    
+    - 右旋示意图（右旋操作子树根结点为77）
+        ![image](https://github.com/evsward/mainbase/blob/master/resource/image/search/rotateRightpic.png?raw=true)
+        
+        - 叶链接部分：接着上面左旋继续看，补充77的右子d（所有小写字母代表的均不涉及其家族操作，属于整体事务），c,a,d均不变，先将77和23之间链接断开，然后将b从23的右子移动到77的左子。
+        - 右旋开始：将刚才与77断开的23重新建立关系，只不过这一次是77带着他的家族成为了23的右子，而相当于23代替了77原来的位置。
+        - 链接颜色收尾工作：23与77之间的红链接不变，只不过之前是由77指向23的左链接，现在是由23指向77的右链接。根结点指到我们局部树的黑链接，也就是原来77的颜色黑色现在由23继承。
+        - 结点大小收尾工作：23替代了原来77的位置，因此也就是原来77的结点大小（因为右旋不涉及插入删除操作），77的大小需要b和d之和再加1。
+        
+#### 红黑树代码阶段
+
+根据上面的分析，由于红黑树属于二叉查找树，不涉及结点颜色的方法均可以复用BST，而红黑树保证了结构的完美平衡，查找get方法也可以直接复用BST的方法即可发挥最大效率。然而插入和删除因为要匹配我们的新型红黑树结构，因此要复写get和remove方法。所以总结一下我们要编写的部分：
+- 根据上面的红黑树结点结构的分析，我们需要一个红黑树结点，也可以继承自BST的TreeNode，然后复写加入自己的新属性。另外还要加入私有方法isRed。
+- 根据上面的红黑树插入操作的分析，我们需要实现私有方法rotateLeft,rotateRight,flipColor。
+- 最后还需要复写put和remove方法。
+- 补充：由于定义了自己的node类型，所以其他符号表的基础API都需要在红黑树里重新声明一下，但是方法体仍旧直接复用BST的方法。
+
+
+```
+package algorithms.search.second;
+
+/**
+ * 红黑树
+ * 
+ * @author Evsward
+ * @RedBlackTree 重写put,remove,提高BST效率。
+ * @BST 其他接口直接复用BST
+ * @param <Key>
+ * @param <Value>
+ */
+public class RedBlackBST<Key extends Comparable<Key>, Value> extends BST<Key, Value> {
+
+    private final static boolean RED = true;
+    private final static boolean BLACK = false;
+
+    private Node root;
+
+    /**
+     * 红黑树结点
+     * 
+     * @notice 继承自BST的TreeNode，以期能够复用BST的公共方法。
+     * @author Evsward
+     *
+     */
+    private class Node extends TreeNode {
+        private Node left, right;// 其左子右子结点
+        private boolean color;// 指向该结点的链接的颜色，红或黑
+
+        public Node(Key key, Value val, int size, boolean color) {
+            super(key, val, size);// 这三个属性直接复用父类即可，没有区别
+            this.color = color;
+        }
+
+        /**
+         * 以下两个set方法是必须的，因为要将每次set关联到基类的引用，以便于调用基类关于左右子的方法
+         * 当然了这些方法肯定是与color无关的，跟color有关的都需要自己实现。
+         */
+
+        public void setLeft(Node left) {
+            this.left = left;
+            super.leftChild = left;// 关联到基类的引用
+        }
+
+        public void setRight(Node right) {
+            this.right = right;
+            super.rightChild = right;// 关联到基类的引用
+        }
+
+        @Override
+        public String toString() {// 方便调试，可以直观看到树结构
+            return "NODE key:" + this.key + " value:" + this.value + " size:" + this.size + " color:" + this.color
+                    + " \n leftChild:" + this.left + " rightChild:" + this.right;
+        }
+
+    }
+
+    /**
+     * 判断某结点的链接是否为红
+     * 
+     * @param n
+     *            某结点
+     * @return
+     */
+    private boolean isRed(Node n) {
+        if (n == null)
+            return false;// 如果是空结点，则为空链接，空链接默认为黑链接
+        return n.color == true;
+    }
+
+    /**
+     * 左旋转操作：具体请看上方左旋示意图，有详细解释
+     * 
+     * @param h
+     * @return 左旋转后的树根结点
+     */
+    private Node rotateLeft(Node h) {
+        Node x = h.right;// 先将右子寄存
+        h.setRight(x.left);
+        x.setLeft(h);
+        x.color = h.color;// 其他color均不变，只修改right和h互换颜色。
+        h.color = RED;
+        // 注意不要忘记right和h的size问题，也要互换。
+        x.size = h.size;
+        h.size = size(h.left) + size(h.right) + 1;
+        return x;
+    }
+
+    /**
+     * 右旋转操作：具体请看上方右旋示意图，有详细解释
+     * 
+     * @param h
+     * @return 右旋转后的树根结点
+     */
+    private Node rotateRight(Node h) {
+        Node x = h.left;// 寄存左子
+        // 链接修改
+        h.setLeft(x.right);// 断开链接，转移左子的右子
+        x.setRight(h);
+        // 颜色修改
+        x.color = h.color;
+        h.color = RED;
+        // 大小修改
+        x.size = h.size;
+        h.size = size(h.left) + size(h.right) + 1;
+
+        return x;
+    }
+
+    /**
+     * 颜色转换
+     * 
+     * @param x
+     *            根结点
+     */
+    private void flipColor(Node x) {
+        // 若结点为黑且其左链接和右链接均为红，则颜色转换【插入操作】
+        if (isRed(x.left) && isRed(x.right)) {
+            x.left.color = BLACK;
+            x.right.color = BLACK;
+            x.color = RED;
+        }
+        // 若结点为红且其左链接和右链接均为黑，则颜色转换【删除操作】
+        else if (!isRed(x.left) && !isRed(x.right)) {
+            x.left.color = RED;
+            x.right.color = RED;
+            x.color = BLACK;
+        }
+    }
+
+    public void put(Key key, Value val) {
+        root = put(root, key, val);
+        root.color = BLACK;// 树的根结点的链接特例为黑。
+    }
+
+    /**
+     * 红黑树插入键的自我实现
+     * 
+     * @param x
+     *            在红黑树某结点为根结点的子树中插入键
+     * @param key
+     * @param val
+     * @return 插入键调整以后的树
+     */
+    private Node put(Node x, Key key, Value val) {
+        // 插入操作
+        if (x == null)
+            return new Node(key, val, 1, RED);// 新键采用红链接，才不会打破红黑树的完美黑色平衡
+        // 比较操作
+        int comp = key.compareTo(x.key);
+        if (comp < 0)
+            x.setLeft(put(x.left, key, val));// 插入到左子树
+        else if (comp > 0)
+            x.setRight(put(x.right, key, val));// 插入到右子树
+        else// 修改当前结点的值
+            x.value = val;
+        // 修复操作【这一步是与BST不同的，其他的步骤均一致】
+        if (isRed(x.right) && !isRed(x.left))
+            x = rotateLeft(x);
+        if (isRed(x.left) && isRed(x.left.left))
+            x = rotateRight(x);
+        if (isRed(x.left) && isRed(x.right))// 临时4-结点（包含三个键）
+            flipColor(x);
+        // 调整size
+        x.size = size(x.left) + size(x.right) + 1;
+        return x;
+
+    }
+
+    /**
+     * 向2-3-4树插入一个键
+     * 
+     * @notice 在多进程可以同时访问同一棵树的应用中这个算法要优于2-3树。
+     * @param x
+     * @param key
+     * @param val
+     * @return
+     */
+    @SuppressWarnings("unused")
+    private Node put234Tree(Node x, Key key, Value val) {
+        if (isRed(x.left) && isRed(x.right))// 临时4-结点（包含三个键）
+            flipColor(x);
+        // 插入操作
+        if (x == null)
+            return new Node(key, val, 1, RED);// 新键采用红链接，才不会打破红黑树的完美黑色平衡
+        // 比较操作
+        int comp = key.compareTo(x.key);
+        if (comp < 0)
+            x.setLeft(put(x.left, key, val));// 插入到左子树
+        else if (comp > 0)
+            x.setRight(put(x.right, key, val));// 插入到右子树
+        else// 修改当前结点的值
+            x.value = val;
+        // 修复操作【这一步是与BST不同的，其他的步骤均一致】
+        if (isRed(x.right) && !isRed(x.left))
+            x = rotateLeft(x);
+        if (isRed(x.left) && isRed(x.left.left))
+            x = rotateRight(x);
+        // 调整size
+        x.size = size(x.left) + size(x.right) + 1;
+        return x;
+    }
+
+    public void deleteMin() {
+        // 如果根结点的两个子结点均为黑，则需要将根结点置为红，以方便后续升4结点时不会破坏黑路径等值
+        if (!isRed(root.left) && !isRed(root.right))
+            root.color = RED;
+        root = deleteMin(root);
+        // 如果树不为空，树的根结点的链接特例为黑。
+        if (root.size > 0)
+            root.color = BLACK;
+    }
+
+    /**
+     * 局部构建，将结点x中双子改为红
+     * 
+     * @param x
+     * @return
+     */
+    private Node moveRed(Node x) {
+        // 当前一定是 x.right.color = BLACK
+        flipColor(x);// 改x的双子为红
+        return x;
+    }
+
+    /**
+     * 局部红黑树的删除
+     * 
+     * @notice 最小键一定要与红色沾边（也就是3-结点键的一部分），否则删除一个2-结点会破坏红黑树的平衡
+     *         （直接导致该2-结点被删除后接替的空链接到根节点路径上黑链接总数减一，与其他空链接不等)
+     * @param x
+     *            局部红黑树的根结点
+     * @return 删除最小键且调整回红黑树的根结点
+     */
+    private Node deleteMin(Node x) {
+        if (x.left == null)
+            // x结点并无任何子结点，那么直接删除根结点，返回空树
+            if (x.right == null)
+                return null;
+            // x结点还存在比它大的右子结点，那么删除根结点，返回右子结点
+            else
+                return x.right;
+        // 首先x为根的局部树中，最小键肯定为x.left(x.left==null的情况上面已处理)。所以要对x.left是否与红沾边进行判断。
+        // 在分析x.left结点的时候，局部树的范围是x.left,x.left.right和x.left.left三个结点，若想让x.left与红沾边，这三个结点任意一个为红链接即可满足。
+        // 根据红黑树定义，初始情况下x.left.right不可能为红，所以只有判断当x.left和x.left.left都不为红时，对传入树进行调整。
+        if (!isRed(x.left) && !isRed(x.left.left))
+            x = moveRed(x);
+        // 调整结束，最小键x.left已经与红沾边，开始删除
+        x.setLeft(deleteMin(x.left));
+        // 删除完毕，开始修复红黑树结构。
+        return balance(x);
+    }
+
+    /**
+     * 修复红黑树。
+     * 
+     * @param x
+     * @return
+     */
+    private Node balance(Node x) {
+        // 以下为三种属于2-3树而不属于红黑树的特殊情况
+        if (isRed(x.right))
+            x = rotateLeft(x);
+        if (isRed(x.left) && isRed(x.left.left))
+            x = rotateRight(x);
+        if (isRed(x.left) && isRed(x.right))
+            flipColor(x);
+        x.size = size(x.left) + size(x.right) + 1;
+        return x;
+    }
+
+    public void deleteMax() {// 如果根结点的两个子结点均为黑，则需要将根结点置为红，以方便后续升4结点时不会破坏黑路径等值
+        if (!isRed(root.left) && !isRed(root.right))
+            root.color = RED;
+        root = deleteMax(root);
+        // 如果树不为空，树的根结点的链接特例为黑。
+        if (root.size > 0)
+            root.color = BLACK;
+    }
+
+    private Node deleteMax(Node x) {
+        if (x.right == null)
+            // x结点并无任何子结点，那么直接删除根结点，返回空树
+            if (x.left == null)
+                return null;
+            // x结点还存在比它小的左子结点，那么删除根结点，返回左子结点
+            else
+                return x.left;
+        // 首先x为根的局部树中，最大键肯定为x.right(x.right==null的情况上面已处理)。所以要对x.right是否与红沾边进行判断。
+        // 在分析x.right结点的时候，局部树的范围是x.right,x.right.right和x.right.left三个结点，若想让x.right与红沾边，这三个结点任意一个为红链接即可满足。
+        // 根据红黑树定义，初始情况下x.right.right不可能为红，所以只有判断当x.right和x.right.left都不为红时，对传入树进行调整。
+        if (!isRed(x.right) && !isRed(x.right.left))
+            x = moveRed(x);
+        // 调整结束，最大键x.right已经与红沾边，开始删除
+        x.setRight(deleteMax(x.right));
+        // 删除完毕，开始修复红黑树结构。
+        return balance(x);
+    }
+
+    public void remove(Key key) {
+        if (!isRed(root.left) && !isRed(root.right))
+            root.color = RED;
+        root = remove(root, key);
+        // 如果树不为空，树的根结点的链接特例为黑。
+        if (root.size > 0)
+            root.color = BLACK;
+    }
+
+    private Node remove(Node x, Key key) {
+        if (key.compareTo(x.key) < 0) {
+            if (!isRed(x.left) && !isRed(x.left.left))
+                x = moveRed(x);
+            x.setLeft(remove(x.left, key));
+        } else {
+            if (isRed(x.left))
+                x = rotateRight(x);
+            if (key.compareTo(x.key) == 0 && (x.right == null))
+                return null;
+            if (!isRed(x.right) && !isRed(x.right.left))
+                x = moveRed(x);
+            if (key.compareTo(x.key) == 0) {
+                x.value = get(x.right, min(x.right).key);
+                x.key = min(x.right).key;
+                sanliebx.setRight(deleteMin(x.right));
+            } else {
+                x.setRight(remove(x.right, key));
+            }
+        }
+        return balance(x);
+    }
+
+    /**
+     * 以下方法内部只需调用父类方法即可
+     * 
+     * @notice 因为要对红黑树的根root操作，所以复写下面方法是必要的。
+     */
+    public Value get(Key key) {
+        return get(root, key);
+    }
+
+    public int size() {
+        return size(root);
+    }
+
+    public Iterable<Key> keySet() {
+        return keySet(root);
+    }
+
+    public Key min() {
+        return min(root).key;
+    }
+
+    public Key max() {
+        return max(root).key;
+    }
+
+    public Key select(int k) {
+        return selectNode(root, k).key;
+    }
+
+    public int getRank(Key key) {
+        return getRank(root, key);
+    }
+
+    public Key ceiling(Key key) {
+        TreeNode x = ceiling(root, key);// 最终也没找到比它大的，这个key放在表里面是最大的
+        if (x == null)
+            return null;
+        return x.key;
+    }
+
+    public Key floor(Key key) {
+        TreeNode x = floor(root, key);
+        if (x == null)// 最终也没找到比它小的，这个key放在表里面是最小的
+            return null;
+        return x.key;
+    }
+
+}
+
+```
+经过批量测试结果为：
+
+    13:40:17[testSTBatch]: ------开始批量测试------
+    13:40:17[getBean]: class: algorithms.search.second.SequentialSearchST
+    13:40:17[testST]: 总耗时：341ms
+    13:40:17[getBean]: class: algorithms.search.second.BinarySearchST
+    13:40:17[testST]: 总耗时：42ms
+    13:40:17[getBean]: class: algorithms.search.second.BST
+    13:40:17[testST]: 总耗时：18ms
+    13:40:17[getBean]: class: algorithms.search.second.RedBlackBST
+    13:40:17[testST]: 总耗时：27ms
+    13:40:17[testSTBatch]: ------批量测试成功！------
+
+当我把性能测试的样本数量级增加十倍，结果变成：
+
+    13:43:28[testSTBatch]: ------开始批量测试------
+    13:43:28[getBean]: class: algorithms.search.second.SequentialSearchST
+    13:43:32[testST]: 总耗时：4258ms
+    13:43:32[getBean]: class: algorithms.search.second.BinarySearchST
+    13:43:32[testST]: 总耗时：106ms
+    13:43:32[getBean]: class: algorithms.search.second.BST
+    13:43:33[testST]: 总耗时：85ms
+    13:43:33[getBean]: class: algorithms.search.second.RedBlackBST
+    13:43:33[testST]: 总耗时：55ms
+    13:43:33[testSTBatch]: ------批量测试成功！------
+
+
+
+#### 红黑树总结分析
+
+红黑树的性能测试时间与二叉查找树的非常接近，但是可以看出的是随着样本规模的增大，红黑树的执行时间可以稳定增加，效率方面很快就超过了普通二叉查找树。我们具体去分析一下这其中的原理，测试算法性能最耗时的部分在插入和查找，经过上面的文字分析与代码展示，红黑树的插入算法其实是要比BST多出一部分左旋、右旋，变色的修复红黑树的过程，这个过程会让红黑树的效率不如BST。然而我们都知道，数据一次被插入，却可能会被查找无数次，而虽然红黑树与BST使用的get方法是同一个，但是由于红黑树修复维护的是完美黑色平衡的BST，因此在查找过程中会比BST高效，红黑树始终会保持高度为小于2lg2N，而BST最差情况可能达到N，在这种情况下，红黑树的效率要远超BST。经过多次查找操作以后，红黑树在插入方面损失的一点效率早已被抹平甚至远超于BST。
+
+
+- 补充
+
+这里再补充上有序表API的测试结果：
+
+    14:00:30[testSSTBatch]: ------开始批量测试------
+    14:00:30[getBean]: class: algorithms.search.second.RedBlackBST
+    14:00:30[testSSTBatch]: ------批量测试成功！------
+
+我们的RedBlackBST也通过了有序表API的测试。
+
+### 散列表
+
