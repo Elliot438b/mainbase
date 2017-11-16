@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Random;
 
 /**
- * 已更换最新架构，请转到algorithms.search.second;
+ * 已更换最新架构，请转到algorithms.search.STImpl;
  * 
  * @author Evsward
  *

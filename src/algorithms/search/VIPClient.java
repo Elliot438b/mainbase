@@ -22,6 +22,7 @@ public class VIPClient {
         testST("sf2");
         testST("sf3");
         testST("sf4");
+        testST("sf5");
         testST("map");
         logger.info("------批量测试成功！------");
     }
@@ -173,7 +174,7 @@ public class VIPClient {
             long start = System.currentTimeMillis();
             Random rand = new Random();
             String abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-            for (int i = 0; i < 100000; i++) {
+            for (int i = 0; i < 10000; i++) {
                 sst.put(rand.nextInt(10000), String.valueOf(abc.charAt(rand.nextInt(abc.length())))
                         + String.valueOf(abc.charAt(rand.nextInt(abc.length()))));
             }
@@ -183,14 +184,32 @@ public class VIPClient {
                 a++;
                 sst.get(k);
             }
-            for (int k : sst.keySet()) {
-                sst.get(k);
+            for (int c : sst.keySet()) {
+                sst.get(c);
             }
-            for (int k : sst.keySet()) {
-                sst.get(k);
+            for (int b : sst.keySet()) {
+                sst.get(b);
             }
-            for (int k : sst.keySet()) {
-                sst.get(k);
+            for (int v : sst.keySet()) {
+                sst.get(v);
+            }
+            for (int c : sst.keySet()) {
+                sst.get(c);
+            }
+            for (int b : sst.keySet()) {
+                sst.get(b);
+            }
+            for (int v : sst.keySet()) {
+                sst.get(v);
+            }
+            for (int c : sst.keySet()) {
+                sst.get(c);
+            }
+            for (int b : sst.keySet()) {
+                sst.get(b);
+            }
+            for (int v : sst.keySet()) {
+                sst.get(v);
             }
             logger.debug("0-" + a + "..." + "sst.size() = " + sst.size());
             long end = System.currentTimeMillis();

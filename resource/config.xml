@@ -3,12 +3,13 @@
 	<builder>pattern.builder.IPhone</builder>
 	<ssss>pattern.bridge.GACToyota</ssss>
 	<taolu>pattern.bridge.taolu.SmartTalkingAdapter</taolu>
-	<!-- 符号表实现类 SequentialSearchST BinarySearchST BST RedBlackBST -->
+	<!-- 符号表实现类 SequentialSearchST BinarySearchST BST RedBlackBST ChainHashST -->
 	<sf1>algorithms.search.STImpl.SequentialSearchST</sf1>
 	<sf2>algorithms.search.STImpl.BinarySearchST</sf2>
 	<sf3>algorithms.search.STImpl.BST</sf3>
 	<sf4>algorithms.search.STImpl.RedBlackBST</sf4>
-	<!-- 有序符号表实现类 BinarySearchST BST RedBlackBST -->
+	<sf5>algorithms.search.STImpl.ChainHashST</sf5>
+  <!-- 有序符号表实现类 BinarySearchST BST RedBlackBST -->
 	<ssf1>algorithms.search.STImpl.BinarySearchST</ssf1>
 	<ssf2>algorithms.search.STImpl.BST</ssf2>
 	<ssf3>algorithms.search.STImpl.RedBlackBST</ssf3>
