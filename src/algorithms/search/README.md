@@ -1,6 +1,6 @@
-> 首先保证这一篇分析查找算法的文章，气质与大部分搜索引擎搜索到的文章不同，主要体现在代码上面，会更加高级，结合到很多之前研究过的内容，例如设计模式，泛型等。这也与我的上一篇[面向程序员编程——精研排序算法](http://www.cnblogs.com/Evsward/p/sort.html)的气质也不尽相同，但是针对算法本身的研究一定是侵入骨髓的，请放心。
+> 首先保证这一篇分析查找算法的文章，气质与大部分搜索引擎搜索到的文章不同，主要体现在代码上面，会更加高级，结合到很多之前研究过的内容，例如设计模式，泛型等。这也与我的上一篇[面向程序员编程——精研排序算法](http://www.cnblogs.com/Evsward/p/sort.html)的气质也不尽相同。
 
-> 关键字：查找算法，索引，泛型，二分查找树，红黑树，散列表，API设计，日志设计，测试设计，重构
+> 关键字：哈希，索引，泛型，二分查找树，红黑树，散列表，API设计，日志设计，测试设计，重构
 
 > 查找是在大量的信息中寻找一个特定的信息元素，在计算机应用中，查找是常用的基本运算。
 
@@ -1200,23 +1200,23 @@ public class Client {
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
-  <Appenders>
-    <File name="LogFile" fileName="output.log" bufferSize="1"
-      advertiseURI="./" advertise="true">
-      <PatternLayout
-        pattern="%d{YYYY/MM/dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />
-    </File>
-    <Console name="Console" target="SYSTEM_OUT">
-      <PatternLayout
-        pattern="%d{HH:mm:ss} %-5level %logger{36} - %msg%n" />
-    </Console>
-  </Appenders>
-  <Loggers>
-    <Root level="info">
-      <AppenderRef ref="Console" />
-      <AppenderRef ref="LogFile" />
-    </Root>
-  </Loggers>
+    <Appenders>
+        <File name="LogFile" fileName="output.log" bufferSize="1"
+            advertiseURI="./" advertise="true">
+            <PatternLayout
+                pattern="%d{YYYY/MM/dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />
+        </File>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout
+                pattern="%d{HH:mm:ss} %-5level %logger{36} - %msg%n" />
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="LogFile" />
+        </Root>
+    </Loggers>
 </Configuration>
 ```
 根据我的想法，以上配置描述了：
@@ -1402,8 +1402,8 @@ public class VIPClient {
 同时，为config.xml增加字段：
 
 ```
-  <sf>algorithms.search.second.BinarySearchST</sf>
-  <ssf>algorithms.search.second.BinarySearchST</ssf>
+    <sf>algorithms.search.second.BinarySearchST</sf>
+    <ssf>algorithms.search.second.BinarySearchST</ssf>
 ```
 我也对log格式进行了调整，增加了方法名，以便于区分以上两个测试方法。
 
@@ -1440,13 +1440,13 @@ logger.info("测试成功！");
 ```
 <?xml version="1.0"?>
 <config>
-  <!-- 符号表实现类 SequentialSearchST BinarySearchST BST -->
-  <sf1>algorithms.search.second.SequentialSearchST</sf1>
-  <sf2>algorithms.search.second.BinarySearchST</sf2>
-  <sf3>algorithms.search.second.BST</sf3>
-  <!-- 有序符号表实现类 BinarySearchST BST -->
-  <ssf1>algorithms.search.second.BinarySearchST</ssf1>
-  <ssf2>algorithms.search.second.BST</ssf2>
+    <!-- 符号表实现类 SequentialSearchST BinarySearchST BST -->
+    <sf1>algorithms.search.second.SequentialSearchST</sf1>
+    <sf2>algorithms.search.second.BinarySearchST</sf2>
+    <sf3>algorithms.search.second.BST</sf3>
+    <!-- 有序符号表实现类 BinarySearchST BST -->
+    <ssf1>algorithms.search.second.BinarySearchST</ssf1>
+    <ssf2>algorithms.search.second.BST</ssf2>
 </config> 
 ```
 每一次新增一个实现类只要在config.xml中按照需要添加到相应的位置。
@@ -1463,38 +1463,38 @@ logger.info("测试成功！");
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
-  <Appenders>
-    <File name="LogFile" fileName="output.log" bufferSize="1"
-      advertiseURI="./" advertise="true">
-      <ThresholdFilter level="debug" onMatch="ACCEPT"
-        onMismatch="DENY" />
-      <PatternLayout
-        pattern="%d{YYYY/MM/dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />
-    </File>
-    <!--这个会打印出所有的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档 -->
-    <RollingFile name="RollingFile" fileName="logs/mainbase.log"
-      filePattern="log/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
-      <PatternLayout
-        pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n" />
-      <SizeBasedTriggeringPolicy size="1MB" />
-    </RollingFile>
-    <Console name="Console" target="SYSTEM_OUT">
-      <ThresholdFilter level="info" onMatch="ACCEPT"
-        onMismatch="DENY" />
-      <PatternLayout pattern="%d{HH:mm:ss}[%M]: %msg%n" />
-    </Console>
-  </Appenders>
-  <Loggers>
-    <Root level="debug">
-      <AppenderRef ref="LogFile" />
-      <AppenderRef ref="Console" />
-    </Root>
-  </Loggers>
+    <Appenders>
+        <File name="LogFile" fileName="output.log" bufferSize="1"
+            advertiseURI="./" advertise="true">
+            <ThresholdFilter level="debug" onMatch="ACCEPT"
+                onMismatch="DENY" />
+            <PatternLayout
+                pattern="%d{YYYY/MM/dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />
+        </File>
+        <!--这个会打印出所有的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档 -->
+        <RollingFile name="RollingFile" fileName="logs/mainbase.log"
+            filePattern="log/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout
+                pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n" />
+            <SizeBasedTriggeringPolicy size="1MB" />
+        </RollingFile>
+        <Console name="Console" target="SYSTEM_OUT">
+            <ThresholdFilter level="info" onMatch="ACCEPT"
+                onMismatch="DENY" />
+            <PatternLayout pattern="%d{HH:mm:ss}[%M]: %msg%n" />
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="LogFile" />
+            <AppenderRef ref="Console" />
+        </Root>
+    </Loggers>
 </Configuration>
 ```
 以后每次测试只需要：
-- 执行testSTBatch JUnit，观察控制台输出，是否有“批量测试成功”字样，如果有则通过测试，没有则具体查看日志输出文件，再去调试。
-- 执行testSStBatch JUnit，流程同上。
+- 执行testSTBatch Junit，观察控制台输出，是否有“批量测试成功”字样，如果有则通过测试，没有则具体查看日志输出文件，再去调试。
+- 执行testSStBatch Junit，流程同上。
 
 
 ### 二叉查找树继续
@@ -2041,7 +2041,7 @@ public class BST<Key extends Comparable<Key>, Value> implements SFunction<Key, V
 
 
 ```
-package algorithms.search.second;
+package algorithms.search.STImpl;
 
 /**
  * 红黑树
@@ -2151,24 +2151,16 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> extends BST<Key, Va
     }
 
     /**
-     * 颜色转换
+     * 颜色转换，将双子改为黑，根改为红
      * 
+     * @notice 插入操作时需要将红链接从下传到上。
      * @param x
      *            根结点
      */
     private void flipColor(Node x) {
-        // 若结点为黑且其左链接和右链接均为红，则颜色转换【插入操作】
-        if (isRed(x.left) && isRed(x.right)) {
-            x.left.color = BLACK;
-            x.right.color = BLACK;
-            x.color = RED;
-        }
-        // 若结点为红且其左链接和右链接均为黑，则颜色转换【删除操作】
-        else if (!isRed(x.left) && !isRed(x.right)) {
-            x.left.color = RED;
-            x.right.color = RED;
-            x.color = BLACK;
-        }
+        x.left.color = BLACK;
+        x.right.color = BLACK;
+        x.color = RED;
     }
 
     public void put(Key key, Value val) {
@@ -2257,12 +2249,14 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> extends BST<Key, Va
     /**
      * 局部构建，将结点x中双子改为红
      * 
+     * @notice 删除的操作与插入是相反的，它需要将红链接从上传到下。
      * @param x
      * @return
      */
     private Node moveRed(Node x) {
-        // 当前一定是 x.right.color = BLACK
-        flipColor(x);// 改x的双子为红
+        x.left.color = RED;
+        x.right.color = RED;
+        x.color = BLACK;
         return x;
     }
 
@@ -2364,7 +2358,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> extends BST<Key, Va
             if (key.compareTo(x.key) == 0) {
                 x.value = get(x.right, min(x.right).key);
                 x.key = min(x.right).key;
-                sanliebx.setRight(deleteMin(x.right));
+                x.setRight(deleteMin(x.right));
             } else {
                 x.setRight(remove(x.right, key));
             }
@@ -2435,24 +2429,24 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> extends BST<Key, Va
     13:40:17[testST]: 总耗时：27ms
     13:40:17[testSTBatch]: ------批量测试成功！------
 
-当我把性能测试的样本数量级增加十倍，结果变成：
+当我把查询次数翻8倍，结果变成：
 
-    13:43:28[testSTBatch]: ------开始批量测试------
-    13:43:28[getBean]: class: algorithms.search.second.SequentialSearchST
-    13:43:32[testST]: 总耗时：4258ms
-    13:43:32[getBean]: class: algorithms.search.second.BinarySearchST
-    13:43:32[testST]: 总耗时：106ms
-    13:43:32[getBean]: class: algorithms.search.second.BST
-    13:43:33[testST]: 总耗时：85ms
-    13:43:33[getBean]: class: algorithms.search.second.RedBlackBST
-    13:43:33[testST]: 总耗时：55ms
-    13:43:33[testSTBatch]: ------批量测试成功！------
+    08:51:55[testSTBatch]: ------开始批量测试------
+    08:51:55[getBean]: class: algorithms.search.STImpl.SequentialSearchST
+    08:51:57[testST]: 总耗时：1706ms
+    08:51:57[getBean]: class: algorithms.search.STImpl.BinarySearchST
+    08:51:57[testST]: 总耗时：56ms
+    08:51:57[getBean]: class: algorithms.search.STImpl.BST
+    08:51:57[testST]: 总耗时：67ms
+    08:51:57[getBean]: class: algorithms.search.STImpl.RedBlackBST
+    08:51:57[testST]: 总耗时：35ms
+    08:51:57[testSTBatch]: ------批量测试成功！------
 
 
 
 #### 红黑树总结分析
 
-红黑树的性能测试时间与二叉查找树的非常接近，但是可以看出的是随着样本规模的增大，红黑树的执行时间可以稳定增加，效率方面很快就超过了普通二叉查找树。我们具体去分析一下这其中的原理，测试算法性能最耗时的部分在插入和查找，经过上面的文字分析与代码展示，红黑树的插入算法其实是要比BST多出一部分左旋、右旋，变色的修复红黑树的过程，这个过程会让红黑树的效率不如BST。然而我们都知道，数据一次被插入，却可能会被查找无数次，而虽然红黑树与BST使用的get方法是同一个，但是由于红黑树修复维护的是完美黑色平衡的BST，因此在查找过程中会比BST高效，红黑树始终会保持高度为小于2lg2N，而BST最差情况可能达到N，在这种情况下，红黑树的效率要远超BST。经过多次查找操作以后，红黑树在插入方面损失的一点效率早已被抹平甚至远超于BST。
+红黑树的性能测试时间与二叉查找树的非常接近，但是可以看出的是随着查询次数增加，红黑树的执行时间稳定上涨，效率方面很快就超过了普通二叉查找树。我们具体去分析一下这其中的原理，测试算法性能最耗时的部分在插入和查找，经过上面的文字分析与代码展示，红黑树的插入算法其实是要比BST多出一部分左旋、右旋，变色的修复红黑树的过程，这个过程会让红黑树的效率不如BST。然而我们都知道，数据一次被插入，却可能会被查找无数次，而虽然红黑树与BST使用的get方法是同一个，但是由于红黑树修复维护的是完美黑色平衡的BST，因此在查找过程中会比BST高效，红黑树始终会保持高度为小于2lg2N，而BST最差情况可能达到N，在这种情况下，红黑树的效率要远超BST。经过多次查找操作以后，红黑树在插入方面损失的一点效率早已被抹平甚至远超于BST。
 
 
 - 补充
@@ -2467,3 +2461,234 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> extends BST<Key, Va
 
 ### 散列表
 
+> 终于要分析查找算法的终极大魔王：散列表。
+
+先陈列概念，后面会详细解释，
+
+> 基于一个数组实现的无序符号表，将键作为数组的索引而数组中键i处储存的就是它对应的值，再次基础上，散列表能够处理更加复杂的类型的键。
+
+- 散列查找算法分为两步：
+    - 使用散列函数，将被查找的键转化为数组的一个索引。
+    - 处理碰撞冲突的过程，其中有两种方法：
+        - 拉链法
+        - 线性探测法。
+
+> 散列表是算法在时间和空间上做出权衡的经典例子。
+
+如果没有内存限制，我们可以直接将键作为数组索引，那么所有查找操作只需要访问内存一次即可完成。这种情况当键很多时，需要内存非常大。另一方面，如果没有时间限制，可以使用无序数组并进行顺序查找，这样就只需要少量内存。而散列表使用了适度的空间和时间并在这两个极端之间找到了一种平衡。而且奇妙的是，我们只需要调整散列算法的参数就可以在空间和时间之间做出取舍。
+
+> 上面提到的散列算法中在空间和时间之间取舍的参数。我们将会用概率论的经典结论来帮助我们确定这个参数。
+
+
+> 立个flag，使用散列表，可以是实现在一般应用中拥有常数级别的查找和插入操作的符号表。这使得散列表在很多情况下成为实现简单符号表的最佳选择。
+
+接下来，我们将会一一验证。
+
+#### 散列值（哈希值）
+> 对于每种类型的键，我们都需要一个与之对应的散列函数，以此获得一个散列值。
+
+- 如果键是一个数，比如社保号，我们不考虑内存空间的情况下，就可以直接使用这个数作为散列值；
+- 如果键是一个字符串，比如人名，我们就需要将这个字符串转化为一个数作为散列值；
+- 如果键包含多个部分，例如邮箱地址，我们需要用某种方法将这些部分结合起来，求得一个数作为散列值。
+
+#### hashCode()
+
+在java中，每种数据类型都需要相应的散列函数，所以他们都继承了一个能够返回一个32位整数的hashCode()方法。每一种数据类型的hashCode()方法必须与equals()方法一致。默认情况下，equal方法就是通过比较两个相同数据类型的值的hashcode是否一致，而这个hashcode是通过调用hashCode方法获取到的，如果一致才表示相等，返回true。这也就说明了，如果我们要为自定义的数据类型定义散列函数，需要同时重写hashCode()和equals()两个方法。
+
+
+#### 散列函数（哈希算法），也称作散列（动词）
+
+> 散列函数：如果我们有一个能保存M个键值对的数组，那么就需要一个能够将任意键转化为该数组范围内的索引[0,M-1]的散列函数。
+
+正如在排序算法中的散列桶，他们有着相同意义的散列函数，我们对散列函数的要求是易于计算且能够均匀分布所有的键。
+
+散列也是一个数据压缩的过程，通过散列，我们不仅获得了一个可供快速查询的散列表，也将原数据进行了压缩，甚至加密，因为在解压缩的时候，或者解密的时候，要使用相同的散列函数逆向获得源数据。散列值所在的散列表（也是索引表）应该是一个连续的内存存储空间，这个存储空间称为散列地址。
+
+- 除留余数法
+
+如果我们想保留一个长度为M的数组，用来存储待处理数据，中间这个散列函数可以使用除留余数法，也就是在待处理数据中使用任意一个值k除以R，R小于等于M，一般来说R最好是素数（除了1和自身，不会被其他自然数整除）或者M本身，如果R选得不好，会出现很多重复元素。保留余数作为其散列值存入长度为M的数组内。通过除留余数法，我们可以将数据划分到[0,M-1]这个区间里。这是常见的散列函数。
+> k%R = hash
+
+如果数据不是正整数，上面的公式就不能成立，如果键是0-1之间的实数，我们可以将它乘以M并四舍五入得到一个[0,M-1]区间的索引值。
+
+相应的，针对字符串以及组合键，都可以通过散列函数来处理，但散列函数永远不是死的，需要你根据实际数据情况去设计，一般来讲最终都会依赖除留余数法，但显然它肯定不是最具智慧的部分。
+
+- 散列函数的应用场景：
+    - 传输校验，也可作为数字签名，我在做支付接口的时候，与微信或支付宝直接有接口协议，整合好传输数据以后，还会在末尾加一个MD5加密串用来做传输校验，否则第三方那边不认识你。
+    - 信息安全，上面的传输校验同样也是信息安全范畴，MD5加密数据可以直接传输这个加密串而不是数据明文，甚至键的信息也不要暴露（当然这一点很难，除非双方约定好所有键结构维持统一）
+- 此外文件也有哈希值，文件也属于数据类型的一种。
+- 再次重申一下优秀的散列函数的三个标准：
+    - 一致性：等价的键必然产生相等的散列值
+    - 高效性：计算简便
+    - 均匀性：均匀分布所有的键（其实从字面意思上理解，散列就是均匀分布的意思）
+
+- java程序员的权衡
+要知道，设计同时满足以上三点的优秀稳定的散列函数是不容易的，但是java有很多专家在做这些事情，而java程序员们则非常幸福，可以直接调用hashCode即可。然而为什么我们还要学习散列，就是散列对于程序性能的影响是很大的，优秀的散列带来优秀的性能，糟糕的散列可能引发性能的大问题，所以在性能要求的时候要谨慎，尤其是遇到多线程操作的时候，例如我们常用的HashMap就是线程不安全的，为了避免它在多线程程序中出现问题，我们要做一些额外工作去处理。所以有性能要求时，一定要严格测试你的散列。
+
+#### 碰撞
+上面在散列表定义时也提到过，散列算法的要注意两件事，一个是如何将键转化为索引值，另一个就是避免碰撞。
+
+> 当我们使用散列函数的时候，有很大可能会出现重复数据，也就是说不同的键可能经过散列函数以后拥有了相同的散列值，而equals方法会默认认为他们是相等的，这就发生了散列的碰撞，也就做冲突。
+
+例如101和201经过除留余数法，而R恰好选的是10，数组长度就是10，这时候这两个值的散列值都为1，而显然101不可能等于201。因此，处理碰撞的能力是散列函数必备的另一神功，如果说散列数据是进攻的武器，那么处理碰撞就是防守武器，攻防两端均不落下风，才是优秀的散列算法。
+
+前面提到了两种处理碰撞的方法，一种是拉链法，一种是线性探测法。
+
+#### 基于拉链法的散列表
+
+> 将大小为M的数组中的每个元素指向一条链表，链表中的每个结点都存储了散列值为该元素的索引的键值对。
+
+这非常类似与排序算法中计数排序，基数排序以及桶排序的思想。这个方法的基本思想就是选择足够大的M，使得所有链表都尽可能短以保证高效的查找。查找时首先根据散列值找到对应的链表，然后再沿着链表顺序查找相应的键。这与桶排序非常类似，想了解桶排序的朋友请转到[面向程序员编程——精研排序算法](http://www.cnblogs.com/Evsward/p/sort.html)搜索“桶排序”即可找到。
+
+- 码前准备：
+    - 我们定义一个基于拉链法的散列符号表SeparateChainHashST。
+    - 通过上面的分析，可以知道，这个符号表本身包含着一个无序顺序查找的符号表是用单链表实现的，即我们前面实现的SequentialSearchST。
+    - 要尽量让每个链表越短越好，即数据越散越好。
+
+
+
+```
+package algorithms.search.STImpl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import algorithms.search.SFunction;
+
+/**
+ * 基于拉链法的散列表
+ * 
+ * @notice 处理碰撞 将散列值相同的key（但实际上key是不同的）存入一个链表，而整个散列表容器是一个链表数组
+ * @author Evsward
+ *
+ * @param <Key>
+ * @param <Value>
+ */
+public class ChainHashST<Key, Value> implements SFunction<Key, Value> {
+
+    private int N;// 键值对总数（等于散列表上每个单链表的元素个数之和）
+    private int M;// 散列表长度（也就是M条链表，只不过有的链表只有一个元素，有的有多个元素）
+    private SequentialSearchST<Key, Value>[] st; // 单链表数组
+
+    public ChainHashST() {
+        this(997);// 初始化定义一个素数为链表数组长度
+    }
+
+    @SuppressWarnings("unchecked")
+    /**
+     * 构建一个长度为M的链表数组，并且为链表数组的每一个位置开辟内存空间。
+     * 
+     * @param M
+     */
+    public ChainHashST(int M) {
+        this.M = M;
+        // 注意：new SequentialSearchST<Key, Value>[M]这样是报错的，因为java不允许泛型数组。
+        st = new SequentialSearchST[M];
+        for (int i = 0; i < M; i++) {
+            st[i] = new SequentialSearchST<Key, Value>();
+        }
+    }
+
+    /**
+     * 获得散列值
+     * 
+     * @param key
+     * @return
+     */
+    private int hash(Key key) {
+        // 32位整型值，去掉标志位留31位使用
+        return (key.hashCode() & 0x7fffffff) % M;
+    }
+
+    @Override
+    public int size() {
+        int size = 0;
+        for (int i = 0; i < M; i++) {
+            size += st[i].size();
+        }
+        N = size;
+        return N;
+    }
+
+    @Override
+    public Value get(Key key) {
+        return st[hash(key)].get(key);
+    }
+
+    @Override
+    public void put(Key key, Value val) {
+        st[hash(key)].put(key, val);
+    }
+
+    @Override
+    public Iterable<Key> keySet() {
+        List<Key> result = new ArrayList<Key>();
+        for (int i = 0; i < M; i++) {
+            result.addAll((List<Key>) st[i].keySet());
+        }
+        return result;
+    }
+
+    @Override
+    public void remove(Key key) {
+        for (Key k : keySet()) {
+            if (key.equals(k)) {
+                // st[hash(k)]取的是链表数组下标为当前键的哈希值的链表元素，该链表包含那些哈希相等但是key不同的键
+                // 这里是按照key删除，key不会重复
+                st[hash(k)].remove(key);
+            }
+        }
+    }
+
+}
+
+```
+测试输出结果为：
+
+    16:41:07[testSTBatch]: ------开始批量测试------
+    16:41:07[getBean]: class: algorithms.search.STImpl.SequentialSearchST
+    16:41:09[testST]: 总耗时：1817ms
+    16:41:09[getBean]: class: algorithms.search.STImpl.BinarySearchST
+    16:41:09[testST]: 总耗时：62ms
+    16:41:09[getBean]: class: algorithms.search.STImpl.BST
+    16:41:09[testST]: 总耗时：159ms
+    16:41:09[getBean]: class: algorithms.search.STImpl.RedBlackBST
+    16:41:09[testST]: 总耗时：36ms
+    16:41:10[getBean]: class: algorithms.search.STImpl.ChainHashST
+    16:41:10[testST]: 总耗时：9ms
+    16:41:10[testST]: class: java.util.HashMap
+    16:41:10[testST]: 总耗时：5ms
+    16:41:10[testSTBatch]: ------批量测试成功！------
+
+
+因为ChainHashST并不属于有序表，因此只对其进行ST测试。通过结果发现，我们新写的ChainHashST虽然算上各种复杂注释只有90行左右，但是效率是十分惊人的。与JDK的Map作对照，似乎也不差啥了。远超所有二分查找算法家族。其实ChainHashST的代码实现非常简单，要做的就是处理好哈希部分的内容，其余关于符号表的具体方法全部重用SequentialSearchST顺序查找。如果只用SequentialSearchST顺序查找的话，效率是所有算法中最低的，但是如果通过ChainHashST将数据散列，存入哈希相同key不同的数据到每个单链表，单链表内仍旧使用顺序查找，随着数据的散列越来越均匀，顺序查找的单链表非常短，其遍历显得十分高效。最终竟超越了实现复杂的二分算法家族。可喜可贺。
+
+- 链表数组的大小
+
+对于ChainHashST，我们要引起注意的是在对其构造初始化时，我们指定了链表数组的大小为997（使用一个素数当做数组大小，可以使数据散列更加均匀），取得了不错的实验效果。通过这些内容，毋庸置疑的是，在实现基于拉链法的散列表时，我们的目标是选择适当的数组大小M，既不会因为空链表而浪费大量内存，也不会因为链表太长而在查找上浪费太多时间。如果存入的键多于初始大小，查找所需的时间只会比选择更大的数组稍长，如果少于预期，虽然有些空间浪费但是查找会非常快，以空间换取时间。如果我们的内存资源不是很紧张，大可选择一个足够大的M，但这里一定要注意，M并不是越大越好，当M远大于你数据使用空间的时候，在如此大的M中去遍历也是一件耗神的事，会增加性能负担，因此选择M是个技术活。
+
+- 关于有序表的API
+散列最主要的目的在于均匀地将键散布开来，因此在计算散列后键的顺序信息就丢失了，如果你需要快速找到最大或者最小的键，或是查找某个范围内的键，或是实现SSFunction中关于有序符号表的任何其他方法，散列表都不是合适的选择，因为这些操作的运行时间都是线性的。对于ChainHashST，它的实现足够简单，在键的顺序并不重要的应用中，它可能是最快的（也是使用最广泛的）符号表实现。当使用java的内置数据类型作为键，或是在使用含有经过完善测试的hashCode方法的自定义类型作为键时，它都能提供快速而方便的查找和插入操作。
+
+#### 基于线性探测法的散列表
+
+- 开放地址散列表
+
+> 使用大小M的数组保存N个键值对时，M>N。我们的空位会比数据多，利用这些空位解决碰撞冲突，基于这种策略的所有方法被统称为开放地址散列表。
+
+开放地址散列表的核心思想是，同样的内存大小，宁可将他们多多分配到散列表上面，即使是空元素，也不要过多分给链表，这是好理解的，散列表的夙愿也正是如此。
+
+线性探测法是开放地址散列表中最简单的方法。
+> 当碰撞发生时，去检查散列表中碰撞的下一个位置，检查的结果有：1，命中，找到键；2，未命中，键为空，停止查找；3，键不等，继续查找。
+
+探测：查找到数组结尾时折回数组开头继续查找，直到遇到空键或者找到该键为止。这种操作被称为探测。与比较些许不同之处在于探测有时只是在测试键是否为空。
+
+- 码前准备：
+    - 新建一个线性探测法的散列符号表ProbeHashST。
+    - 内部数据结构不是链表，也不是二叉树，而是并行数组，就像二分查找那样，一条保存键，一条保存值。
+    - 依然采用散列函数产生访问数据所需的数组索引。
+
+
+```
+
+```
