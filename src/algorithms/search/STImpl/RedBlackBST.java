@@ -230,10 +230,10 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> extends BST<Key, Va
         if (x.left == null)
             // x结点并无任何子结点，那么直接删除根结点，返回空树
             if (x.right == null)
-                return null;
+            return null;
             // x结点还存在比它大的右子结点，那么删除根结点，返回右子结点
             else
-                return x.right;
+            return x.right;
         // 首先x为根的局部树中，最小键肯定为x.left(x.left==null的情况上面已处理)。所以要对x.left是否与红沾边进行判断。
         // 在分析x.left结点的时候，局部树的范围是x.left,x.left.right和x.left.left三个结点，若想让x.left与红沾边，这三个结点任意一个为红链接即可满足。
         // 根据红黑树定义，初始情况下x.left.right不可能为红，所以只有判断当x.left和x.left.left都不为红时，对传入树进行调整。
@@ -276,10 +276,10 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> extends BST<Key, Va
         if (x.right == null)
             // x结点并无任何子结点，那么直接删除根结点，返回空树
             if (x.left == null)
-                return null;
+            return null;
             // x结点还存在比它小的左子结点，那么删除根结点，返回左子结点
             else
-                return x.left;
+            return x.left;
         // 首先x为根的局部树中，最大键肯定为x.right(x.right==null的情况上面已处理)。所以要对x.right是否与红沾边进行判断。
         // 在分析x.right结点的时候，局部树的范围是x.right,x.right.right和x.right.left三个结点，若想让x.right与红沾边，这三个结点任意一个为红链接即可满足。
         // 根据红黑树定义，初始情况下x.right.right不可能为红，所以只有判断当x.right和x.right.left都不为红时，对传入树进行调整。

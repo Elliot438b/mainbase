@@ -33,7 +33,7 @@ public class ST<Key, Value> {
      * 采用延时删除，将key的值置为null
      * 
      * @param key
-     *            将要删除的key的值
+     *            将要删除的key
      */
     public void delete(Key key) {
         sf.put(key, null);
@@ -81,7 +81,11 @@ public class ST<Key, Value> {
         return sf.get(key);
     }
 
-    // 即时删除
+    /**
+     * 即时删除（与延时删除相对应的） 直接删掉某key
+     * 
+     * @param key
+     */
     public void remove(Key key) {
         sf.remove(key);
     }

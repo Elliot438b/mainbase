@@ -16,7 +16,7 @@ public interface SFunction<Key, Value> {
 
     public void put(Key key, Value val);// 插入
 
-    public Iterable<Key> keySet();// 迭代表内所有key
+    public Iterable<Key> keySet();// 返回一个可迭代的表内所有key的集合
 
     public void remove(Key key);// 强制删除一个key以及它的节点
 }
