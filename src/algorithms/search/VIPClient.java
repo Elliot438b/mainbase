@@ -23,6 +23,7 @@ public class VIPClient {
         testST("sf3");
         testST("sf4");
         testST("sf5");
+        testST("sf6");
         testST("map");
         logger.info("------批量测试成功！------");
     }
@@ -48,10 +49,10 @@ public class VIPClient {
             }
             assertTrue(sst.size() == 1);
             sst.put(77, "eclipse");
-            sst.put(23, "idea");
-            sst.put(60, "cup");
-            sst.put(56, "plane");
-            logger.debug("sst.put 77,23,60,56 --- sst.size() = " + sst.size());
+            sst.put(32, "idea");
+            sst.put(65, "cup");
+            sst.put(256, "plane");
+            logger.debug("sst.put 77,32,65,256 --- sst.size() = " + sst.size());
             assertTrue(sst.size() == 5);
             if (!sst.containsKey(1)) {
                 sst.put(1, "lamp");
@@ -127,10 +128,10 @@ public class VIPClient {
             }
             assertTrue(sst.size() == 1);
             sst.put(77, "eclipse");
-            sst.put(23, "idea");
-            sst.put(60, "cup");
-            sst.put(56, "plane");
-            logger.debug("sst.put 77,23,60,56 --- sst.size() = " + sst.size());
+            sst.put(32, "idea");
+            sst.put(65, "cup");
+            sst.put(256, "plane");
+            logger.debug("sst.put 77,32,65,256 --- sst.size() = " + sst.size());
             assertTrue(sst.size() == 5);
             if (!sst.containsKey(1)) {
                 sst.put(1, "lamp");
@@ -161,6 +162,8 @@ public class VIPClient {
             logger.debug("sst.remove(77)...【有序表尾删除】，顺序表中删除");
             logger.debug("sst.get(77) = " + sst.get(77) + " --- sst.size() = " + sst.size());
             assertTrue(sst.size() == 4);
+            sst.put(3, "fasssn");
+            sst.put(3, "fassxxsn");
             sst.remove(3);// 有序表中删除，【顺序表尾删除】
             logger.debug("sst.remove(3)...有序表中删除，【顺序表尾删除】");
             logger.debug("sst.get(3) = " + sst.get(3) + " --- sst.size() = " + sst.size());
@@ -230,9 +233,9 @@ public class VIPClient {
         sst = new SST<Integer, String>((SFunctionSorted<Integer, String>) oSf);
         sst.put(3, "fan");
         sst.put(77, "eclipse");
-        sst.put(23, "idea");
-        sst.put(60, "cup");
-        sst.put(56, "plane");
+        sst.put(32, "idea");
+        sst.put(65, "cup");
+        sst.put(256, "plane");
         sst.put(1, "lamp");
         sst.put(20, "computer");
         logger.debug("-----①遍历当前集合【观察输出顺序】-----");
@@ -241,19 +244,19 @@ public class VIPClient {
         }
         logger.debug("-----②有序表特有功能测试-----");
         logger.debug("sst.ceiling(59) = " + sst.ceiling(59));
-        assertTrue(sst.ceiling(59) == 60);
+        assertTrue(sst.ceiling(59) == 65);
         logger.debug("sst.floor(59) = " + sst.floor(59));
-        assertTrue(sst.floor(59) == 56);
+        assertTrue(sst.floor(59) == 32);
         logger.debug("sst.min() = " + sst.min());
         assertTrue(sst.min() == 1);
         logger.debug("sst.max() = " + sst.max());
-        assertTrue(sst.max() == 77);
+        assertTrue(sst.max() == 256);
         logger.debug("sst.select(1)...【有序查询排名第一的key】 = " + sst.select(1));
         assertTrue(sst.select(1) == 1);
         logger.debug("sst.select(3)...【有序查询排名中间的key】 = " + sst.select(3));
         assertTrue(sst.select(3) == 20);
         logger.debug("sst.select(7)...【有序查询排名最后的key】 = " + sst.select(7));
-        assertTrue(sst.select(7) == 77);
+        assertTrue(sst.select(7) == 256);
         logger.debug("测试成功！");
     }
 }

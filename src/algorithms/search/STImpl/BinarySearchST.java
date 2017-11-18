@@ -9,7 +9,7 @@ import algorithms.search.SFunctionSorted;
 /**
  * 一对平行的可变长度数组，参照ResizeArrayStack
  * 
- * @author Evsward
+ * @author Evsward 其实二分查找可以对插入的键实现自动排序
  * @notice 二分查找为Key有序：所以Key的泛型的边界为Comparable，可比较的，否则无法判断是否有序
  * @param <Key>
  * @param <Value>

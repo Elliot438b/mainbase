@@ -1200,23 +1200,23 @@ public class Client {
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
-    <Appenders>
-        <File name="LogFile" fileName="output.log" bufferSize="1"
-            advertiseURI="./" advertise="true">
-            <PatternLayout
-                pattern="%d{YYYY/MM/dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />
-        </File>
-        <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout
-                pattern="%d{HH:mm:ss} %-5level %logger{36} - %msg%n" />
-        </Console>
-    </Appenders>
-    <Loggers>
-        <Root level="info">
-            <AppenderRef ref="Console" />
-            <AppenderRef ref="LogFile" />
-        </Root>
-    </Loggers>
+  <Appenders>
+    <File name="LogFile" fileName="output.log" bufferSize="1"
+      advertiseURI="./" advertise="true">
+      <PatternLayout
+        pattern="%d{YYYY/MM/dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />
+    </File>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout
+        pattern="%d{HH:mm:ss} %-5level %logger{36} - %msg%n" />
+    </Console>
+  </Appenders>
+  <Loggers>
+    <Root level="info">
+      <AppenderRef ref="Console" />
+      <AppenderRef ref="LogFile" />
+    </Root>
+  </Loggers>
 </Configuration>
 ```
 根据我的想法，以上配置描述了：
@@ -1402,8 +1402,8 @@ public class VIPClient {
 同时，为config.xml增加字段：
 
 ```
-    <sf>algorithms.search.second.BinarySearchST</sf>
-    <ssf>algorithms.search.second.BinarySearchST</ssf>
+  <sf>algorithms.search.second.BinarySearchST</sf>
+  <ssf>algorithms.search.second.BinarySearchST</ssf>
 ```
 我也对log格式进行了调整，增加了方法名，以便于区分以上两个测试方法。
 
@@ -1440,13 +1440,13 @@ logger.info("测试成功！");
 ```
 <?xml version="1.0"?>
 <config>
-    <!-- 符号表实现类 SequentialSearchST BinarySearchST BST -->
-    <sf1>algorithms.search.second.SequentialSearchST</sf1>
-    <sf2>algorithms.search.second.BinarySearchST</sf2>
-    <sf3>algorithms.search.second.BST</sf3>
-    <!-- 有序符号表实现类 BinarySearchST BST -->
-    <ssf1>algorithms.search.second.BinarySearchST</ssf1>
-    <ssf2>algorithms.search.second.BST</ssf2>
+  <!-- 符号表实现类 SequentialSearchST BinarySearchST BST -->
+  <sf1>algorithms.search.second.SequentialSearchST</sf1>
+  <sf2>algorithms.search.second.BinarySearchST</sf2>
+  <sf3>algorithms.search.second.BST</sf3>
+  <!-- 有序符号表实现类 BinarySearchST BST -->
+  <ssf1>algorithms.search.second.BinarySearchST</ssf1>
+  <ssf2>algorithms.search.second.BST</ssf2>
 </config> 
 ```
 每一次新增一个实现类只要在config.xml中按照需要添加到相应的位置。
@@ -1463,33 +1463,33 @@ logger.info("测试成功！");
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
-    <Appenders>
-        <File name="LogFile" fileName="output.log" bufferSize="1"
-            advertiseURI="./" advertise="true">
-            <ThresholdFilter level="debug" onMatch="ACCEPT"
-                onMismatch="DENY" />
-            <PatternLayout
-                pattern="%d{YYYY/MM/dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />
-        </File>
-        <!--这个会打印出所有的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档 -->
-        <RollingFile name="RollingFile" fileName="logs/mainbase.log"
-            filePattern="log/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
-            <PatternLayout
-                pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n" />
-            <SizeBasedTriggeringPolicy size="1MB" />
-        </RollingFile>
-        <Console name="Console" target="SYSTEM_OUT">
-            <ThresholdFilter level="info" onMatch="ACCEPT"
-                onMismatch="DENY" />
-            <PatternLayout pattern="%d{HH:mm:ss}[%M]: %msg%n" />
-        </Console>
-    </Appenders>
-    <Loggers>
-        <Root level="debug">
-            <AppenderRef ref="LogFile" />
-            <AppenderRef ref="Console" />
-        </Root>
-    </Loggers>
+  <Appenders>
+    <File name="LogFile" fileName="output.log" bufferSize="1"
+      advertiseURI="./" advertise="true">
+      <ThresholdFilter level="debug" onMatch="ACCEPT"
+        onMismatch="DENY" />
+      <PatternLayout
+        pattern="%d{YYYY/MM/dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />
+    </File>
+    <!--这个会打印出所有的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档 -->
+    <RollingFile name="RollingFile" fileName="logs/mainbase.log"
+      filePattern="log/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+      <PatternLayout
+        pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n" />
+      <SizeBasedTriggeringPolicy size="1MB" />
+    </RollingFile>
+    <Console name="Console" target="SYSTEM_OUT">
+      <ThresholdFilter level="info" onMatch="ACCEPT"
+        onMismatch="DENY" />
+      <PatternLayout pattern="%d{HH:mm:ss}[%M]: %msg%n" />
+    </Console>
+  </Appenders>
+  <Loggers>
+    <Root level="debug">
+      <AppenderRef ref="LogFile" />
+      <AppenderRef ref="Console" />
+    </Root>
+  </Loggers>
 </Configuration>
 ```
 以后每次测试只需要：
@@ -2690,5 +2690,292 @@ public class ChainHashST<Key, Value> implements SFunction<Key, Value> {
 
 
 ```
+package algorithms.search.STImpl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import algorithms.search.SFunction;
+
+/**
+ * 基于线性探测的符号表
+ * 
+ * @connect BinarySearchST，resize实现，平行数组，均十分类似，而且也可以对插入的键实现自动排序
+ *          并且先进的是这里的Key并不需要继承Comparable接口，因为它不是靠比较大小，而是比较哈希值是否相等。
+ * @author Evsward
+ *
+ * @param <Key>
+ * @param <Value>
+ */
+public class ProbeHashST<Key, Value> implements SFunction<Key, Value> {
+
+    private Key[] keys;// 键数组
+    private Value[] vals;// 值数组
+
+    private int N;// 符号表中键值对的总数，N是很小于M的
+    private int M;// 散列表大小，M有很多空元素
+
+    @SuppressWarnings("unchecked")
+    public ProbeHashST() {
+        this.M = 1;// 初始化将散列表长度设置为16，定下来以后就不能变了
+        keys = (Key[]) new Object[M];
+        vals = (Value[]) new Object[M];
+    }
+
+    @SuppressWarnings("unchecked")
+    public ProbeHashST(int Cap) {
+        this.M = Cap;
+        keys = (Key[]) new Object[M];
+        vals = (Value[]) new Object[M];
+    }
+
+    /**
+     * 获得散列值
+     * 
+     * @param key
+     * @return
+     */
+    private int hash(Key key) {
+        // 获取key的哈希值为一个32位整型值，去掉标志位留31位使用，通过除留余数法获得散列值
+        return (key.hashCode() & 0x7fffffff) % M;
+    }
+
+    /**
+     * 数组增容减容
+     * 
+     * @notice 复制于BinarySearchST 稍作调整。
+     * @param 数组容量大小
+     */
+    public void resize(int cap) {
+        // 先创建一个新的容量的空散列表
+        ProbeHashST<Key, Value> t = new ProbeHashST<Key, Value>(cap);
+        for (int i = 0; i < M; i++) {// 遍历当前的存储数据的散列表
+            /**
+             * 神奇之处在于每次resize，都会将数据重新按照新的长度计算哈希存入容器。
+             * 
+             * @性能 但是每次resize都会触发重新遍历的put，会消耗性能，但是随着样本规模增大，resize的次数变少，性能影响会越来越小
+             */
+            if (keys[i] != null)
+                // 将原数据依次重新put到新容量的空散列表中（会按照新的空散列表进行hash算法，所以数据位置会发生变化）
+                t.put(keys[i], vals[i]);
+        }
+        keys = t.keys;
+        vals = t.vals;
+        M = t.M;
+    }
+
+    @Override
+    public int size() {
+        return N;
+    }
+
+    @Override
+    public Value get(Key key) {
+        /**
+         * 由于我们的插入机制，逆向思考在查找key的时候，是从hash(key)下标开始找，命中即找到，不等则继续往下找，遇到空了说明没有。
+         */
+        for (int i = hash(key); keys[i] != null; i = (i + 1) % M) {
+            if (keys[i].equals(key)) {// 命中key，返回val
+                return vals[i];
+            }
+            /**
+             * 不等则继续循环
+             */
+        }
+        /**
+         * 循环终止，说明遇到空元素了，根据插入机制，那就代表整个数组都不含有该key
+         */
+        return null;
+    }
+
+    @Override
+    public void put(Key key, Value val) {
+        if (N >= M / 2)
+            resize(2 * M);// M要保证至少内部N的占有率为25%到50%之间。（与BinarySearchST操作相同）
+        int i;
+        /**
+         * @notice hash(key)是可以重复的，也就是碰撞位置，而key是不可重复的，是主键。
+         * @具体探测方法: 初始化为传入key的散列值，探测其是否相等、为空或者不等，相等则更新值，为空则插入值，不等则继续查找。
+         */
+        for (i = hash(key); keys[i] != null; i = (i + 1) % M) {
+            if (keys[i].equals(key)) {
+                vals[i] = val;// 命中key，更新val，直接退出循环，退出方法。
+                return;
+            }
+            /**
+             * 不等则循环继续
+             */
+        }
+        // 从循环出来只有一种情况，就是keys[i]==null,则在当前i位置添加键值对。
+        keys[i] = key;
+        vals[i] = val;
+        N++;
+    }
+
+    @Override
+    public Iterable<Key> keySet() {
+        List<Key> list = new ArrayList<Key>();
+        for (int i = 0; i < M; i++) {
+            if (keys[i] != null) {// 剔除空元素
+                list.add(keys[i]);
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public void remove(Key key) {
+        for (int i = hash(key); keys[i] != null; i = (i + 1) % M) {
+            if (keys[i].equals(key)) {// 命中key，开始删除
+                keys[i] = null;
+                vals[i] = null;
+                N--;
+                if (N <= M / 4) {// 如果键值对数据比容器的25%小的时候，容器减容一倍。（与BinarySearchST操作相同）
+                    resize(M / 2);
+                }
+                return;
+            }
+            /**
+             * 不等则继续循环
+             */
+        }
+        /**
+         * 未命中key不做任何操作
+         */
+    }
+
+}
 
 ```
+
+测试输出结果：
+    
+    13:02:41[testSTBatch]: ------开始批量测试------
+    13:02:41[getBean]: class: algorithms.search.STImpl.SequentialSearchST
+    13:02:43[testST]: 总耗时：1703ms
+    13:02:43[getBean]: class: algorithms.search.STImpl.BinarySearchST
+    13:02:43[testST]: 总耗时：65ms
+    13:02:43[getBean]: class: algorithms.search.STImpl.BST
+    13:02:43[testST]: 总耗时：92ms
+    13:02:43[getBean]: class: algorithms.search.STImpl.RedBlackBST
+    13:02:43[testST]: 总耗时：53ms
+    13:02:43[getBean]: class: algorithms.search.STImpl.ChainHashST
+    13:02:43[testST]: 总耗时：16ms
+    13:02:43[getBean]: class: algorithms.search.STImpl.ProbeHashST
+    13:02:43[testST]: 总耗时：8ms
+    13:02:43[testST]: class: java.util.HashMap
+    13:02:43[testST]: 总耗时：7ms
+    13:02:43[testSTBatch]: ------批量测试成功！------
+
+
+可以看出，最新的ProbeHashST的速度是比较可观的，经过我多次测试甚至超过了HashMap的效率，这虽然跟源数据内容的结构有很大关系，但至少说明线性探测散列表已经与专家们实现的HashMap属于一个性能量级上了（稍后会详细解释）。然而，ProbeHash并不是有序的，我们可以通过其内部的debug log看到：
+
+    
+    2017/11/17 13:02:43 [main] INFO  tools.XMLUtil - class: algorithms.search.STImpl.ProbeHashST
+    2017/11/17 13:02:43 [main] DEBUG algorithms.search.VIPClient - -----功能测试-----
+    2017/11/17 13:02:43 [main] DEBUG algorithms.search.VIPClient - sst.put(3, fan) --- sst.size() = 1
+    2017/11/17 13:02:43 [main] DEBUG algorithms.search.VIPClient - sst.put 77,32,65,256 --- sst.size() = 5
+    2017/11/17 13:02:43 [main] DEBUG algorithms.search.VIPClient - sst.put(1, lamp) --- sst.size() = 6
+    2017/11/17 13:02:43 [main] DEBUG algorithms.search.VIPClient - sst.put(20, computer) --- sst.size() = 7
+    2017/11/17 13:02:43 [main] DEBUG algorithms.search.VIPClient - sst.delete(20) --- sst.size() still= 7
+    2017/11/17 13:02:43 [main] DEBUG algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+    2017/11/17 13:02:43 [main] DEBUG algorithms.search.VIPClient - 32...idea
+    2017/11/17 13:02:43 [main] DEBUG algorithms.search.VIPClient - 65...cup
+    2017/11/17 13:02:43 [main] DEBUG algorithms.search.VIPClient - 256...plane
+    2017/11/17 13:02:43 [main] DEBUG algorithms.search.VIPClient - 3...fan
+    2017/11/17 13:02:43 [main] DEBUG algorithms.search.VIPClient - 1...lamp
+    2017/11/17 13:02:43 [main] DEBUG algorithms.search.VIPClient - 20...book
+    2017/11/17 13:02:43 [main] DEBUG algorithms.search.VIPClient - 77...eclipse
+    2017/11/17 13:02:43 [main] DEBUG algorithms.search.VIPClient - -----②测试表头中尾删除-----
+    2017/11/17 13:02:43 [main] DEBUG algorithms.search.VIPClient - sst.remove(20)...【有序表中删除，顺序表头删除】
+    2017/11/17 13:02:43 [main] DEBUG algorithms.search.VIPClient - sst.get(20) = null --- sst.size() = 6
+    2017/11/17 13:02:43 [main] DEBUG algorithms.search.VIPClient - sst.remove(1)...【有序表头删除，顺序表中删除】
+    2017/11/17 13:02:43 [main] DEBUG algorithms.search.VIPClient - sst.get(1) = null --- sst.size() = 5
+    2017/11/17 13:02:43 [main] DEBUG algorithms.search.VIPClient - sst.remove(77)...【有序表尾删除】，顺序表中删除
+    2017/11/17 13:02:43 [main] DEBUG algorithms.search.VIPClient - sst.get(77) = null --- sst.size() = 4
+    2017/11/17 13:02:43 [main] DEBUG algorithms.search.VIPClient - sst.remove(3)...有序表中删除，【顺序表尾删除】
+    2017/11/17 13:02:43 [main] DEBUG algorithms.search.VIPClient - sst.get(3) = null --- sst.size() = 3
+    2017/11/17 13:02:43 [main] DEBUG algorithms.search.VIPClient - -----③遍历当前集合-----
+    2017/11/17 13:02:43 [main] DEBUG algorithms.search.VIPClient - 32...idea
+    2017/11/17 13:02:43 [main] DEBUG algorithms.search.VIPClient - 65...cup
+    2017/11/17 13:02:43 [main] DEBUG algorithms.search.VIPClient - 256...plane
+    2017/11/17 13:02:43 [main] DEBUG algorithms.search.VIPClient - -----性能测试-----
+    2017/11/17 13:02:43 [main] DEBUG algorithms.search.VIPClient - 0-6321...sst.size() = 6321
+    2017/11/17 13:02:43 [main] INFO  algorithms.search.VIPClient - 总耗时：8ms
+    2017/11/17 13:02:43 [main] DEBUG algorithms.search.VIPClient - 测试成功！
+
+
+在第一次遍历集合的位置，可以看到我们put进去的数据并不是有序排列的，但也并不是完全无序的状态，经过我的调试与分析，他们比较的是余数的大小，也就是说除留余数法，如果按照余数排列的话，那是有序的，其实不证自明，因为余数就是哈希值，而哈希值就是键数组的下标，下标虽然不一定是连续的，但一定是有序的。
+
+> 因此，如果我们的源数据全部都是素数并且我们的M比他们的最大值还要大，这时候插入线性探测散列表，他们一定是有序的。
+
+当然了，如果是以上这种情况的话，我们也没必要使用散列函数了，直接使用键作为散列值了，但是这样一来，就成了有序表的查找，效率还不如二分查找，这个轮回大家听懂了吗。。。
+
+- 线性探测散列表的总结
+线性探测散列表不需要我们预先计算一个M来设置给它，而是通过resize去伸缩变换，resize当然会消耗一定的性能，但是这还是那句话，空间和时间的权衡。而拉链散列表也可以使用resize方法，但是大多时候，这个M是可以预先算出来的，所以也不必要再使用resize，毕竟也是会消耗一部分性能的。
+
+#### 散列表总结
+散列表是高效的，通过我们的测试数据就可以直观的看出，它的执行效率远远超过其他查找算法。然而散列表也有自己的弱点：
+- 每种类型的键都需要一个优秀的散列函数，所以java程序员幸福在jdk已经帮我们实现了所有数据类型的散列函数，但是如果你自己创建数据类型，仍旧要去用心思考这个问题。
+- 性能十分依赖散列函数的质量，一个优秀的散列函数可以带来质的飞跃，而不那么完美的散列函数可能造成对性能的严重打击。
+- 散列函数的计算复杂而且昂贵，散列函数的创造不是意见容易的事，而且经常遭受着各种情况的考验，同时散列函数的资源消耗往往也是较大的。
+- 散列函数的致命点在于它并不能够针对有序数据相关的符号表操作。这一点我们在上面已经分析过了，如果要处理有序数据，还是使用红黑树吧。
+
+
+### 查找算法总结
+这一篇博文我写了半个月，篇幅垒长，但是也有一个好处在于你不用去按照什么“查找算法（一），查找算法（二）...”去挨个研究了，查找算法看这一篇文章就可以研究透彻了，这也是我的风格与习惯。下面我来总结一下这些查找算法。总共介绍到了无序表的顺序查找，有序表的二分查找，二分查找树，红黑树以及散列表，在这些查找算法中，很多是为了学习的铺垫，而在实际工作中，往往只需要在散列表和二叉查找树之间选择即可。那么我就重点说说散列表和二叉查找树该如何选择？
+
+- 散列表的优点是代码简单，查找时间最优，可以到恐怖的常数级别。当然了，这个前提必然是有一个合适的源数据内容结构以及那个优秀的散列函数。
+- 红黑树可以保证最坏情况下的性能因为它是最稳定的，这得益于它非常稳定的结构，这种抽象结构相比于那个复杂的散列函数是非常简单的，而且红黑树支持的操作更多，例如有序表相关的那些操作。
+- 大多数同类们都会优先选择散列表，因为即使散列函数很复杂很难设计，但是我们有很多现成的可以直接用啊。但是如果遇到其他更重要因素的时候，可能才会选择红黑树。
+
+### 收获阶段
+前面是播种和培育知识的种子，下面则是丰收的季节。我知道播种和培育种子已经耗费了我们大量的精力，但是还是要踏实下来去迎接丰收的喜悦，否则自己种的粮食烂在了地里暴殄天物。
+#### java.util.TreeMap, java.util.HashMap
+告诉你一个惊人的消息，我们的努力没有白费，或者说是白费了。因为jdk中java.util.TreeMap就是使用的红黑树实现的，而java.util.HashMap使用的是散列表。通过这一篇文章的深入学习，以后任何关于TreeMap和HashMap相关的问题，我们都可以直接从底层去深入的思考。TreeMap没有直接实现rank(),select()和我们的有序符号表API中的一些其他方法，但它支持一些能够高效实现这些方法的操作。而HashMap与我们刚才实现的ProbeHashST基本相同，它也会动态调整数组的大小来保持使用率大约不超过75%，这也是上面我卖的那个关子，在这里得到解决。
+
+#### 与SET集合的关系
+
+关于SET，我们在[大师的小玩具——泛型精解](http://www.cnblogs.com/Evsward/p/genericity.html)搜索“SET容器”即可了解set与泛型的联用，以及Set的一般操作。Set，也叫集合，与我们在初中数学学习的集合是相同的意思，也就是说set里面也会有并集、交集、差集、补集的操作。针对于符号表来说，如果不去管值，只需要将键插入表中并检测一个键是否在表中存在（我们是不允许重复键的），这就可以转化为SET。
+
+只要忽略关联的值，或者使用一个简单类封装，就可以将任何符号表的实现变成一个SET类的实现。在JDK中，正如我们突然精通了TreeMap和HashMap一样，我们也可以捎带脚把SET和HashSet解决掉。Set就是有序集合，而HashSet名副其实，就是哈希算法实现的Set，效率特性各方面都与HashMap很相似，也是操作无序表的集合。
+
+- 白名单，黑名单
+    - 白名单，白名单文件中的键被定义为好键，我们将通过HashSet存储这些好键，然后将数据通过HashSet验证是否存在，如果存在则将结果输出出去。路由器用白名单来实现防火墙，只允许访问白名单包含的网站。
+    - 黑名单，与白名单正好相反，黑名单文件中的键被定义为坏键，我们也是将其通过HashSet存储这些坏键，过滤数据如果存在坏键，则扣押数据不让其输出出去。微信，email都有黑名单的使用。
+
+这些名单可能非常巨大，输入无限并且响应时间要求非常严格，我们已经学过的符号表实现能够很好地满足这些需求。
+
+#### 字典类的使用
+
+
+应用领域 | 键 | 值
+---|---|---
+电话黄页 | 人名 | 电话号码
+字典 | 单词 | 定义
+账户信息 | 账号 | 余额
+基因组 | 密码子 | 氨基酸
+实验数据 | 数据/时间 | 实验结果
+编译器 | 变量名 | 内存地址
+文件共享 | 文件名 | 文件内容的地址
+DNS | 网站 | IP地址
+
+#### 索引
+字典类就是标准的一对一键值对，而当我们遇到一对多的时候，就需要用到索引，这正如我们上面介绍的拉链散列表，key虽然是不重复的，但是他们的散列值有可能重复，所以一个散列值对应一条链表，这跳链表中可以存储多个结点内容，这时候，这个散列值就是索引。所以索引就是用来描述一个键和多个值相关联的符号表。下面具体举例说明：
+    - 商业交易，公司使用客户账户来跟踪一天内所有交易的一种方法是为当日交易建立一个索引，其中键是客户的账号，值是和该账号有关的所有交易，也就是说，有了这个索引，我们不需要在从大数据中去大海捞针，而只需在这预先填充进来的与我们相关的数据中搜索即可。
+    - 网络搜索，当你输入一个关键字并得到一系列含有这个关键字的网站时，就是在利用网络搜索引擎创建的索引。每个键都关联着一个值，即一个关键字对应一组网页。
+    - 电影和演员，互联网电影数据库中，每一行都含有一部电影的名称，即为键，随后是在其中出演的演员列表（一组值）。
+
+#### 反向索引
+与索引反过来，使用值来查找键的操作。还是针对以上的示例说明。互联网电影数据库，在上文的例子中，输入是将每部电影和它的演员关联起来的一个索引。它的反向索引则会将每个演员和他出演过的所有电影相关联。
+
+
+### ST总结
+
+> 科学或是工程领域能够将运行效率提升一千亿倍的发明极少——我们已经在几个例子中看到，符号表做到了，并且这些改进的影响非常深远。
+
+### 文章所有源码位置
+[醒者呆的github](https://github.com/evsward/mainbase/tree/master/src/algorithms/search)
+
+### 参考资料
+- 《算法 第四版》
