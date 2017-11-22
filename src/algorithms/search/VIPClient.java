@@ -16,7 +16,7 @@ public class VIPClient {
     private static final Logger logger = LogManager.getLogger();
 
     @Test
-    public void testSTBatch() { 
+    public void testSTBatch() {
         logger.info("------开始批量测试------");
         testST("sf1");
         testST("sf2");
