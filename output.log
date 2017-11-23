@@ -16647,3 +16647,228 @@
 2017/11/22 13:25:45 [main] DEBUG algorithms.search.VIPClient - sst.select(7)...【有序查询排名最后的key】 = 256
 2017/11/22 13:25:45 [main] DEBUG algorithms.search.VIPClient - 测试成功！
 2017/11/22 13:25:45 [main] INFO  algorithms.search.VIPClient - ------批量测试成功！------
+2017/11/23 15:25:09 [main] INFO  algorithms.search.VIPClient - ------开始批量测试------
+2017/11/23 15:25:09 [main] INFO  tools.XMLUtil - class: algorithms.search.STImpl.SequentialSearchST
+2017/11/23 15:25:09 [main] DEBUG algorithms.search.VIPClient - -----功能测试-----
+2017/11/23 15:25:09 [main] DEBUG algorithms.search.VIPClient - sst.put(3, fan) --- sst.size() = 1
+2017/11/23 15:25:09 [main] DEBUG algorithms.search.VIPClient - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/23 15:25:09 [main] DEBUG algorithms.search.VIPClient - sst.put(1, lamp) --- sst.size() = 6
+2017/11/23 15:25:09 [main] DEBUG algorithms.search.VIPClient - sst.put(20, computer) --- sst.size() = 7
+2017/11/23 15:25:09 [main] DEBUG algorithms.search.VIPClient - sst.delete(20) --- sst.size() still= 7
+2017/11/23 15:25:09 [main] DEBUG algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/23 15:25:09 [main] DEBUG algorithms.search.VIPClient - 20...book
+2017/11/23 15:25:09 [main] DEBUG algorithms.search.VIPClient - 1...lamp
+2017/11/23 15:25:09 [main] DEBUG algorithms.search.VIPClient - 256...plane
+2017/11/23 15:25:09 [main] DEBUG algorithms.search.VIPClient - 65...cup
+2017/11/23 15:25:09 [main] DEBUG algorithms.search.VIPClient - 32...idea
+2017/11/23 15:25:09 [main] DEBUG algorithms.search.VIPClient - 77...eclipse
+2017/11/23 15:25:09 [main] DEBUG algorithms.search.VIPClient - 3...fan
+2017/11/23 15:25:09 [main] DEBUG algorithms.search.VIPClient - -----②测试表头中尾删除-----
+2017/11/23 15:25:09 [main] DEBUG algorithms.search.VIPClient - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/23 15:25:09 [main] DEBUG algorithms.search.VIPClient - sst.get(20) = null --- sst.size() = 6
+2017/11/23 15:25:09 [main] DEBUG algorithms.search.VIPClient - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/23 15:25:09 [main] DEBUG algorithms.search.VIPClient - sst.get(1) = null --- sst.size() = 5
+2017/11/23 15:25:09 [main] DEBUG algorithms.search.VIPClient - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/23 15:25:09 [main] DEBUG algorithms.search.VIPClient - sst.get(77) = null --- sst.size() = 4
+2017/11/23 15:25:09 [main] DEBUG algorithms.search.VIPClient - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/23 15:25:09 [main] DEBUG algorithms.search.VIPClient - sst.get(3) = null --- sst.size() = 3
+2017/11/23 15:25:09 [main] DEBUG algorithms.search.VIPClient - -----③遍历当前集合-----
+2017/11/23 15:25:09 [main] DEBUG algorithms.search.VIPClient - 256...plane
+2017/11/23 15:25:09 [main] DEBUG algorithms.search.VIPClient - 65...cup
+2017/11/23 15:25:09 [main] DEBUG algorithms.search.VIPClient - 32...idea
+2017/11/23 15:25:09 [main] DEBUG algorithms.search.VIPClient - -----性能测试-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 0-6370...sst.size() = 6370
+2017/11/23 15:25:11 [main] INFO  algorithms.search.VIPClient - 总耗时：1711ms
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 测试成功！
+2017/11/23 15:25:11 [main] INFO  tools.XMLUtil - class: algorithms.search.STImpl.BinarySearchST
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - -----功能测试-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.put(3, fan) --- sst.size() = 1
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.put(1, lamp) --- sst.size() = 6
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.put(20, computer) --- sst.size() = 7
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.delete(20) --- sst.size() still= 7
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 1...lamp
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 3...fan
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 20...book
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 32...idea
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 65...cup
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 77...eclipse
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 256...plane
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - -----②测试表头中尾删除-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.get(20) = null --- sst.size() = 6
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.get(1) = null --- sst.size() = 5
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.get(77) = null --- sst.size() = 4
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.get(3) = null --- sst.size() = 3
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - -----③遍历当前集合-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 32...idea
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 65...cup
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 256...plane
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - -----性能测试-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 0-6340...sst.size() = 6340
+2017/11/23 15:25:11 [main] INFO  algorithms.search.VIPClient - 总耗时：59ms
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 测试成功！
+2017/11/23 15:25:11 [main] INFO  tools.XMLUtil - class: algorithms.search.STImpl.BST
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - -----功能测试-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.put(3, fan) --- sst.size() = 1
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.put(1, lamp) --- sst.size() = 6
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.put(20, computer) --- sst.size() = 7
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.delete(20) --- sst.size() still= 7
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 1...lamp
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 3...fan
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 20...book
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 32...idea
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 65...cup
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 77...eclipse
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 256...plane
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - -----②测试表头中尾删除-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.get(20) = null --- sst.size() = 6
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.get(1) = null --- sst.size() = 5
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.get(77) = null --- sst.size() = 4
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.get(3) = null --- sst.size() = 3
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - -----③遍历当前集合-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 32...idea
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 65...cup
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 256...plane
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - -----性能测试-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 0-6276...sst.size() = 6276
+2017/11/23 15:25:11 [main] INFO  algorithms.search.VIPClient - 总耗时：68ms
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 测试成功！
+2017/11/23 15:25:11 [main] INFO  tools.XMLUtil - class: algorithms.search.STImpl.RedBlackBST
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - -----功能测试-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.put(3, fan) --- sst.size() = 1
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.put(1, lamp) --- sst.size() = 6
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.put(20, computer) --- sst.size() = 7
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.delete(20) --- sst.size() still= 7
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 1...lamp
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 3...fan
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 20...book
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 32...idea
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 65...cup
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 77...eclipse
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 256...plane
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - -----②测试表头中尾删除-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.get(20) = null --- sst.size() = 6
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.get(1) = null --- sst.size() = 5
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.get(77) = null --- sst.size() = 4
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.get(3) = null --- sst.size() = 3
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - -----③遍历当前集合-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 32...idea
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 65...cup
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 256...plane
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - -----性能测试-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 0-6364...sst.size() = 6364
+2017/11/23 15:25:11 [main] INFO  algorithms.search.VIPClient - 总耗时：35ms
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 测试成功！
+2017/11/23 15:25:11 [main] INFO  tools.XMLUtil - class: algorithms.search.STImpl.ChainHashST
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - -----功能测试-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.put(3, fan) --- sst.size() = 1
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.put(1, lamp) --- sst.size() = 6
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.put(20, computer) --- sst.size() = 7
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.delete(20) --- sst.size() still= 7
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 1...lamp
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 3...fan
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 20...book
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 32...idea
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 65...cup
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 77...eclipse
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 256...plane
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - -----②测试表头中尾删除-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.get(20) = null --- sst.size() = 6
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.get(1) = null --- sst.size() = 5
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.get(77) = null --- sst.size() = 4
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.get(3) = null --- sst.size() = 3
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - -----③遍历当前集合-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 32...idea
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 65...cup
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 256...plane
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - -----性能测试-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 0-6327...sst.size() = 6327
+2017/11/23 15:25:11 [main] INFO  algorithms.search.VIPClient - 总耗时：9ms
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 测试成功！
+2017/11/23 15:25:11 [main] INFO  tools.XMLUtil - class: algorithms.search.STImpl.ProbeHashST
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - -----功能测试-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.put(3, fan) --- sst.size() = 1
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.put(1, lamp) --- sst.size() = 6
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.put(20, computer) --- sst.size() = 7
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.delete(20) --- sst.size() still= 7
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 32...idea
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 65...cup
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 256...plane
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 3...fan
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 1...lamp
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 20...book
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 77...eclipse
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - -----②测试表头中尾删除-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.get(20) = null --- sst.size() = 6
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.get(1) = null --- sst.size() = 5
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.get(77) = null --- sst.size() = 4
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.get(3) = null --- sst.size() = 3
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - -----③遍历当前集合-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 32...idea
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 65...cup
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 256...plane
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - -----性能测试-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 0-6312...sst.size() = 6312
+2017/11/23 15:25:11 [main] INFO  algorithms.search.VIPClient - 总耗时：15ms
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 测试成功！
+2017/11/23 15:25:11 [main] INFO  algorithms.search.VIPClient - class: java.util.HashMap
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - -----功能测试-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.put(3, fan) --- sst.size() = 1
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.put(1, lamp) --- sst.size() = 6
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.put(20, computer) --- sst.size() = 7
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 32...idea
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 256...plane
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 65...cup
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 1...lamp
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 3...fan
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 20...book
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 77...eclipse
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - -----②测试表头中尾删除-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.get(20) = null --- sst.size() = 6
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.get(1) = null --- sst.size() = 5
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.get(77) = null --- sst.size() = 4
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - sst.get(3) = null --- sst.size() = 3
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - -----③遍历当前集合-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 32...idea
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 256...plane
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 65...cup
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - -----性能测试-----
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 0-6340...sst.size() = 6340
+2017/11/23 15:25:11 [main] INFO  algorithms.search.VIPClient - 总耗时：12ms
+2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 测试成功！
+2017/11/23 15:25:11 [main] INFO  algorithms.search.VIPClient - ------批量测试成功！------
