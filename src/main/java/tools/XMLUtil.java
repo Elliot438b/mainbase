@@ -27,8 +27,8 @@ public class XMLUtil {
         try {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
-            Document doc = db.parse(new File("resource/config.xml"));
-
+            Document doc = db.parse(new File("config/config.xml"));
+            
             NodeList nl = doc.getElementsByTagName(tagName);
             Node n = nl.item(0).getFirstChild();
             String className = n.getNodeValue();

@@ -17905,3 +17905,69 @@
 2017/11/24 11:22:51 [main] DEBUG pattern.strategy.Strategy - 0-6414...sst.size() = 6414
 2017/11/24 11:22:51 [main] INFO  pattern.strategy.Strategy - 总耗时：88ms
 2017/11/24 11:22:51 [main] DEBUG pattern.strategy.Strategy - 测试成功！
+2017/11/24 15:59:26 [main] INFO  algorithms.search.VIPClient - ------开始批量测试------
+2017/11/24 15:59:26 [main] DEBUG algorithms.search.VIPClient - -----功能测试-----
+2017/11/24 15:59:26 [main] INFO  algorithms.search.VIPClient - ------开始批量测试------
+2017/11/24 16:00:11 [main] INFO  algorithms.search.VIPClient - ------开始批量测试------
+2017/11/24 16:00:11 [main] INFO  algorithms.search.VIPClient - ------开始批量测试------
+2017/11/24 16:00:11 [main] DEBUG algorithms.search.VIPClient - -----功能测试-----
+2017/11/24 16:08:59 [main] INFO  algorithms.search.VIPClient - ------开始批量测试------
+2017/11/24 16:08:59 [main] DEBUG algorithms.search.VIPClient - -----功能测试-----
+2017/11/24 16:08:59 [main] INFO  algorithms.search.VIPClient - ------开始批量测试------
+2017/11/24 16:44:18 [main] INFO  algorithms.search.VIPClient - ------开始批量测试------
+2017/11/24 16:44:39 [main] INFO  algorithms.search.VIPClient - ------开始批量测试------
+2017/11/24 16:44:39 [main] INFO  tools.XMLUtil - class: algorithms.search.STImpl.BinarySearchST
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - 1...lamp
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - 3...fan
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - 20...computer
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - 32...idea
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - 65...cup
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - 77...eclipse
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - 256...plane
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - -----②有序表特有功能测试-----
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - sst.ceiling(59) = 65
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - sst.floor(59) = 32
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - sst.min() = 1
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - sst.max() = 256
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - sst.select(1)...【有序查询排名第一的key】 = 1
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - sst.select(3)...【有序查询排名中间的key】 = 20
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - sst.select(7)...【有序查询排名最后的key】 = 256
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - 测试成功！
+2017/11/24 16:44:39 [main] INFO  tools.XMLUtil - class: algorithms.search.STImpl.BST
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - 1...lamp
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - 3...fan
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - 20...computer
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - 32...idea
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - 65...cup
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - 77...eclipse
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - 256...plane
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - -----②有序表特有功能测试-----
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - sst.ceiling(59) = 65
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - sst.floor(59) = 32
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - sst.min() = 1
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - sst.max() = 256
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - sst.select(1)...【有序查询排名第一的key】 = 1
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - sst.select(3)...【有序查询排名中间的key】 = 20
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - sst.select(7)...【有序查询排名最后的key】 = 256
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - 测试成功！
+2017/11/24 16:44:39 [main] INFO  tools.XMLUtil - class: algorithms.search.STImpl.RedBlackBST
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - 1...lamp
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - 3...fan
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - 20...computer
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - 32...idea
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - 65...cup
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - 77...eclipse
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - 256...plane
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - -----②有序表特有功能测试-----
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - sst.ceiling(59) = 65
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - sst.floor(59) = 32
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - sst.min() = 1
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - sst.max() = 256
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - sst.select(1)...【有序查询排名第一的key】 = 1
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - sst.select(3)...【有序查询排名中间的key】 = 20
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - sst.select(7)...【有序查询排名最后的key】 = 256
+2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - 测试成功！
+2017/11/24 16:44:39 [main] INFO  algorithms.search.VIPClient - ------批量测试成功！------
