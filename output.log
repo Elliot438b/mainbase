@@ -16872,3 +16872,1036 @@
 2017/11/23 15:25:11 [main] INFO  algorithms.search.VIPClient - 总耗时：12ms
 2017/11/23 15:25:11 [main] DEBUG algorithms.search.VIPClient - 测试成功！
 2017/11/23 15:25:11 [main] INFO  algorithms.search.VIPClient - ------批量测试成功！------
+2017/11/24 10:46:56 [main] INFO  algorithms.search.VIPClient - ------开始批量测试------
+2017/11/24 10:46:56 [main] INFO  tools.XMLUtil - class: algorithms.search.STImpl.BinarySearchST
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - 1...lamp
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - 3...fan
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - 20...computer
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - 32...idea
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - 65...cup
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - 77...eclipse
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - 256...plane
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - -----②有序表特有功能测试-----
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - sst.ceiling(59) = 65
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - sst.floor(59) = 32
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - sst.min() = 1
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - sst.max() = 256
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - sst.select(1)...【有序查询排名第一的key】 = 1
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - sst.select(3)...【有序查询排名中间的key】 = 20
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - sst.select(7)...【有序查询排名最后的key】 = 256
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - 测试成功！
+2017/11/24 10:46:56 [main] INFO  tools.XMLUtil - class: algorithms.search.STImpl.BST
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - 1...lamp
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - 3...fan
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - 20...computer
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - 32...idea
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - 65...cup
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - 77...eclipse
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - 256...plane
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - -----②有序表特有功能测试-----
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - sst.ceiling(59) = 65
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - sst.floor(59) = 32
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - sst.min() = 1
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - sst.max() = 256
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - sst.select(1)...【有序查询排名第一的key】 = 1
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - sst.select(3)...【有序查询排名中间的key】 = 20
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - sst.select(7)...【有序查询排名最后的key】 = 256
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - 测试成功！
+2017/11/24 10:46:56 [main] INFO  tools.XMLUtil - class: algorithms.search.STImpl.RedBlackBST
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - 1...lamp
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - 3...fan
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - 20...computer
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - 32...idea
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - 65...cup
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - 77...eclipse
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - 256...plane
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - -----②有序表特有功能测试-----
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - sst.ceiling(59) = 65
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - sst.floor(59) = 32
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - sst.min() = 1
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - sst.max() = 256
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - sst.select(1)...【有序查询排名第一的key】 = 1
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - sst.select(3)...【有序查询排名中间的key】 = 20
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - sst.select(7)...【有序查询排名最后的key】 = 256
+2017/11/24 10:46:56 [main] DEBUG algorithms.search.VIPClient - 测试成功！
+2017/11/24 10:46:56 [main] INFO  algorithms.search.VIPClient - ------批量测试成功！------
+2017/11/24 11:03:38 [main] DEBUG pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:03:38 [main] DEBUG pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:03:38 [main] DEBUG pattern.strategy.Strategy - 3...fan
+2017/11/24 11:03:38 [main] DEBUG pattern.strategy.Strategy - 20...computer
+2017/11/24 11:03:38 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:03:38 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:03:38 [main] DEBUG pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:03:38 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:03:38 [main] DEBUG pattern.strategy.Strategy - -----②有序表特有功能测试-----
+2017/11/24 11:03:38 [main] DEBUG pattern.strategy.Strategy - sst.ceiling(59) = 65
+2017/11/24 11:03:38 [main] DEBUG pattern.strategy.Strategy - sst.floor(59) = 32
+2017/11/24 11:03:38 [main] DEBUG pattern.strategy.Strategy - sst.min() = 1
+2017/11/24 11:03:38 [main] DEBUG pattern.strategy.Strategy - sst.max() = 256
+2017/11/24 11:03:38 [main] DEBUG pattern.strategy.Strategy - sst.select(1)...【有序查询排名第一的key】 = 1
+2017/11/24 11:03:38 [main] DEBUG pattern.strategy.Strategy - sst.select(3)...【有序查询排名中间的key】 = 20
+2017/11/24 11:03:38 [main] DEBUG pattern.strategy.Strategy - sst.select(7)...【有序查询排名最后的key】 = 256
+2017/11/24 11:03:38 [main] DEBUG pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:04:14 [main] INFO  pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:04:14 [main] INFO  pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:04:14 [main] INFO  pattern.strategy.Strategy - 3...fan
+2017/11/24 11:04:14 [main] INFO  pattern.strategy.Strategy - 20...computer
+2017/11/24 11:04:14 [main] INFO  pattern.strategy.Strategy - 32...idea
+2017/11/24 11:04:14 [main] INFO  pattern.strategy.Strategy - 65...cup
+2017/11/24 11:04:14 [main] INFO  pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:04:14 [main] INFO  pattern.strategy.Strategy - 256...plane
+2017/11/24 11:04:14 [main] INFO  pattern.strategy.Strategy - -----②有序表特有功能测试-----
+2017/11/24 11:04:14 [main] INFO  pattern.strategy.Strategy - sst.ceiling(59) = 65
+2017/11/24 11:04:14 [main] INFO  pattern.strategy.Strategy - sst.floor(59) = 32
+2017/11/24 11:04:14 [main] INFO  pattern.strategy.Strategy - sst.min() = 1
+2017/11/24 11:04:14 [main] INFO  pattern.strategy.Strategy - sst.max() = 256
+2017/11/24 11:04:14 [main] INFO  pattern.strategy.Strategy - sst.select(1)...【有序查询排名第一的key】 = 1
+2017/11/24 11:04:14 [main] INFO  pattern.strategy.Strategy - sst.select(3)...【有序查询排名中间的key】 = 20
+2017/11/24 11:04:14 [main] INFO  pattern.strategy.Strategy - sst.select(7)...【有序查询排名最后的key】 = 256
+2017/11/24 11:04:14 [main] INFO  pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:05:10 [main] INFO  pattern.strategy.Strategy - pattern.strategy.Strategy
+2017/11/24 11:05:10 [main] INFO  pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:05:10 [main] INFO  pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:05:10 [main] INFO  pattern.strategy.Strategy - 3...fan
+2017/11/24 11:05:10 [main] INFO  pattern.strategy.Strategy - 20...computer
+2017/11/24 11:05:10 [main] INFO  pattern.strategy.Strategy - 32...idea
+2017/11/24 11:05:10 [main] INFO  pattern.strategy.Strategy - 65...cup
+2017/11/24 11:05:10 [main] INFO  pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:05:10 [main] INFO  pattern.strategy.Strategy - 256...plane
+2017/11/24 11:05:10 [main] INFO  pattern.strategy.Strategy - -----②有序表特有功能测试-----
+2017/11/24 11:05:10 [main] INFO  pattern.strategy.Strategy - sst.ceiling(59) = 65
+2017/11/24 11:05:10 [main] INFO  pattern.strategy.Strategy - sst.floor(59) = 32
+2017/11/24 11:05:10 [main] INFO  pattern.strategy.Strategy - sst.min() = 1
+2017/11/24 11:05:10 [main] INFO  pattern.strategy.Strategy - sst.max() = 256
+2017/11/24 11:05:10 [main] INFO  pattern.strategy.Strategy - sst.select(1)...【有序查询排名第一的key】 = 1
+2017/11/24 11:05:10 [main] INFO  pattern.strategy.Strategy - sst.select(3)...【有序查询排名中间的key】 = 20
+2017/11/24 11:05:10 [main] INFO  pattern.strategy.Strategy - sst.select(7)...【有序查询排名最后的key】 = 256
+2017/11/24 11:05:10 [main] INFO  pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:05:36 [main] INFO  pattern.strategy.Strategy - pattern.strategy.BSTAdapter
+2017/11/24 11:05:36 [main] INFO  pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:05:36 [main] INFO  pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:05:36 [main] INFO  pattern.strategy.Strategy - 3...fan
+2017/11/24 11:05:36 [main] INFO  pattern.strategy.Strategy - 20...computer
+2017/11/24 11:05:36 [main] INFO  pattern.strategy.Strategy - 32...idea
+2017/11/24 11:05:36 [main] INFO  pattern.strategy.Strategy - 65...cup
+2017/11/24 11:05:36 [main] INFO  pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:05:36 [main] INFO  pattern.strategy.Strategy - 256...plane
+2017/11/24 11:05:36 [main] INFO  pattern.strategy.Strategy - -----②有序表特有功能测试-----
+2017/11/24 11:05:36 [main] INFO  pattern.strategy.Strategy - sst.ceiling(59) = 65
+2017/11/24 11:05:36 [main] INFO  pattern.strategy.Strategy - sst.floor(59) = 32
+2017/11/24 11:05:36 [main] INFO  pattern.strategy.Strategy - sst.min() = 1
+2017/11/24 11:05:36 [main] INFO  pattern.strategy.Strategy - sst.max() = 256
+2017/11/24 11:05:36 [main] INFO  pattern.strategy.Strategy - sst.select(1)...【有序查询排名第一的key】 = 1
+2017/11/24 11:05:36 [main] INFO  pattern.strategy.Strategy - sst.select(3)...【有序查询排名中间的key】 = 20
+2017/11/24 11:05:36 [main] INFO  pattern.strategy.Strategy - sst.select(7)...【有序查询排名最后的key】 = 256
+2017/11/24 11:05:36 [main] INFO  pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:05:56 [main] INFO  pattern.strategy.Strategy - pattern.strategy.BSTAdapter
+2017/11/24 11:05:56 [main] INFO  pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:05:56 [main] INFO  pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:05:56 [main] INFO  pattern.strategy.Strategy - 3...fan
+2017/11/24 11:05:56 [main] INFO  pattern.strategy.Strategy - 20...computer
+2017/11/24 11:05:56 [main] INFO  pattern.strategy.Strategy - 32...idea
+2017/11/24 11:05:56 [main] INFO  pattern.strategy.Strategy - 65...cup
+2017/11/24 11:05:56 [main] INFO  pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:05:56 [main] INFO  pattern.strategy.Strategy - 256...plane
+2017/11/24 11:05:56 [main] INFO  pattern.strategy.Strategy - -----②有序表特有功能测试-----
+2017/11/24 11:05:56 [main] INFO  pattern.strategy.Strategy - sst.ceiling(59) = 65
+2017/11/24 11:05:56 [main] INFO  pattern.strategy.Strategy - sst.floor(59) = 32
+2017/11/24 11:05:56 [main] INFO  pattern.strategy.Strategy - sst.min() = 1
+2017/11/24 11:05:56 [main] INFO  pattern.strategy.Strategy - sst.max() = 256
+2017/11/24 11:05:56 [main] INFO  pattern.strategy.Strategy - sst.select(1)...【有序查询排名第一的key】 = 1
+2017/11/24 11:05:56 [main] INFO  pattern.strategy.Strategy - sst.select(3)...【有序查询排名中间的key】 = 20
+2017/11/24 11:05:56 [main] INFO  pattern.strategy.Strategy - sst.select(7)...【有序查询排名最后的key】 = 256
+2017/11/24 11:05:56 [main] INFO  pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:06:44 [main] INFO  pattern.strategy.Strategy - pattern.strategy.BSTAdapter
+2017/11/24 11:06:44 [main] INFO  pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:06:44 [main] INFO  pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:06:44 [main] INFO  pattern.strategy.Strategy - 3...fan
+2017/11/24 11:06:44 [main] INFO  pattern.strategy.Strategy - 20...computer
+2017/11/24 11:06:44 [main] INFO  pattern.strategy.Strategy - 32...idea
+2017/11/24 11:06:44 [main] INFO  pattern.strategy.Strategy - 65...cup
+2017/11/24 11:06:44 [main] INFO  pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:06:44 [main] INFO  pattern.strategy.Strategy - 256...plane
+2017/11/24 11:06:44 [main] INFO  pattern.strategy.Strategy - -----②有序表特有功能测试-----
+2017/11/24 11:06:44 [main] INFO  pattern.strategy.Strategy - sst.ceiling(59) = 65
+2017/11/24 11:06:44 [main] INFO  pattern.strategy.Strategy - sst.floor(59) = 32
+2017/11/24 11:06:44 [main] INFO  pattern.strategy.Strategy - sst.min() = 1
+2017/11/24 11:06:44 [main] INFO  pattern.strategy.Strategy - sst.max() = 256
+2017/11/24 11:06:44 [main] INFO  pattern.strategy.Strategy - sst.select(1)...【有序查询排名第一的key】 = 1
+2017/11/24 11:06:44 [main] INFO  pattern.strategy.Strategy - sst.select(3)...【有序查询排名中间的key】 = 20
+2017/11/24 11:06:44 [main] INFO  pattern.strategy.Strategy - sst.select(7)...【有序查询排名最后的key】 = 256
+2017/11/24 11:06:44 [main] INFO  pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:07:07 [main] INFO  pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:07:07 [main] INFO  pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:07:07 [main] INFO  pattern.strategy.Strategy - 3...fan
+2017/11/24 11:07:07 [main] INFO  pattern.strategy.Strategy - 20...computer
+2017/11/24 11:07:07 [main] INFO  pattern.strategy.Strategy - 32...idea
+2017/11/24 11:07:07 [main] INFO  pattern.strategy.Strategy - 65...cup
+2017/11/24 11:07:07 [main] INFO  pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:07:07 [main] INFO  pattern.strategy.Strategy - 256...plane
+2017/11/24 11:07:07 [main] INFO  pattern.strategy.Strategy - -----②有序表特有功能测试-----
+2017/11/24 11:07:07 [main] INFO  pattern.strategy.Strategy - sst.ceiling(59) = 65
+2017/11/24 11:07:07 [main] INFO  pattern.strategy.Strategy - sst.floor(59) = 32
+2017/11/24 11:07:07 [main] INFO  pattern.strategy.Strategy - sst.min() = 1
+2017/11/24 11:07:07 [main] INFO  pattern.strategy.Strategy - sst.max() = 256
+2017/11/24 11:07:07 [main] INFO  pattern.strategy.Strategy - sst.select(1)...【有序查询排名第一的key】 = 1
+2017/11/24 11:07:07 [main] INFO  pattern.strategy.Strategy - sst.select(3)...【有序查询排名中间的key】 = 20
+2017/11/24 11:07:07 [main] INFO  pattern.strategy.Strategy - sst.select(7)...【有序查询排名最后的key】 = 256
+2017/11/24 11:07:07 [main] INFO  pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:09:03 [main] INFO  pattern.strategy.Strategy - pattern.strategy.RedBlackBSTAdapter
+2017/11/24 11:09:03 [main] DEBUG pattern.strategy.Strategy - -----功能测试-----
+2017/11/24 11:09:03 [main] DEBUG pattern.strategy.Strategy - sst.put(3, fan) --- sst.size() = 1
+2017/11/24 11:09:03 [main] DEBUG pattern.strategy.Strategy - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/24 11:09:03 [main] DEBUG pattern.strategy.Strategy - sst.put(1, lamp) --- sst.size() = 6
+2017/11/24 11:09:03 [main] DEBUG pattern.strategy.Strategy - sst.put(20, computer) --- sst.size() = 7
+2017/11/24 11:09:03 [main] DEBUG pattern.strategy.Strategy - sst.delete(20) --- sst.size() still= 7
+2017/11/24 11:09:03 [main] DEBUG pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:09:03 [main] DEBUG pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:09:03 [main] DEBUG pattern.strategy.Strategy - 3...fan
+2017/11/24 11:09:03 [main] DEBUG pattern.strategy.Strategy - 20...book
+2017/11/24 11:09:03 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:09:03 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:09:03 [main] DEBUG pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:09:03 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:09:03 [main] DEBUG pattern.strategy.Strategy - -----②测试表头中尾删除-----
+2017/11/24 11:09:03 [main] DEBUG pattern.strategy.Strategy - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/24 11:09:03 [main] DEBUG pattern.strategy.Strategy - sst.get(20) = null --- sst.size() = 6
+2017/11/24 11:09:03 [main] DEBUG pattern.strategy.Strategy - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/24 11:09:03 [main] DEBUG pattern.strategy.Strategy - sst.get(1) = null --- sst.size() = 5
+2017/11/24 11:09:03 [main] DEBUG pattern.strategy.Strategy - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/24 11:09:03 [main] DEBUG pattern.strategy.Strategy - sst.get(77) = null --- sst.size() = 4
+2017/11/24 11:09:03 [main] DEBUG pattern.strategy.Strategy - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/24 11:09:03 [main] DEBUG pattern.strategy.Strategy - sst.get(3) = null --- sst.size() = 3
+2017/11/24 11:09:03 [main] DEBUG pattern.strategy.Strategy - -----③遍历当前集合-----
+2017/11/24 11:09:03 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:09:03 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:09:03 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:09:03 [main] DEBUG pattern.strategy.Strategy - -----性能测试-----
+2017/11/24 11:09:03 [main] DEBUG pattern.strategy.Strategy - 0-6344...sst.size() = 6344
+2017/11/24 11:09:03 [main] INFO  pattern.strategy.Strategy - 总耗时：67ms
+2017/11/24 11:09:03 [main] DEBUG pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:09:16 [main] INFO  pattern.strategy.Strategy - pattern.strategy.BSTAdapter
+2017/11/24 11:09:16 [main] DEBUG pattern.strategy.Strategy - -----功能测试-----
+2017/11/24 11:09:16 [main] DEBUG pattern.strategy.Strategy - sst.put(3, fan) --- sst.size() = 1
+2017/11/24 11:09:16 [main] DEBUG pattern.strategy.Strategy - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/24 11:09:16 [main] DEBUG pattern.strategy.Strategy - sst.put(1, lamp) --- sst.size() = 6
+2017/11/24 11:09:16 [main] DEBUG pattern.strategy.Strategy - sst.put(20, computer) --- sst.size() = 7
+2017/11/24 11:09:16 [main] DEBUG pattern.strategy.Strategy - sst.delete(20) --- sst.size() still= 7
+2017/11/24 11:09:16 [main] DEBUG pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:09:16 [main] DEBUG pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:09:16 [main] DEBUG pattern.strategy.Strategy - 3...fan
+2017/11/24 11:09:16 [main] DEBUG pattern.strategy.Strategy - 20...book
+2017/11/24 11:09:16 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:09:16 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:09:16 [main] DEBUG pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:09:16 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:09:16 [main] DEBUG pattern.strategy.Strategy - -----②测试表头中尾删除-----
+2017/11/24 11:09:16 [main] DEBUG pattern.strategy.Strategy - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/24 11:09:16 [main] DEBUG pattern.strategy.Strategy - sst.get(20) = null --- sst.size() = 6
+2017/11/24 11:09:16 [main] DEBUG pattern.strategy.Strategy - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/24 11:09:16 [main] DEBUG pattern.strategy.Strategy - sst.get(1) = null --- sst.size() = 5
+2017/11/24 11:09:16 [main] DEBUG pattern.strategy.Strategy - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/24 11:09:16 [main] DEBUG pattern.strategy.Strategy - sst.get(77) = null --- sst.size() = 4
+2017/11/24 11:09:16 [main] DEBUG pattern.strategy.Strategy - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/24 11:09:16 [main] DEBUG pattern.strategy.Strategy - sst.get(3) = null --- sst.size() = 3
+2017/11/24 11:09:16 [main] DEBUG pattern.strategy.Strategy - -----③遍历当前集合-----
+2017/11/24 11:09:16 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:09:16 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:09:16 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:09:16 [main] DEBUG pattern.strategy.Strategy - -----性能测试-----
+2017/11/24 11:09:16 [main] DEBUG pattern.strategy.Strategy - 0-6316...sst.size() = 6316
+2017/11/24 11:09:16 [main] INFO  pattern.strategy.Strategy - 总耗时：68ms
+2017/11/24 11:09:16 [main] DEBUG pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:09:21 [main] INFO  pattern.strategy.Strategy - pattern.strategy.BSTAdapter
+2017/11/24 11:09:21 [main] DEBUG pattern.strategy.Strategy - -----功能测试-----
+2017/11/24 11:09:21 [main] DEBUG pattern.strategy.Strategy - sst.put(3, fan) --- sst.size() = 1
+2017/11/24 11:09:21 [main] DEBUG pattern.strategy.Strategy - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/24 11:09:21 [main] DEBUG pattern.strategy.Strategy - sst.put(1, lamp) --- sst.size() = 6
+2017/11/24 11:09:21 [main] DEBUG pattern.strategy.Strategy - sst.put(20, computer) --- sst.size() = 7
+2017/11/24 11:09:21 [main] DEBUG pattern.strategy.Strategy - sst.delete(20) --- sst.size() still= 7
+2017/11/24 11:09:21 [main] DEBUG pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:09:21 [main] DEBUG pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:09:21 [main] DEBUG pattern.strategy.Strategy - 3...fan
+2017/11/24 11:09:21 [main] DEBUG pattern.strategy.Strategy - 20...book
+2017/11/24 11:09:21 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:09:21 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:09:21 [main] DEBUG pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:09:21 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:09:21 [main] DEBUG pattern.strategy.Strategy - -----②测试表头中尾删除-----
+2017/11/24 11:09:21 [main] DEBUG pattern.strategy.Strategy - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/24 11:09:21 [main] DEBUG pattern.strategy.Strategy - sst.get(20) = null --- sst.size() = 6
+2017/11/24 11:09:21 [main] DEBUG pattern.strategy.Strategy - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/24 11:09:21 [main] DEBUG pattern.strategy.Strategy - sst.get(1) = null --- sst.size() = 5
+2017/11/24 11:09:21 [main] DEBUG pattern.strategy.Strategy - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/24 11:09:21 [main] DEBUG pattern.strategy.Strategy - sst.get(77) = null --- sst.size() = 4
+2017/11/24 11:09:21 [main] DEBUG pattern.strategy.Strategy - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/24 11:09:21 [main] DEBUG pattern.strategy.Strategy - sst.get(3) = null --- sst.size() = 3
+2017/11/24 11:09:21 [main] DEBUG pattern.strategy.Strategy - -----③遍历当前集合-----
+2017/11/24 11:09:21 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:09:21 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:09:21 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:09:21 [main] DEBUG pattern.strategy.Strategy - -----性能测试-----
+2017/11/24 11:09:22 [main] DEBUG pattern.strategy.Strategy - 0-6341...sst.size() = 6341
+2017/11/24 11:09:22 [main] INFO  pattern.strategy.Strategy - 总耗时：70ms
+2017/11/24 11:09:22 [main] DEBUG pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:09:46 [main] INFO  pattern.strategy.Strategy - pattern.strategy.RedBlackBSTAdapter
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - -----功能测试-----
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - sst.put(3, fan) --- sst.size() = 1
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - sst.put(1, lamp) --- sst.size() = 6
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - sst.put(20, computer) --- sst.size() = 7
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - sst.delete(20) --- sst.size() still= 7
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - 3...fan
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - 20...book
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - -----②测试表头中尾删除-----
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - sst.get(20) = null --- sst.size() = 6
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - sst.get(1) = null --- sst.size() = 5
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - sst.get(77) = null --- sst.size() = 4
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - sst.get(3) = null --- sst.size() = 3
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - -----③遍历当前集合-----
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - -----性能测试-----
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - 0-6343...sst.size() = 6343
+2017/11/24 11:09:46 [main] INFO  pattern.strategy.Strategy - 总耗时：57ms
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:09:46 [main] INFO  pattern.strategy.Strategy - pattern.strategy.BSTAdapter
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - -----功能测试-----
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - sst.put(3, fan) --- sst.size() = 1
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - sst.put(1, lamp) --- sst.size() = 6
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - sst.put(20, computer) --- sst.size() = 7
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - sst.delete(20) --- sst.size() still= 7
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - 3...fan
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - 20...book
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - -----②测试表头中尾删除-----
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - sst.get(20) = null --- sst.size() = 6
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - sst.get(1) = null --- sst.size() = 5
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - sst.get(77) = null --- sst.size() = 4
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - sst.get(3) = null --- sst.size() = 3
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - -----③遍历当前集合-----
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - -----性能测试-----
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - 0-6290...sst.size() = 6290
+2017/11/24 11:09:46 [main] INFO  pattern.strategy.Strategy - 总耗时：58ms
+2017/11/24 11:09:46 [main] DEBUG pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:09:52 [main] INFO  pattern.strategy.Strategy - pattern.strategy.RedBlackBSTAdapter
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - -----功能测试-----
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - sst.put(3, fan) --- sst.size() = 1
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - sst.put(1, lamp) --- sst.size() = 6
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - sst.put(20, computer) --- sst.size() = 7
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - sst.delete(20) --- sst.size() still= 7
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - 3...fan
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - 20...book
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - -----②测试表头中尾删除-----
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - sst.get(20) = null --- sst.size() = 6
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - sst.get(1) = null --- sst.size() = 5
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - sst.get(77) = null --- sst.size() = 4
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - sst.get(3) = null --- sst.size() = 3
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - -----③遍历当前集合-----
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - -----性能测试-----
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - 0-6330...sst.size() = 6330
+2017/11/24 11:09:52 [main] INFO  pattern.strategy.Strategy - 总耗时：54ms
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:09:52 [main] INFO  pattern.strategy.Strategy - pattern.strategy.BSTAdapter
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - -----功能测试-----
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - sst.put(3, fan) --- sst.size() = 1
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - sst.put(1, lamp) --- sst.size() = 6
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - sst.put(20, computer) --- sst.size() = 7
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - sst.delete(20) --- sst.size() still= 7
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - 3...fan
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - 20...book
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - -----②测试表头中尾删除-----
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - sst.get(20) = null --- sst.size() = 6
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - sst.get(1) = null --- sst.size() = 5
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - sst.get(77) = null --- sst.size() = 4
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - sst.get(3) = null --- sst.size() = 3
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - -----③遍历当前集合-----
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - -----性能测试-----
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - 0-6326...sst.size() = 6326
+2017/11/24 11:09:52 [main] INFO  pattern.strategy.Strategy - 总耗时：68ms
+2017/11/24 11:09:52 [main] DEBUG pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:09:56 [main] INFO  pattern.strategy.Strategy - pattern.strategy.RedBlackBSTAdapter
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - -----功能测试-----
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - sst.put(3, fan) --- sst.size() = 1
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - sst.put(1, lamp) --- sst.size() = 6
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - sst.put(20, computer) --- sst.size() = 7
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - sst.delete(20) --- sst.size() still= 7
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - 3...fan
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - 20...book
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - -----②测试表头中尾删除-----
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - sst.get(20) = null --- sst.size() = 6
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - sst.get(1) = null --- sst.size() = 5
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - sst.get(77) = null --- sst.size() = 4
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - sst.get(3) = null --- sst.size() = 3
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - -----③遍历当前集合-----
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - -----性能测试-----
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - 0-6331...sst.size() = 6331
+2017/11/24 11:09:56 [main] INFO  pattern.strategy.Strategy - 总耗时：60ms
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:09:56 [main] INFO  pattern.strategy.Strategy - pattern.strategy.BSTAdapter
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - -----功能测试-----
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - sst.put(3, fan) --- sst.size() = 1
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - sst.put(1, lamp) --- sst.size() = 6
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - sst.put(20, computer) --- sst.size() = 7
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - sst.delete(20) --- sst.size() still= 7
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - 3...fan
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - 20...book
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - -----②测试表头中尾删除-----
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - sst.get(20) = null --- sst.size() = 6
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - sst.get(1) = null --- sst.size() = 5
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - sst.get(77) = null --- sst.size() = 4
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - sst.get(3) = null --- sst.size() = 3
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - -----③遍历当前集合-----
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - -----性能测试-----
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - 0-6300...sst.size() = 6300
+2017/11/24 11:09:56 [main] INFO  pattern.strategy.Strategy - 总耗时：63ms
+2017/11/24 11:09:56 [main] DEBUG pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:09:59 [main] INFO  pattern.strategy.Strategy - pattern.strategy.RedBlackBSTAdapter
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - -----功能测试-----
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - sst.put(3, fan) --- sst.size() = 1
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - sst.put(1, lamp) --- sst.size() = 6
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - sst.put(20, computer) --- sst.size() = 7
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - sst.delete(20) --- sst.size() still= 7
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - 3...fan
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - 20...book
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - -----②测试表头中尾删除-----
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - sst.get(20) = null --- sst.size() = 6
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - sst.get(1) = null --- sst.size() = 5
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - sst.get(77) = null --- sst.size() = 4
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - sst.get(3) = null --- sst.size() = 3
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - -----③遍历当前集合-----
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - -----性能测试-----
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - 0-6290...sst.size() = 6290
+2017/11/24 11:09:59 [main] INFO  pattern.strategy.Strategy - 总耗时：51ms
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:09:59 [main] INFO  pattern.strategy.Strategy - pattern.strategy.BSTAdapter
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - -----功能测试-----
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - sst.put(3, fan) --- sst.size() = 1
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - sst.put(1, lamp) --- sst.size() = 6
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - sst.put(20, computer) --- sst.size() = 7
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - sst.delete(20) --- sst.size() still= 7
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - 3...fan
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - 20...book
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - -----②测试表头中尾删除-----
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - sst.get(20) = null --- sst.size() = 6
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - sst.get(1) = null --- sst.size() = 5
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - sst.get(77) = null --- sst.size() = 4
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - sst.get(3) = null --- sst.size() = 3
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - -----③遍历当前集合-----
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - -----性能测试-----
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - 0-6278...sst.size() = 6278
+2017/11/24 11:09:59 [main] INFO  pattern.strategy.Strategy - 总耗时：66ms
+2017/11/24 11:09:59 [main] DEBUG pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:11:29 [main] INFO  pattern.strategy.Strategy - pattern.strategy.RedBlackBSTAdapter
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - -----功能测试-----
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - sst.put(3, fan) --- sst.size() = 1
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - sst.put(1, lamp) --- sst.size() = 6
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - sst.put(20, computer) --- sst.size() = 7
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - sst.delete(20) --- sst.size() still= 7
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - 3...fan
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - 20...book
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - -----②测试表头中尾删除-----
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - sst.get(20) = null --- sst.size() = 6
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - sst.get(1) = null --- sst.size() = 5
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - sst.get(77) = null --- sst.size() = 4
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - sst.get(3) = null --- sst.size() = 3
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - -----③遍历当前集合-----
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - -----性能测试-----
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - 0-6347...sst.size() = 6347
+2017/11/24 11:11:29 [main] INFO  pattern.strategy.Strategy - 总耗时：53ms
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:11:29 [main] INFO  pattern.strategy.Strategy - pattern.strategy.BSTAdapter
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - -----功能测试-----
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - sst.put(3, fan) --- sst.size() = 1
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - sst.put(1, lamp) --- sst.size() = 6
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - sst.put(20, computer) --- sst.size() = 7
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - sst.delete(20) --- sst.size() still= 7
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - 3...fan
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - 20...book
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - -----②测试表头中尾删除-----
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - sst.get(20) = null --- sst.size() = 6
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - sst.get(1) = null --- sst.size() = 5
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - sst.get(77) = null --- sst.size() = 4
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - sst.get(3) = null --- sst.size() = 3
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - -----③遍历当前集合-----
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - -----性能测试-----
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - 0-6286...sst.size() = 6286
+2017/11/24 11:11:29 [main] INFO  pattern.strategy.Strategy - 总耗时：73ms
+2017/11/24 11:11:29 [main] DEBUG pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - -----功能测试-----
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - sst.put(3, fan) --- sst.size() = 1
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - sst.put(1, lamp) --- sst.size() = 6
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - sst.put(20, computer) --- sst.size() = 7
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - sst.delete(20) --- sst.size() still= 7
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - 3...fan
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - 20...book
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - -----②测试表头中尾删除-----
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - sst.get(20) = null --- sst.size() = 6
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - sst.get(1) = null --- sst.size() = 5
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - sst.get(77) = null --- sst.size() = 4
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - sst.get(3) = null --- sst.size() = 3
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - -----③遍历当前集合-----
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - -----性能测试-----
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - 0-6263...sst.size() = 6263
+2017/11/24 11:11:39 [main] INFO  pattern.strategy.Strategy - 总耗时：53ms
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - -----功能测试-----
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - sst.put(3, fan) --- sst.size() = 1
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - sst.put(1, lamp) --- sst.size() = 6
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - sst.put(20, computer) --- sst.size() = 7
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - sst.delete(20) --- sst.size() still= 7
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - 3...fan
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - 20...book
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - -----②测试表头中尾删除-----
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - sst.get(20) = null --- sst.size() = 6
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - sst.get(1) = null --- sst.size() = 5
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - sst.get(77) = null --- sst.size() = 4
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - sst.get(3) = null --- sst.size() = 3
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - -----③遍历当前集合-----
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - -----性能测试-----
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - 0-6307...sst.size() = 6307
+2017/11/24 11:11:39 [main] INFO  pattern.strategy.Strategy - 总耗时：62ms
+2017/11/24 11:11:39 [main] DEBUG pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:14:56 [main] DEBUG pattern.strategy.Strategy - -----功能测试-----
+2017/11/24 11:14:56 [main] DEBUG pattern.strategy.Strategy - sst.put(3, fan) --- sst.size() = 1
+2017/11/24 11:14:56 [main] DEBUG pattern.strategy.Strategy - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/24 11:14:56 [main] DEBUG pattern.strategy.Strategy - sst.put(1, lamp) --- sst.size() = 6
+2017/11/24 11:14:56 [main] DEBUG pattern.strategy.Strategy - sst.put(20, computer) --- sst.size() = 7
+2017/11/24 11:14:56 [main] DEBUG pattern.strategy.Strategy - sst.delete(20) --- sst.size() still= 7
+2017/11/24 11:14:56 [main] DEBUG pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:14:56 [main] DEBUG pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:14:56 [main] DEBUG pattern.strategy.Strategy - 3...fan
+2017/11/24 11:14:56 [main] DEBUG pattern.strategy.Strategy - 20...book
+2017/11/24 11:14:56 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:14:56 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:14:56 [main] DEBUG pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:14:56 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:14:56 [main] DEBUG pattern.strategy.Strategy - -----②测试表头中尾删除-----
+2017/11/24 11:14:56 [main] DEBUG pattern.strategy.Strategy - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/24 11:14:56 [main] DEBUG pattern.strategy.Strategy - sst.get(20) = null --- sst.size() = 6
+2017/11/24 11:14:56 [main] DEBUG pattern.strategy.Strategy - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/24 11:14:56 [main] DEBUG pattern.strategy.Strategy - sst.get(1) = null --- sst.size() = 5
+2017/11/24 11:14:56 [main] DEBUG pattern.strategy.Strategy - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/24 11:14:56 [main] DEBUG pattern.strategy.Strategy - sst.get(77) = null --- sst.size() = 4
+2017/11/24 11:14:56 [main] DEBUG pattern.strategy.Strategy - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/24 11:14:56 [main] DEBUG pattern.strategy.Strategy - sst.get(3) = null --- sst.size() = 3
+2017/11/24 11:14:56 [main] DEBUG pattern.strategy.Strategy - -----③遍历当前集合-----
+2017/11/24 11:14:56 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:14:56 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:14:56 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:14:56 [main] DEBUG pattern.strategy.Strategy - -----性能测试-----
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - 0-6361...sst.size() = 6361
+2017/11/24 11:14:57 [main] INFO  pattern.strategy.Strategy - 总耗时：66ms
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - -----功能测试-----
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - sst.put(3, fan) --- sst.size() = 1
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - sst.put(1, lamp) --- sst.size() = 6
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - sst.put(20, computer) --- sst.size() = 7
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - sst.delete(20) --- sst.size() still= 7
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - 3...fan
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - 20...book
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - -----②测试表头中尾删除-----
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - sst.get(20) = null --- sst.size() = 6
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - sst.get(1) = null --- sst.size() = 5
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - sst.get(77) = null --- sst.size() = 4
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - sst.get(3) = null --- sst.size() = 3
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - -----③遍历当前集合-----
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - -----性能测试-----
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - 0-6284...sst.size() = 6284
+2017/11/24 11:14:57 [main] INFO  pattern.strategy.Strategy - 总耗时：60ms
+2017/11/24 11:14:57 [main] DEBUG pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - -----功能测试-----
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - sst.put(3, fan) --- sst.size() = 1
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - sst.put(1, lamp) --- sst.size() = 6
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - sst.put(20, computer) --- sst.size() = 7
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - sst.delete(20) --- sst.size() still= 7
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - 3...fan
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - 20...book
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - -----②测试表头中尾删除-----
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - sst.get(20) = null --- sst.size() = 6
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - sst.get(1) = null --- sst.size() = 5
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - sst.get(77) = null --- sst.size() = 4
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - sst.get(3) = null --- sst.size() = 3
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - -----③遍历当前集合-----
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - -----性能测试-----
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - 0-6364...sst.size() = 6364
+2017/11/24 11:15:06 [main] INFO  pattern.strategy.Strategy - 总耗时：62ms
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - -----功能测试-----
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - sst.put(3, fan) --- sst.size() = 1
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - sst.put(1, lamp) --- sst.size() = 6
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - sst.put(20, computer) --- sst.size() = 7
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - sst.delete(20) --- sst.size() still= 7
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - 3...fan
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - 20...book
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - -----②测试表头中尾删除-----
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - sst.get(20) = null --- sst.size() = 6
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - sst.get(1) = null --- sst.size() = 5
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - sst.get(77) = null --- sst.size() = 4
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - sst.get(3) = null --- sst.size() = 3
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - -----③遍历当前集合-----
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - -----性能测试-----
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - 0-6344...sst.size() = 6344
+2017/11/24 11:15:06 [main] INFO  pattern.strategy.Strategy - 总耗时：63ms
+2017/11/24 11:15:06 [main] DEBUG pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - -----功能测试-----
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - sst.put(3, fan) --- sst.size() = 1
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - sst.put(1, lamp) --- sst.size() = 6
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - sst.put(20, computer) --- sst.size() = 7
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - sst.delete(20) --- sst.size() still= 7
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - 3...fan
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - 20...book
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - -----②测试表头中尾删除-----
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - sst.get(20) = null --- sst.size() = 6
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - sst.get(1) = null --- sst.size() = 5
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - sst.get(77) = null --- sst.size() = 4
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - sst.get(3) = null --- sst.size() = 3
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - -----③遍历当前集合-----
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - -----性能测试-----
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - 0-6341...sst.size() = 6341
+2017/11/24 11:16:13 [main] INFO  pattern.strategy.Strategy - 总耗时：68ms
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - -----功能测试-----
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - sst.put(3, fan) --- sst.size() = 1
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - sst.put(1, lamp) --- sst.size() = 6
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - sst.put(20, computer) --- sst.size() = 7
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - sst.delete(20) --- sst.size() still= 7
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - 3...fan
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - 20...book
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - -----②测试表头中尾删除-----
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - sst.get(20) = null --- sst.size() = 6
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - sst.get(1) = null --- sst.size() = 5
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - sst.get(77) = null --- sst.size() = 4
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - sst.get(3) = null --- sst.size() = 3
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - -----③遍历当前集合-----
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - -----性能测试-----
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - 0-6305...sst.size() = 6305
+2017/11/24 11:16:13 [main] INFO  pattern.strategy.Strategy - 总耗时：67ms
+2017/11/24 11:16:13 [main] DEBUG pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - -----功能测试-----
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - sst.put(3, fan) --- sst.size() = 1
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - sst.put(1, lamp) --- sst.size() = 6
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - sst.put(20, computer) --- sst.size() = 7
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - sst.delete(20) --- sst.size() still= 7
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - 3...fan
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - 20...book
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - -----②测试表头中尾删除-----
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - sst.get(20) = null --- sst.size() = 6
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - sst.get(1) = null --- sst.size() = 5
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - sst.get(77) = null --- sst.size() = 4
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - sst.get(3) = null --- sst.size() = 3
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - -----③遍历当前集合-----
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - -----性能测试-----
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - 0-6318...sst.size() = 6318
+2017/11/24 11:16:40 [main] INFO  pattern.strategy.Strategy - 总耗时：52ms
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - -----功能测试-----
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - sst.put(3, fan) --- sst.size() = 1
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - sst.put(1, lamp) --- sst.size() = 6
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - sst.put(20, computer) --- sst.size() = 7
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - sst.delete(20) --- sst.size() still= 7
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - 3...fan
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - 20...book
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - -----②测试表头中尾删除-----
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - sst.get(20) = null --- sst.size() = 6
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - sst.get(1) = null --- sst.size() = 5
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - sst.get(77) = null --- sst.size() = 4
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - sst.get(3) = null --- sst.size() = 3
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - -----③遍历当前集合-----
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - -----性能测试-----
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - 0-6349...sst.size() = 6349
+2017/11/24 11:16:40 [main] INFO  pattern.strategy.Strategy - 总耗时：56ms
+2017/11/24 11:16:40 [main] DEBUG pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:16:51 [main] INFO  pattern.strategy.Strategy - pattern.strategy.RedBlackBSTAdapter
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - -----功能测试-----
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - sst.put(3, fan) --- sst.size() = 1
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - sst.put(1, lamp) --- sst.size() = 6
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - sst.put(20, computer) --- sst.size() = 7
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - sst.delete(20) --- sst.size() still= 7
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - 3...fan
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - 20...book
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - -----②测试表头中尾删除-----
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - sst.get(20) = null --- sst.size() = 6
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - sst.get(1) = null --- sst.size() = 5
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - sst.get(77) = null --- sst.size() = 4
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - sst.get(3) = null --- sst.size() = 3
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - -----③遍历当前集合-----
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - -----性能测试-----
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - 0-6287...sst.size() = 6287
+2017/11/24 11:16:51 [main] INFO  pattern.strategy.Strategy - 总耗时：55ms
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:16:51 [main] INFO  pattern.strategy.Strategy - pattern.strategy.BSTAdapter
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - -----功能测试-----
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - sst.put(3, fan) --- sst.size() = 1
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - sst.put(1, lamp) --- sst.size() = 6
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - sst.put(20, computer) --- sst.size() = 7
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - sst.delete(20) --- sst.size() still= 7
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - 3...fan
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - 20...book
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - -----②测试表头中尾删除-----
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - sst.get(20) = null --- sst.size() = 6
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - sst.get(1) = null --- sst.size() = 5
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - sst.get(77) = null --- sst.size() = 4
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - sst.get(3) = null --- sst.size() = 3
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - -----③遍历当前集合-----
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - -----性能测试-----
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - 0-6384...sst.size() = 6384
+2017/11/24 11:16:51 [main] INFO  pattern.strategy.Strategy - 总耗时：68ms
+2017/11/24 11:16:51 [main] DEBUG pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:22:50 [main] INFO  pattern.strategy.Strategy - pattern.strategy.RedBlackBSTAdapter
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - -----功能测试-----
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - sst.put(3, fan) --- sst.size() = 1
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - sst.put(1, lamp) --- sst.size() = 6
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - sst.put(20, computer) --- sst.size() = 7
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - sst.delete(20) --- sst.size() still= 7
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - 3...fan
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - 20...book
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - -----②测试表头中尾删除-----
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - sst.get(20) = null --- sst.size() = 6
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - sst.get(1) = null --- sst.size() = 5
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - sst.get(77) = null --- sst.size() = 4
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - sst.get(3) = null --- sst.size() = 3
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - -----③遍历当前集合-----
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - -----性能测试-----
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - 0-6332...sst.size() = 6332
+2017/11/24 11:22:50 [main] INFO  pattern.strategy.Strategy - 总耗时：69ms
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - 测试成功！
+2017/11/24 11:22:50 [main] INFO  pattern.strategy.Strategy - pattern.strategy.BSTAdapter
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - -----功能测试-----
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - sst.put(3, fan) --- sst.size() = 1
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - sst.put 77,32,65,256 --- sst.size() = 5
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - sst.put(1, lamp) --- sst.size() = 6
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - sst.put(20, computer) --- sst.size() = 7
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - sst.delete(20) --- sst.size() still= 7
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - -----①遍历当前集合【观察输出顺序】-----
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - 1...lamp
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - 3...fan
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - 20...book
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - 77...eclipse
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - -----②测试表头中尾删除-----
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - sst.remove(20)...【有序表中删除，顺序表头删除】
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - sst.get(20) = null --- sst.size() = 6
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - sst.remove(1)...【有序表头删除，顺序表中删除】
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - sst.get(1) = null --- sst.size() = 5
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - sst.remove(77)...【有序表尾删除】，顺序表中删除
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - sst.get(77) = null --- sst.size() = 4
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - sst.remove(3)...有序表中删除，【顺序表尾删除】
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - sst.get(3) = null --- sst.size() = 3
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - -----③遍历当前集合-----
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - 32...idea
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - 65...cup
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - 256...plane
+2017/11/24 11:22:50 [main] DEBUG pattern.strategy.Strategy - -----性能测试-----
+2017/11/24 11:22:51 [main] DEBUG pattern.strategy.Strategy - 0-6414...sst.size() = 6414
+2017/11/24 11:22:51 [main] INFO  pattern.strategy.Strategy - 总耗时：88ms
+2017/11/24 11:22:51 [main] DEBUG pattern.strategy.Strategy - 测试成功！
