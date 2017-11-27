@@ -17971,3 +17971,241 @@
 2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - sst.select(7)...【有序查询排名最后的key】 = 256
 2017/11/24 16:44:39 [main] DEBUG algorithms.search.VIPClient - 测试成功！
 2017/11/24 16:44:39 [main] INFO  algorithms.search.VIPClient - ------批量测试成功！------
+2017/11/27 10:33:30 [main] INFO  javaS.IO.FileS - start test file methods.
+2017/11/27 10:40:27 [main] INFO  javaS.IO.FileS - Start testing file methods.
+2017/11/27 10:40:28 [main] INFO  javaS.IO.FileS - The file in 'Files' is: Charging-Center
+2017/11/27 10:40:28 [main] INFO  javaS.IO.FileS - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/Charging-Center
+2017/11/27 10:40:28 [main] INFO  javaS.IO.FileS - The file in 'Files' is: HongXing.txt
+2017/11/27 10:40:28 [main] INFO  javaS.IO.FileS - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/HongXing.txt
+2017/11/27 10:40:28 [main] INFO  javaS.IO.FileS - The file in 'Files' is: UME.txt
+2017/11/27 10:40:28 [main] INFO  javaS.IO.FileS - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/UME.txt
+2017/11/27 10:40:28 [main] INFO  javaS.IO.FileS - Complete testing file methods.
+2017/11/27 10:41:22 [main] INFO  javaS.IO.FileS - Start testing file methods.
+2017/11/27 10:41:22 [main] INFO  javaS.IO.FileS - The directory in 'Files' is: Charging-Center
+2017/11/27 10:41:22 [main] INFO  javaS.IO.FileS - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/Charging-Center
+2017/11/27 10:41:22 [main] INFO  javaS.IO.FileS - The file in 'Files' is: HongXing.txt
+2017/11/27 10:41:22 [main] INFO  javaS.IO.FileS - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/HongXing.txt
+2017/11/27 10:41:22 [main] INFO  javaS.IO.FileS - The file in 'Files' is: UME.txt
+2017/11/27 10:41:22 [main] INFO  javaS.IO.FileS - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/UME.txt
+2017/11/27 10:41:22 [main] INFO  javaS.IO.FileS - Complete testing file methods.
+2017/11/27 11:14:59 [main] INFO  javaS.IO.Base - Start testing file methods.
+2017/11/27 11:14:59 [main] INFO  javaS.IO.Base - The directory in 'Files' is: Charging-Center
+2017/11/27 11:14:59 [main] INFO  javaS.IO.Base - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/Charging-Center
+2017/11/27 11:14:59 [main] INFO  javaS.IO.Base - The file in 'Files' is: HongXing.txt
+2017/11/27 11:14:59 [main] INFO  javaS.IO.Base - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/HongXing.txt
+2017/11/27 11:14:59 [main] INFO  javaS.IO.Base - The file in 'Files' is: UME.txt
+2017/11/27 11:14:59 [main] INFO  javaS.IO.Base - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/UME.txt
+2017/11/27 11:14:59 [main] INFO  javaS.IO.Base - Complete testing file methods.
+2017/11/27 11:15:40 [main] INFO  javaS.IO.Base - Shuangjing,JinSong
+A
+2017/11/27 11:15:40 [main] INFO  javaS.IO.Base - n'zhen
+
+2017/11/27 11:16:20 [main] INFO  javaS.IO.Base - Shuangjing,JinSong
+A
+2017/11/27 11:16:20 [main] INFO  javaS.IO.Base - n'zhen
+
+2017/11/27 11:16:25 [main] INFO  javaS.IO.Base - Sh
+2017/11/27 11:16:25 [main] INFO  javaS.IO.Base - ua
+2017/11/27 11:16:25 [main] INFO  javaS.IO.Base - ng
+2017/11/27 11:16:25 [main] INFO  javaS.IO.Base - ji
+2017/11/27 11:16:25 [main] INFO  javaS.IO.Base - ng
+2017/11/27 11:16:25 [main] INFO  javaS.IO.Base - ,J
+2017/11/27 11:16:25 [main] INFO  javaS.IO.Base - in
+2017/11/27 11:16:25 [main] INFO  javaS.IO.Base - So
+2017/11/27 11:16:25 [main] INFO  javaS.IO.Base - ng
+2017/11/27 11:16:25 [main] INFO  javaS.IO.Base - 
+A
+2017/11/27 11:16:25 [main] INFO  javaS.IO.Base - n'
+2017/11/27 11:16:25 [main] INFO  javaS.IO.Base - zh
+2017/11/27 11:16:25 [main] INFO  javaS.IO.Base - en
+2017/11/27 11:16:25 [main] INFO  javaS.IO.Base - 
+
+2017/11/27 11:16:35 [main] INFO  javaS.IO.Base - Shuangjing,JinSong
+An'zhen
+
+2017/11/27 11:18:03 [main] INFO  javaS.IO.Base - Start testing file methods.
+2017/11/27 11:18:03 [main] INFO  javaS.IO.Base - The directory in 'Files' is: Charging-Center
+2017/11/27 11:18:03 [main] INFO  javaS.IO.Base - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/Charging-Center
+2017/11/27 11:18:03 [main] INFO  javaS.IO.Base - The directory in 'Files' is: xxx
+2017/11/27 11:18:03 [main] INFO  javaS.IO.Base - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/xxx
+2017/11/27 11:18:03 [main] INFO  javaS.IO.Base - The file in 'Files' is: HongXing.txt
+2017/11/27 11:18:03 [main] INFO  javaS.IO.Base - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/HongXing.txt
+2017/11/27 11:18:03 [main] INFO  javaS.IO.Base - The file in 'Files' is: UME.txt
+2017/11/27 11:18:03 [main] INFO  javaS.IO.Base - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/UME.txt
+2017/11/27 11:18:03 [main] INFO  javaS.IO.Base - Complete testing file methods.
+2017/11/27 11:18:23 [main] INFO  javaS.IO.Base - Start testing file methods.
+2017/11/27 11:18:23 [main] INFO  javaS.IO.Base - The directory in 'Files' is: Charging-Center
+2017/11/27 11:18:23 [main] INFO  javaS.IO.Base - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/Charging-Center
+2017/11/27 11:18:23 [main] INFO  javaS.IO.Base - The directory in 'Files' is: xxx
+2017/11/27 11:18:23 [main] INFO  javaS.IO.Base - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/xxx
+2017/11/27 11:18:23 [main] INFO  javaS.IO.Base - The file in 'Files' is: HongXing.txt
+2017/11/27 11:18:23 [main] INFO  javaS.IO.Base - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/HongXing.txt
+2017/11/27 11:18:23 [main] INFO  javaS.IO.Base - The file in 'Files' is: UME.txt
+2017/11/27 11:18:23 [main] INFO  javaS.IO.Base - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/UME.txt
+2017/11/27 11:18:23 [main] INFO  javaS.IO.Base - Complete testing file methods.
+2017/11/27 11:18:33 [main] INFO  javaS.IO.Base - Start testing file methods.
+2017/11/27 11:18:33 [main] INFO  javaS.IO.Base - The directory in 'Files' is: Charging-Center
+2017/11/27 11:18:33 [main] INFO  javaS.IO.Base - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/Charging-Center
+2017/11/27 11:18:33 [main] INFO  javaS.IO.Base - The directory in 'Files' is: xxx
+2017/11/27 11:18:33 [main] INFO  javaS.IO.Base - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/xxx
+2017/11/27 11:18:33 [main] INFO  javaS.IO.Base - The file in 'Files' is: HongXing.txt
+2017/11/27 11:18:33 [main] INFO  javaS.IO.Base - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/HongXing.txt
+2017/11/27 11:18:33 [main] INFO  javaS.IO.Base - The file in 'Files' is: UME.txt
+2017/11/27 11:18:33 [main] INFO  javaS.IO.Base - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/UME.txt
+2017/11/27 11:18:33 [main] INFO  javaS.IO.Base - Complete testing file methods.
+2017/11/27 11:18:45 [main] INFO  javaS.IO.Base - Start testing file methods.
+2017/11/27 11:18:45 [main] INFO  javaS.IO.Base - The directory in 'Files' is: Charging-Center
+2017/11/27 11:18:45 [main] INFO  javaS.IO.Base - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/Charging-Center
+2017/11/27 11:18:45 [main] INFO  javaS.IO.Base - The directory in 'Files' is: xxx
+2017/11/27 11:18:45 [main] INFO  javaS.IO.Base - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/xxx
+2017/11/27 11:18:45 [main] INFO  javaS.IO.Base - The file in 'Files' is: HongXing.txt
+2017/11/27 11:18:45 [main] INFO  javaS.IO.Base - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/HongXing.txt
+2017/11/27 11:18:45 [main] INFO  javaS.IO.Base - The file in 'Files' is: UME.txt
+2017/11/27 11:18:45 [main] INFO  javaS.IO.Base - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/UME.txt
+2017/11/27 11:18:45 [main] INFO  javaS.IO.Base - The file in 'Files' is: xxx.x
+2017/11/27 11:18:45 [main] INFO  javaS.IO.Base - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/xxx.x
+2017/11/27 11:18:45 [main] INFO  javaS.IO.Base - Complete testing file methods.
+2017/11/27 11:18:57 [main] INFO  javaS.IO.Base - Start testing file methods.
+2017/11/27 11:18:57 [main] INFO  javaS.IO.Base - The directory in 'Files' is: Charging-Center
+2017/11/27 11:18:57 [main] INFO  javaS.IO.Base - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/Charging-Center
+2017/11/27 11:18:57 [main] INFO  javaS.IO.Base - The directory in 'Files' is: xxx
+2017/11/27 11:18:57 [main] INFO  javaS.IO.Base - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/xxx
+2017/11/27 11:18:57 [main] INFO  javaS.IO.Base - The file in 'Files' is: HongXing.txt
+2017/11/27 11:18:57 [main] INFO  javaS.IO.Base - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/HongXing.txt
+2017/11/27 11:18:57 [main] INFO  javaS.IO.Base - The directory in 'Files' is: xxx.xd
+2017/11/27 11:18:57 [main] INFO  javaS.IO.Base - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/xxx.xd
+2017/11/27 11:18:57 [main] INFO  javaS.IO.Base - The file in 'Files' is: UME.txt
+2017/11/27 11:18:57 [main] INFO  javaS.IO.Base - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/UME.txt
+2017/11/27 11:18:57 [main] INFO  javaS.IO.Base - The file in 'Files' is: xxx.x
+2017/11/27 11:18:57 [main] INFO  javaS.IO.Base - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/xxx.x
+2017/11/27 11:18:57 [main] INFO  javaS.IO.Base - Complete testing file methods.
+2017/11/27 11:32:27 [main] INFO  javaS.IO.StudyIOBase - 11:18:57[testFileMethods]: Start testing file methods.
+11:18:57[testFileMethods]: The directory in 'Files' is: Charging-Center
+
+2017/11/27 11:35:51 [main] INFO  javaS.IO.StudyIOBase - 哈哈哈
+嘿嘿
+2017/11/27 12:21:05 [main] INFO  javaS.IO.StudyIOBase - 哈哈哈
+嘿嘿你好
+2017/11/27 12:21:14 [main] INFO  javaS.IO.StudyIOBase - 哈哈哈
+嘿嘿   ，  你好
+2017/11/27 12:21:21 [main] INFO  javaS.IO.StudyIOBase - 哈哈哈
+嘿嘿   ，  你好
+2017/11/27 12:21:25 [main] INFO  javaS.IO.StudyIOBase - 哈哈哈
+嘿嘿 你好
+2017/11/27 12:24:03 [main] INFO  javaS.IO.StudyIOBase - 哈哈哈
+嘿嘿 你好
+2017/11/27 12:24:23 [main] INFO  javaS.IO.StudyIOBase - 哈哈哈
+嘿嘿 你好
+2017/11/27 12:26:46 [main] INFO  javaS.IO.StudyIOBase - 哈哈哈
+嘿嘿
+2017/11/27 12:27:00 [main] INFO  javaS.IO.StudyIOBase - 哈哈哈
+嘿嘿
+2017/11/27 12:27:14 [main] INFO  javaS.IO.StudyIOBase - 哈哈哈
+嘿嘿 你好
+2017/11/27 12:27:30 [main] INFO  javaS.IO.StudyIOBase - 哈哈哈
+嘿嘿
+2017/11/27 12:57:30 [main] INFO  javaS.IO.StudyIOBase - 哈哈哈
+嘿嘿
+2017/11/27 13:00:48 [main] INFO  javaS.IO.StudyIOBase - 举杯邀明月
+2017/11/27 13:01:55 [main] INFO  javaS.IO.StudyIOBase - 哈哈哈
+嘿嘿 你好举杯邀明月
+2017/11/27 13:02:46 [main] INFO  javaS.IO.StudyIOBase - 哈哈哈
+嘿嘿 你好举杯邀明月床前明月光
+2017/11/27 13:04:15 [main] INFO  javaS.IO.StudyIOBase - 哈哈哈
+嘿嘿 你好举杯邀明月床前明月光
+2017/11/27 13:04:36 [main] INFO  javaS.IO.StudyIOBase - 举杯邀明月床前明月光
+2017/11/27 13:24:38 [main] INFO  javaS.IO.StudyIOBase - 22
+2017/11/27 13:24:38 [main] INFO  javaS.IO.StudyIOBase - -24178
+2017/11/27 13:24:38 [main] INFO  javaS.IO.StudyIOBase - 20
+2017/11/27 13:24:38 [main] INFO  javaS.IO.StudyIOBase - 3
+2017/11/27 13:24:38 [main] INFO  javaS.IO.StudyIOBase - *
+2017/11/27 13:25:19 [main] INFO  javaS.IO.StudyIOBase - 22
+2017/11/27 13:25:19 [main] INFO  javaS.IO.StudyIOBase - 32526
+2017/11/27 13:25:19 [main] INFO  javaS.IO.StudyIOBase - 20
+2017/11/27 13:25:19 [main] INFO  javaS.IO.StudyIOBase - 3
+2017/11/27 13:25:19 [main] INFO  javaS.IO.StudyIOBase - *
+2017/11/27 13:25:57 [main] INFO  javaS.IO.StudyIOBase - 22
+2017/11/27 13:25:57 [main] INFO  javaS.IO.StudyIOBase - 2342
+2017/11/27 13:25:57 [main] INFO  javaS.IO.StudyIOBase - 20
+2017/11/27 13:25:57 [main] INFO  javaS.IO.StudyIOBase - 3
+2017/11/27 13:25:57 [main] INFO  javaS.IO.StudyIOBase - *
+2017/11/27 13:26:52 [main] INFO  javaS.IO.StudyIOBase - 22
+2017/11/27 13:26:52 [main] INFO  javaS.IO.StudyIOBase - 2342
+2017/11/27 13:26:52 [main] INFO  javaS.IO.StudyIOBase - 20
+2017/11/27 13:26:52 [main] INFO  javaS.IO.StudyIOBase - 3
+2017/11/27 13:26:52 [main] INFO  javaS.IO.StudyIOBase - *
+2017/11/27 13:26:52 [main] INFO  javaS.IO.StudyIOBase - 3.1415926
+2017/11/27 13:27:32 [main] INFO  javaS.IO.StudyIOBase - 22
+2017/11/27 13:27:32 [main] INFO  javaS.IO.StudyIOBase - 2342
+2017/11/27 13:27:32 [main] INFO  javaS.IO.StudyIOBase - 20
+2017/11/27 13:27:32 [main] INFO  javaS.IO.StudyIOBase - 3
+2017/11/27 13:27:32 [main] INFO  javaS.IO.StudyIOBase - 䀉
+2017/11/27 13:27:32 [main] INFO  javaS.IO.StudyIOBase - 5.465900832498289E-145
+2017/11/27 13:35:01 [main] INFO  javaS.IO.StudyIOBase - 22
+2017/11/27 13:35:01 [main] INFO  javaS.IO.StudyIOBase - 2
+2017/11/27 13:35:01 [main] INFO  javaS.IO.StudyIOBase - 20
+2017/11/27 13:35:01 [main] INFO  javaS.IO.StudyIOBase - 3
+2017/11/27 13:35:01 [main] INFO  javaS.IO.StudyIOBase - *
+2017/11/27 13:35:01 [main] INFO  javaS.IO.StudyIOBase - 3.1415926
+2017/11/27 13:39:03 [main] INFO  javaS.IO.StudyIOBase - 22
+2017/11/27 13:39:03 [main] INFO  javaS.IO.StudyIOBase - 2
+2017/11/27 13:39:03 [main] INFO  javaS.IO.StudyIOBase - 20
+2017/11/27 13:39:03 [main] INFO  javaS.IO.StudyIOBase - 3
+2017/11/27 13:39:03 [main] INFO  javaS.IO.StudyIOBase - *
+2017/11/27 13:39:03 [main] INFO  javaS.IO.StudyIOBase - 3.1415926
+2017/11/27 13:40:50 [main] INFO  javaS.IO.StudyIOBase -             *@	!�M�J
+2017/11/27 13:41:02 [main] INFO  javaS.IO.StudyIOBase - 举杯邀明月床前明月光
+2017/11/27 13:44:36 [main] INFO  javaS.IO.StudyIOBase - Start testing file methods.
+2017/11/27 13:44:36 [main] INFO  javaS.IO.StudyIOBase - The directory in 'Files' is: Charging-Center
+2017/11/27 13:44:36 [main] INFO  javaS.IO.StudyIOBase - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/Charging-Center
+2017/11/27 13:44:36 [main] INFO  javaS.IO.StudyIOBase - The file in 'Files' is: HongXing.txt
+2017/11/27 13:44:36 [main] INFO  javaS.IO.StudyIOBase - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/HongXing.txt
+2017/11/27 13:44:36 [main] INFO  javaS.IO.StudyIOBase - The file in 'Files' is: UME.txt
+2017/11/27 13:44:36 [main] INFO  javaS.IO.StudyIOBase - Whose path is: /home/CORPUSERS/xp020154/work/test/FileS/UME.txt
+2017/11/27 13:44:36 [main] INFO  javaS.IO.StudyIOBase - Complete testing file methods.
+2017/11/27 14:54:15 [main] INFO  javaS.IO.StudyIOBase - 感时花溅泪，恨别鸟惊心
+2017/11/27 14:54:15 [main] INFO  javaS.IO.StudyIOBase - 烽火连三月，家书抵万金
+2017/11/27 14:59:46 [main] INFO  javaS.IO.StudyIOBase - 感时花溅泪，恨别鸟惊心
+2017/11/27 14:59:46 [main] INFO  javaS.IO.StudyIOBase - 烽火连三月，家书抵万金
+2017/11/27 15:00:03 [main] INFO  javaS.IO.StudyIOBase - 感时花溅泪，恨别鸟惊心
+2017/11/27 15:00:03 [main] INFO  javaS.IO.StudyIOBase - 烽火连三月，家书抵万金
+2017/11/27 15:00:18 [main] INFO  javaS.IO.StudyIOBase - ��ʱ�����ᣬ�ޱ�����
+2017/11/27 15:00:18 [main] INFO  javaS.IO.StudyIOBase - 烽火连三月，家书抵万金
+2017/11/27 15:03:57 [main] INFO  javaS.IO.StudyIOBase - ��ʱ�����ᣬ�ޱ�����
+2017/11/27 15:03:57 [main] INFO  javaS.IO.StudyIOBase - 烽火连三月，家书抵万金
+2017/11/27 15:03:57 [main] INFO  javaS.IO.StudyIOBase - ��ʱ�����ᣬ�ޱ�����
+2017/11/27 15:03:57 [main] INFO  javaS.IO.StudyIOBase - 烽火连三月，家书抵万金
+2017/11/27 15:04:07 [main] INFO  javaS.IO.StudyIOBase - 感时花溅泪，恨别鸟惊心
+2017/11/27 15:04:07 [main] INFO  javaS.IO.StudyIOBase - 烽火连三月，家书抵万金
+2017/11/27 15:04:07 [main] INFO  javaS.IO.StudyIOBase - 感时花溅泪，恨别鸟惊心
+2017/11/27 15:04:07 [main] INFO  javaS.IO.StudyIOBase - 烽火连三月，家书抵万金
+2017/11/27 15:12:56 [main] INFO  javaS.IO.StudyIOBase - Start testing file methods.
+2017/11/27 15:12:56 [main] INFO  javaS.IO.StudyIOBase - The file in 'Files' is: HongXing.txt
+2017/11/27 15:12:56 [main] INFO  javaS.IO.StudyIOBase - Whose path is: /home/CORPUSERS/xp020154/work/github/mainbase/resource/StudyFile/HongXing.txt
+2017/11/27 15:12:56 [main] INFO  javaS.IO.StudyIOBase - The directory in 'Files' is: Cinema
+2017/11/27 15:12:56 [main] INFO  javaS.IO.StudyIOBase - Whose path is: /home/CORPUSERS/xp020154/work/github/mainbase/resource/StudyFile/Cinema
+2017/11/27 15:12:56 [main] INFO  javaS.IO.StudyIOBase - The file in 'Files' is: UME.txt
+2017/11/27 15:12:56 [main] INFO  javaS.IO.StudyIOBase - Whose path is: /home/CORPUSERS/xp020154/work/github/mainbase/resource/StudyFile/UME.txt
+2017/11/27 15:12:56 [main] INFO  javaS.IO.StudyIOBase - Complete testing file methods.
+2017/11/27 15:16:22 [main] INFO  javaS.IO.StudyIOBase - 哈哈哈
+嘿嘿 你好
+2017/11/27 15:16:38 [main] INFO  javaS.IO.StudyIOBase - 举杯邀明月床前明月光
+2017/11/27 15:17:44 [main] INFO  javaS.IO.StudyIOBase - 22
+2017/11/27 15:17:44 [main] INFO  javaS.IO.StudyIOBase - 2
+2017/11/27 15:17:44 [main] INFO  javaS.IO.StudyIOBase - 20
+2017/11/27 15:17:44 [main] INFO  javaS.IO.StudyIOBase - 3
+2017/11/27 15:17:44 [main] INFO  javaS.IO.StudyIOBase - *
+2017/11/27 15:17:44 [main] INFO  javaS.IO.StudyIOBase - 3.1415926
+2017/11/27 15:17:57 [main] INFO  javaS.IO.StudyIOBase - 举杯邀明月床前明月光
+2017/11/27 15:18:37 [main] INFO  javaS.IO.StudyIOBase - 感时花溅泪，恨别鸟惊心
+2017/11/27 15:18:37 [main] INFO  javaS.IO.StudyIOBase - 烽火连三月，家书抵万金
+2017/11/27 15:18:37 [main] INFO  javaS.IO.StudyIOBase - 感时花溅泪，恨别鸟惊心
+2017/11/27 15:18:37 [main] INFO  javaS.IO.StudyIOBase - 烽火连三月，家书抵万金
+2017/11/27 15:29:18 [main] INFO  javaS.IO.StudyIOBase - 相煎何太急
+2017/11/27 15:31:30 [main] INFO  javaS.IO.StudyIOBase - 感时花溅泪，恨别鸟惊心
+2017/11/27 15:31:30 [main] INFO  javaS.IO.StudyIOBase - 烽火连三月，家书抵万金相煎何太急
+2017/11/27 15:31:30 [main] INFO  javaS.IO.StudyIOBase - 相煎何太急
+2017/11/27 15:32:03 [main] INFO  javaS.IO.StudyIOBase - 感时花溅泪，恨别鸟惊心
+2017/11/27 15:32:03 [main] INFO  javaS.IO.StudyIOBase - 烽火连三月，家书抵万金
+2017/11/27 15:32:03 [main] INFO  javaS.IO.StudyIOBase - 杜甫《春望》
+2017/11/27 15:56:48 [main] INFO  javaS.IO.StudyIOBase - Start testing file methods.
