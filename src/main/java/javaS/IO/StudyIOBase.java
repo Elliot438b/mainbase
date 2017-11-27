@@ -5,5 +5,5 @@ import org.apache.logging.log4j.Logger;
 
 public class StudyIOBase {
     public final static Logger logger = LogManager.getLogger();
-    protected final String root = "resource/StudyFile";
+    protected final static String root = "resource/StudyFile";
 }

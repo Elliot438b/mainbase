@@ -18236,3 +18236,107 @@ An'zhen
 2017/11/27 16:24:10 [main] INFO  javaS.IO.StudyIOBase - id:1002 name:Jack age:25 height:1.75
 2017/11/27 16:24:34 [main] INFO  javaS.IO.StudyIOBase - 52
 2017/11/27 16:24:34 [main] INFO  javaS.IO.StudyIOBase - 52
+2017/11/27 16:27:13 [main] INFO  javaS.IO.StudyIOBase - 52
+2017/11/27 16:29:38 [main] INFO  javaS.IO.StudyIOBase - id:1001 name:Jhon age:26 height:1.85
+2017/11/27 16:29:38 [main] INFO  javaS.IO.StudyIOBase - id:1002 name:Jack age:25 height:1.75
+2017/11/27 16:29:42 [main] INFO  javaS.IO.StudyIOBase - 52
+2017/11/27 16:29:47 [main] INFO  javaS.IO.StudyIOBase - id:1001 name:Jhon age:26 height:1.85
+2017/11/27 16:29:47 [main] INFO  javaS.IO.StudyIOBase - id:1002 name:Jack age:25 height:1.75
+2017/11/27 16:29:47 [main] INFO  javaS.IO.StudyIOBase - id:1003 name:Mason age:26 height:1.82
+2017/11/27 16:30:39 [main] INFO  javaS.IO.StudyIOBase - 79
+2017/11/27 16:30:44 [main] INFO  javaS.IO.StudyIOBase - id:1001 name:Jhon age:26 height:1.85
+2017/11/27 16:30:44 [main] INFO  javaS.IO.StudyIOBase - id:1002 name:Jack age:25 height:1.75
+2017/11/27 16:30:44 [main] INFO  javaS.IO.StudyIOBase - id:1003 name:Mason age:26 height:1.82
+2017/11/27 16:31:13 [main] INFO  javaS.IO.StudyIOBase - id:1001 name:Jhon age:26 height:1.85
+2017/11/27 16:31:13 [main] INFO  javaS.IO.StudyIOBase - id:1002 name:Jack age:25 height:1.75
+2017/11/27 16:31:13 [main] INFO  javaS.IO.StudyIOBase - id:1003 name:Mason age:26 height:1.82
+2017/11/27 16:31:20 [main] INFO  javaS.IO.StudyIOBase - 79
+2017/11/27 16:31:25 [main] INFO  javaS.IO.StudyIOBase - 79
+2017/11/27 16:31:28 [main] INFO  javaS.IO.StudyIOBase - 106
+2017/11/27 16:31:34 [main] INFO  javaS.IO.StudyIOBase - id:1001 name:Jhon age:26 height:1.85
+2017/11/27 16:31:34 [main] INFO  javaS.IO.StudyIOBase - id:1002 name:Jack age:25 height:1.75
+2017/11/27 16:31:34 [main] INFO  javaS.IO.StudyIOBase - id:1003 name:Mason age:26 height:1.82
+2017/11/27 16:31:34 [main] INFO  javaS.IO.StudyIOBase - id:1003 name:Mason age:26 height:1.82
+2017/11/27 16:33:50 [main] INFO  javaS.IO.StudyIOBase - 0
+2017/11/27 16:33:50 [main] INFO  javaS.IO.StudyIOBase - 26
+2017/11/27 16:33:50 [main] INFO  javaS.IO.StudyIOBase - 52
+2017/11/27 16:34:03 [main] INFO  javaS.IO.StudyIOBase - 52
+2017/11/27 16:34:25 [main] INFO  javaS.IO.StudyIOBase - 79
+2017/11/27 16:34:25 [main] INFO  javaS.IO.StudyIOBase - id:1001 name:Jhon age:26 height:1.85
+2017/11/27 16:34:25 [main] INFO  javaS.IO.StudyIOBase - id:1002 name:Jack age:25 height:1.75
+2017/11/27 16:34:25 [main] INFO  javaS.IO.StudyIOBase - id:1003 name:Mason age:26 height:1.82
+2017/11/27 16:34:37 [main] INFO  javaS.IO.StudyIOBase - 79
+2017/11/27 16:34:37 [main] INFO  javaS.IO.StudyIOBase - 79
+2017/11/27 16:34:37 [main] INFO  javaS.IO.StudyIOBase - 79
+2017/11/27 16:34:45 [main] INFO  javaS.IO.StudyIOBase - 79
+2017/11/27 16:34:45 [main] INFO  javaS.IO.StudyIOBase - id:1001 name:Jhon age:26 height:1.85
+2017/11/27 16:34:45 [main] INFO  javaS.IO.StudyIOBase - id:1002 name:Jack age:25 height:1.75
+2017/11/27 16:34:45 [main] INFO  javaS.IO.StudyIOBase - id:1003 name:Mason age:26 height:1.82
+2017/11/27 16:35:11 [main] INFO  javaS.IO.StudyIOBase - 79
+2017/11/27 16:35:11 [main] INFO  javaS.IO.StudyIOBase - 79
+2017/11/27 16:35:11 [main] INFO  javaS.IO.StudyIOBase - 79
+2017/11/27 16:35:16 [main] INFO  javaS.IO.StudyIOBase - 79
+2017/11/27 16:35:16 [main] INFO  javaS.IO.StudyIOBase - id:1001 name:Jhon age:26 height:1.85
+2017/11/27 16:35:16 [main] INFO  javaS.IO.StudyIOBase - id:1002 name:Jack age:25 height:1.75
+2017/11/27 16:35:16 [main] INFO  javaS.IO.StudyIOBase - id:1003 name:Mason age:26 height:1.82
+2017/11/27 16:36:22 [main] INFO  javaS.IO.StudyIOBase - 79
+2017/11/27 16:36:22 [main] INFO  javaS.IO.StudyIOBase - id:1001 name:Jhon age:26 height:1.85
+2017/11/27 16:36:22 [main] INFO  javaS.IO.StudyIOBase - id:1002 name:Jack age:25 height:1.75
+2017/11/27 16:36:35 [main] INFO  javaS.IO.StudyIOBase - 79
+2017/11/27 16:36:35 [main] INFO  javaS.IO.StudyIOBase - id:1001 name:Jhon age:26 height:1.85
+2017/11/27 16:36:35 [main] INFO  javaS.IO.StudyIOBase - id:1002 name:Jack age:25 height:1.75
+2017/11/27 16:36:35 [main] INFO  javaS.IO.StudyIOBase - id:1003 name:Mason age:26 height:1.82
+2017/11/27 16:36:49 [main] INFO  javaS.IO.StudyIOBase - 106
+2017/11/27 16:37:52 [main] INFO  javaS.IO.StudyIOBase - 0
+2017/11/27 16:37:52 [main] INFO  javaS.IO.StudyIOBase - 26
+2017/11/27 16:37:52 [main] INFO  javaS.IO.StudyIOBase - 52
+2017/11/27 16:40:08 [main] INFO  javaS.IO.StudyIOBase - 78
+2017/11/27 16:59:03 [main] INFO  javaS.IO.StudyIOBase - Start testing file methods.
+2017/11/27 16:59:03 [main] INFO  javaS.IO.StudyIOBase - The file in 'Files' is: access
+2017/11/27 16:59:03 [main] INFO  javaS.IO.StudyIOBase - Whose path is: /home/CORPUSERS/xp020154/work/github/mainbase/resource/StudyFile/access
+2017/11/27 16:59:03 [main] INFO  javaS.IO.StudyIOBase - The file in 'Files' is: HongXing.txt
+2017/11/27 16:59:03 [main] INFO  javaS.IO.StudyIOBase - Whose path is: /home/CORPUSERS/xp020154/work/github/mainbase/resource/StudyFile/HongXing.txt
+2017/11/27 16:59:03 [main] INFO  javaS.IO.StudyIOBase - The directory in 'Files' is: Cinema
+2017/11/27 16:59:03 [main] INFO  javaS.IO.StudyIOBase - Whose path is: /home/CORPUSERS/xp020154/work/github/mainbase/resource/StudyFile/Cinema
+2017/11/27 16:59:03 [main] INFO  javaS.IO.StudyIOBase - The file in 'Files' is: UME.txt
+2017/11/27 16:59:03 [main] INFO  javaS.IO.StudyIOBase - Whose path is: /home/CORPUSERS/xp020154/work/github/mainbase/resource/StudyFile/UME.txt
+2017/11/27 16:59:03 [main] INFO  javaS.IO.StudyIOBase - Complete testing file methods.
+2017/11/27 17:01:32 [main] INFO  javaS.IO.StudyIOBase - 0
+2017/11/27 17:01:32 [main] INFO  javaS.IO.StudyIOBase - 26
+2017/11/27 17:01:32 [main] INFO  javaS.IO.StudyIOBase - 52
+2017/11/27 17:01:44 [main] INFO  javaS.IO.StudyIOBase - 52
+2017/11/27 17:01:44 [main] INFO  javaS.IO.StudyIOBase - id:1001 name:Jhon age:26 height:1.85
+2017/11/27 17:01:44 [main] INFO  javaS.IO.StudyIOBase - id:1002 name:Jack age:25 height:1.75
+2017/11/27 17:02:16 [main] INFO  javaS.IO.StudyIOBase - 134
+2017/11/27 17:02:16 [main] INFO  javaS.IO.StudyIOBase - id:1001 name:Jhon age:26 height:1.85
+2017/11/27 17:02:16 [main] INFO  javaS.IO.StudyIOBase - id:1005 name:Hudson age:45 height:1.76
+2017/11/27 17:02:16 [main] INFO  javaS.IO.StudyIOBase - id:1005 name:Hudson age:45 height:1.76
+2017/11/27 17:02:16 [main] INFO  javaS.IO.StudyIOBase - id:1002 name:Jack age:25 height:1.75
+2017/11/27 17:02:16 [main] INFO  javaS.IO.StudyIOBase - id:282037945091842923 name: age:1654780 height:4.95E-321
+2017/11/27 17:05:15 [main] INFO  javaS.IO.StudyIOBase - 174
+2017/11/27 17:06:34 [main] INFO  javaS.IO.StudyIOBase - 254
+2017/11/27 17:06:34 [main] INFO  javaS.IO.StudyIOBase - id:1001 name:Jhon age:26 height:1.85
+2017/11/27 17:06:34 [main] INFO  javaS.IO.StudyIOBase - id:1005 name:Hudson age:45 height:1.76
+2017/11/27 17:06:34 [main] INFO  javaS.IO.StudyIOBase - id:1005 name:Hudson age:45 height:1.76
+2017/11/27 17:06:34 [main] INFO  javaS.IO.StudyIOBase - id:1005 name:Hudson age:45 height:1.76
+2017/11/27 17:06:34 [main] INFO  javaS.IO.StudyIOBase - id:1005 name:Hudson age:45 height:1.76
+2017/11/27 17:06:34 [main] INFO  javaS.IO.StudyIOBase - id:1005 name:Hudson age:45 height:1.76
+2017/11/27 17:06:34 [main] INFO  javaS.IO.StudyIOBase - id:1002 name:Jack age:25 height:1.75
+2017/11/27 17:06:44 [main] INFO  javaS.IO.StudyIOBase - 0
+2017/11/27 17:06:50 [main] INFO  javaS.IO.StudyIOBase - 0
+2017/11/27 17:06:50 [main] INFO  javaS.IO.StudyIOBase - 26
+2017/11/27 17:06:50 [main] INFO  javaS.IO.StudyIOBase - 52
+2017/11/27 17:06:52 [main] INFO  javaS.IO.StudyIOBase - 52
+2017/11/27 17:06:52 [main] INFO  javaS.IO.StudyIOBase - id:1001 name:Jhon age:26 height:1.85
+2017/11/27 17:06:52 [main] INFO  javaS.IO.StudyIOBase - id:1002 name:Jack age:25 height:1.75
+2017/11/27 17:07:03 [main] INFO  javaS.IO.StudyIOBase - 94
+2017/11/27 17:07:03 [main] INFO  javaS.IO.StudyIOBase - id:1001 name:Jhon age:26 height:1.85
+2017/11/27 17:07:03 [main] INFO  javaS.IO.StudyIOBase - id:1005 name:Hudson age:45 height:1.76
+2017/11/27 17:07:03 [main] INFO  javaS.IO.StudyIOBase - id:1002 name:Jack age:25 height:1.75
+2017/11/27 17:10:31 [main] INFO  javaS.IO.StudyIOBase - 0
+2017/11/27 17:10:31 [main] INFO  javaS.IO.StudyIOBase - 26
+2017/11/27 17:10:31 [main] INFO  javaS.IO.StudyIOBase - 52
+2017/11/27 17:10:31 [main] INFO  javaS.IO.StudyIOBase - 94
+2017/11/27 17:10:31 [main] INFO  javaS.IO.StudyIOBase - id:1001 name:Jhon age:26 height:1.85
+2017/11/27 17:10:31 [main] INFO  javaS.IO.StudyIOBase - id:1005 name:Hudson age:45 height:1.76
+2017/11/27 17:10:31 [main] INFO  javaS.IO.StudyIOBase - id:1002 name:Jack age:25 height:1.75
