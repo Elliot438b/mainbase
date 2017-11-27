@@ -70,14 +70,7 @@ public class StudyRAFile extends StudyIOBase {
         logger.info(Lily);
         Lily.read(raf);
         logger.info(Lily);
-        Lily.read(raf);
-        logger.info(Lily);
-        Lily.read(raf);
-        logger.info(Lily);
-        Lily.read(raf);
-        logger.info(Lily);
-        Lily.read(raf);
-        logger.info(Lily);
+        // 读入次数是有限的，一定要预先知道最多读几次，否则会报EOFException。
         Lily.read(raf);
         logger.info(Lily);
         raf.close();
