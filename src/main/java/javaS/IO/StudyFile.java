@@ -51,16 +51,16 @@ public class StudyFile extends StudyIOBase {
             logger.info("FileS is not a directory!");
         }
         logger.info("Complete testing file methods.");
+        /**
+         * 输出：
+         * 15:12:56[testFileMethods]: Start testing file methods.
+         * 15:12:56[testFileMethods]: The file in 'Files' is: HongXing.txt
+         * 15:12:56[testFileMethods]: Whose path is: /home/work/github/mainbase/resource/StudyFile/HongXing.txt
+         * 15:12:56[testFileMethods]: The directory in 'Files' is: Cinema
+         * 15:12:56[testFileMethods]: Whose path is: /home/work/github/mainbase/resource/StudyFile/Cinema
+         * 15:12:56[testFileMethods]: The file in 'Files' is: UME.txt
+         * 15:12:56[testFileMethods]: Whose path is: /home/work/github/mainbase/resource/StudyFile/UME.txt
+         * 15:12:56[testFileMethods]: Complete testing file methods.
+         */
     }
-    /**
-     * 输出：
-     * 15:12:56[testFileMethods]: Start testing file methods.
-     * 15:12:56[testFileMethods]: The file in 'Files' is: HongXing.txt
-     * 15:12:56[testFileMethods]: Whose path is: /home/work/github/mainbase/resource/StudyFile/HongXing.txt
-     * 15:12:56[testFileMethods]: The directory in 'Files' is: Cinema
-     * 15:12:56[testFileMethods]: Whose path is: /home/work/github/mainbase/resource/StudyFile/Cinema
-     * 15:12:56[testFileMethods]: The file in 'Files' is: UME.txt
-     * 15:12:56[testFileMethods]: Whose path is: /home/work/github/mainbase/resource/StudyFile/UME.txt
-     * 15:12:56[testFileMethods]: Complete testing file methods.
-     */
 }

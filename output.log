@@ -18209,3 +18209,30 @@ An'zhen
 2017/11/27 15:32:03 [main] INFO  javaS.IO.StudyIOBase - 烽火连三月，家书抵万金
 2017/11/27 15:32:03 [main] INFO  javaS.IO.StudyIOBase - 杜甫《春望》
 2017/11/27 15:56:48 [main] INFO  javaS.IO.StudyIOBase - Start testing file methods.
+2017/11/27 15:59:45 [main] INFO  javaS.IO.StudyIOBase - Start testing file methods.
+2017/11/27 16:00:13 [main] INFO  javaS.IO.StudyIOBase - Start testing file methods.
+2017/11/27 16:00:33 [main] INFO  javaS.IO.StudyIOBase - Start testing file methods.
+2017/11/27 16:13:56 [main] INFO  javaS.IO.StudyIOBase - id:1001name:Jhonage:26height:1.85
+2017/11/27 16:14:30 [main] INFO  javaS.IO.StudyIOBase - id:1001 name:Jhon age:26 height:1.85
+2017/11/27 16:15:25 [main] INFO  javaS.IO.StudyIOBase - id:1001 name:Jhon age:26 height:1.85
+2017/11/27 16:16:39 [main] INFO  javaS.IO.StudyIOBase - id:1001 name:Jhon age:26 height:1.85
+2017/11/27 16:17:06 [main] INFO  javaS.IO.StudyIOBase - id:1002 name:Jack age:25 height:1.75
+2017/11/27 16:17:57 [main] INFO  javaS.IO.StudyIOBase -       ê Jack   ?ü      
+2017/11/27 16:18:07 [main] INFO  javaS.IO.StudyIOBase -       ê Jack   ?ü      
+2017/11/27 16:18:07 [main] INFO  javaS.IO.StudyIOBase - id:1001 name:Jhon age:26 height:1.85
+2017/11/27 16:18:19 [main] INFO  javaS.IO.StudyIOBase -       é Jhon   ?ý      ê Jack   ?ü      
+2017/11/27 16:19:14 [main] INFO  javaS.IO.StudyIOBase - id:1001 name:Jhon age:26 height:1.85
+2017/11/27 16:19:31 [main] INFO  javaS.IO.StudyIOBase - id:1001 name:Jhon age:26 height:1.85
+2017/11/27 16:19:31 [main] INFO  javaS.IO.StudyIOBase - id:1002 name:Jack age:25 height:1.75
+2017/11/27 16:23:52 [main] INFO  javaS.IO.StudyIOBase - 52
+2017/11/27 16:23:52 [main] INFO  javaS.IO.StudyIOBase - 52
+2017/11/27 16:23:52 [main] INFO  javaS.IO.StudyIOBase - id:1001 name:Jhon age:26 height:1.85
+2017/11/27 16:23:52 [main] INFO  javaS.IO.StudyIOBase - 52
+2017/11/27 16:23:52 [main] INFO  javaS.IO.StudyIOBase - id:1002 name:Jack age:25 height:1.75
+2017/11/27 16:24:10 [main] INFO  javaS.IO.StudyIOBase - 52
+2017/11/27 16:24:10 [main] INFO  javaS.IO.StudyIOBase - 52
+2017/11/27 16:24:10 [main] INFO  javaS.IO.StudyIOBase - id:1001 name:Jhon age:26 height:1.85
+2017/11/27 16:24:10 [main] INFO  javaS.IO.StudyIOBase - 52
+2017/11/27 16:24:10 [main] INFO  javaS.IO.StudyIOBase - id:1002 name:Jack age:25 height:1.75
+2017/11/27 16:24:34 [main] INFO  javaS.IO.StudyIOBase - 52
+2017/11/27 16:24:34 [main] INFO  javaS.IO.StudyIOBase - 52

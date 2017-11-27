@@ -138,9 +138,9 @@ public class StudyByteStream extends StudyIOBase {
             logger.info(str);
         }
         fis.close();// 操作完注意将流关闭
+        /**
+         * 输出：
+         * 13:41:02[testInputStreamS]: 举杯邀明月床前明月光
+         */
     }
-    /**
-     * 输出：
-     * 13:41:02[testInputStreamS]: 举杯邀明月床前明月光
-     */
 }
