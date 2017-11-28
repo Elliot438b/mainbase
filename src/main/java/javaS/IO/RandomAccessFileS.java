@@ -1,12 +1,10 @@
 package javaS.IO;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -23,16 +21,9 @@ import org.junit.Test;
  *
  */
 public class RandomAccessFileS extends IOBaseS {
-    @BeforeClass
-    public static void initEV() throws IOException {
-        File f = new File(root + "/access");
-        if (f.exists())
-            f.delete();
-        f.createNewFile();
-    }
-
     @Before
     public void testWrite2RAFile() throws IOException {
+        FileS.initEV(root + "/access");// 首先清空access文件。
         RandomAccessFile raf = new RandomAccessFile(root + "/access", "rw");// rw是采用读写的方式打开文件
         logger.info(raf.length());
         Student Jhon = new Student(1001, "Jhon", 26, 1.85d);

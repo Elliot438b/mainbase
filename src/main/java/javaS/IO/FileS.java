@@ -63,4 +63,11 @@ public class FileS extends IOBaseS {
          * 15:12:56[testFileMethods]: Complete testing file methods.
          */
     }
+    
+    public static void initEV(String filePath) throws IOException {
+        File f = new File(filePath);
+        if (f.exists())
+            f.delete();
+        f.createNewFile();
+    }
 }
