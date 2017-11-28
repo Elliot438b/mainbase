@@ -15,6 +15,7 @@ public class GenericVarargs {
      *            可变参数列表，数量并不确定
      * @return 将参数中不定数量的元素变成一个List
      */
+    @SafeVarargs
     public static <T> List<T> makeList(T... args) {
         List<T> result = new ArrayList<T>();
         for (T item : args)

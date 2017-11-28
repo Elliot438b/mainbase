@@ -66,6 +66,7 @@ public class HeapSort extends Sort {
      * @param array
      * @return 从小到大排序
      */
+    @SuppressWarnings("unused")
     private int[] sinkSort(int[] array) {
         int maxIndex = array.length - 1;// 数组array，区间为 [0,maxIndex]
         // 构造堆

@@ -19,6 +19,7 @@ public class Tuple {
 
     public static void main(String[] args) {
         // 原来的方式
+        @SuppressWarnings("unused")
         TwoTuple<Sort, List<Integer>> two = new TwoTuple<Sort, List<Integer>>(new QuickSort(),
                 new ArrayList<Integer>());
         // 现在的方式

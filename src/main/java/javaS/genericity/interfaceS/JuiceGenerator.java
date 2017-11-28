@@ -13,7 +13,7 @@ import java.util.Random;
  */
 public class JuiceGenerator implements Generator<Juice>, Iterable<Juice> {
     // 存储所有果汁类的数组
-    private Class[] types = { Lemon.class, Grape.class, Orange.class, Peach.class, Pear.class };
+    private Class<?>[] types = { Lemon.class, Grape.class, Orange.class, Peach.class, Pear.class };
     private Random random = new Random();
 
     @Override

@@ -1,7 +1,6 @@
 package javaS.genericity;
 
 import javaS.genericity.interfaceS.Generator;
-import javaS.genericity.methodS.BasicGenerator;
 
 /**
  * 举个栗子：线程池中有线程组，线程组中有三个元素。
@@ -15,11 +14,11 @@ public class ThreadPoolSG {
     private int countId;
 
     // 使用生成器来生成线程组
-    private class ThreadTupleGenerator implements Generator {
+    private class ThreadTupleGenerator implements Generator<Object> {
 
         @Override
         public ThreeTuple<Integer, Thread, String> next() {
-            return new ThreeTuple(countId++, new Thread(), "xx" + countId);
+            return new ThreeTuple<Integer, Thread, String>(countId++, new Thread(), "xx" + countId);
         }
 
     }

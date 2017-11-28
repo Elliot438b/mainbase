@@ -1,7 +1,5 @@
 package javaS.genericity;
 
-import algorithms.sort.QuickSort;
-
 public class NewHolder<T> {
 
     private T a;
