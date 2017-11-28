@@ -24,7 +24,7 @@ import org.junit.Test;
  * @author Evsward
  *
  */
-public class StudyCharacterStream extends StudyIOBase {
+public class CharacterStreamS extends IOBaseS {
     @Test
     /**
      * 

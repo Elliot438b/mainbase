@@ -11,7 +11,7 @@ import org.junit.Test;
  * @author Evsward
  *
  */
-public class StudyFile extends StudyIOBase {
+public class FileS extends IOBaseS {
     @Test
     public void testFileMethods() throws IOException {
         logger.info("Start testing file methods.");

@@ -22,7 +22,7 @@ import org.junit.Test;
  * @author Evsward
  *
  */
-public class StudyRAFile extends StudyIOBase {
+public class RandomAccessFileS extends IOBaseS {
     @BeforeClass
     public static void initEV() throws IOException {
         File f = new File(root + "/access");

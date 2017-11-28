@@ -23,7 +23,7 @@ import org.junit.Test;
  * @author Evsward
  *
  */
-public class StudyByteStream extends StudyIOBase {
+public class ByteStreamS extends IOBaseS {
     @Test
     /**
      * 使用输出流OutputStream.write，将内存中的内容写入设备文件（这里的设备文件为File：磁盘文件）
