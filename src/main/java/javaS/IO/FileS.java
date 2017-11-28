@@ -64,6 +64,12 @@ public class FileS extends IOBaseS {
          */
     }
     
+    /**
+     * 清空一个文件，以便于我们测试使用
+     * 
+     * @param filePath
+     * @throws IOException
+     */
     public static void initEV(String filePath) throws IOException {
         File f = new File(filePath);
         if (f.exists())
