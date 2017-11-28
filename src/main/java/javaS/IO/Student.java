@@ -123,10 +123,13 @@ public class Student extends IOBaseS implements Serializable {
         fos.close();
         fis.close();
         raf.close();
+        tempFile.delete();//删除临时文件tempFile
     }
 
     /**
      * 相当于重写了ObjectOutputStream.writeObject方法，ObjectOutputStream写入该对象的时候会调用该方法
+     * 
+     * 作用：可以在序列化过程中，采用自定义的方式对数据进行加密
      * 
      * 参考源码：
      * 

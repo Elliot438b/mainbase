@@ -18384,3 +18384,47 @@ An'zhen
 2017/11/28 12:47:00 [main] INFO  javaS.IO.IOBaseS - Start writing data to Object.
 2017/11/28 12:47:03 [main] INFO  javaS.IO.IOBaseS - Start reading data to Object.
 2017/11/28 12:47:03 [main] INFO  javaS.IO.IOBaseS - id:2001 name:Luxa age:31 height:1.81
+2017/11/28 14:34:39 [main] INFO  pattern.decorate.House - My villa has a very big yard.
+2017/11/28 14:34:39 [main] INFO  pattern.decorate.House - My villa has a very big yard.
+2017/11/28 14:34:39 [main] INFO  pattern.decorate.House - The wall is green now.
+2017/11/28 14:34:39 [main] INFO  pattern.decorate.House - My villa has a very big yard.
+2017/11/28 14:34:39 [main] INFO  pattern.decorate.House - The room is full of flowers now.
+2017/11/28 14:35:04 [main] INFO  pattern.decorate.House - /n My villa has a very big yard.
+2017/11/28 14:35:04 [main] INFO  pattern.decorate.House - /n My villa has a very big yard.
+2017/11/28 14:35:04 [main] INFO  pattern.decorate.House - The wall is green now.
+2017/11/28 14:35:04 [main] INFO  pattern.decorate.House - /n My villa has a very big yard.
+2017/11/28 14:35:04 [main] INFO  pattern.decorate.House - The room is full of flowers now.
+2017/11/28 14:35:18 [main] INFO  pattern.decorate.House - 
+ My villa has a very big yard.
+
+2017/11/28 14:35:18 [main] INFO  pattern.decorate.House - 
+ My villa has a very big yard.
+
+2017/11/28 14:35:18 [main] INFO  pattern.decorate.House - The wall is green now.
+2017/11/28 14:35:18 [main] INFO  pattern.decorate.House - 
+ My villa has a very big yard.
+
+2017/11/28 14:35:18 [main] INFO  pattern.decorate.House - The room is full of flowers now.
+2017/11/28 14:36:13 [main] INFO  pattern.decorate.House - My villa has a very big yard.
+2017/11/28 14:36:13 [main] INFO  pattern.decorate.Client - ---------------
+2017/11/28 14:36:13 [main] INFO  pattern.decorate.House - My villa has a very big yard.
+2017/11/28 14:36:13 [main] INFO  pattern.decorate.House - The wall is green now.
+2017/11/28 14:36:13 [main] INFO  pattern.decorate.Client - ---------------
+2017/11/28 14:36:13 [main] INFO  pattern.decorate.House - My villa has a very big yard.
+2017/11/28 14:36:13 [main] INFO  pattern.decorate.House - The room is full of flowers now.
+2017/11/28 14:37:13 [main] INFO  pattern.decorate.House - My villa has a very big yard.
+2017/11/28 14:37:13 [main] INFO  pattern.decorate.Client - ---------------
+2017/11/28 14:37:13 [main] INFO  pattern.decorate.House - My villa has a very big yard.
+2017/11/28 14:37:13 [main] INFO  pattern.decorate.House - The wall is green now.
+2017/11/28 14:37:13 [main] INFO  pattern.decorate.Client - ---------------
+2017/11/28 14:37:13 [main] INFO  pattern.decorate.House - My villa has a very big yard.
+2017/11/28 14:37:13 [main] INFO  pattern.decorate.House - The room is full of flowers now.
+2017/11/28 14:37:13 [main] INFO  pattern.decorate.House - The wall is green now.
+2017/11/28 14:38:45 [main] INFO  pattern.decorate.House - This is my apartment, which is on the high floor.
+2017/11/28 14:38:45 [main] INFO  pattern.decorate.Client - ---------------
+2017/11/28 14:38:45 [main] INFO  pattern.decorate.House - This is my apartment, which is on the high floor.
+2017/11/28 14:38:45 [main] INFO  pattern.decorate.House - The wall is green now.
+2017/11/28 14:38:45 [main] INFO  pattern.decorate.Client - ---------------
+2017/11/28 14:38:45 [main] INFO  pattern.decorate.House - This is my apartment, which is on the high floor.
+2017/11/28 14:38:45 [main] INFO  pattern.decorate.House - The room is full of flowers now.
+2017/11/28 14:38:45 [main] INFO  pattern.decorate.House - The wall is green now.
