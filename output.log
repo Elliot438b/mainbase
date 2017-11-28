@@ -18368,3 +18368,19 @@ An'zhen
 2017/11/27 17:24:22 [main] INFO  javaS.IO.StudyIOBase - id:1001 name:Jhon age:26 height:1.85
 2017/11/27 17:24:22 [main] INFO  javaS.IO.StudyIOBase - id:1005 name:Hudson age:45 height:1.76
 2017/11/27 17:24:22 [main] INFO  javaS.IO.StudyIOBase - id:1002 name:Jack age:25 height:1.75
+2017/11/28 10:24:08 [main] INFO  javaS.IO.IOBaseS - id:2001 name:Luxa age:31 height:1.81
+2017/11/28 10:29:34 [main] INFO  javaS.IO.IOBaseS - id:2001 name:Luxa age:31 height:0.0
+2017/11/28 12:22:24 [main] INFO  javaS.IO.IOBaseS - Start writing data to Object.
+2017/11/28 12:36:51 [main] INFO  javaS.IO.IOBaseS - Start writing data to Object.
+2017/11/28 12:36:55 [main] INFO  javaS.IO.IOBaseS - Start reading data to Object.
+2017/11/28 12:36:55 [main] INFO  javaS.IO.IOBaseS - id:2001 name:Luxa age:31 height:1.81
+2017/11/28 12:37:39 [main] INFO  javaS.IO.IOBaseS - Start reading data to Object.
+2017/11/28 12:37:39 [main] INFO  javaS.IO.IOBaseS - id:2001 name:axuL age:31 height:1.81
+2017/11/28 12:41:45 [main] INFO  javaS.IO.IOBaseS - Start reading data to Object.
+2017/11/28 12:41:45 [main] INFO  javaS.IO.IOBaseS - id:2001 name:Luxa age:31 height:1.81
+2017/11/28 12:46:53 [main] INFO  javaS.IO.IOBaseS - Start reading data to Object.
+2017/11/28 12:46:53 [main] INFO  javaS.IO.IOBaseS - id:2001 name:Luxa age:31 height:1.81
+2017/11/28 12:46:53 [main] INFO  javaS.IO.IOBaseS - Start writing data to Object.
+2017/11/28 12:47:00 [main] INFO  javaS.IO.IOBaseS - Start writing data to Object.
+2017/11/28 12:47:03 [main] INFO  javaS.IO.IOBaseS - Start reading data to Object.
+2017/11/28 12:47:03 [main] INFO  javaS.IO.IOBaseS - id:2001 name:Luxa age:31 height:1.81
