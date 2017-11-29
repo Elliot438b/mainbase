@@ -24,7 +24,7 @@ public class Student extends IOBaseS implements Serializable {
 
     /**
      * 序列号：避免重复序列化
-     * 
+     * 如果serialVersionUID被修改，反序列化会失败。
      * 当程序试图序列化一个对象时，会先检查该对象是否已经被序列化过，只有该对象从未（在本次虚拟机中）被序列化，系统才会将该对象转换成字节序列并输出。
      */
     private static final long serialVersionUID = -6861464712478477441L;

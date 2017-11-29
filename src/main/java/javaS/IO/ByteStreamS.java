@@ -1,9 +1,6 @@
 package javaS.IO;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -18,7 +15,7 @@ import org.junit.Test;
  * 
  * 对应的缓存类：BufferedInputStream和BufferedOutputStream
  * 
- * 输入输出的主语是“内存”，内存输出写入文件，内存输入读取文件
+ * 出入的主语是“内存”，出内存就是写入文件，入内存就是读取文件
  * 
  * @author Evsward
  *
@@ -46,10 +43,13 @@ public class ByteStreamS extends IOBaseS {
     }
 
     /**
+     * 缓冲区处理流：BufferedInputStream，BufferedOutputStream，BufferedReader,BufferedWriter,
      * 一次性写入，降低占用IO的频率
+     * 避免每次和硬盘打交道，提高数据访问的效率。
      */
     @Test
     public void testWrite2BufferedOutputStream() throws IOException {
+        // OutputStream为基类
         OutputStream fosaddOnce = new FileOutputStream(root+"/UME.txt");
         OutputStream bs = new BufferedOutputStream(fosaddOnce);
         bs.write("举杯邀明月".getBytes());
@@ -61,67 +61,6 @@ public class ByteStreamS extends IOBaseS {
          */
         bs.close();
         fosaddOnce.close();// 两个流都要关闭
-    }
-
-    @Test
-    /**
-     * DataOutputStream，可以直接写入java基本类型数据（没有String），但写入以后是一个二进制文件的形式，不可以直接查看。
-     * 
-     * 文本文件是二进制文件的特殊形式，这是通过转储实现的，相关内容请转到 http://www.cnblogs.com/Evsward/p/huffman.html#二进制转储
-     */
-    public void testWrite2DataOutputStream() throws IOException {
-        OutputStream fosaddOnce = new FileOutputStream(root+"/UME.txt");
-        OutputStream bs = new BufferedOutputStream(fosaddOnce);
-        DataOutputStream dos = new DataOutputStream(bs);
-        dos.writeInt(22);
-        dos.writeShort(1222222222);
-        dos.writeLong(20L);
-        dos.writeByte(3);
-        dos.writeChar(42);
-        dos.close();
-        bs.close();
-        fosaddOnce.close();
-        /**
-         * 终版：上面的close阶段要从内向外关闭三次，比较麻烦，下面直接采用只关闭一次的方法
-         */
-        DataOutputStream dosA = new DataOutputStream(
-                new BufferedOutputStream(new FileOutputStream(root+"/UME.txt")));
-        dosA.writeInt(22);
-        dosA.writeShort(65538);// DataOutputStream并不会检查数据是否越界，越界的数据按照二进制方式截取，只保留界限以内的数据。
-        dosA.writeLong(20L);
-        dosA.writeByte(3);
-        dosA.writeChar(42);
-        dosA.writeDouble(3.1415926);
-        dosA.close();// 只关闭一次。
-    }
-
-    @Test
-    /**
-     * 通过DataInputStream读取二进制文件，一定要按照写入的顺序去读取java基本类型的文件内容，否则会出现乱码或者不准确的信息
-     */
-    public void testRead2DataInputStream() throws IOException {
-        DataInputStream dis = new DataInputStream(
-                new BufferedInputStream(new FileInputStream(root+"/UME.txt")));
-        logger.info(dis.readInt());
-        /**
-         * 即使存入越界的树65538，也不会报错，因为超出部分不会被存入，存入的只是超出的部分。
-         * short类型占据16位的空间，因此将65538转为二进制数，超出16位的部分自动截掉，只保留16为以内的数据，所以就变成了2。
-         */
-        logger.info(dis.readShort());
-        logger.info(dis.readLong());
-        logger.info(dis.readByte());
-        logger.info(dis.readChar());
-        logger.info(dis.readDouble());
-        dis.close();
-        /**
-         * 输出：
-         * 13:39:03[testDataInputStream]: 22 
-         * 13:39:03[testDataInputStream]: 2 
-         * 13:39:03[testDataInputStream]: 20 
-         * 13:39:03[testDataInputStream]: 3 
-         * 13:39:03[testDataInputStream]: * 
-         * 13:39:03[testDataInputStream]: 3.1415926 
-         */
     }
 
     @Test

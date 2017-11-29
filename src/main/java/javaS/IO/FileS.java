@@ -7,7 +7,7 @@ import org.junit.Test;
 
 /**
  * 基于磁盘IO操作的类 java.io.File
- * 
+ * 可以表示文件，也可以表示文件夹目录
  * @author Evsward
  *
  */

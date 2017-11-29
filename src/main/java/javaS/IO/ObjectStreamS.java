@@ -18,8 +18,9 @@ import org.junit.Test;
  * @author Evsward
  *
  */
-public class SerialS extends IOBaseS {
+public class ObjectStreamS extends IOBaseS {
     /**
+     * ObjectOutputStream:对象流（对象序列化），不同于DataOutputStream是操作基本类型。
      * 测试序列化对象存储结构
      */
     @Test
@@ -38,6 +39,7 @@ public class SerialS extends IOBaseS {
     }
 
     /**
+     * ObjectInputStream:对象反序列化
      * 读取二进制文件（序列号文件）
      * 
      * @throws IOException

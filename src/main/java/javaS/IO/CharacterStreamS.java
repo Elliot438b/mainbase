@@ -19,15 +19,13 @@ import org.junit.Test;
  * 
  * 对应的缓存类：BufferedReader和BufferedWriter
  * 
- * 输入输出的主语是“内存”，内存输出写入文件，内存输入读取文件
- * 
  * @author Evsward
  *
  */
 public class CharacterStreamS extends IOBaseS {
     @Test
     /**
-     * 
+     * OutputStreamWriter,字节到字符的转化桥梁，转化过程中需指定编码字符集，否则采用默认字符集。
      */
     public void testWriter() throws IOException {
         // 文件输出流不变
@@ -61,6 +59,9 @@ public class CharacterStreamS extends IOBaseS {
     }
 
     @Test
+    /**
+     * InputStreamReader,字节到字符的转化桥梁，转化过程中需指定编码字符集，否则采用默认字符集。
+     */
     public void testReader() throws IOException {
         FileInputStream fis = new FileInputStream(root+"/HongXing.txt");
         /**
@@ -106,7 +107,7 @@ public class CharacterStreamS extends IOBaseS {
     @Test
     public void testFileReader() throws IOException{
         FileReader fr = new FileReader(root + "/HongXing.txt");
-        //fr直接read方法没有readLine方便，所以借BufferedReader用一用
+        //FileReader直接read方法没有readLine方便，所以套上装饰类BufferedReader借它的readLine用一用
         BufferedReader br = new BufferedReader(fr);
         String str;
         while((str = br.readLine()) != null){
