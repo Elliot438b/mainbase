@@ -6,6 +6,8 @@ Main base knowledges here.
 - [Builder](https://github.com/evsward/mainbase/tree/master/src/pattern/builder)
 - [Adapter](https://github.com/evsward/mainbase/tree/master/src/pattern/adapter)
 - [Bridge](https://github.com/evsward/mainbase/tree/master/src/pattern/bridge)
+- [Strategy](https://github.com/evsward/mainbase/tree/master/src/pattern/strategy)
+- [Decorate](https://github.com/evsward/mainbase/tree/master/src/pattern/decorate)
 
 ### algorithms
 - [Sort](https://github.com/evsward/mainbase/tree/master/src/algorithms/sort)
@@ -13,3 +15,4 @@ Main base knowledges here.
 
 ### java
 - [genericity](https://github.com/evsward/mainbase/tree/master/src/javaS/genericity)
+- [IO TBC](https://github.com/evsward/mainbase/tree/master/src/javaS/IO)
