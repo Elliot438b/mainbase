@@ -26,7 +26,7 @@ public class ByteStreamS extends IOBaseS {
      * 使用输出流OutputStream.write，将内存中的内容写入设备文件（这里的设备文件为File：磁盘文件）
      */
     public void testWrite2OutputStream() throws IOException {
-        OutputStream fos = new FileOutputStream(root+"/UME.txt");//找不到该文件会自动创建（包括路径）
+        OutputStream fos = new FileOutputStream(root + "UME.txt");//找不到该文件会自动创建（包括路径）
         /**
          * 内容中的字符串内容content
          */
@@ -37,7 +37,7 @@ public class ByteStreamS extends IOBaseS {
         /**
          * 文件后面追加内容，构造函数加第二个参数true
          */
-        OutputStream fosadd = new FileOutputStream(root+"/UME.txt", true);
+        OutputStream fosadd = new FileOutputStream(root + "UME.txt", true);
         fosadd.write(" 你好".getBytes());
         fosadd.close();
     }
@@ -50,7 +50,7 @@ public class ByteStreamS extends IOBaseS {
     @Test
     public void testWrite2BufferedOutputStream() throws IOException {
         // OutputStream为基类
-        OutputStream fosaddOnce = new FileOutputStream(root+"/UME.txt");
+        OutputStream fosaddOnce = new FileOutputStream(root + "UME.txt");
         OutputStream bs = new BufferedOutputStream(fosaddOnce);
         bs.write("举杯邀明月".getBytes());
         bs.flush();// 每次flush会将内存中数据一齐刷入到外部文件中，但不会close该流。
@@ -69,7 +69,7 @@ public class ByteStreamS extends IOBaseS {
      */
     public void testRead2InputStream() throws IOException {
         int bufferSize = 200;
-        FileInputStream fis = new FileInputStream(root+"/UME.txt");
+        FileInputStream fis = new FileInputStream(root + "UME.txt");
         byte buffer[] = new byte[bufferSize];
         int length;
         while ((length = fis.read(buffer, 0, bufferSize)) > -1) {

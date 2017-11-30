@@ -26,8 +26,8 @@ import org.junit.Test;
 public class RandomAccessFileS extends IOBaseS {
     @Before
     public void testWrite2RAFile() throws IOException {
-        FileS.initEV(root + "/access");// 首先清空access文件。
-        RandomAccessFile raf = new RandomAccessFile(root + "/access", "rw");// rw是采用读写的方式打开文件
+        FileS.initEV(root + "access");// 首先清空access文件。
+        RandomAccessFile raf = new RandomAccessFile(root + "access", "rw");// rw是采用读写的方式打开文件
         logger.info(raf.length());
         Student Jhon = new Student(1001, "Jhon", 26, 1.85d);
         Student Jack = new Student(1002, "Jack", 25, 1.75d);
@@ -45,7 +45,7 @@ public class RandomAccessFileS extends IOBaseS {
      * 追加内容
      */
     public void testWriteAppend2RAFile() throws IOException {
-        RandomAccessFile raf = new RandomAccessFile(root + "/access", "rw");// rw是采用读写的方式打开文件
+        RandomAccessFile raf = new RandomAccessFile(root + "access", "rw");// rw是采用读写的方式打开文件
         Student Mason = new Student(1003, "Mason", 26, 1.82d);// 这里的“Mason”比上面的两条数据多一位字符
         // 追加内容要先调整seek的位置到raf.length，然后开始追加内容
         raf.seek(raf.length());
@@ -56,7 +56,7 @@ public class RandomAccessFileS extends IOBaseS {
 
     @After
     public void testReadRAFile() throws IOException {
-        RandomAccessFile raf = new RandomAccessFile(root + "/access", "r");
+        RandomAccessFile raf = new RandomAccessFile(root + "access", "r");
         // 获取raf时，seek就是在文件开始位置
         logger.info(raf.length());
         Student Lily = new Student();
@@ -77,7 +77,7 @@ public class RandomAccessFileS extends IOBaseS {
     public void insert() {
         Student Hudson = new Student(1005, "Hudson", 45, 1.76d);
         try {
-            insert(root + "/access", 26, Hudson);
+            insert(root + "access", 26, Hudson);
         } catch (IOException e) {
             e.printStackTrace();
         }

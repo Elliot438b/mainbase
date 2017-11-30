@@ -25,8 +25,8 @@ public class ObjectStreamS extends IOBaseS {
      */
     @Test
     public void testWriteSerialObject() throws IOException {
-        FileS.initEV(root + "/access");// 先将access文件清空。
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(root + "/access"));
+        FileS.initEV(root + "access");// 先将access文件清空。
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(root + "access"));
         Student Lu = new Student(2001, "Luxa", 31, 1.81d);
         // 可以写入不同的序列化对象数据，但要记录写入顺序
         oos.writeObject(Lu);
@@ -47,7 +47,7 @@ public class ObjectStreamS extends IOBaseS {
      */
     @Test
     public void testReadSerialObject() throws IOException, ClassNotFoundException {
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(root + "/access"));
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(root + "access"));
         // 可以读取不同的对象的数据，但是要按照写入顺序去读取。
         Student s = (Student) ois.readObject();
         logger.info(s);

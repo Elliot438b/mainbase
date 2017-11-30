@@ -21,7 +21,7 @@ public class DataStream extends IOBaseS {
      * http://www.cnblogs.com/Evsward/p/huffman.html#二进制转储
      */
     public void testWrite2DataOutputStream() throws IOException {
-        OutputStream fosaddOnce = new FileOutputStream(root + "/UME.txt");
+        OutputStream fosaddOnce = new FileOutputStream(root + "UME.txt");
         OutputStream bs = new BufferedOutputStream(fosaddOnce);
         DataOutputStream dos = new DataOutputStream(bs);
         dos.writeInt(22);
@@ -38,7 +38,7 @@ public class DataStream extends IOBaseS {
          * FileOutputStream:属于节点流，其他节点流还包括管道和数组，剩下的都是处理流
          * BufferedOutputStream:缓冲技术（也属于处理流） DataOutputStream:处理流
          */
-        DataOutputStream dosA = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(root + "/UME.txt")));
+        DataOutputStream dosA = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(root + "UME.txt")));
         dosA.writeInt(22);
         dosA.writeShort(65538);// DataOutputStream并不会检查数据是否越界，越界的数据按照二进制方式截取，只保留界限以内的数据。
         dosA.writeLong(20L);
@@ -53,7 +53,7 @@ public class DataStream extends IOBaseS {
      * 通过DataInputStream处理流读取二进制文件，一定要按照写入的顺序去读取java基本类型的文件内容，否则会出现乱码或者不准确的信息
      */
     public void testRead2DataInputStream() throws IOException {
-        DataInputStream dis = new DataInputStream(new BufferedInputStream(new FileInputStream(root + "/UME.txt")));
+        DataInputStream dis = new DataInputStream(new BufferedInputStream(new FileInputStream(root + "UME.txt")));
         logger.info(dis.readInt());
         /**
          * 即使存入越界的树65538，也不会报错，因为超出部分不会被存入，存入的只是超出的部分。

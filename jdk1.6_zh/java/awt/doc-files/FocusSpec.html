@@ -124,7 +124,7 @@
           other Components. This cycle provides a mapping from an arbitrary
           Component in the cycle to its "next" (forward traversal) and
           "previous" (backward traversal) Components.
-      <li>"Focus cycle root" -- Container that is the root of the Component
+      <li>"Focus cycle root + " -- Container that is the root of the Component
           hierarchy for a particular "focus traversal cycle". When the
           "focus owner" is a Component inside a particular cycle, normal
           forward and backward focus traversal cannot move the "focus
@@ -143,7 +143,7 @@
 
     <p>
       Every Window and JInternalFrame is, by default, a "focus cycle
-      root". If it's the only focus cycle root, then all of its
+      root + ". If it's the only focus cycle root, then all of its
       focusable descendants should be in its focus cycle, and its focus
       traversal policy should enforce that they are by making sure that
       all will be reached during normal forward (or backward)

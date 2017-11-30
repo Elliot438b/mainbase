@@ -23,14 +23,14 @@ public class FileS extends IOBaseS {
             file.mkdir();
 
         if (file.isDirectory()) {
-            File file1 = new File(root+"/UME.txt");
-            File file2 = new File(root+"/HongXing.txt");
+            File file1 = new File(root + "UME.txt");
+            File file2 = new File(root + "HongXing.txt");
             /**
              * 创建文件 createNewFile();
              */
             file1.createNewFile();
             file2.createNewFile();
-            File file3 = new File(root+"/Cinema");
+            File file3 = new File(root + "Cinema");
             file3.mkdir();
             /**
              * 列出文件路径下的所有文件（包括文件和目录）
