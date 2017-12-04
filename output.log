@@ -18970,3 +18970,71 @@ An'zhen
 2017/12/04 13:59:20 [main] INFO  javaS.IO.IOBaseS - file.canRead(): true
 2017/12/04 13:59:20 [main] INFO  javaS.IO.IOBaseS - file.canWrite(): true
 2017/12/04 13:59:20 [main] INFO  javaS.IO.IOBaseS - file.lastModified(): 2017-11-30 13:55:00:000
+2017/12/04 14:49:01 [main] INFO  javaS.IO.IOBaseS - 0
+2017/12/04 14:49:01 [main] INFO  javaS.IO.IOBaseS - 26
+2017/12/04 14:49:01 [main] INFO  javaS.IO.IOBaseS - 52
+2017/12/04 14:49:01 [main] INFO  javaS.IO.IOBaseS - 94
+2017/12/04 14:49:01 [main] INFO  javaS.IO.IOBaseS - id:1001 name:Jhon age:26 height:1.85
+2017/12/04 14:49:01 [main] INFO  javaS.IO.IOBaseS - id:1005 name:Hudson age:45 height:1.76
+2017/12/04 14:49:01 [main] INFO  javaS.IO.IOBaseS - id:1002 name:Jack age:25 height:1.75
+2017/12/04 14:49:56 [main] INFO  javaS.IO.IOBaseS - 0
+2017/12/04 14:49:56 [main] INFO  javaS.IO.IOBaseS - 26
+2017/12/04 14:49:56 [main] INFO  javaS.IO.IOBaseS - 52
+2017/12/04 14:49:56 [main] INFO  javaS.IO.IOBaseS - 94
+2017/12/04 14:49:56 [main] INFO  javaS.IO.IOBaseS - id:1001 name:Jhon age:26 height:1.85
+2017/12/04 14:49:56 [main] INFO  javaS.IO.IOBaseS - id:1005 name:Hudson age:45 height:1.76
+2017/12/04 14:49:56 [main] INFO  javaS.IO.IOBaseS - id:1002 name:Jack age:25 height:1.75
+2017/12/04 14:50:15 [main] INFO  javaS.IO.IOBaseS - 0
+2017/12/04 14:50:15 [main] INFO  javaS.IO.IOBaseS - 26
+2017/12/04 14:50:15 [main] INFO  javaS.IO.IOBaseS - true
+2017/12/04 14:50:15 [main] INFO  javaS.IO.IOBaseS - 94
+2017/12/04 14:50:15 [main] INFO  javaS.IO.IOBaseS - id:1001 name:Jhon age:26 height:1.85
+2017/12/04 14:50:15 [main] INFO  javaS.IO.IOBaseS - id:1005 name:Hudson age:45 height:1.76
+2017/12/04 14:50:15 [main] INFO  javaS.IO.IOBaseS - id:1002 name:Jack age:25 height:1.75
+2017/12/04 14:51:23 [main] INFO  javaS.IO.IOBaseS - 0
+2017/12/04 14:51:23 [main] INFO  javaS.IO.IOBaseS - 26
+2017/12/04 14:51:23 [main] INFO  javaS.IO.IOBaseS - true
+2017/12/04 14:51:23 [main] INFO  javaS.IO.IOBaseS - false
+2017/12/04 14:51:23 [main] INFO  javaS.IO.IOBaseS - false
+2017/12/04 14:51:23 [main] INFO  javaS.IO.IOBaseS - 94
+2017/12/04 14:51:23 [main] INFO  javaS.IO.IOBaseS - id:1001 name:Jhon age:26 height:1.85
+2017/12/04 14:51:23 [main] INFO  javaS.IO.IOBaseS - id:1005 name:Hudson age:45 height:1.76
+2017/12/04 14:51:23 [main] INFO  javaS.IO.IOBaseS - id:1002 name:Jack age:25 height:1.75
+2017/12/04 14:51:59 [main] INFO  javaS.IO.IOBaseS - 0
+2017/12/04 14:51:59 [main] INFO  javaS.IO.IOBaseS - 26
+2017/12/04 14:51:59 [main] INFO  javaS.IO.IOBaseS - true
+2017/12/04 14:51:59 [main] INFO  javaS.IO.IOBaseS - 52
+2017/12/04 14:51:59 [main] INFO  javaS.IO.IOBaseS - 0
+2017/12/04 14:51:59 [main] INFO  javaS.IO.IOBaseS - false
+2017/12/04 14:51:59 [main] INFO  javaS.IO.IOBaseS - 94
+2017/12/04 14:51:59 [main] INFO  javaS.IO.IOBaseS - id:1001 name:Jhon age:26 height:1.85
+2017/12/04 14:51:59 [main] INFO  javaS.IO.IOBaseS - id:1005 name:Hudson age:45 height:1.76
+2017/12/04 14:51:59 [main] INFO  javaS.IO.IOBaseS - id:1002 name:Jack age:25 height:1.75
+2017/12/04 14:52:38 [main] INFO  javaS.IO.IOBaseS - 0
+2017/12/04 14:52:38 [main] INFO  javaS.IO.IOBaseS - 26
+2017/12/04 14:52:38 [main] INFO  javaS.IO.IOBaseS - true
+2017/12/04 14:52:38 [main] INFO  javaS.IO.IOBaseS - 52
+2017/12/04 14:52:38 [main] INFO  javaS.IO.IOBaseS - 0
+2017/12/04 14:52:38 [main] INFO  javaS.IO.IOBaseS - 26
+2017/12/04 14:52:38 [main] INFO  javaS.IO.IOBaseS - 94
+2017/12/04 14:52:38 [main] INFO  javaS.IO.IOBaseS - id:1001 name:Jhon age:26 height:1.85
+2017/12/04 14:52:38 [main] INFO  javaS.IO.IOBaseS - id:1005 name:Hudson age:45 height:1.76
+2017/12/04 14:52:38 [main] INFO  javaS.IO.IOBaseS - id:1002 name:Jack age:25 height:1.75
+2017/12/04 14:53:17 [main] INFO  javaS.IO.IOBaseS - 0
+2017/12/04 14:53:17 [main] INFO  javaS.IO.IOBaseS - 26
+2017/12/04 14:53:17 [main] INFO  javaS.IO.IOBaseS - true
+2017/12/04 14:53:17 [main] INFO  javaS.IO.IOBaseS - 52
+2017/12/04 14:53:17 [main] INFO  javaS.IO.IOBaseS - 0
+2017/12/04 14:53:17 [main] INFO  javaS.IO.IOBaseS - true
+2017/12/04 14:53:17 [main] INFO  javaS.IO.IOBaseS - true
+2017/12/04 14:53:17 [main] INFO  javaS.IO.IOBaseS - 94
+2017/12/04 14:53:17 [main] INFO  javaS.IO.IOBaseS - id:1001 name:Jhon age:26 height:1.85
+2017/12/04 14:53:17 [main] INFO  javaS.IO.IOBaseS - id:1005 name:Hudson age:45 height:1.76
+2017/12/04 14:53:17 [main] INFO  javaS.IO.IOBaseS - id:1002 name:Jack age:25 height:1.75
+2017/12/04 14:56:34 [main] INFO  javaS.IO.IOBaseS - 0
+2017/12/04 14:56:34 [main] INFO  javaS.IO.IOBaseS - 26
+2017/12/04 14:56:34 [main] INFO  javaS.IO.IOBaseS - raf.length() = 52
+2017/12/04 14:56:34 [main] INFO  javaS.IO.IOBaseS - 94
+2017/12/04 14:56:34 [main] INFO  javaS.IO.IOBaseS - id:1001 name:Jhon age:26 height:1.85
+2017/12/04 14:56:34 [main] INFO  javaS.IO.IOBaseS - id:1005 name:Hudson age:45 height:1.76
+2017/12/04 14:56:34 [main] INFO  javaS.IO.IOBaseS - id:1002 name:Jack age:25 height:1.75

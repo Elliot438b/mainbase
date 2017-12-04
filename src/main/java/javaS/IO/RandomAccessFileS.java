@@ -10,6 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import static org.junit.Assert.assertTrue;
 
 /**
  * RandomAccessFile：有一个指针seek，对文件任意位置操作的类
@@ -18,7 +19,9 @@ import org.junit.Test;
  * 
  * /@BeforeClass和/@AfterClass只执行一次，且必须为static void
  * 
- * 定义完整测试流程：先初始化一个空白文件，然后添加两行数据Jhon和Jack，然后在他俩中间插入Hudson，最后读出该文件数据，验证结果
+ * 定义完整测试流程：先初始化一个空白文件，然后添加两行数据Jhon和Jack，然后在他俩中间插入Hudson，最后读出该文件数据，加入断言，验证结果
+ * 
+ * RandomAccessFile的大多数功能有nio存储映射文件所取代。
  * 
  * @author Evsward
  *
@@ -28,14 +31,14 @@ public class RandomAccessFileS extends IOBaseS {
     public void testWrite2RAFile() throws IOException {
         FileS.initEV(root + "access");// 首先清空access文件。
         RandomAccessFile raf = new RandomAccessFile(root + "access", "rw");// rw是采用读写的方式打开文件
-        logger.info(raf.length());
+        logger.info(raf.getFilePointer());
         Student Jhon = new Student(1001, "Jhon", 26, 1.85d);
         Student Jack = new Student(1002, "Jack", 25, 1.75d);
         Jhon.write(raf);// 写入文件以后，指针到当前文本结尾
         // 当前seek是从seek(raf.length)开始的
-        logger.info(raf.length());
+        logger.info(raf.getFilePointer());
         Jack.write(raf);// 继续写入，指针继续移动到末尾，相当于追加
-        logger.info(raf.length());
+        assertTrue(raf.length() == raf.getFilePointer());
         raf.close();
     }
 
@@ -82,6 +85,7 @@ public class RandomAccessFileS extends IOBaseS {
             e.printStackTrace();
         }
     }
+
     /**
      * 在RandomAccessFile指定位置插入数据，先将位置后面的数据放入缓冲区，插入数据以后再将其写回来。
      * 
@@ -104,12 +108,16 @@ public class RandomAccessFileS extends IOBaseS {
          * 将插入位置后面的数据缓存到临时文件
          */
         RandomAccessFile raf = new RandomAccessFile(file, "rw");
+        logger.info("raf.length() = " + raf.length());// 文件大小
+        assertTrue(raf.getFilePointer() == 0);// 从0开始
         raf.seek(position);
         byte[] buffer = new byte[20];
         while (raf.read(buffer) > -1) {
             fos.write(buffer);
         }
+        assertTrue(raf.length() == raf.getFilePointer());// 此时应该是执行到文件结尾，所以指针应该与文件大小相等
         raf.seek(position);
+        assertTrue(position == raf.getFilePointer());// 重新指定位置以后，此时指针应该与position相等
         /**
          * 向RandomAccessFile写入插入内容
          */
@@ -124,9 +132,9 @@ public class RandomAccessFileS extends IOBaseS {
         fos.close();
         fis.close();
         raf.close();
-        tempFile.delete();//删除临时文件tempFile
+        tempFile.delete();// 删除临时文件tempFile
     }
-    
+
     /**
      * 输出： 17:10:31[testWrite2RAFile]: 0 17:10:31[testWrite2RAFile]: 26
      * 17:10:31[testWrite2RAFile]: 52 17:10:31[testReadRAFile]: 94
