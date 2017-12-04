@@ -42,8 +42,6 @@ public class PrintStreamS extends IOBaseS {
      * 
      * write方法一个是写入字节，一个是写入字符。
      * 
-     * PrintWriter无法作为标准输出到控制台。
-     * 
      * 一般来讲，使用PrintStream多一些。
      */
     @Test // 如果忘记写该注解，执行JUnit会报错initializationError
@@ -52,7 +50,10 @@ public class PrintStreamS extends IOBaseS {
         // PrintWriter p = new PrintWriter(root + "HongXing.txt");
         // PrintWriter p = new PrintWriter(new File(root + "HongXing.txt"));
         // 第二个参数为autoflush，如果为true的话，println、printf和format会自动执行flush。
-        PrintWriter p = new PrintWriter(new FileOutputStream(root + "HongXing.txt"), true);
+        // PrintWriter p = new PrintWriter(new FileOutputStream(root +
+        // "HongXing.txt"), true);
+        System.setOut(new PrintStream(new FileOutputStream(root + "HongXing.txt")));// 输出重定向，这也是日志系统的基本思想。
+        PrintWriter p = new PrintWriter(System.out, true);// 将PrintWriter的打印位置改到控制台标准输出
         p.append("海上升明月");
         p.println("润物细无声");
         p.print("当春乃发生");

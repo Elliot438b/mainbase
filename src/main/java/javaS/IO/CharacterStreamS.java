@@ -120,4 +120,15 @@ public class CharacterStreamS extends IOBaseS {
         br.close();
         fr.close();
     }
+
+    @Test
+    /**
+     * 测试标准输入输出
+     */
+    public void testStandardIO() throws IOException {
+        BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+        String str;
+        while ((str = stdin.readLine()) != null && str.length() != 0)
+            logger.info(str);
+    }
 }
