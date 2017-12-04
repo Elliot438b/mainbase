@@ -18817,3 +18817,156 @@ An'zhen
 2017/11/30 13:08:48 [main] INFO  javaS.IO.IOBaseS - 3
 2017/11/30 13:08:48 [main] INFO  javaS.IO.IOBaseS - *
 2017/11/30 13:08:48 [main] INFO  javaS.IO.IOBaseS - 3.1415926
+2017/12/04 12:44:37 [main] INFO  javaS.IO.IOBaseS - start testing file filter.
+2017/12/04 12:45:33 [main] INFO  javaS.IO.IOBaseS - start testing file filter.
+2017/12/04 12:45:47 [main] INFO  javaS.IO.IOBaseS - start testing file filter.
+2017/12/04 12:46:09 [main] INFO  javaS.IO.IOBaseS - start testing file filter.
+2017/12/04 12:46:09 [main] INFO  javaS.IO.IOBaseS - UME.txt
+2017/12/04 12:46:34 [main] INFO  javaS.IO.IOBaseS - start testing file filter.
+2017/12/04 12:47:37 [main] INFO  javaS.IO.IOBaseS - start testing file filter.
+2017/12/04 12:48:02 [main] INFO  javaS.IO.IOBaseS - start testing file filter.
+2017/12/04 12:49:13 [main] INFO  javaS.IO.IOBaseS - start testing file filter.
+2017/12/04 12:50:35 [main] INFO  javaS.IO.IOBaseS - start testing file filter.
+2017/12/04 12:50:43 [main] INFO  javaS.IO.IOBaseS - start testing file filter.
+2017/12/04 12:50:50 [main] INFO  javaS.IO.IOBaseS - start testing file filter.
+2017/12/04 12:51:47 [main] INFO  javaS.IO.IOBaseS - start testing file filter.
+2017/12/04 12:52:03 [main] INFO  javaS.IO.IOBaseS - start testing file filter.
+2017/12/04 12:52:03 [main] INFO  javaS.IO.IOBaseS - HuaYi.txt
+2017/12/04 12:52:03 [main] INFO  javaS.IO.IOBaseS - HongXing.txt
+2017/12/04 12:52:03 [main] INFO  javaS.IO.IOBaseS - UME.txt
+2017/12/04 12:52:33 [main] INFO  javaS.IO.IOBaseS - start testing file filter.
+2017/12/04 12:52:41 [main] INFO  javaS.IO.IOBaseS - start testing file filter.
+2017/12/04 12:54:03 [main] INFO  javaS.IO.IOBaseS - start testing file filter.
+2017/12/04 12:54:03 [main] INFO  javaS.IO.IOBaseS - access
+2017/12/04 12:54:03 [main] INFO  javaS.IO.IOBaseS - HuaYi.txt
+2017/12/04 12:54:03 [main] INFO  javaS.IO.IOBaseS - HongXing.txt
+2017/12/04 12:54:03 [main] INFO  javaS.IO.IOBaseS - Cinema
+2017/12/04 12:54:03 [main] INFO  javaS.IO.IOBaseS - UME.txt
+2017/12/04 12:54:29 [main] INFO  javaS.IO.IOBaseS - start testing file filter.
+2017/12/04 12:54:29 [main] INFO  javaS.IO.IOBaseS - access
+2017/12/04 12:54:29 [main] INFO  javaS.IO.IOBaseS - HuaYi.txt
+2017/12/04 12:54:29 [main] INFO  javaS.IO.IOBaseS - HongXing.txt
+2017/12/04 12:54:29 [main] INFO  javaS.IO.IOBaseS - Cinema
+2017/12/04 12:54:29 [main] INFO  javaS.IO.IOBaseS - UME.txt
+2017/12/04 12:54:51 [main] INFO  javaS.IO.IOBaseS - start testing file filter.
+2017/12/04 12:54:51 [main] INFO  javaS.IO.IOBaseS - access
+2017/12/04 12:54:51 [main] INFO  javaS.IO.IOBaseS - HuaYi.txt
+2017/12/04 12:54:51 [main] INFO  javaS.IO.IOBaseS - HongXing.txt
+2017/12/04 12:54:51 [main] INFO  javaS.IO.IOBaseS - Cinema
+2017/12/04 12:54:51 [main] INFO  javaS.IO.IOBaseS - UME.txt
+2017/12/04 12:55:24 [main] INFO  javaS.IO.IOBaseS - start testing file filter.
+2017/12/04 12:55:24 [main] INFO  javaS.IO.IOBaseS - access
+2017/12/04 12:55:24 [main] INFO  javaS.IO.IOBaseS - HuaYi.txt
+2017/12/04 12:55:24 [main] INFO  javaS.IO.IOBaseS - HongXing.txt
+2017/12/04 12:55:24 [main] INFO  javaS.IO.IOBaseS - Cinema
+2017/12/04 12:55:24 [main] INFO  javaS.IO.IOBaseS - UME.txt
+2017/12/04 12:56:40 [main] INFO  javaS.IO.IOBaseS - start testing file filter.
+2017/12/04 12:56:40 [main] INFO  javaS.IO.IOBaseS - HuaYi.txt
+2017/12/04 12:56:40 [main] INFO  javaS.IO.IOBaseS - HongXing.txt
+2017/12/04 12:56:40 [main] INFO  javaS.IO.IOBaseS - UME.txt
+2017/12/04 12:56:47 [main] INFO  javaS.IO.IOBaseS - start testing file filter.
+2017/12/04 12:56:58 [main] INFO  javaS.IO.IOBaseS - start testing file filter.
+2017/12/04 12:56:58 [main] INFO  javaS.IO.IOBaseS - access
+2017/12/04 12:56:58 [main] INFO  javaS.IO.IOBaseS - HuaYi.txt
+2017/12/04 12:56:58 [main] INFO  javaS.IO.IOBaseS - HongXing.txt
+2017/12/04 12:56:58 [main] INFO  javaS.IO.IOBaseS - Cinema
+2017/12/04 12:56:58 [main] INFO  javaS.IO.IOBaseS - UME.txt
+2017/12/04 12:57:17 [main] INFO  javaS.IO.IOBaseS - start testing file filter.
+2017/12/04 12:57:17 [main] INFO  javaS.IO.IOBaseS - HuaYi.txt
+2017/12/04 12:57:17 [main] INFO  javaS.IO.IOBaseS - HongXing.txt
+2017/12/04 12:57:17 [main] INFO  javaS.IO.IOBaseS - UME.txt
+2017/12/04 13:07:22 [main] INFO  javaS.IO.IOBaseS - start testing file filter.
+2017/12/04 13:07:45 [main] INFO  javaS.IO.IOBaseS - start testing file filter：/home/CORPUSERS/xp020154/work/github/mainbase/.
+2017/12/04 13:08:24 [main] INFO  javaS.IO.IOBaseS - start testing file filter：/home/CORPUSERS/xp020154/work/github/mainbase/.
+2017/12/04 13:08:33 [main] INFO  javaS.IO.IOBaseS - start testing file filter：/home/CORPUSERS/xp020154/work/github/mainbase/.
+2017/12/04 13:08:40 [main] INFO  javaS.IO.IOBaseS - start testing file filter：/
+2017/12/04 13:09:05 [main] INFO  javaS.IO.IOBaseS - start testing file filter：/home/CORPUSERS/xp020154/work/github/mainbase/.
+2017/12/04 13:10:07 [main] INFO  javaS.IO.IOBaseS - start testing file filter: /home/CORPUSERS/xp020154/work/github/mainbase
+2017/12/04 13:10:16 [main] INFO  javaS.IO.IOBaseS - start testing file filter: /home/CORPUSERS/xp020154/work/github/mainbase
+2017/12/04 13:10:25 [main] INFO  javaS.IO.IOBaseS - start testing file filter: /home/CORPUSERS/xp020154/work/github/mainbase
+2017/12/04 13:10:32 [main] INFO  javaS.IO.IOBaseS - start testing file filter: /home/CORPUSERS/xp020154/work/github/mainbase/resource/StudyFile
+2017/12/04 13:10:37 [main] INFO  javaS.IO.IOBaseS - start testing file filter: /home/CORPUSERS/xp020154/work/github/mainbase/resource/StudyFile
+2017/12/04 13:10:37 [main] INFO  javaS.IO.IOBaseS - HuaYi.txt
+2017/12/04 13:10:37 [main] INFO  javaS.IO.IOBaseS - HongXing.txt
+2017/12/04 13:10:37 [main] INFO  javaS.IO.IOBaseS - UME.txt
+2017/12/04 13:10:43 [main] INFO  javaS.IO.IOBaseS - start testing file filter: /home/CORPUSERS/xp020154/work/github/mainbase/resource/StudyFile
+2017/12/04 13:10:50 [main] INFO  javaS.IO.IOBaseS - start testing file filter: /home/CORPUSERS/xp020154/work/github/mainbase/resource/StudyFile
+2017/12/04 13:10:50 [main] INFO  javaS.IO.IOBaseS - access
+2017/12/04 13:10:50 [main] INFO  javaS.IO.IOBaseS - HuaYi.txt
+2017/12/04 13:10:50 [main] INFO  javaS.IO.IOBaseS - HongXing.txt
+2017/12/04 13:10:50 [main] INFO  javaS.IO.IOBaseS - Cinema
+2017/12/04 13:10:50 [main] INFO  javaS.IO.IOBaseS - UME.txt
+2017/12/04 13:10:56 [main] INFO  javaS.IO.IOBaseS - start testing file filter: /home/CORPUSERS/xp020154/work/github/mainbase
+2017/12/04 13:11:00 [main] INFO  javaS.IO.IOBaseS - start testing file filter: /home/CORPUSERS/xp020154/work/github/mainbase
+2017/12/04 13:11:30 [main] INFO  javaS.IO.IOBaseS - start testing file filter: /home/CORPUSERS/xp020154/work/github/mainbase/resource/StudyFile
+2017/12/04 13:11:37 [main] INFO  javaS.IO.IOBaseS - start testing file filter: /home/CORPUSERS/xp020154/work/github/mainbase/resource/StudyFile
+2017/12/04 13:11:43 [main] INFO  javaS.IO.IOBaseS - start testing file filter: /home/CORPUSERS/xp020154/work/github/mainbase/resource/StudyFile
+2017/12/04 13:11:43 [main] INFO  javaS.IO.IOBaseS - HuaYi.txt
+2017/12/04 13:11:43 [main] INFO  javaS.IO.IOBaseS - HongXing.txt
+2017/12/04 13:11:43 [main] INFO  javaS.IO.IOBaseS - UME.txt
+2017/12/04 13:19:10 [main] INFO  javaS.IO.IOBaseS - start testing file filter: /home/CORPUSERS/xp020154/work/github/mainbase/resource/StudyFile
+2017/12/04 13:19:23 [main] INFO  javaS.IO.IOBaseS - start testing file filter: /home/CORPUSERS/xp020154/work/github/mainbase/resource/StudyFile
+2017/12/04 13:19:33 [main] INFO  javaS.IO.IOBaseS - start testing file filter: /home/CORPUSERS/xp020154/work/github/mainbase/resource/StudyFile
+2017/12/04 13:19:33 [main] INFO  javaS.IO.IOBaseS - HuaYi.txt
+2017/12/04 13:19:33 [main] INFO  javaS.IO.IOBaseS - HongXing.txt
+2017/12/04 13:19:33 [main] INFO  javaS.IO.IOBaseS - UME.txt
+2017/12/04 13:19:49 [main] INFO  javaS.IO.IOBaseS - start testing file filter: /home/CORPUSERS/xp020154/work/github/mainbase/resource/StudyFile
+2017/12/04 13:20:23 [main] INFO  javaS.IO.IOBaseS - start testing file filter: /home/CORPUSERS/xp020154/work/github/mainbase/resource/StudyFile
+2017/12/04 13:20:23 [main] INFO  javaS.IO.IOBaseS - resource/StudyFile/access
+2017/12/04 13:20:23 [main] INFO  javaS.IO.IOBaseS - resource/StudyFile/HuaYi.txt
+2017/12/04 13:20:23 [main] INFO  javaS.IO.IOBaseS - resource/StudyFile/HongXing.txt
+2017/12/04 13:20:23 [main] INFO  javaS.IO.IOBaseS - resource/StudyFile/Cinema
+2017/12/04 13:20:23 [main] INFO  javaS.IO.IOBaseS - resource/StudyFile/UME.txt
+2017/12/04 13:20:23 [main] INFO  javaS.IO.IOBaseS - HuaYi.txt
+2017/12/04 13:20:23 [main] INFO  javaS.IO.IOBaseS - HongXing.txt
+2017/12/04 13:20:23 [main] INFO  javaS.IO.IOBaseS - UME.txt
+2017/12/04 13:20:34 [main] INFO  javaS.IO.IOBaseS - start testing file filter: /home/CORPUSERS/xp020154/work/github/mainbase/resource/StudyFile
+2017/12/04 13:20:34 [main] INFO  javaS.IO.IOBaseS - resource/StudyFile/access
+2017/12/04 13:20:34 [main] INFO  javaS.IO.IOBaseS - resource/StudyFile/HuaYi.txt
+2017/12/04 13:20:34 [main] INFO  javaS.IO.IOBaseS - resource/StudyFile/HongXing.txt
+2017/12/04 13:20:34 [main] INFO  javaS.IO.IOBaseS - resource/StudyFile/Cinema
+2017/12/04 13:20:34 [main] INFO  javaS.IO.IOBaseS - resource/StudyFile/UME.txt
+2017/12/04 13:50:40 [main] INFO  javaS.IO.IOBaseS - resource/StudyFile/access
+2017/12/04 13:50:40 [main] INFO  javaS.IO.IOBaseS - resource/StudyFile/HuaYi.txt
+2017/12/04 13:50:40 [main] INFO  javaS.IO.IOBaseS - resource/StudyFile/HongXing.txt
+2017/12/04 13:50:40 [main] INFO  javaS.IO.IOBaseS - resource/StudyFile/Cinema
+2017/12/04 13:50:40 [main] INFO  javaS.IO.IOBaseS - resource/StudyFile/UME.txt
+2017/12/04 13:52:31 [main] INFO  javaS.IO.IOBaseS - file.canRead()true
+2017/12/04 13:52:31 [main] INFO  javaS.IO.IOBaseS - file.canWrite()true
+2017/12/04 13:52:31 [main] INFO  javaS.IO.IOBaseS - file.lastModified()1512021339000
+2017/12/04 13:55:06 [main] INFO  javaS.IO.IOBaseS - file.canRead(): true
+2017/12/04 13:55:06 [main] INFO  javaS.IO.IOBaseS - file.canWrite(): true
+2017/12/04 13:55:06 [main] INFO  javaS.IO.IOBaseS - file.lastModified(): 2017-11-30 13:55:00:000
+2017/12/04 13:55:54 [main] INFO  javaS.IO.IOBaseS - file.length(): 4096
+2017/12/04 13:55:54 [main] INFO  javaS.IO.IOBaseS - file.canRead(): true
+2017/12/04 13:55:54 [main] INFO  javaS.IO.IOBaseS - file.canWrite(): true
+2017/12/04 13:55:54 [main] INFO  javaS.IO.IOBaseS - file.lastModified(): 2017-11-30 13:55:00:000
+2017/12/04 13:56:20 [main] INFO  javaS.IO.IOBaseS - file.length(): 4096
+2017/12/04 13:56:20 [main] INFO  javaS.IO.IOBaseS - file.getName(): StudyFile
+2017/12/04 13:56:20 [main] INFO  javaS.IO.IOBaseS - file.canRead(): true
+2017/12/04 13:56:20 [main] INFO  javaS.IO.IOBaseS - file.canWrite(): true
+2017/12/04 13:56:20 [main] INFO  javaS.IO.IOBaseS - file.lastModified(): 2017-11-30 13:55:00:000
+2017/12/04 13:56:44 [main] INFO  javaS.IO.IOBaseS - file.length(): 4096
+2017/12/04 13:56:44 [main] INFO  javaS.IO.IOBaseS - file.getName(): StudyFile
+2017/12/04 13:56:44 [main] INFO  javaS.IO.IOBaseS - file.getParent(): resource
+2017/12/04 13:56:44 [main] INFO  javaS.IO.IOBaseS - file.canRead(): true
+2017/12/04 13:56:44 [main] INFO  javaS.IO.IOBaseS - file.canWrite(): true
+2017/12/04 13:56:44 [main] INFO  javaS.IO.IOBaseS - file.lastModified(): 2017-11-30 13:55:00:000
+2017/12/04 13:57:51 [main] INFO  javaS.IO.IOBaseS - file.length(): 4096
+2017/12/04 13:57:51 [main] INFO  javaS.IO.IOBaseS - file.getName(): StudyFile
+2017/12/04 13:57:51 [main] INFO  javaS.IO.IOBaseS - file.getParent(): resource
+2017/12/04 13:57:51 [main] INFO  javaS.IO.IOBaseS - file.canRead(): false
+2017/12/04 13:57:51 [main] INFO  javaS.IO.IOBaseS - file.canWrite(): false
+2017/12/04 13:57:51 [main] INFO  javaS.IO.IOBaseS - file.lastModified(): 1970-01-01 08:00:00:000
+2017/12/04 13:58:25 [main] INFO  javaS.IO.IOBaseS - file.length(): 4096
+2017/12/04 13:58:25 [main] INFO  javaS.IO.IOBaseS - file.getName(): S
+2017/12/04 13:58:25 [main] INFO  javaS.IO.IOBaseS - file.getParent(): resource
+2017/12/04 13:58:25 [main] INFO  javaS.IO.IOBaseS - file.canRead(): false
+2017/12/04 13:58:25 [main] INFO  javaS.IO.IOBaseS - file.canWrite(): false
+2017/12/04 13:58:25 [main] INFO  javaS.IO.IOBaseS - file.lastModified(): 1970-01-01 08:00:00:000
+2017/12/04 13:59:20 [main] INFO  javaS.IO.IOBaseS - file.length(): 4096
+2017/12/04 13:59:20 [main] INFO  javaS.IO.IOBaseS - file.getName(): StudyFile
+2017/12/04 13:59:20 [main] INFO  javaS.IO.IOBaseS - file.getParent(): resource
+2017/12/04 13:59:20 [main] INFO  javaS.IO.IOBaseS - file.canRead(): true
+2017/12/04 13:59:20 [main] INFO  javaS.IO.IOBaseS - file.canWrite(): true
+2017/12/04 13:59:20 [main] INFO  javaS.IO.IOBaseS - file.lastModified(): 2017-11-30 13:55:00:000
