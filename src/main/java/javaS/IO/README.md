@@ -478,15 +478,6 @@ public class CharacterStreamS extends IOBaseS {
         fr.close();
     }
     
-    /**
-     * 测试标准输入输出
-     */
-    public void testStandardIO() throws IOException {
-        BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
-        String str;
-        while ((str = stdin.readLine()) != null && str.length() != 0)
-            logger.info(str);
-    }
 }
 
 ```
@@ -668,9 +659,9 @@ public class Student extends IOBaseS{
 
 - JUnit生命周期
 完整JUnit执行顺序：
-1. /@BeforeClass –> /@Before –> /@Test –> /@After –> /@AfterClass
-2. /@BeforeClass和/@AfterClass只执行一次，且必须为static void
-3. /@Ignore 在执行整个类的时候会跳过该方法
+1. \@BeforeClass –> \@Before –> \@Test –> \@After –> \@AfterClass
+2. \@BeforeClass和\@AfterClass只执行一次，且必须为static void
+3. \@Ignore 在执行整个类的时候会跳过该方法
  
 下面我们定义一个完整测试流程：先初始化一个空白文件，然后添加两行数据Jhon和Jack，然后在他俩中间插入Hudson，最后读出该文件数据，验证结果输出为：
 
@@ -1051,6 +1042,16 @@ public class PrintStreamS extends IOBaseS {
         p.write("无敌心头好");// 这是与PrintStream唯一区别了
         p.flush();// PrintWriter也支持刷入操作
         p.close();
+    }
+
+    /**
+     * 测试标准输入输出
+     */
+    public void testStandardIO() throws IOException {
+        BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+        String str;
+        while ((str = stdin.readLine()) != null && str.length() != 0)
+            logger.info(str);
     }
 }
 
