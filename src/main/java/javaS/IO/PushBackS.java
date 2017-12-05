@@ -41,7 +41,7 @@ public class PushBackS extends IOBaseS {
     public void testPushbackReader() throws IOException {
         // 构造参数为Reader对象，使用字符数组读取
         PushbackReader pr = new PushbackReader(new CharArrayReader("go go Gan.".toCharArray()));
-        pr.unread("Ssdfasdf".toCharArray(), 0, 1);// 将S推到源字符串的最前方
+        pr.unread("Ssdfasdf".toCharArray(), 0, 1);// 将S推到源字符串的最前方，超过1报错：java.io.IOException: Pushback buffer overflow
         // pr.unread('S');// 这里的'S'是按照整型值操作
         int n;
         String str = "";
