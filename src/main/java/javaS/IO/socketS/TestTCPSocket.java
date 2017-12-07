@@ -16,7 +16,7 @@ import org.junit.Test;
  * @author Evsward
  *
  */
-public class TestSocket extends Base {
+public class TestTCPSocket extends Base {
     @Test
     /**
      * 客户端
