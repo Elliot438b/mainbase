@@ -63,7 +63,7 @@ public class TestTCPSocket extends Base {
         boolean f = true;
         Socket client = null;
         while (f) {// 保持整个客户端的监听状态
-            client = server.accept();// 等待客户端的连接
+            client = server.accept();// 阻塞，等待客户端的连接
             logger.info("客户端:<" + client.hashCode() + ">连接成功！");
             new Thread(new ServerThread(client)).start();
         }
