@@ -18,7 +18,7 @@
 		<Console name="Console" target="SYSTEM_OUT">
 			<ThresholdFilter level="info" onMatch="ACCEPT"
 				onMismatch="DENY" />
-			<PatternLayout pattern="%d{HH:mm:ss}[%M]: %msg%n" />
+			<PatternLayout pattern="%d{HH:mm:ss}[%M][%t]: %msg%n" />
 		</Console>
 	</Appenders>
 	<Loggers>

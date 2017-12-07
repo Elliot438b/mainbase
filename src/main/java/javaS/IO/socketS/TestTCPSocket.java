@@ -64,8 +64,9 @@ public class TestTCPSocket extends Base {
         Socket client = null;
         while (f) {// 保持整个客户端的监听状态
             client = server.accept();// 阻塞，等待客户端的连接，创建一个新的socket实例
-            logger.info("客户端:<" + client.hashCode() + ">连接成功！");
-            new Thread(new ServerThread(client)).start();
+            Thread t = new Thread(new ServerThread(client));
+            logger.info("客户端:<" + client.hashCode() + ">连接成功！Server Thread ID:" + t.getId());
+            t.start();
         }
         server.close();
     }

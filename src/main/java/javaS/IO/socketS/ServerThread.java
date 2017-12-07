@@ -19,8 +19,7 @@ public class ServerThread extends Base implements Runnable {
         this.client = client;
     }
 
-    @Override
-    public void run() {
+    public static void execute(Socket client) {
         try {
             PrintStream sendResponse = new PrintStream(client.getOutputStream());
             BufferedReader getRequest = new BufferedReader(new InputStreamReader(client.getInputStream()));
@@ -45,6 +44,11 @@ public class ServerThread extends Base implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void run() {
+        execute(client);
     }
 
 }
