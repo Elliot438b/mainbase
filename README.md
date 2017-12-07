@@ -16,3 +16,4 @@ Main base knowledges here.
 ### java
 - [genericity](https://github.com/evsward/mainbase/tree/master/src/main/java/javaS/genericity)
 - [IO](https://github.com/evsward/mainbase/tree/master/src/main/java/javaS/IO)
+- [Socket](https://github.com/evsward/mainbase/tree/master/src/main/java/javaS/IO/socketS)
