@@ -1,6 +1,6 @@
 package pattern.proxy;
 
-public class Real {
+public class Real extends Proxy{
     private long id;
     private String password;
 

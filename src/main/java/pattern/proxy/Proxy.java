@@ -1,5 +1,7 @@
 package pattern.proxy;
 
-public class Proxy extends Real {
+public abstract class Proxy {
+    public abstract long getId();
 
+    public abstract String getPassword();
 }
