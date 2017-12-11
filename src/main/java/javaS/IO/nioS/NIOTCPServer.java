@@ -11,14 +11,17 @@ import java.util.Iterator;
 import java.util.Set;
 
 import javaS.IO.socketS.Base;
-import javaS.IO.socketS.ServerThread;
 
 public class NIOTCPServer extends Base {
+
+    public static void main(String[] args) {
+        new Thread(new ReactorTask(port), "nio-reactor-001").start();
+    }
 
     /**
      * nio服务端与io的ServerSocket的编写流程极为相似，nio包已经封装好相关方法。
      */
-    public static void main(String[] args) throws IOException {
+    public void seqNio() throws IOException {
         // 1，open服务端Socket通道。
         ServerSocketChannel ssc = ServerSocketChannel.open();
         // 2，服务端通道绑定端口。
@@ -30,10 +33,11 @@ public class NIOTCPServer extends Base {
         // 4，将服务端通道注册到选择器，监听接入操作
         ssc.register(selector, SelectionKey.OP_ACCEPT);
         // 5，选择器轮询它身上的keys
-        Set selectKeys = selector.selectedKeys();
-        Iterator it = selectKeys.iterator();
+        Set<?> selectKeys = selector.selectedKeys();
+        Iterator<?> it = selectKeys.iterator();
         while (it.hasNext()) {
             SelectionKey key = (SelectionKey) it.next();
+            System.out.println(key);
             // deal with the I/O event.
         }
         // 6，服务端通道accept处理新客户端请求
@@ -50,4 +54,5 @@ public class NIOTCPServer extends Base {
         // 11，异步写响应信息回客户端通道
         channel.write(bb);
     }
+
 }
