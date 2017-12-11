@@ -136,7 +136,7 @@ public class ReactorTask extends Base implements Runnable {
             writeBuffer.flip();// flip操作？？？
             channel.write(writeBuffer);// 将缓冲区内容写入通道，发送出去
             /**
-             * 由于SocketChannel是异步非阻塞的，所以写消息发送时不会一下子全部发送完毕，所以会出现“写半包”的问题。
+             * TODO 由于SocketChannel是异步非阻塞的，所以写消息发送时不会一下子全部发送完毕，所以会出现“写半包”的问题。
              * 我们需要注册写操作，不断轮询Selector，将没有发送完的ByteBuffer发送完毕。
              * 然后可以通过ByteBuffer的hasRemain方法判断消息是否完整发送完毕。
              */
