@@ -8,6 +8,7 @@ Main base knowledges here.
 - [Bridge](https://github.com/evsward/mainbase/tree/master/src/main/java/pattern/bridge)
 - [Strategy](https://github.com/evsward/mainbase/tree/master/src/main/java/pattern/strategy)
 - [Decorate](https://github.com/evsward/mainbase/tree/master/src/main/java/pattern/decorate)
+- [Proxy](https://github.com/evsward/mainbase/tree/master/src/main/java/pattern/proxy)
 
 ### algorithms
 - [Sort](https://github.com/evsward/mainbase/tree/master/src/main/java/algorithms/sort)
