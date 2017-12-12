@@ -110,8 +110,12 @@ public class ReactorServerHandler extends Base implements Runnable {
                     readBuffer.get(bytes);
                     String body = new String(bytes, "UTF-8");// 使用UTF-8解码
                     logger.info("客户端请求信息：" + body);
-                    // TODO: 处理请求，返回响应，这里直接采用回声的方式简单处理。
-                    doWrite(sc, body);
+                    if (EOFlag.equals(body)) {
+                        key.cancel();
+                    } else {
+                        // TODO: 处理请求，返回响应，这里直接采用回声的方式简单处理。
+                        doWrite(sc, body);
+                    }
                 } else if (readBytes < 0) {// 返回值为-1，链路已关闭，需要手动关闭SocketChannel
                     key.cancel();
                     sc.close();

@@ -172,7 +172,7 @@ public class ReactorClientHandler extends Base implements Runnable {
             }
             if ("bye".equals(str)) {
                 logger.info("客户端发送终止请求，断开连接。");
-                sendReq(sc, "disconnect");
+                sendReq(sc, EOFlag);
                 break;
             }
             sendReq(sc, str);
