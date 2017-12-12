@@ -20,9 +20,9 @@ import javaS.IO.socketS.Base;
  * @author Evsward
  *
  */
-public class ReactorTask extends Base implements Runnable {
+public class ReactorServerHandler extends Base implements Runnable {
     private Selector selector;
-    private ServerSocketChannel servChannel;
+    private ServerSocketChannel servChannel;// 定义一个服务端通道
     private volatile boolean stop;
 
     /**
@@ -31,11 +31,13 @@ public class ReactorTask extends Base implements Runnable {
      * @param port
      *            监听的端口
      */
-    public ReactorTask(int port) {
+    public ReactorServerHandler(int port) {
         try {
+            // 初始化对象
             selector = Selector.open();// 通过静态方法open创建一个Selector实例。
             servChannel = ServerSocketChannel.open();// 通过静态方法open创建一个ServerSocketChannel实例，
             servChannel.configureBlocking(false);// 设置ServerSocketChannel通道为非阻塞。
+            // 开始事务操作
             servChannel.socket().bind(new InetSocketAddress(ipAddress, port), 1024);// 通道绑定并监听IP和端口，允许接入最多1024个连接。
             servChannel.register(selector, SelectionKey.OP_ACCEPT);// 服务器通道注册到多路复用选择器上。
             logger.info("server is listening in port: " + port);
@@ -89,8 +91,9 @@ public class ReactorTask extends Base implements Runnable {
         if (key.isValid()) {
             // 处理新接入的请求消息
             if (key.isAcceptable()) {
-                // accept 新连接（创建新通道相当于TCP三次握手，建立TCP物理链路，但并不创建新线程）
+                // 用一个服务端通道来接收key的通道
                 ServerSocketChannel ssc = (ServerSocketChannel) key.channel();
+                // accept 新连接（创建新通道相当于TCP三次握手，建立TCP物理链路，但并不创建新线程）
                 SocketChannel sc = ssc.accept();
                 sc.configureBlocking(false);
                 // 增加客户端通道到选择器，注意：服务端通道都是OP_ACCEPT操作位，客户端通道都是OP_READ操作位。
