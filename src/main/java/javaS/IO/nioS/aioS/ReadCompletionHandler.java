@@ -36,7 +36,11 @@ public class ReadCompletionHandler extends Base implements CompletionHandler<Int
     try {
       String req = new String(body, "UTF-8");
       logger.info("客户端请求信息：" + req);
-      doWrite(new Date().toString());// 将当前时间作为响应消息返回客户端
+      if (TIMEQUERY.equals(req)) {
+        doWrite(new Date().toString());// 将当前时间作为响应消息返回客户端
+      } else {
+        doWrite(req);
+      }
     } catch (UnsupportedEncodingException e) {
       e.printStackTrace();
     }

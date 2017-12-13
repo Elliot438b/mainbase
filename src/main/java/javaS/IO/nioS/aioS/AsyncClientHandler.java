@@ -1,6 +1,8 @@
 package javaS.IO.nioS.aioS;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
@@ -55,62 +57,92 @@ public class AsyncClientHandler extends Base
 
   @Override
   public void completed(Void result, AsyncClientHandler attachment) {
-    byte[] req = TIMEQUERY.getBytes();
-    ByteBuffer reqBuffer = ByteBuffer.allocate(req.length);
-    reqBuffer.put(req);
-    reqBuffer.flip();
-    // 通道读取到缓冲区成功以后开始写请求
-    asyncClientChannel.write(reqBuffer, reqBuffer, new CompletionHandler<Integer, ByteBuffer>() {
-
-      @Override
-      public void completed(Integer result, ByteBuffer attachment) {
-        if (reqBuffer.hasRemaining()) {
-          asyncClientChannel.write(reqBuffer, reqBuffer, this);
-        } else {
-          // 写完请求以后，开始接收响应消息，并对进行结果回调处理
-          ByteBuffer readBuffer = ByteBuffer.allocate(BUFFER_SIZE);
-          asyncClientChannel.read(readBuffer, readBuffer,
-              new CompletionHandler<Integer, ByteBuffer>() {
-
-                @Override
-                public void completed(Integer result, ByteBuffer attachment) {
-                  attachment.flip();
-                  byte[] bytes = new byte[attachment.remaining()];
-                  attachment.get(bytes);// 将缓冲区读到字节数组
-                  try {
-                    String body = new String(bytes, "UTF-8");
-                    logger.info("服务端的响应消息：" + body);
-                    latch.countDown();// 客户端读取响应消息成功以后，释放线程，执行完毕。
-                  } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                  }
-                }
-
-                @Override
-                public void failed(Throwable exc, ByteBuffer attachment) {
-                  try {
-                    asyncClientChannel.close();
-                    latch.countDown();// 客户端通道读异常，释放线程，执行完毕。
-                  } catch (IOException e) {
-                    e.printStackTrace();
-                  }
-                }
-
-              });
-        }
+    // 客户端输入
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    boolean flag = true;
+    String str = null;
+    while (flag) {
+      logger.info("客户端>输入信息：");
+      try {
+        str = input.readLine();
+      } catch (IOException e1) {
+        e1.printStackTrace();
       }
-
-      @Override
-      public void failed(Throwable exc, ByteBuffer attachment) {
+      if (str == null || "".equals(str)) {
+        logger.info("请不要输入空字符！");
+        continue;
+      }
+      /**
+       * 不fail的情况下，只有客户端输入bye，才会主动断开连接。
+       */
+      if ("bye".equals(str)) {
+        logger.info("客户端终止请求，断开连接。");
         try {
           asyncClientChannel.close();
           latch.countDown();// 客户端通道写异常，释放线程，执行完毕。
         } catch (IOException e) {
           e.printStackTrace();
         }
+        break;
       }
+      // 客户端发起请求
+      byte[] req = str.getBytes();
+      ByteBuffer reqBuffer = ByteBuffer.allocate(req.length);
+      reqBuffer.put(req);
+      reqBuffer.flip();
+      // 通道读取到缓冲区成功以后开始写请求
+      asyncClientChannel.write(reqBuffer, reqBuffer, new CompletionHandler<Integer, ByteBuffer>() {
 
-    });
+        @Override
+        public void completed(Integer result, ByteBuffer attachment) {
+          if (reqBuffer.hasRemaining()) {
+            asyncClientChannel.write(reqBuffer, reqBuffer, this);
+          } else {
+            // 写完请求以后，开始接收响应消息，并对进行结果回调处理
+            ByteBuffer readBuffer = ByteBuffer.allocate(BUFFER_SIZE);
+            asyncClientChannel.read(readBuffer, readBuffer,
+                new CompletionHandler<Integer, ByteBuffer>() {
+
+                  @Override
+                  public void completed(Integer result, ByteBuffer attachment) {
+                    attachment.flip();
+                    byte[] bytes = new byte[attachment.remaining()];
+                    attachment.get(bytes);// 将缓冲区读到字节数组
+                    try {
+                      String body = new String(bytes, "UTF-8");
+                      logger.info("服务端的响应消息：" + body);
+                      logger.info("---------------------");
+                    } catch (UnsupportedEncodingException e) {
+                      e.printStackTrace();
+                    }
+                  }
+
+                  @Override
+                  public void failed(Throwable exc, ByteBuffer attachment) {
+                    try {
+                      asyncClientChannel.close();
+                      latch.countDown();// 客户端通道读异常，释放线程，执行完毕。
+                    } catch (IOException e) {
+                      e.printStackTrace();
+                    }
+                  }
+
+                });
+          }
+        }
+
+        @Override
+        public void failed(Throwable exc, ByteBuffer attachment) {
+          try {
+            asyncClientChannel.close();
+            latch.countDown();// 客户端通道写异常，释放线程，执行完毕。
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
+        }
+
+      });
+    }
   }
 
   @Override

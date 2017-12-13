@@ -9,4 +9,5 @@ public class Base {
   protected static int port = 23451;
   protected static String TIMEQUERY = "query time";
   protected final static int BUFFER_SIZE = 1024;
+  protected final static String EOFlag = "disconnect";
 }
