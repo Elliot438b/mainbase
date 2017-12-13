@@ -26,6 +26,8 @@ public class ReadCompletionHandler extends Base implements CompletionHandler<Int
   @Override
   /**
    * attachment什么时候被赋的值？
+   * 
+   **** 答：回调的时候数据被填充到了attachment，返回结果是一个状态码存储与Integer result对象中。
    */
   public void completed(Integer result, ByteBuffer attachment) {
     attachment.flip();// 为读取数据做准备

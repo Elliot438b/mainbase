@@ -35,7 +35,7 @@ public class AcceptCompletionHandler extends Base
     // 开辟一个1MB的临时缓冲区，将用于从异步套接字通道中读取数据包
     ByteBuffer buffer = ByteBuffer.allocate(BUFFER_SIZE);
     /**
-     * 回调函数对accept结果进行异步读操作，
+     * 回调函数对accept结果进行异步读操作，读取客户端请求，放入buffer容器中
      * 
      * 其中attachment依然作为其回调时的入参：读数据的时候，是通过ByteBuffer容器，无论是数据源还是结果存放，因此attachment也应该传入一个ByteBuffer对象
      * 
