@@ -1,12 +1,12 @@
 > 就像新IO为java带来的革新那样，让我们也开启一段新的程序人生。
 
-> 关键字：NIO，BIO，伪IO、多路复用选择器，通道，缓冲区
+> 关键字：NIO，BIO，伪IO，AIO，多路复用选择器，通道，缓冲区，jdk研究
 
 ## java.nio 概述
 ### 历史背景
 在java nio出现之前，java网络IO是只有输入输出流操作的基于同步阻塞的Socket编程，这在实际应用中效率低下，因此当时高性能服务器开发领域一直被拥有更接近UNIX操作系统的Channel概念的C\+\+和C长期占据。我们知道现代操作系统的根源都是来自于UNIX系统，它代表了操作系统层面底层的平台支撑，在UNIX网络编程中，它的IO模型包括阻塞IO，非阻塞IO，IO复用，信号驱动IO以及异步IO，对于他们的具体解释这里不便展开，未来如果有机会介绍UNIX网络编程再来详叙。总之，平台底层是支持多种IO模型的，而当时的java只有阻塞IO这么一种，这也是编码最容易实现的一种，但却极大的限制了java在服务端的发展。java为了获得更高的性能表现，在jdk1.4版本增加了对异步IO模型的支持，提高了java的高性能IO处理能力，今天java已经逐渐取代C\+\+成为了企业服务端应用开发的首选语言。java新增的这部分类库就是java nio。
-### nio源码结构
-java.nio.*包中引入了新的java io类库，旨在提高速度，实际上旧的IO已经使用nio重新实现过，以便充分利用这种速度的提高，因此，即使我们不显式地用nio编写代码，也能获得受益效果。速度的提高在文件IO和网络IO中都有可能发生，概述部分结束以后我们会分别介绍。首先我们来看java源码，分析一下java.nio相关的结构。
+### jdk1.6的nio源码结构
+java.nio.*包中引入了新的java io类库，旨在提高速度，实际上旧的IO已经使用nio重新实现过，以便充分利用这种速度的提高，因此，即使我们不显式地用nio编写代码，也能获得受益效果。速度的提高在文件IO和网络IO中都有可能发生，概述部分结束以后我们会分别介绍。首先我们来看jdk 1.6的源码，分析一下java.nio相关的结构。
 
     java.nio 
     java.nio.channels 
@@ -558,18 +558,82 @@ public class ReactorServerHandler extends Base implements Runnable {
 }
 
 ```
+### ByteBuffer的flip操作解析
+上面代码中总会出现关于ByteBuffer对象调用的flip方法，它的解释是
+> 将缓冲区当前limit设置为position，position设置为0，用于后续对缓冲区的读取操作。
+
+然而仍是一头雾水，下面从ByteBuffer的属性来解析这个flip方法的含义。首先来看ByteBuffer的几个属性：
+- capacity：定义了ByteBuffer对象的容量。
+- limit：定义了ByteBuffer在读写操作中的界限，读操作中limit代表有效数据的长度（肯定是小于等于capacity），写操作中等于capacity。
+- position：读写操作的当前下标。
+- mark：一个临时存放的下标，用来在ByteBuffer对象的中间进行读写操作。
+
+以上属性可以通过以下方法进行设定：
+- clear()：把position设为0，把limit设为capacity，一般在把数据写入Buffer前调用。
+- flip()：把limit设为当前position，把position设为0，一般在从Buffer读出数据前调用。意思是将当前position即有效数据长度赋值给limit，然后将当前position调整到0，从0开始读取，一直读到limit。
+- rewind()：把position设为0，limit不变，一般在把数据重写入Buffer前调用。
+
+### 总结
 以上关于该实例的所有代码都已经完整给出，至于内部的具体执行方式，我直接在代码行间做了充足的注释说明，我想比在这里用文字长篇累牍的效果要好得多。不过下面我还是要对该实例展现出的NIO特性以及该实例的局限性进行一个分析总结。
 - 首先是该实例展现的NIO特性，无论服务端还是客户端，同一时间只需要唯一一个线程启动，由它维持着多路复用器的轮询工作，而实际上原来的多线程工作都转交给了这个多路复用器，通过多路复用器将通道上的每个IO操作注册进来，然后多路复用器有个休眠时间，selector.select(1000);每隔1s就会轮询一遍。实际上，整个selector的轮询工作本身是对当前线程的阻塞，但这是线程层面的阻塞，是为了保持多路复用器的轮询工作得以持续开展，而涉及到具体业务io操作的工作不会被阻塞，原Socket的工作方式是将这些业务操作都做了阻塞同步操作，而NIO将线程与多路复用器做了分层，在多路复用器层面，我们达到了对业务IO操作的异步非阻塞的目标。
 - 接下来是分析该实例的局限性，就本例而言，最主要的问题还是异步请求的结果问题，正如上面我们分析过的，无法用该实例实现标准输入返回回声的基本业务需求，由于无法外部更新客户端的请求，客户端无法保持与服务端的连接，只能是发送请求以后则关闭，否则该通道就会完全阻塞废弃在那里。该实例只是为了展示NIO的使用方式，总结下来来看，相较于原Socket编程，即使是“简配版本”的NIO操作，也称不上方便。
 
-## AIO编程
-针对以上的问题，JDK1.7升级了NIO的类库，java正式提供了对异步IO的支持，解决了我们上面实例中提到的关于异步结果无法读取的问题，客户端与服务端的通道可以随时不断地发送请求和返回响应，实现真正的客户端和服务端的长连接通道。
+## 新NIO
+我们都知道NIO本就是新IO了，怎么又蹦出来一个新NIO。其实是这样的，上面的实例中我们也体会到了NIO对异步操作处理的力不从心，所以针对以上的问题，JDK1.7升级了NIO的类库，我们可以叫它为新NIO，也可以是NIO 2.0，java正式提供了对异步IO的支持，解决了我们上面实例中提到的关于异步结果无法读取的问题，客户端与服务端的通道可以随时不断地发送请求和返回响应，实现真正的客户端和服务端的长连接通道。对于新NIO中这部分支持异步通信的，我们称他们为AIO（Asynchronous IO)。
 
 > AIO主要是通过回调函数解决了对异步操作结果的处理。该回调函数是通过实现CompletionHandler接口的completed方法。
 
-下面我们先来具体编写实例代码，然后再做进一步总结。
+### jdk1.7的nio源码结构
+下面我们来看一下jdk1.7的nio源码架构:
 
+    java.nio
+    java.nio.channels
+    java.nio.channels.spi
+    java.nio.charset
+    java.nio.charset.spi
+    java.nio.file
+    java.nio.file.attribute
+    java.nio.file.spi
 
+跟上面介绍过的jdk1.6版本的相同，spi包的可以去掉。那么增加的是java.nio.file类，于此同时，channels包中也发生了变化，
+
+    *AsynchronousChannelGroup
+    *AsynchronousFileChannel
+    *AsynchronousServerSocketChannel：
+    *AsynchronousSocketChannel
+    Channels
+    DatagramChannel
+    FileChannel
+    FileChannel.MapMode
+    FileLock
+    *MembershipKey
+    Pipe
+    Pipe.SinkChannel
+    Pipe.SourceChannel
+    SelectableChannel
+    SelectionKey
+    Selector
+    ServerSocketChannel
+    SocketChannel
+
+以上开头带*的类是我标示出来的jdk7新增加的类。其中MembershipKey是代表互联网协议中多路广播组的一员，我们暂且不管它，重点研究Asynchrounous开头的异步支持类。先看他们的定义，
+
+- AsynchronousChannelGroup：对异步通道进行分组，达到资源共享的目的。
+- AsynchronousFileChannel：一个可以对文件读写操作的异步通道。
+- AsynchronousServerSocketChannel：一个异步通道用作流导向的监听套接字，说白了就是服务端Socket通道。
+- AsynchronousSocketChannel：一个异步通道用作流导向的连接套接字，就是客户端Socket通道。
+
+> 这里我想对新nio中Client-Server架构进行一下理解。
+
+其实在NIO中，因为全双工的缘故，服务端客户端的定义界限没有原始Socket那么严格，服务端在NIO中的体现在它是监听，而客户端是连接，通过这条通道，他们都可以给对方发送消息，我们通常称服务端发送给客户端的消息为响应，而客户端发送给服务端的消息为请求。
+
+接着说回我们的新NIO，除了新增的AIO部分，其他内容都是微调整，下面我们主要针对AIO部分进行代码实例的学习。
+
+### AIO编程
+AIO编程中最大的不同就是取消了多路复用器，它不再使用多路复用器的“多线程”的实现方式，而是完全通过对一条线程的非阻塞高效使用来实现多任务并发，这就归功于它对操作结果的异步处理。
+> 因为异步操作的回调函数本身就是一个额外的jvm底层的线程池启动的新线程负责回调并驱动读写操作返回结果，当结果处理完毕，它也就自动销毁了。
+
+所以没有了多路复用器，又增加了真正异步的实现，AIO无论从编码上还是功能上都比旧的NIO要好很多。
 
 
 
