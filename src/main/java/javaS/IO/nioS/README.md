@@ -633,13 +633,578 @@ public class ReactorServerHandler extends Base implements Runnable {
 AIO编程中最大的不同就是取消了多路复用器，它不再使用多路复用器的“多线程”的实现方式，而是完全通过对一条线程的非阻塞高效使用来实现多任务并发，这就归功于它对操作结果的异步处理。
 > 因为异步操作的回调函数本身就是一个额外的jvm底层的线程池启动的新线程负责回调并驱动读写操作返回结果，当结果处理完毕，它也就自动销毁了。
 
-所以没有了多路复用器，又增加了真正异步的实现，AIO无论从编码上还是功能上都比旧的NIO要好很多。
+所以没有了多路复用器，又增加了真正异步的实现，AIO无论从编码上还是功能上都比旧的NIO要好很多。下面闲言少叙，先看代码：
 
 
+服务端启动一个线程，Handler改为新增加的AsyncServerHandler类。
+```
+public class NIOTCPServer extends Base {
+  public static void main(String[] args) {
+    new Thread(new AsyncServerHandler(), "nio-server-reactor-001").start();
+  }
+}
+```
+下面是AsyncServerHandler类。
 
+```
+package javaS.IO.nioS.aioS;
 
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.nio.channels.AsynchronousServerSocketChannel;
+import java.util.concurrent.CountDownLatch;
 
+import javaS.IO.socketS.Base;
 
+/**
+ * 异步非阻塞服务器处理类
+ * 
+ * @author Evsward
+ *
+ */
+public class AsyncServerHandler extends Base implements Runnable {
 
+  AsynchronousServerSocketChannel asyncServerChannel;// 服务端异步套接字通道
+  CountDownLatch latch;// 倒计时门闩
 
+  /**
+   * 构造器对象初始化
+   */
+  public AsyncServerHandler() {
+    try {
+      // 与NIO相同的操作，通过open静态方法创建一个AsynchronousServerSocketChannel的实例。
+      asyncServerChannel = AsynchronousServerSocketChannel.open();
+      asyncServerChannel.bind(new InetSocketAddress(ipAddress, port), 1024);// 一样的操作，绑定IP端口。
+      logger.info("server is listening in address -> " + ipAddress + ":" + port);
+    } catch (IOException e) {
+      e.printStackTrace();
+      System.exit(1);
+    }
+  }
 
+  @Override
+  public void run() {
+    latch = new CountDownLatch(1);// 初始化倒计时次数为1
+    doAccept();
+    try {
+      latch.await();// 倒计时门闩开始阻塞，知道倒计时为0，如果在这期间线程中断，则抛异常：InterruptedException。
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public void doAccept() {
+    /**
+     * 开始接收客户端连接，将当前服务端异步套接字通道对象作为附件传入保存，
+     * 
+     * 同时传入一个 CompletionHandler<AsynchronousSocketChannel, ? super A>的实现类对象接收accept成功的消息。
+     */
+    asyncServerChannel.accept(this, new AcceptCompletionHandler());
+  }
+
+}
+
+```
+它依赖一个AcceptCompletionHandler类，用来回调处理结果。
+
+```
+package javaS.IO.nioS.aioS;
+
+import java.nio.ByteBuffer;
+import java.nio.channels.AsynchronousSocketChannel;
+import java.nio.channels.CompletionHandler;
+
+import javaS.IO.socketS.Base;
+
+/**
+ * accept方法的回调操作
+ * 
+ * 泛型参数1：IO操作的回调结果的类型 泛型参数2：IO操作的附件对象的类型
+ * 
+ * 这两个参数对应的也就是回调函数completed的参数类型
+ * 
+ * @author Evsward
+ *
+ */
+public class AcceptCompletionHandler extends Base
+    implements CompletionHandler<AsynchronousSocketChannel, AsyncServerHandler> {
+
+  @Override
+  /**
+   * 传入一个客户端异步套接字通道作为accept操作结果的接收者，一个异步非阻塞服务器处理类对象作为附件存储
+   */
+  public void completed(AsynchronousSocketChannel result, AsyncServerHandler attachment) {
+    /**
+     * 为什么要再次执行相同的accept方法，他们甚至参数都一样？
+     * 
+     * 因为上一个类中asyncServerChannel的accept方法执行以后，新的客户端连接结果会调用当前completed方法。
+     * 但是服务端是支持多个客户端连接的，不能只有一个客户端连接成功以后，调用回调函数completed就结束了。
+     * 因此我们要在第一个客户端连接结果的回调函数中再次开启一个accept方法以接收第二个客户端连接，递归调用，就可以支持accept无数个客户端连接了。
+     */
+    attachment.asyncServerChannel.accept(attachment, this);
+    // 开辟一个1MB的临时缓冲区，将用于从异步套接字通道中读取数据包
+    ByteBuffer buffer = ByteBuffer.allocate(BUFFER_SIZE);
+    /**
+     * 回调函数对accept结果进行异步读操作，读取客户端请求，放入buffer容器中
+     * 
+     * 其中attachment依然作为其回调时的入参：读数据的时候，是通过ByteBuffer容器，无论是数据源还是结果存放，因此attachment也应该传入一个ByteBuffer对象
+     * 
+     * 最后一个参数为异步读操作的回调函数。
+     */
+    result.read(buffer, buffer, new ReadCompletionHandler(result));
+  }
+
+  @Override
+  public void failed(Throwable exc, AsyncServerHandler attachment) {
+    exc.printStackTrace();
+    attachment.latch.countDown();// 倒计时一次，由于我们定义的初始化次数为1，所以当前线程直接往下运行，脱离阻塞状态。
+  }
+
+}
+
+```
+这个类又依赖着ReadCompletionHandler类，用来做读操作的回调处理结果。
+
+```
+package javaS.IO.nioS.aioS;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
+import java.nio.channels.AsynchronousSocketChannel;
+import java.nio.channels.CompletionHandler;
+import java.util.Date;
+
+import javaS.IO.socketS.Base;
+
+public class ReadCompletionHandler extends Base implements CompletionHandler<Integer, ByteBuffer> {
+  private AsynchronousSocketChannel channel;
+
+  /**
+   * 通过构造器传入关联的AsynchronousSocketChannel实例作为成员变量，我们在回调要始终针对这个通道进行IO操作。
+   * 
+   * 其实从
+   * 
+   * @param channel
+   */
+  public ReadCompletionHandler(AsynchronousSocketChannel channel) {
+    this.channel = channel;
+  }
+
+  @Override
+  /**
+   * attachment什么时候被赋的值？
+   * 
+   **** 答：回调的时候数据被填充到了attachment，返回结果是一个状态码存储与Integer result对象中。
+   */
+  public void completed(Integer result, ByteBuffer attachment) {
+    attachment.flip();// 为读取数据做准备
+    byte[] body = new byte[attachment.remaining()];// 创建一个与附件缓冲区大小相同的字节数组。
+    attachment.get(body);// 将缓冲区内数据读到字节数组中去。
+    try {
+      String req = new String(body, "UTF-8");
+      logger.info("客户端请求信息：" + req);
+      if (TIMEQUERY.equals(req)) {
+        doWrite(new Date().toString());// 将当前时间作为响应消息返回客户端
+      } else {
+        doWrite(req);
+      }
+    } catch (UnsupportedEncodingException e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   * 服务端写响应信息
+   * 
+   * @param rep
+   */
+  private void doWrite(String rep) {
+    if (rep != null && rep.trim().length() > 0) {
+      byte[] bytes = rep.getBytes();
+      ByteBuffer writeBuffer = ByteBuffer.allocate(bytes.length);
+      writeBuffer.put(bytes);
+      writeBuffer.flip();
+      /**
+       * 开始向服务端异步套接字通道中写入数据，同样的任何出现异步IO操作的都要有CompletionHandler的实现来来做回调的处理。
+       * 直接采用匿名内部类实现CompletionHandler接口
+       */
+      channel.write(writeBuffer, writeBuffer, new CompletionHandler<Integer, ByteBuffer>() {
+
+        @Override
+        public void completed(Integer result, ByteBuffer attachment) {
+          if (attachment.hasRemaining()) {
+            channel.write(writeBuffer, attachment, this);// 递归调用自己直到数据全部写入通道。
+            /**
+             * 这里的数据全部写入通道的控制与“写半包”并不相同，写半包是由于传输容器本身的大小限制正好对数据进行了分割导致，
+             * 
+             * 处理起来会更加复杂一些，这部分研究现在并不准备展开讨论。
+             */
+          }
+        }
+
+        @Override
+        public void failed(Throwable exc, ByteBuffer attachment) {// 对异常的处理
+          try {
+            channel.close();
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
+        }
+
+      });
+    }
+  }
+
+  @Override
+  public void failed(Throwable exc, ByteBuffer attachment) {
+    try {
+      // 失败则关闭当前通道
+      this.channel.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+}
+
+```
+服务端我们就写完了，比较复杂，但其实原理都一样，就是做回调的结果处理类，下面我们来写客户端，同样的，客户端启动一个线程，Handler改为新增加的AsyncClientHandler类。
+
+```
+public class NIOTCPClient extends Base {
+  public static void main(String[] args) {
+    new Thread(new AsyncClientHandler(), "nio-client-reactor-001").start();
+  }
+}
+```
+然后，继续写AsyncClientHandler类，
+
+```
+package javaS.IO.nioS.aioS;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
+import java.nio.channels.AsynchronousSocketChannel;
+import java.nio.channels.CompletionHandler;
+import java.util.concurrent.CountDownLatch;
+
+import javaS.IO.socketS.Base;
+
+/**
+ * 异步非阻塞客户端处理类
+ * 
+ * 本类大量使用匿名内部类来处理回调，好处是客户端处理类只有本类一个，并无生成如服务端处理类相关的那么多类文件，
+ * 
+ * 坏处是本类层次结构较复杂，可读性差。
+ * 
+ * 注意：Void作为类型要首字母大写，就好像只有Integer可以作为泛型类型而不是int一样，但Void不是引用类型，这里只是一种表示void类型的情况。
+ * 
+ * @author Evsward
+ *
+ */
+public class AsyncClientHandler extends Base
+    implements CompletionHandler<Void, AsyncClientHandler>, Runnable {
+  private AsynchronousSocketChannel asyncClientChannel;// 客户端异步套接字通道，成员变量
+  private CountDownLatch latch;// 用倒计时门闩来控制线程阻塞等待的状态，而不是让线程自己中断退出
+
+  public AsyncClientHandler() {
+    try {
+      asyncClientChannel = AsynchronousSocketChannel.open();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+  }
+
+  @Override
+  public void run() {
+    latch = new CountDownLatch(1);
+    // 对象是本类，回调函数也是本类
+    asyncClientChannel.connect(new InetSocketAddress(ipAddress, port), this, this);
+    try {
+      latch.await();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    try {
+      asyncClientChannel.close();// 客户端在请求完毕以后要关闭掉
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  @Override
+  public void completed(Void result, AsyncClientHandler attachment) {
+    // 客户端输入
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    boolean flag = true;
+    String str = null;
+    while (flag) {
+      logger.info("客户端>输入信息：");
+      try {
+        str = input.readLine();
+      } catch (IOException e1) {
+        e1.printStackTrace();
+      }
+      if (str == null || "".equals(str)) {
+        logger.info("请不要输入空字符！");
+        continue;
+      }
+      /**
+       * 不fail的情况下，只有客户端输入bye，才会主动断开连接。
+       */
+      if ("bye".equals(str)) {
+        logger.info("客户端终止请求，断开连接。");
+        try {
+          asyncClientChannel.close();
+          latch.countDown();// 客户端通道写异常，释放线程，执行完毕。
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+        break;
+      }
+      // 客户端发起请求
+      byte[] req = str.getBytes();
+      ByteBuffer reqBuffer = ByteBuffer.allocate(req.length);
+      reqBuffer.put(req);
+      reqBuffer.flip();
+      // 通道读取到缓冲区成功以后开始写请求
+      asyncClientChannel.write(reqBuffer, reqBuffer, new CompletionHandler<Integer, ByteBuffer>() {
+
+        @Override
+        public void completed(Integer result, ByteBuffer attachment) {
+          if (reqBuffer.hasRemaining()) {
+            asyncClientChannel.write(reqBuffer, reqBuffer, this);
+          } else {
+            // 写完请求以后，开始接收响应消息，并对进行结果回调处理
+            ByteBuffer readBuffer = ByteBuffer.allocate(BUFFER_SIZE);
+            asyncClientChannel.read(readBuffer, readBuffer,
+                new CompletionHandler<Integer, ByteBuffer>() {
+
+                  @Override
+                  public void completed(Integer result, ByteBuffer attachment) {
+                    attachment.flip();
+                    byte[] bytes = new byte[attachment.remaining()];
+                    attachment.get(bytes);// 将缓冲区读到字节数组
+                    try {
+                      String body = new String(bytes, "UTF-8");
+                      logger.info("服务端的响应消息：" + body);
+                      logger.info("---------------------");
+                      // 由于无法保持长连接通信，一次请求响应以后就无法再继续通信，所以接收服务端响应以后，就断开连接。
+                      asyncClientChannel.close();
+                      latch.countDown();
+                    } catch (UnsupportedEncodingException e) {
+                      e.printStackTrace();
+                    } catch (IOException e) {
+                      e.printStackTrace();
+                    }
+                  }
+
+                  @Override
+                  public void failed(Throwable exc, ByteBuffer attachment) {
+                    try {
+                      asyncClientChannel.close();
+                      latch.countDown();// 客户端通道读异常，释放线程，执行完毕。
+                    } catch (IOException e) {
+                      e.printStackTrace();
+                    }
+                  }
+
+                });
+          }
+        }
+
+        @Override
+        public void failed(Throwable exc, ByteBuffer attachment) {
+          try {
+            asyncClientChannel.close();
+            latch.countDown();// 客户端通道写异常，释放线程，执行完毕。
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
+        }
+
+      });
+    }
+  }
+
+  @Override
+  public void failed(Throwable exc, AsyncClientHandler attachment) {
+    try {
+      asyncClientChannel.close();
+      latch.countDown();// 客户端通道IO操作异常，释放线程，执行完毕。
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+}
+
+```
+这个类很长，因为我们没有单独创建回调类，而是直接采用匿名内部类的方式实现了CompletionHandler接口。下面我们来看输出结果，然后再来分析与总结。
+
+首先，让我们先启动NIOTCPServer，
+> 13:11:11[<init>][main]: server is listening in address -> 127.0.0.1:23451
+
+然后，我们先启动一个NIOTCPClient，就将它编号为1吧，
+> 13:11:16[completed][Thread-10]: 客户端>输入信息：
+
+我们在客户端1中输入a回车，客户端控制台输出为：
+
+    13:11:16[completed][Thread-10]: 客户端>输入信息：
+    a
+    13:11:18[completed][Thread-10]: 客户端>输入信息：
+    13:11:18[completed][Thread-2]: 服务端的响应消息：a
+    13:11:18[completed][Thread-2]: ---------------------
+
+接着我们切换到服务端的控制台，发现也发生了变化：
+
+    13:11:11[<init>][main]: server is listening in address -> 127.0.0.1:23451
+    13:11:18[completed][Thread-2]: 客户端请求信息：a
+
+#### 保持长连接的方法
+这里，我曾设法继续在客户端1中输入字符，发送请求，但是我们可以看到“客户端>输入信息”这一行已经被异步读取的响应信息拦住了，此时在Thread-10上继续输入信息并没有响应信息传回，再次输入信息回车会发生报错。我设法去修改ReadCompletionHandler，让它在发送完响应信息以后，能够继续调用AsynchronousSocketChannel的read方法，然后继续读取客户端的请求信息，因为ReadCompletionHandler类本身就是read方法的回调处理类，让它在处理完相应信息以后相当于在内部调用外部的read方法，再用自己来处理。按照这个思想，我对ReadCompletionHandler的响应写入部分增加了一段代码。
+
+```
+      // 开辟一个1MB的临时缓冲区，将用于从异步套接字通道中读取数据包
+      ByteBuffer buffer = ByteBuffer.allocate(BUFFER_SIZE);
+      channel.read(buffer, buffer, this);
+```
+我们仍旧要再开辟一个临时缓冲区，用来给这条通道上下一个请求数据的处理做容器，然后用我们通过构造方法保存的AsynchronousSocketChannel对象channel，继续调用它的read方法，并将自身作为回调处理类的入参。重新测试，与上面相同的内容我不再写，重启服务端和客户端以后，接着上面的操作，我们继续在客户端1中输入字符回车，控制台输出为：
+
+    13:30:23[completed][Thread-10]: 客户端>输入信息：
+    a
+    13:30:25[completed][Thread-10]: 客户端>输入信息：
+    13:30:25[completed][Thread-3]: 服务端的响应消息：a
+    13:30:25[completed][Thread-3]: ---------------------
+    a
+    13:30:26[completed][Thread-10]: 客户端>输入信息：
+    13:30:26[completed][Thread-5]: 服务端的响应消息：a
+    13:30:26[completed][Thread-5]: ---------------------
+
+我们再继续输入关键字“query time”用来请求服务端返回当前时间：
+
+    ...
+    13:30:31[completed][Thread-7]: ---------------------
+    query time
+    13:30:34[completed][Thread-10]: 客户端>输入信息：
+    13:30:34[completed][Thread-8]: 服务端的响应消息：Thu Dec 14 13:30:34 CST 2017
+    13:30:34[completed][Thread-8]: ---------------------
+
+目前为止，我们想要的功能均实现了，下面我们再启动一个NIOTCPClient，继续测试，仍旧成功。到现在为止，一个服务端已经连接了两个客户端，均可以正常工作，下面我又连着启动了5个客户端继续测试仍旧稳定运行。回到服务端的控制台，
+
+    13:30:18[<init>][main]: server is listening in address -> 127.0.0.1:23451
+    13:30:25[completed][Thread-2]: 客户端请求信息：a
+    13:30:26[completed][Thread-3]: 客户端请求信息：a
+    13:30:28[completed][Thread-4]: 客户端请求信息：afd
+    13:30:29[completed][Thread-5]: 客户端请求信息：ads
+    13:30:30[completed][Thread-6]: 客户端请求信息：adf
+    13:30:31[completed][Thread-7]: 客户端请求信息：adf
+    13:30:34[completed][Thread-8]: 客户端请求信息：query time
+    13:30:43[completed][Thread-10]: 客户端请求信息：hey
+    13:30:46[completed][Thread-2]: 客户端请求信息：heyyou
+    13:30:49[completed][Thread-3]: 客户端请求信息：query time
+
+> 我们使用AIO编程成功实现了回声加时间访问的服务器客户端模型！
+
+#### 继续优化
+我能够改造成功，是源自AcceptCompletionHandler类的重写completed方法中的
+> attachment.asyncServerChannel.accept(attachment, this);
+
+这行代码我在以上粘贴的源码部分已经写下了详实的注释介绍了它出现第二次的理由。因为我们的服务端要想继续支持其他的客户端连入，就必须在第一个客户端连入成功以后的回调函数里继续为其他客户端开启accept通道。相似的，我们的服务端在返回响应消息以后，如果想继续处理客户端的请求，此时它与该客户端仍旧保持连接状态，只是失去了继续处理该客户端请求的能力，因此，我们将这个能力赋予给它就可以了。有些朋友说那只是支持了第二个客户端连接，或者只是支持了当前连接的客户端第二次请求而已，那第三个客户端或者第三个请求呢？（这个问题的两个主语因为是使用相同的手段实现的，所以我把他们放在一起来解释，希望大家不要困扰。）原因就是我们新加的用于继续处理新客户端或者新请求的代码中，调用的回调处理类是当前类本身，这就是递归的调用，无论再连入多少个客户端，或者当前客户端发送多少次请求，都可以稳定处理。
+
+如果我们保持程序这样，客户端与服务端的通道是没有主动断开机制的，除非发生异常（例如你把整个jvm关掉了）。这是程序比较大的bug，如果用CheckStyle等源码检查工具来检查的话会给你标示出来。那么我现在对它进行进一步修改。
+
+我想的是直接在客户端输入时判断输入信息是否为关键字“bye”，如果是的话直接关闭通道，
+
+```
+      /**
+       * 不fail的情况下，只有客户端输入bye，才会主动断开连接。
+       */
+      if ("bye".equals(str)) {
+        logger.info("客户端终止请求，断开连接。");
+        try {
+          asyncClientChannel.close();
+          latch.countDown();// 客户端通道写异常，释放线程，执行完毕。
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+        break;
+      }
+```
+但经过测试，我发现客户端控制台输入“bye”以后，客户端可以正常关闭，但是服务端发生异常：不断的循环客户端的输入为空的情况。
+
+好，下面我们对服务端进行调整：我们在服务端ReadCompletionHandler类读取客户端请求以后在输出请求字符前首先判断：
+
+```
+      // 如果接收到客户端空字符的情况，说明客户端已断开连接，那么服务端也自动断开通道即可。
+      if (req == null || "".equals(req)) {
+        channel.close();
+        return;
+      } 
+```
+经过仔细测试，这个方法可行，我们的程序距离健壮性又近了一步。
+
+#### 关于回调
+在测试过程中，我们发现每一个请求或者响应的异步回调消息都是通过一个新的线程打印出来的，我们先来看服务端：
+
+    14:01:27[<init>][main]: server is listening in address -> 127.0.0.1:23451
+    14:01:33[completed][Thread-3]: 客户端请求信息：1
+    14:01:33[completed][Thread-2]: 客户端请求信息：2
+    14:01:34[completed][Thread-5]: 客户端请求信息：3
+    14:01:35[completed][Thread-6]: 客户端请求信息：4
+    14:01:35[completed][Thread-4]: 客户端请求信息：5
+
+然后，再来看客户端：
+
+    14:01:31[completed][Thread-10]: 客户端>输入信息：
+    1
+    14:01:33[completed][Thread-10]: 客户端>输入信息：
+    14:01:33[completed][Thread-2]: 服务端的响应消息：1
+    14:01:33[completed][Thread-2]: ---------------------
+    2
+    14:01:33[completed][Thread-10]: 客户端>输入信息：
+    14:01:33[completed][Thread-4]: 服务端的响应消息：2
+    14:01:33[completed][Thread-4]: ---------------------
+    3
+    14:01:34[completed][Thread-10]: 客户端>输入信息：
+    14:01:34[completed][Thread-5]: 服务端的响应消息：3
+    14:01:34[completed][Thread-5]: ---------------------
+    4
+    14:01:35[completed][Thread-10]: 客户端>输入信息：
+    14:01:35[completed][Thread-6]: 服务端的响应消息：4
+    14:01:35[completed][Thread-6]: ---------------------
+    5
+    14:01:35[completed][Thread-10]: 客户端>输入信息：
+    14:01:35[completed][Thread-7]: 服务端的响应消息：5
+    14:01:35[completed][Thread-7]: ---------------------
+
+我们发现了，服务端处理请求和客户端处理响应的新线程并不具备任何关系，例如服务端打印请求为2的线程为Thread-2，然而客户端返回处理请求2的响应线程为Thread-4，它们并不想等，也就是说这个线程的编号是独立的。因为这些回调线程是由jdk实现的。
+
+## 总结
+我们终于完成了AIO实例的编程与测试和结果分析，下面我来总结一下。关于网络编程，
+- 基础是最普通的IO操作
+- 然后涉及到网络IO，有了[Socket](http://www.cnblogs.com/Evsward/p/socket.html)来帮我们做这一层的工作
+- 我们不满足于它阻塞的表现，增加了NIO，这部分的研究在本篇第一大部分进行了详细的介绍，我们主要依赖对多路复用器Selector的轮询来在单线程中实现“多线程”
+- 我们又不满足与NIO的“假异步”的实现，增加了AIO，形成NIO 2.0，我们上面刚刚完成它的研究，我们是通过异步处理结果以后继续接收新任务的方式来在单线程中实现“多线程”
+
+其实本篇文章的内容不是真正意义的多线程知识，这个“多线程”是假的，是通过技术手段来合理的分配单一线程处理不同工作的方法，或者是依赖jdk实现过的稳定的回调线程的方式，但这种方式恰恰符合计算机系统中对线程的定义，我们知道cpu只有通过真的多核处理才是“真并发”，而线程多是通过合理分配资源的方式来实现并发的，然而我们也知道，有些cpu厂商也在做“假多核”，实际上这里面的思想是一致的。
+
+本篇我们做的这些研究的工作都是针对TCP的，也就是基于流的，基于长连接的，长连接有个重要的特性就是，不仅可以处理客户端的请求，它还可以主动给客户端发送消息，这是长连接最大的优势。
+
+最后，我们的研究之路是随着jdk的不断发展来的，所以最新的AIO的方式肯定是超越旧版的，我们在未来的实际应用中可以选择使用。接下来，我要趁热打铁，介绍多线程的知识，以及NIO开源框架Netty的知识，还有JVM，总之，知识是越研究越多，因为你的视野被逐渐打开了。
+
+### 参考资料
+- 《netty权威指南》
+- 《java编程思想》
+- jdk 1.6 document api
+- jdk 1.7 document api
+
+### [源码位置](https://github.com/evsward/mainbase/tree/master/src/main/java/javaS/IO/nioS)
+
+### 其他更多内容请转到[醒者呆的博客园](http://www.cnblogs.com/Evsward/)
