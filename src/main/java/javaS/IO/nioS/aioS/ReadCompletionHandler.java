@@ -41,6 +41,9 @@ public class ReadCompletionHandler extends Base implements CompletionHandler<Int
       } else {
         doWrite(req);
       }
+      // 开辟一个1MB的临时缓冲区，将用于从异步套接字通道中读取数据包
+      ByteBuffer buffer = ByteBuffer.allocate(BUFFER_SIZE);
+      channel.read(buffer, buffer, this);
     } catch (UnsupportedEncodingException e) {
       e.printStackTrace();
     }
