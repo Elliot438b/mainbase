@@ -1,7 +1,6 @@
 package javaS.IO.nioS.aioS;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousSocketChannel;
 import java.nio.channels.CompletionHandler;
@@ -35,6 +34,11 @@ public class ReadCompletionHandler extends Base implements CompletionHandler<Int
     attachment.get(body);// 将缓冲区内数据读到字节数组中去。
     try {
       String req = new String(body, "UTF-8");
+      // 如果接收到客户端空字符的情况，说明客户端已断开连接，那么服务端也自动断开通道即可。
+      if (req == null || "".equals(req)) {
+        channel.close();
+        return;
+      } 
       logger.info("客户端请求信息：" + req);
       if (TIMEQUERY.equals(req)) {
         doWrite(new Date().toString());// 将当前时间作为响应消息返回客户端
@@ -44,7 +48,7 @@ public class ReadCompletionHandler extends Base implements CompletionHandler<Int
       // 开辟一个1MB的临时缓冲区，将用于从异步套接字通道中读取数据包
       ByteBuffer buffer = ByteBuffer.allocate(BUFFER_SIZE);
       channel.read(buffer, buffer, this);
-    } catch (UnsupportedEncodingException e) {
+    } catch (IOException e) {
       e.printStackTrace();
     }
   }
