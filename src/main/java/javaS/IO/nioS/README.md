@@ -1049,7 +1049,7 @@ public class AsyncClientHandler extends Base
 这个类很长，因为我们没有单独创建回调类，而是直接采用匿名内部类的方式实现了CompletionHandler接口。下面我们来看输出结果，然后再来分析与总结。
 
 首先，让我们先启动NIOTCPServer，
-> 13:11:11[<init>][main]: server is listening in address -> 127.0.0.1:23451
+> 13:11:11[\<init\>][main]: server is listening in address -> 127.0.0.1:23451
 
 然后，我们先启动一个NIOTCPClient，就将它编号为1吧，
 > 13:11:16[completed][Thread-10]: 客户端>输入信息：
