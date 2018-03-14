@@ -3,6 +3,12 @@ package algorithms.bag;
 import java.util.Iterator;
 
 public class Bag<Item> implements Iterable<Item> {
+
+    private class BagNode<Item> {
+        Item item;
+        BagNode next;
+    }
+
     BagNode head;
     int size;
 
@@ -58,8 +64,13 @@ public class Bag<Item> implements Iterable<Item> {
         bags.add("1243");
         System.out.println(bags.size);
 
-        for (Iterator i = bags.iterator(); i.hasNext(); ) {
-            System.out.println(i.next());
+//        for (Iterator i = bags.iterator(); i.hasNext(); ) {
+//            System.out.println(i.next());
+//        }
+
+        // 由于Bag实现了Iterable接口，所以支持以下方式遍历
+        for (String a : bags) {
+            System.out.println(a);
         }
     }
 }
