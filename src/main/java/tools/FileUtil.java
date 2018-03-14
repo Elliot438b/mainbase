@@ -45,4 +45,7 @@ public class FileUtil {
             }
         }
     }
+    public static void main(String arg ){
+        System.out.println("asd");
+    }
 }

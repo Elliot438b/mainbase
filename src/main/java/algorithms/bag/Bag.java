@@ -2,6 +2,7 @@ package algorithms.bag;
 
 import java.util.Iterator;
 
+// 定义一个背包集合，支持泛型，支持迭代
 public class Bag<Item> implements Iterable<Item> {
 
     private class BagNode<Item> {
