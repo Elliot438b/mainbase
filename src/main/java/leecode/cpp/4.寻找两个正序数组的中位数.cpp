@@ -14,35 +14,22 @@ class Solution
 public:
     double findMedianSortedArrays(vector<int> &nums1, vector<int> &nums2)
     {
-        int start1(nums1[0]), start2(nums2[0]);
         int m = nums1.size();
         int n = nums2.size();
-        vector<int> result(m + n);
-        result[0] = max(nums1[0], nums2[0]);
-        for (int i = 0; i < m + n; i++)
+        int pivot1 = (m + 1) / 2;
+        int pivot2 = (n + 1) / 2;
+        int mleft = nums1[pivot1];
+        int mright = nums1[pivot1 + 1];
+        int nleft = nums2[pivot2];
+        int nrignt = nums2[pivot2 + 1];
+        if (mright < nleft)
         {
-            for (int j = 0; j < max(m, n); j++)
-            {
-                result[i] = min(min(nums1[j], nums2[j]), result[i]);
-                result[i + 1] = max(nums1[j], nums2[j]);
-                result[i + 2] = max(nums1[j], result[i]);
-            }
+            int temp(mright);
+            mright = nleft;
+            nleft = temp;
         }
-        int k = result.size();
-        for (int h = 0; h < k; h++)
-        {
-            cout << result[h] << endl;
-        }
-        if (k % 2 == 1)
-        {
-            return result[k / 2];
-        }
-        else
-        {
-            int a = result[k / 2 - 1];
-            int b = result[k / 2];
-            return (a + b) / 2;
-        }
+
+        return 0;
     }
 };
 // @lc code=end
